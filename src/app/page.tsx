@@ -1,5 +1,4 @@
 import { Plus } from "lucide-react"
-import { Header } from "../components/Header"
 import { Button } from "../components/ui/button"
 import { Input } from "../components/ui/input"
 import { CategorySelect } from "../components/CategorySelect"
@@ -16,7 +15,7 @@ export default function Home() {
               <Plus />
               Novo Livro
             </Button>
-            <Button className="sm:hidden fixed z-10 right-5 bottom-5 rounded-full w-12 h-12">
+            <Button className="sm:hidden fixed z-10 right-5 bottom-20 rounded-full w-12 h-12">
               <Plus />
             </Button>
           </div>
