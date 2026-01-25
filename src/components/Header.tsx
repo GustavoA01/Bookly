@@ -8,7 +8,7 @@ export const Header = () => {
   const pathname = usePathname()
 
   return (
-    <header className="flex justify-between w-full">
+    <header className="flex justify-between w-full items-center">
       <div>
         <h1 className="font-bold text-xl">Bookly</h1>
         <p className="text-muted-foreground">Gerencie sua biblioteca pessoal</p>

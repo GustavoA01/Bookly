@@ -1,7 +1,5 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono, Montserrat } from "next/font/google"
-import { Header } from "../components/Header"
-import { BottomNavigation } from "../components/BottomNavigation"
 import "./globals.css"
 
 const geistSans = Geist({
@@ -30,16 +28,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning={true} data-lt-installed="true">
+    <html lang="pt-br" suppressHydrationWarning={true} data-lt-installed="true">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} dark antialiased`}
       >
-        <main className="flex gap-8 flex-col min-h-screen container mx-auto py-8 max-sm:px-4">
-          <Header />
-
-          {children}
-        </main>
-        <BottomNavigation />
+        {children}
       </body>
     </html>
   )
