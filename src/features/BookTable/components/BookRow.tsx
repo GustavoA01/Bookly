@@ -7,7 +7,7 @@ export const BookRow = () => {
   const router = useRouter()
   return (
     <TableRow
-      onClick={() => router.push("/detalhes/1")}
+      onClick={() => router.push("/livro/1")}
       className="cursor-pointer group"
     >
       <TableCell className="flex flex-col max-w-md">

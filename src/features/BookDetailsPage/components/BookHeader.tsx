@@ -1,7 +1,7 @@
 import { Badge } from "@/src/components/ui/badge"
 import { BookOpen, Star } from "lucide-react"
 
-export const DetailsHeader = () => (
+export const BookHeader = () => (
   <header className="my-auto">
     <div className="max-sm:flex max-sm:flex-col items-center space-y-2">
       <Badge variant="outline" className="flex items-center gap-2 text-primary">

@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/src/components/ui/card"
 import { BookOpen, PencilLine } from "lucide-react"
 
-export const DetailsSinopse = () => (
+export const BookSinopse = () => (
   <div className="col-span-2 space-y-4">
     <section>
       <div className="flex items-center gap-2">

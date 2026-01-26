@@ -3,7 +3,7 @@ import { Button } from "@/src/components/ui/button"
 import { ArrowLeft, Pencil, Trash } from "lucide-react"
 import { useRouter } from "next/navigation"
 
-export const DetailsActions = () => {
+export const BookActions = () => {
   const router = useRouter()
   
   return (

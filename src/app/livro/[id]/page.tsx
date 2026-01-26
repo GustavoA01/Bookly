@@ -1,7 +1,7 @@
+import { BookActions } from "@/src/features/BookDetailsPage/components/BookActions"
+import { BookHeader } from "@/src/features/BookDetailsPage/components/BookHeader"
 import { BookInfo } from "@/src/features/BookDetailsPage/components/BookInfo"
-import { DetailsActions } from "@/src/features/BookDetailsPage/components/DetailsActions"
-import { DetailsHeader } from "@/src/features/BookDetailsPage/components/DetailsHeader"
-import { DetailsSinopse } from "@/src/features/BookDetailsPage/components/DetailsSinopse"
+import { BookSinopse } from "@/src/features/BookDetailsPage/components/BookSinopse"
 import Image from "next/image"
 
 const DetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
@@ -11,7 +11,7 @@ const DetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <div>
-      <DetailsActions />
+      <BookActions />
 
       <main className="flex flex-col justify-center">
         {mockImage && (
@@ -35,12 +35,12 @@ const DetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
             />
           )}
 
-          <DetailsHeader />
+          <BookHeader />
         </div>
 
         <div className="flex flex-col sm:grid sm:grid-cols-3 mt-8 space-x-4">
-          <DetailsSinopse/>
-          <BookInfo/>
+          <BookSinopse />
+          <BookInfo />
         </div>
       </main>
     </div>

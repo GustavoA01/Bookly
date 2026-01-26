@@ -1,11 +1,10 @@
-import { LibraryBig, List, Plus } from "lucide-react"
+import { Plus } from "lucide-react"
 import { Button } from "../../components/ui/button"
 import { Input } from "../../components/ui/input"
 import { CategorySelect } from "../../components/CategorySelect"
-import { TableBook } from "../../features/BookTable/container/TableBook"
-import Link from "next/link"
 import { TabsNav } from "@/src/components/TabsNav"
 import { Card } from "@/src/components/ui/card"
+import { BookTable } from "@/src/features/BookTable/container"
 
 const Home = async ({
   searchParams,
@@ -35,7 +34,7 @@ const Home = async ({
       </div>
 
       {!tab || tab === "books" ? (
-        <TableBook />
+        <BookTable />
       ) : (
         <main className="mt-2">
           <Card className="group bg-transparent hover:border-primary border-dashed cursor-pointer transition-all duration-250">
