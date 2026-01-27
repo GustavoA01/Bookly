@@ -6,6 +6,7 @@ import { TabsNav } from "@/src/components/TabsNav";
 import { BookTable } from "@/src/features/BookTable/container";
 import { ListTabContent } from "@/src/features/ListTab/container/ListTabContent";
 import { MobileAddButton } from "@/src/components/MobileAddButton";
+import Link from "next/link";
 
 const Home = async ({
   searchParams,
@@ -23,10 +24,12 @@ const Home = async ({
 
         <div className="flex gap-2">
           <CategorySelect />
-          <Button className="sm:flex hidden">
-            <Plus />
-            Novo Livro
-          </Button>
+          <Link href="/novo-livro">
+            <Button className="sm:flex hidden">
+              <Plus />
+              Novo Livro
+            </Button>
+          </Link>
         </div>
       </div>
 
