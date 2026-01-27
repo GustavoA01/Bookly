@@ -1,11 +1,11 @@
-"use client"
-import { usePathname } from "next/navigation"
-import { Button } from "./ui/button"
-import Link from "next/link"
-import { navigation } from "../data/constants"
+"use client";
+import { usePathname } from "next/navigation";
+import { Button } from "./ui/button";
+import Link from "next/link";
+import { navigation } from "../data/constants";
 
 export const Header = () => {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <header className="flex justify-between w-full items-center">
@@ -29,5 +29,5 @@ export const Header = () => {
         ))}
       </nav>
     </header>
-  )
-}
+  );
+};

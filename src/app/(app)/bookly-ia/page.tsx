@@ -1,7 +1,5 @@
 const BooklyIAPage = () => {
-  return (
-    <div>Bookly IA Page</div>
-  )
-}
+  return <div>Bookly IA Page</div>;
+};
 
-export default BooklyIAPage
+export default BooklyIAPage;

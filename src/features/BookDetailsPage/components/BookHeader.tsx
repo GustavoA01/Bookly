@@ -1,5 +1,5 @@
-import { Badge } from "@/src/components/ui/badge"
-import { BookOpen, Star } from "lucide-react"
+import { Badge } from "@/src/components/ui/badge";
+import { BookOpen, Star } from "lucide-react";
 
 export const BookHeader = () => (
   <header className="my-auto">
@@ -20,4 +20,4 @@ export const BookHeader = () => (
       </div>
     </div>
   </header>
-)
+);

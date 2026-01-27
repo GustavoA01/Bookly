@@ -1,10 +1,10 @@
-"use client"
-import { usePathname } from "next/navigation"
-import { navigation } from "../data/constants"
-import Link from "next/link"
+"use client";
+import { usePathname } from "next/navigation";
+import { navigation } from "../data/constants";
+import Link from "next/link";
 
 export const BottomNavigation = () => {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <div className="sm:hidden flex fixed bottom-0 w-full justify-between items-center px-10 p-3 bg-card/95 backdrop-blur-md border-t border-primary/40">
@@ -23,5 +23,5 @@ export const BottomNavigation = () => {
         </Link>
       ))}
     </div>
-  )
-}
+  );
+};

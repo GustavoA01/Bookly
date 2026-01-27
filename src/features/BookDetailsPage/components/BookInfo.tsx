@@ -1,13 +1,13 @@
-import { Button } from "@/src/components/ui/button"
+import { Button } from "@/src/components/ui/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/src/components/ui/card"
-import { Progress } from "@/src/components/ui/progress"
-import { Calendar, CheckCircle, Info, Plus } from "lucide-react"
+} from "@/src/components/ui/card";
+import { Progress } from "@/src/components/ui/progress";
+import { Calendar, CheckCircle, Info, Plus } from "lucide-react";
 
 export const BookInfo = () => (
   <div className="col-span-1">
@@ -87,4 +87,4 @@ export const BookInfo = () => (
       </Card>
     </section>
   </div>
-)
+);

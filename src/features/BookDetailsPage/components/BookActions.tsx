@@ -1,11 +1,11 @@
-"use client"
-import { Button } from "@/src/components/ui/button"
-import { ArrowLeft, Pencil, Trash } from "lucide-react"
-import { useRouter } from "next/navigation"
+"use client";
+import { Button } from "@/src/components/ui/button";
+import { ArrowLeft, Pencil, Trash } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export const BookActions = () => {
-  const router = useRouter()
-  
+  const router = useRouter();
+
   return (
     <header className="flex justify-between items-center mb-8">
       <Button
@@ -25,5 +25,5 @@ export const BookActions = () => {
         </Button>
       </div>
     </header>
-  )
-}
+  );
+};

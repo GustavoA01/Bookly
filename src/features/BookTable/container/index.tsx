@@ -1,6 +1,6 @@
-import { Table, TableBody, TableHeader } from "../../../components/ui/table"
-import { BookRow } from "../components/BookRow"
-import { BookTHeader } from "../components/BookTHeader"
+import { Table, TableBody, TableHeader } from "../../../components/ui/table";
+import { BookRow } from "../components/BookRow";
+import { BookTHeader } from "../components/BookTHeader";
 
 export const BookTable = () => {
   return (
@@ -13,5 +13,5 @@ export const BookTable = () => {
         <BookRow />
       </TableBody>
     </Table>
-  )
-}
+  );
+};

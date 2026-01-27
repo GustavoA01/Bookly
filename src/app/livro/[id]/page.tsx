@@ -1,13 +1,13 @@
-import { BookActions } from "@/src/features/BookDetailsPage/components/BookActions"
-import { BookHeader } from "@/src/features/BookDetailsPage/components/BookHeader"
-import { BookInfo } from "@/src/features/BookDetailsPage/components/BookInfo"
-import { BookSinopse } from "@/src/features/BookDetailsPage/components/BookSinopse"
-import Image from "next/image"
+import { BookActions } from "@/src/features/BookDetailsPage/components/BookActions";
+import { BookHeader } from "@/src/features/BookDetailsPage/components/BookHeader";
+import { BookInfo } from "@/src/features/BookDetailsPage/components/BookInfo";
+import { BookSinopse } from "@/src/features/BookDetailsPage/components/BookSinopse";
+import Image from "next/image";
 
 const DetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   // const {id} = await params
 
-  const mockImage = "/detalhes-mock.jpg"
+  const mockImage = "/detalhes-mock.jpg";
 
   return (
     <div>
@@ -44,7 +44,7 @@ const DetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default DetailsPage
+export default DetailsPage;

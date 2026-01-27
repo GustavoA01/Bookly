@@ -1,10 +1,10 @@
-"use client"
-import { Badge } from "../../../components/ui/badge"
-import { TableCell, TableRow } from "../../../components/ui/table"
-import { useRouter } from "next/navigation"
+"use client";
+import { Badge } from "../../../components/ui/badge";
+import { TableCell, TableRow } from "../../../components/ui/table";
+import { useRouter } from "next/navigation";
 
 export const BookRow = () => {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <TableRow
       onClick={() => router.push("/livro/1")}
@@ -29,5 +29,5 @@ export const BookRow = () => {
       <TableCell>Lido</TableCell>
       <TableCell>5</TableCell>
     </TableRow>
-  )
-}
+  );
+};

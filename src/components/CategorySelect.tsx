@@ -4,7 +4,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../components/ui/select"
+} from "../components/ui/select";
 
 const categories = [
   { value: "read", label: "Lido" },
@@ -12,7 +12,7 @@ const categories = [
   { value: "abandoned", label: "Abandonado" },
   { value: "toRead", label: "Para ler" },
   { value: "all", label: "Todos" },
-]
+];
 
 export const CategorySelect = () => {
   return (
@@ -28,5 +28,5 @@ export const CategorySelect = () => {
         ))}
       </SelectContent>
     </Select>
-  )
-}
+  );
+};

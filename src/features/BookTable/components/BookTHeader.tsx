@@ -1,4 +1,4 @@
-import { TableHead, TableRow } from "../../../components/ui/table"
+import { TableHead, TableRow } from "../../../components/ui/table";
 
 export const BookTHeader = () => (
   <TableRow className=" mt-4 px-8">
@@ -10,4 +10,4 @@ export const BookTHeader = () => (
 
     <TableHead className="text-muted-foreground font-bold">Nota</TableHead>
   </TableRow>
-)
+);

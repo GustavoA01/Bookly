@@ -1,17 +1,18 @@
-import { Plus } from "lucide-react"
-import { Button } from "../../components/ui/button"
-import { Input } from "../../components/ui/input"
-import { CategorySelect } from "../../components/CategorySelect"
-import { TabsNav } from "@/src/components/TabsNav"
-import { BookTable } from "@/src/features/BookTable/container"
-import { ListTabContent } from "@/src/features/ListTab/container/ListTabContent"
+import { Plus } from "lucide-react";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+import { CategorySelect } from "../../components/CategorySelect";
+import { TabsNav } from "@/src/components/TabsNav";
+import { BookTable } from "@/src/features/BookTable/container";
+import { ListTabContent } from "@/src/features/ListTab/container/ListTabContent";
+import { MobileAddButton } from "@/src/components/MobileAddButton";
 
 const Home = async ({
   searchParams,
 }: {
-  searchParams: Promise<{ tab?: string }>
+  searchParams: Promise<{ tab?: string }>;
 }) => {
-  const { tab } = await searchParams
+  const { tab } = await searchParams;
 
   return (
     <main>
@@ -26,20 +27,14 @@ const Home = async ({
             <Plus />
             Novo Livro
           </Button>
-
-          <Button className="sm:hidden fixed z-10 right-5 bottom-20 rounded-full w-12 h-12">
-            <Plus />
-          </Button>
         </div>
       </div>
 
-      {!tab || tab === "books" ? (
-        <BookTable />
-      ) : (
-        <ListTabContent/>
-      )}
-    </main>
-  )
-}
+      {!tab || tab === "books" ? <BookTable /> : <ListTabContent />}
 
-export default Home
+      <MobileAddButton tab={tab} />
+    </main>
+  );
+};
+
+export default Home;

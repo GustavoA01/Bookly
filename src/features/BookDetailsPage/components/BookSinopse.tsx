@@ -1,5 +1,5 @@
-import { Card, CardContent } from "@/src/components/ui/card"
-import { BookOpen, PencilLine } from "lucide-react"
+import { Card, CardContent } from "@/src/components/ui/card";
+import { BookOpen, PencilLine } from "lucide-react";
 
 export const BookSinopse = () => (
   <div className="col-span-2 space-y-4">
@@ -45,4 +45,4 @@ export const BookSinopse = () => (
       </Card>
     </section>
   </div>
-)
+);
