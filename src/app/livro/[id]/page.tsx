@@ -35,7 +35,7 @@ const DetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
             />
           )}
 
-          <BookHeader />
+          <BookHeader isImageNull={mockImage === null} />
         </div>
 
         <div className="flex flex-col sm:grid sm:grid-cols-3 mt-8 space-x-4">
