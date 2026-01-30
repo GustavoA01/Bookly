@@ -17,8 +17,9 @@ export const ImageForm = () => (
       <CardContent className="flex justify-around">
         <div className="space-y-2">
           <Label>Nota</Label>
-          <Input placeholder="Ex: 10" />
+          <Input type="number" placeholder="Ex: 10" />
         </div>
+
         <div className="space-y-2">
           <Label>Status</Label>
           <CategorySelect />
