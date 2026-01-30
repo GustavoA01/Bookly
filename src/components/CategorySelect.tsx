@@ -11,10 +11,11 @@ const categories = [
   { value: "reading", label: "Lendo" },
   { value: "abandoned", label: "Abandonado" },
   { value: "toRead", label: "Para ler" },
-  { value: "all", label: "Todos" },
 ];
 
-export const CategorySelect = () => {
+export const CategorySelect = ({ isHome }: { isHome?: boolean }) => {
+  if (isHome) categories.push({ value: "all", label: "Todos" });
+
   return (
     <Select>
       <SelectTrigger className="w-fit min-w-30 ml-auto">

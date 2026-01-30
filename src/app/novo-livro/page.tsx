@@ -1,6 +1,7 @@
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
 import { Textarea } from "@/src/components/ui/textarea";
+import { ImageForm } from "@/src/features/NewBook/components/ImageForm";
 import { NewBookHeader } from "@/src/features/NewBook/components/NewBookHeader";
 
 const NewBookPage = () => {
@@ -42,7 +43,8 @@ const NewBookPage = () => {
           <Label>Comentário</Label>
           <Textarea className="resize-none" />
         </div>
-        <div className="col-span-2 flex flex-col gap-4 p-4"></div>
+
+        <ImageForm />
       </form>
     </main>
   );

@@ -23,7 +23,7 @@ const Home = async ({
         <Input placeholder="Pesquisar" className="w-full sm:max-w-80" />
 
         <div className="flex gap-2">
-          <CategorySelect />
+          <CategorySelect isHome />
           <Link href="/novo-livro">
             <Button className="sm:flex hidden">
               <Plus />
