@@ -6,19 +6,26 @@ import {
   SelectValue,
 } from "../components/ui/select";
 
-const categories = [
+const defaultCategories = [
   { value: "read", label: "Lido" },
   { value: "reading", label: "Lendo" },
   { value: "abandoned", label: "Abandonado" },
   { value: "toRead", label: "Para ler" },
 ];
 
-export const CategorySelect = ({ isHome }: { isHome?: boolean }) => {
-  if (isHome) categories.push({ value: "all", label: "Todos" });
+type CategorySelectProps = {
+  isHome?: boolean;
+  className?: string;
+};
+
+export const CategorySelect = ({ isHome, className }: CategorySelectProps) => {
+  const categories = isHome
+    ? [{ value: "all", label: "Todos" }, ...defaultCategories]
+    : defaultCategories;
 
   return (
     <Select>
-      <SelectTrigger className="w-fit min-w-30 ml-auto">
+      <SelectTrigger className={`w-fit min-w-30 ml-auto ${className}`}>
         <SelectValue placeholder="Status" />
       </SelectTrigger>
       <SelectContent>

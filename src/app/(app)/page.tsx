@@ -24,6 +24,7 @@ const Home = async ({
 
         <div className="flex gap-2">
           <CategorySelect isHome />
+
           <Link href="/novo-livro">
             <Button className="sm:flex hidden">
               <Plus />
