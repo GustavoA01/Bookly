@@ -1,6 +1,6 @@
 import { Compass, Home, Sparkles } from "lucide-react";
 
-export const navigation = [
+export const navigationButtons = [
   {
     name: "Início",
     href: "/",

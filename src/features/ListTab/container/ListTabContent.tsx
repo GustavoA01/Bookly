@@ -22,7 +22,11 @@ export const ListTabContent = () => {
       </Dialog>
 
       {[...Array(8)].map((_, index) => (
-        <ListCard key={index} />
+        <ListCard
+          name={`Lista ${index + 1}`}
+          itemCount={index + 1}
+          key={index}
+        />
       ))}
     </main>
   );

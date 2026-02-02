@@ -11,7 +11,7 @@ export const MobileAddButton = ({ tab }: { tab: string | undefined }) => {
   return (
     <Link href={addFunction()}>
       <Button className="sm:hidden fixed z-10 right-5 bottom-20 rounded-full w-12 h-12">
-        <Plus />
+        <Plus data-testid="plus-icon" />
       </Button>
     </Link>
   );
