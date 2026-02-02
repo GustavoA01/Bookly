@@ -20,7 +20,7 @@ export const ImageDialog = () => (
     </DialogHeader>
 
     <div className="flex flex-col gap-4">
-      <Input placeholder="Ex: " />
+      <Input placeholder="Ex: https://..." />
 
       <label
         htmlFor="select-image"

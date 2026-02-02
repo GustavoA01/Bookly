@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/src/components/ui/button";
 import {
   DialogClose,
@@ -21,7 +22,7 @@ export const NewListForm = () => (
         <Button variant="outline">Cancelar</Button>
       </DialogClose>
       <DialogClose asChild>
-        <Button>Salvar</Button>
+        <Button onClick={() => {}}>Salvar</Button>
       </DialogClose>
     </DialogFooter>
   </DialogContent>

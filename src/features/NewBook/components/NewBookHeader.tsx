@@ -9,7 +9,11 @@ export const NewBookHeader = () => {
   return (
     <header className="flex justify-between">
       <div className="flex space-x-6 items-center">
-        <Button onClick={() => router.back()} variant="ghost">
+        <Button
+          data-testid="back-button"
+          onClick={() => router.back()}
+          variant="ghost"
+        >
           <ArrowLeft />
         </Button>
         <h1 className="text-lg sm:text-2xl font-semibold">

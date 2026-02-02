@@ -1,7 +1,7 @@
 import { TableHead, TableRow } from "../../../components/ui/table";
 
 export const BookTHeader = () => (
-  <TableRow className=" mt-4 px-8">
+  <TableRow className="mt-4 px-8">
     <TableHead className="text-muted-foreground font-bold">
       <p className="ml-8">Livro</p>
     </TableHead>
