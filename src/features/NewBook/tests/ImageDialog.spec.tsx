@@ -2,6 +2,12 @@ import { Dialog } from "@/src/components/ui/dialog";
 import { render, screen } from "@testing-library/react";
 import { ImageDialog } from "../components/ImageDialog";
 
+jest.mock("react-hook-form", () => ({
+  useFormContext: () => ({
+    register: jest.fn(),
+  }),
+}));
+
 describe("ImageDialog", () => {
   it("renders component correctly", () => {
     render(

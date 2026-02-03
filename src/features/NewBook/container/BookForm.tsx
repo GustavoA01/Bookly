@@ -5,36 +5,57 @@ import { Label } from "@/src/components/ui/label";
 import { Textarea } from "@/src/components/ui/textarea";
 import { ImageForm } from "@/src/features/NewBook/components/ImageForm";
 import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { BookFormType, bookSchema } from "@/src/data/schemas";
 
 export const BookForm = () => {
+  const methods = useForm<BookFormType>({
+    resolver: zodResolver(bookSchema),
+  });
+  const { register, handleSubmit } = methods;
+
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
 
+  const handleCreateBook = (data: BookFormType) => {
+    const book = {
+      ...data,
+      startDate,
+      endDate,
+    };
+    console.log(book);
+  };
+
   return (
-    <form className="flex flex-col sm:grid grid-cols-5">
+    <form
+      id="book-form"
+      onSubmit={handleSubmit(handleCreateBook)}
+      className="flex flex-col sm:grid grid-cols-5"
+    >
       <div className="col-span-3 flex flex-col space-y-4 p-4">
         <Label>Título*</Label>
-        <Input placeholder="Ex: O Hobbit" />
+        <Input {...register("title")} placeholder="Ex: O Hobbit" />
 
         <div className="flex flex-col gap-4 sm:grid grid-cols-2 sm:space-x-2">
           <div className="space-y-2 cols-span-1">
             <Label>Autor</Label>
-            <Input placeholder="Ex: J.R.R. Tolkien" />
+            <Input {...register("author")} placeholder="Ex: J.R.R. Tolkien" />
           </div>
           <div className="space-y-2 cols-span-1">
             <Label>Gênero</Label>
-            <Input placeholder="Ex: Fantasia" />
+            <Input {...register("genre")} placeholder="Ex: Fantasia" />
           </div>
         </div>
 
         <div className="flex flex-col gap-4 sm:grid grid-cols-2 sm:space-x-2">
           <div className="space-y-2 cols-span-1">
             <Label>Número de páginas</Label>
-            <Input placeholder="Ex: 300" />
+            <Input {...register("numberOfPages")} placeholder="Ex: 300" />
           </div>
           <div className="space-y-2 cols-span-1">
             <Label>Página atual</Label>
-            <Input placeholder="Ex: 150" />
+            <Input {...register("currentPage")} placeholder="Ex: 150" />
           </div>
         </div>
 
@@ -53,13 +74,15 @@ export const BookForm = () => {
         </div>
 
         <Label>Sinopse</Label>
-        <Textarea className="resize-none" />
+        <Textarea {...register("synopsis")} className="resize-none" />
 
         <Label>Comentário</Label>
-        <Textarea className="resize-none" />
+        <Textarea {...register("comment")} className="resize-none" />
       </div>
 
-      <ImageForm />
+      <FormProvider {...methods}>
+        <ImageForm register={register} />
+      </FormProvider>
     </form>
   );
 };

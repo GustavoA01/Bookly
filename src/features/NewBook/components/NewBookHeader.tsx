@@ -20,7 +20,7 @@ export const NewBookHeader = () => {
           Adicionar Novo Livro
         </h1>
       </div>
-      <Button>
+      <Button type="submit" form="book-form">
         <Save />
         <p>Salvar</p>
       </Button>
