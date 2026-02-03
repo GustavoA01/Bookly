@@ -8,7 +8,7 @@ export const bookSchema = z.object({
   currentPage: z.number().optional(),
   synopsis: z.string().optional(),
   comment: z.string().optional(),
-  rating: z.number().min(0).max(100).optional(),
+  rating: z.number().optional().nullable(),
   imageUrl: z.string().optional(),
 });
 

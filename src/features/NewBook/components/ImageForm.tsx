@@ -17,7 +17,13 @@ export const ImageForm = ({
     <div className="flex flex-col gap-4 sm:grid grid-cols-2 sm:space-x-2">
       <div className="space-y-2 cols-span-1">
         <Label>Nota</Label>
-        <Input type="number" placeholder="Ex: 10" {...register("rating")} />
+        <Input
+          type="number"
+          placeholder="Ex: 10"
+          {...register("rating", {
+            setValueAs: (val) => (val === "" ? undefined : Number(val)),
+          })}
+        />
       </div>
 
       <div className="space-y-2 cols-span-1">

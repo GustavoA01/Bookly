@@ -9,7 +9,7 @@ export const ListTabContent = () => {
     <main className="sm:grid sm:grid-cols-2 md:grid-cols-3 max-sm:space-y-2 lg:grid-cols-4 gap-2 mt-2">
       <Dialog>
         <DialogTrigger asChild>
-          <Card className="hidden sm:flex h-auto group bg-transparent hover:border-primary border-dashed cursor-pointer transition-all duration-250">
+          <Card className="flex h-auto group bg-transparent hover:border-primary border-dashed cursor-pointer transition-all duration-250">
             <div className="m-auto flex flex-col items-center text-muted-foreground text-sm space-y-2">
               <Plus className="group-hover:scale-110 transition-all duration-250 group-hover:text-primary" />
               <p className="group-hover:scale-110 transition-all duration-250 group-hover:text-primary font-montserrat">

@@ -8,6 +8,7 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BookFormType, bookSchema } from "@/src/data/schemas";
+import { Button } from "@/src/components/ui/button";
 
 export const BookForm = () => {
   const methods = useForm<BookFormType>({
@@ -17,6 +18,11 @@ export const BookForm = () => {
 
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
+
+  const handleCleanDates = () => {
+    setStartDate(undefined);
+    setEndDate(undefined);
+  };
 
   const handleCreateBook = (data: BookFormType) => {
     const book = {
@@ -59,8 +65,8 @@ export const BookForm = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 sm:grid grid-cols-2 sm:space-x-2">
-          <div className="space-y-2 cols-span-1">
+        <div className="flex flex-col gap-4 sm:flex-row sm:space-x-2">
+          <div className="space-y-2 w-full">
             <DatePicker
               label="Início"
               date={startDate}
@@ -68,9 +74,19 @@ export const BookForm = () => {
             />
           </div>
 
-          <div className="space-y-2 cols-span-1">
+          <div className="space-y-2 w-full">
             <DatePicker label="Término" date={endDate} setDate={setEndDate} />
           </div>
+
+          {(startDate || endDate) && (
+            <Button
+              variant="outline"
+              onClick={handleCleanDates}
+              className="w-full sm:w-auto mt-auto"
+            >
+              Limpar datas
+            </Button>
+          )}
         </div>
 
         <Label>Sinopse</Label>

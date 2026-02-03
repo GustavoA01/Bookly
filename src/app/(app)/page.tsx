@@ -34,9 +34,16 @@ const Home = async ({
         </div>
       </div>
 
-      {!tab || tab === "books" ? <BookTable /> : <ListTabContent />}
-
-      <MobileAddButton tab={tab} />
+      {!tab || tab === "books" ? (
+        <>
+          <Link href="/novo-livro">
+            <MobileAddButton />
+          </Link>
+          <BookTable />
+        </>
+      ) : (
+        <ListTabContent />
+      )}
     </main>
   );
 };
