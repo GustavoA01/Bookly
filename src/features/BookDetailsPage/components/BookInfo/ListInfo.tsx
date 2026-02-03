@@ -7,16 +7,33 @@ import {
 } from "@/src/components/ui/card";
 import { Plus } from "lucide-react";
 
-export const ListInfo = () => (
+type ListInfoProps = {
+  lists:
+    | {
+        id: string;
+        name: string;
+      }[]
+    | null;
+};
+
+export const ListInfo = ({ lists }: ListInfoProps) => (
   <Card>
     <CardHeader>
       <CardTitle className="text-muted-foreground">
-        PRESENTE EM
-        {/* Este livro não está presente em nenhuma lista */}
+        {lists ? (
+          <p>PRESENTE EM</p>
+        ) : (
+          <p>Este livro não está presente em nenhuma lista</p>
+        )}
       </CardTitle>
     </CardHeader>
     <CardContent className="space-x-2 space-y-2">
-      <Button variant="secondary">Favoritos</Button>
+      {lists &&
+        lists.map((list) => (
+          <Button key={list.id} variant="outline">
+            {list.name}
+          </Button>
+        ))}
 
       <Button>
         <Plus /> Add

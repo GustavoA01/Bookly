@@ -16,9 +16,7 @@ export const BookSinopse = ({ sinopse, comment }: BookSinopseProps) => (
         </div>
 
         <Card className="bg-transparent border border-border mt-4 p-6">
-          <CardContent className="text-muted-foreground">
-            {sinopse || "Sinopse não disponível."}
-          </CardContent>
+          <CardContent className="text-muted-foreground">{sinopse}</CardContent>
         </Card>
       </section>
     )}

@@ -29,6 +29,17 @@ export const BookForm = () => {
 
         <div className="flex flex-col gap-4 sm:grid grid-cols-2 sm:space-x-2">
           <div className="space-y-2 cols-span-1">
+            <Label>Número de páginas</Label>
+            <Input placeholder="Ex: 300" />
+          </div>
+          <div className="space-y-2 cols-span-1">
+            <Label>Página atual</Label>
+            <Input placeholder="Ex: 150" />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 sm:grid grid-cols-2 sm:space-x-2">
+          <div className="space-y-2 cols-span-1">
             <DatePicker
               label="Início"
               date={startDate}
