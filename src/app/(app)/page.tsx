@@ -36,10 +36,10 @@ const Home = async ({
 
       {!tab || tab === "books" ? (
         <>
+          <BookTable />
           <Link href="/novo-livro">
             <MobileAddButton />
           </Link>
-          <BookTable />
         </>
       ) : (
         <ListTabContent />
