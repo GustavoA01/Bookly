@@ -7,12 +7,33 @@ import { ImageUp } from "lucide-react";
 import { ImageDialog } from "./ImageDialog";
 import { UseFormRegister } from "react-hook-form";
 import { BookFormType } from "@/src/data/schemas";
+import { Dispatch, SetStateAction } from "react";
+import { Status } from "@/src/data/types";
+import Image from "next/image";
+
+type ImageFormProps = {
+  register: UseFormRegister<BookFormType>;
+  status: Status;
+  setStatus: Dispatch<SetStateAction<Status>>;
+  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  choosedFile: string | undefined;
+  setChoosedFile: (file: string | undefined) => void;
+  showImage: boolean;
+  chooseImageError?: string | null;
+  handleImageError: () => void;
+};
 
 export const ImageForm = ({
   register,
-}: {
-  register: UseFormRegister<BookFormType>;
-}) => (
+  status,
+  setStatus,
+  handleFileChange,
+  choosedFile,
+  setChoosedFile,
+  showImage,
+  chooseImageError,
+  handleImageError,
+}: ImageFormProps) => (
   <div className="col-span-2 flex flex-col gap-4 p-4">
     <div className="flex flex-col gap-4 sm:grid grid-cols-2 sm:space-x-2">
       <div className="space-y-2 cols-span-1">
@@ -28,20 +49,44 @@ export const ImageForm = ({
 
       <div className="space-y-2 cols-span-1">
         <Label>Status</Label>
-        <CategorySelect className="w-full" />
+        <CategorySelect
+          value={status}
+          onValueChange={setStatus}
+          className="w-full"
+        />
       </div>
     </div>
 
     <Dialog>
       <DialogTrigger>
-        <Card className="h-64 w-full border border-dashed bg-transparent cursor-pointer hover:border-primary transition-all duration-250">
+        <Card className="h-auto w-full border border-dashed bg-transparent cursor-pointer hover:border-primary transition-all duration-250">
           <div className="flex flex-col m-auto items-center justify-center gap-2 text-muted-foreground">
-            <ImageUp />
-            <p>Capa do livro</p>
+            {showImage ? (
+              <Image
+                src={choosedFile!}
+                alt="Preview"
+                width={200}
+                height={300}
+                onError={handleImageError}
+                className="rounded-md"
+              />
+            ) : (
+              <div className="flex flex-col items-center justify-center gap-2">
+                <ImageUp />
+                <p>Escolher imagem do livro</p>
+              </div>
+            )}
           </div>
         </Card>
       </DialogTrigger>
-      <ImageDialog />
+
+      <ImageDialog
+        choosedFile={choosedFile}
+        handleFileChange={handleFileChange}
+        setChoosedFile={setChoosedFile}
+        showImage={showImage}
+        chooseImageError={chooseImageError}
+      />
     </Dialog>
   </div>
 );

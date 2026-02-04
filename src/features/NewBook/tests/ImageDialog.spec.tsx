@@ -12,16 +12,21 @@ describe("ImageDialog", () => {
   it("renders component correctly", () => {
     render(
       <Dialog open>
-        <ImageDialog />
+        <ImageDialog
+          choosedFile={undefined}
+          setChoosedFile={jest.fn()}
+          handleFileChange={jest.fn()}
+          chooseImageError={null}
+          showImage={false}
+        />
       </Dialog>,
     );
 
-    expect(screen.getByText("Adicionar Capa do Livro")).toBeInTheDocument();
+    expect(screen.getByText("Adicionar Imagem do Livro")).toBeInTheDocument();
     expect(
       screen.getByText("Faça upload de uma imagem ou cole uma URL da web"),
     ).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Ex: https://...")).toBeInTheDocument();
-    expect(screen.getByText("Selecionar Imagem")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Fechar" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Salvar" })).toBeInTheDocument();
     expect(document.querySelector("#select-image")).toHaveAttribute(

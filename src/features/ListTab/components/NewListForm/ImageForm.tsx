@@ -56,6 +56,7 @@ export const ImageForm = ({
           width={200}
           height={300}
           onError={handleImageError}
+          className="rounded-md"
         />
       ) : (
         <div className="flex flex-col items-center justify-center gap-2">
