@@ -12,7 +12,7 @@ export const BookDetails = ({ mockImage }: BookDetailsProps) => {
     <main className="flex flex-col justify-center">
       {mockImage && (
         <Image
-          className="m-auto sm:hidden max-sm:mb-4 max-h-max"
+          className="m-auto sm:hidden max-sm:mb-4 max-h-max rounded-md"
           src={mockImage}
           alt="Book cover"
           width={250}
@@ -23,7 +23,7 @@ export const BookDetails = ({ mockImage }: BookDetailsProps) => {
       <div className="flex space-x-8 justify-center">
         {mockImage && (
           <Image
-            className="hidden sm:block max-sm:mb-4 max-h-max"
+            className="hidden sm:block max-sm:mb-4 max-h-max rounded-md"
             src={mockImage}
             alt="Book cover"
             width={250}

@@ -19,6 +19,24 @@ export const BookTable = () => {
           status="Lido"
           rating={5}
         />
+        <BookRow
+          id="1"
+          title="Dracula"
+          author="Bram Stoker"
+          createdAt="21/01/2026"
+          genre="Horror"
+          status="Lido"
+          rating={5}
+        />
+        <BookRow
+          id="1"
+          title="O Senhor dos Anéis"
+          author="J.R.R. Tolkien"
+          createdAt="21/01/2026"
+          genre="Fantasia"
+          status="Lido"
+          rating={5}
+        />
       </TableBody>
     </Table>
   );

@@ -34,28 +34,6 @@ export const TabsNav = ({ tab = "books" }: { tab: string | undefined }) => {
           </Button>
         </Link>
       ))}
-
-      {/* <Link href="?tab=books" className="w-full">
-      <Button
-        size="sm"
-        variant={`${!tab || tab === "books" ? "secondary" : "ghost"}`}
-        className={`${!tab || tab === "books" ? "" : "text-muted-foreground"} w-full`}
-      >
-        <LibraryBig />
-        <p>Livros</p>
-      </Button>
-    </Link>
-
-    <Link href="?tab=lists" className="w-full">
-      <Button
-        size="sm"
-        variant={`${tab === "lists" ? "secondary" : "ghost"}`}
-        className={`${tab === "lists" ? "" : "text-muted-foreground"} w-full`}
-      >
-        <List />
-        <p>Listas</p>
-      </Button>
-    </Link> */}
     </nav>
   );
 };
