@@ -3,7 +3,7 @@ import { CategorySelect } from "../CategorySelect";
 
 describe("CategorySelect", () => {
   it("should render default categories when isHome is false", async () => {
-    render(<CategorySelect />);
+    render(<CategorySelect value="" onValueChange={jest.fn()} />);
 
     const button = await screen.findByRole("combobox");
     fireEvent.click(button);
@@ -14,8 +14,8 @@ describe("CategorySelect", () => {
     expect(screen.getByText("Para ler")).toBeInTheDocument();
   });
 
-  it("should render default categories when isHome is true", async () => {
-    render(<CategorySelect isHome />);
+  it("should render correct categories when isHome is true", async () => {
+    render(<CategorySelect isHome value="" onValueChange={jest.fn()} />);
 
     const button = await screen.findByRole("combobox");
     fireEvent.click(button);

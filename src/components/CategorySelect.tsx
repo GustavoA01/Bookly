@@ -18,8 +18,8 @@ const defaultCategories = [
 type CategorySelectProps = {
   isHome?: boolean;
   className?: string;
-  value: Status;
-  onValueChange: Dispatch<SetStateAction<Status>>;
+  value: Status | "";
+  onValueChange: Dispatch<SetStateAction<Status | "">>;
 };
 
 export const CategorySelect = ({
