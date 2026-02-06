@@ -17,7 +17,12 @@ export const BookForm = () => {
   const methods = useForm<BookFormType>({
     resolver: zodResolver(bookSchema),
   });
-  const { register, handleSubmit, setValue, getValues } = methods;
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = methods;
 
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
@@ -69,26 +74,7 @@ export const BookForm = () => {
     return "";
   };
 
-  const getPagesError = (
-    numberOfPages: number | undefined,
-    currentPage: number | undefined,
-  ) => {
-    if (numberOfPages) {
-      if (numberOfPages <= 0)
-        return "O número de páginas deve ser maior que zero.";
-      if (currentPage) {
-        if (currentPage < 0) return "A página atual deve ser maior que 0.";
-        if (currentPage > numberOfPages)
-          return "A página atual não pode ser maior que o número de páginas.";
-      }
-    }
-  };
-
   const dateErrorMessage = getErrorMessages();
-  const pagesErrorMessage = getPagesError(
-    getValues("numberOfPages"),
-    getValues("currentPage"),
-  );
 
   const handleCleanDates = () => {
     setStartDate(undefined);
@@ -96,9 +82,7 @@ export const BookForm = () => {
   };
 
   const handleCreateBook = (data: BookFormType) => {
-    console.log(pagesErrorMessage);
-    console.log(getValues("numberOfPages"), getValues("currentPage"));
-    if (dateErrorMessage || pagesErrorMessage) return;
+    if (dateErrorMessage) return;
 
     const book = {
       ...data,
@@ -118,6 +102,9 @@ export const BookForm = () => {
       <div className="col-span-3 flex flex-col space-y-4 p-4">
         <Label>Título*</Label>
         <Input {...register("title")} placeholder="Ex: O Hobbit" />
+        {errors.title && (
+          <p className="text-sm text-red-600">{errors.title?.message}</p>
+        )}
 
         <div className="flex flex-col gap-4 sm:grid grid-cols-2 sm:space-x-2">
           <div className="space-y-2 cols-span-1">
@@ -157,8 +144,10 @@ export const BookForm = () => {
           </div>
         </div>
 
-        {pagesErrorMessage && (
-          <p className="text-sm text-red-600">{pagesErrorMessage}</p>
+        {(errors.numberOfPages || errors.currentPage) && (
+          <p className="text-sm text-red-600">
+            {errors.numberOfPages?.message || errors.currentPage?.message}
+          </p>
         )}
 
         <div className="flex flex-col gap-4 sm:flex-row sm:space-x-2">
