@@ -19,7 +19,7 @@ type CategorySelectProps = {
   isHome?: boolean;
   className?: string;
   value: Status | "";
-  onValueChange: Dispatch<SetStateAction<Status | "">>;
+  onValueChange: Dispatch<SetStateAction<Status>>;
 };
 
 export const CategorySelect = ({

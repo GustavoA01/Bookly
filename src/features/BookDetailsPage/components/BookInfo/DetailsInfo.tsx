@@ -16,7 +16,7 @@ export const DetailsInfo = ({
   totalPages,
   genre,
 }: DetailsInfoProps) => (
-  <Card>
+  <Card className="w-full max-w-sm">
     <CardHeader>
       <CardTitle>DETALHES</CardTitle>
     </CardHeader>

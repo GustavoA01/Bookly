@@ -9,7 +9,7 @@ const DetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <div>
       <BookActions />
-      <BookDetails mockImage={mockImage} />
+      <BookDetails sinopse={"null"} comment={null} mockImage={mockImage} />
     </div>
   );
 };

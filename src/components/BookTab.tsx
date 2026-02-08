@@ -4,7 +4,7 @@ import { CategorySelect } from "./CategorySelect";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Plus } from "lucide-react";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Status } from "../data/types";
 
 export const BookTab = () => {
@@ -15,7 +15,11 @@ export const BookTab = () => {
       <Input placeholder="Pesquisar" className="w-full sm:max-w-80" />
 
       <div className="flex gap-2">
-        <CategorySelect value={status} onValueChange={setStatus} isHome />
+        <CategorySelect
+          value={status}
+          onValueChange={setStatus as Dispatch<SetStateAction<Status>>}
+          isHome
+        />
 
         <Link href="/novo-livro">
           <Button className="hidden sm:flex">

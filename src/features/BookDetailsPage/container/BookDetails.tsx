@@ -5,9 +5,19 @@ import { BookInfo } from "../components/BookInfo";
 
 type BookDetailsProps = {
   mockImage: string | null;
+  sinopse: string | null;
+  comment: string | null;
 };
 
-export const BookDetails = ({ mockImage }: BookDetailsProps) => {
+export const BookDetails = ({
+  mockImage,
+  sinopse,
+  comment,
+}: BookDetailsProps) => {
+  const isSinopseAndCommentNull = sinopse === null && comment === null;
+  const notNullClassName =
+    "flex flex-col sm:grid sm:grid-cols-3 mt-8 sm:space-x-4";
+
   return (
     <main className="flex flex-col justify-center">
       {mockImage && (
@@ -40,9 +50,13 @@ export const BookDetails = ({ mockImage }: BookDetailsProps) => {
         />
       </div>
 
-      <div className="flex flex-col sm:grid sm:grid-cols-3 mt-8 sm:space-x-4">
-        <BookSinopse sinopse={null} comment={null} />
-        <BookInfo />
+      <div
+        className={
+          isSinopseAndCommentNull ? "flex flex-col mt-8" : notNullClassName
+        }
+      >
+        <BookSinopse sinopse={sinopse} comment={comment} />
+        <BookInfo isSinopseAndCommentNull={isSinopseAndCommentNull} />
       </div>
     </main>
   );

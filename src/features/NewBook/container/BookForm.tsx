@@ -11,7 +11,6 @@ import { BookFormType, bookSchema } from "@/src/data/schemas";
 import { Button } from "@/src/components/ui/button";
 import { isAfter } from "date-fns";
 import { Status } from "@/src/data/types";
-import { ImageOff } from "lucide-react";
 
 export const BookForm = () => {
   const methods = useForm<BookFormType>({
@@ -202,18 +201,9 @@ export const BookForm = () => {
           choosedFile={choosedFile}
           setChoosedFile={setChoosedFile}
           handleImageError={handleImageError}
+          cleanCurrentImage={cleanCurrentImage}
         />
       </FormProvider>
-
-      {choosedFile && (
-        <Button
-          variant="destructive"
-          onClick={cleanCurrentImage}
-          className="max-sm:w-full w-8 h-8 ml-auto"
-        >
-          <ImageOff />
-        </Button>
-      )}
     </form>
   );
 };

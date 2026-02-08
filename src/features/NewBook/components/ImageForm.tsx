@@ -3,13 +3,14 @@ import { Card } from "@/src/components/ui/card";
 import { Dialog, DialogTrigger } from "@/src/components/ui/dialog";
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
-import { ImageUp } from "lucide-react";
+import { ImageOff, ImageUp } from "lucide-react";
 import { ImageDialog } from "./ImageDialog";
 import { UseFormRegister } from "react-hook-form";
 import { BookFormType } from "@/src/data/schemas";
 import { Dispatch, SetStateAction } from "react";
 import { Status } from "@/src/data/types";
 import Image from "next/image";
+import { Button } from "@/src/components/ui/button";
 
 type ImageFormProps = {
   register: UseFormRegister<BookFormType>;
@@ -21,6 +22,7 @@ type ImageFormProps = {
   showImage: boolean;
   chooseImageError?: string | null;
   handleImageError: () => void;
+  cleanCurrentImage: () => void;
 };
 
 export const ImageForm = ({
@@ -33,6 +35,7 @@ export const ImageForm = ({
   showImage,
   chooseImageError,
   handleImageError,
+  cleanCurrentImage,
 }: ImageFormProps) => (
   <div className="col-span-2 flex flex-col gap-4 p-4">
     <div className="flex flex-col gap-4 sm:grid grid-cols-2 sm:space-x-2">
@@ -51,7 +54,7 @@ export const ImageForm = ({
         <Label>Status</Label>
         <CategorySelect
           value={status}
-          onValueChange={setStatus}
+          onValueChange={setStatus as Dispatch<SetStateAction<Status>>}
           className="w-full"
         />
       </div>
@@ -79,6 +82,16 @@ export const ImageForm = ({
           </div>
         </Card>
       </DialogTrigger>
+
+      {choosedFile && (
+        <Button
+          variant="destructive"
+          className="w-full h-8"
+          onClick={cleanCurrentImage}
+        >
+          <ImageOff />
+        </Button>
+      )}
 
       <ImageDialog
         choosedFile={choosedFile}

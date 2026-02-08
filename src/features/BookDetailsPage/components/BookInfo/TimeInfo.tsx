@@ -15,7 +15,7 @@ type TimeInfoProps = {
 };
 
 export const TimeInfo = ({ startDate, endDate, progress }: TimeInfoProps) => (
-  <Card>
+  <Card className="w-full max-w-sm">
     <CardHeader>
       <CardTitle className="text-muted-foreground">LINHA DO TEMPO</CardTitle>
     </CardHeader>

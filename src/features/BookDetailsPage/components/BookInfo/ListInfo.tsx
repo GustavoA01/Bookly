@@ -17,7 +17,7 @@ type ListInfoProps = {
 };
 
 export const ListInfo = ({ lists }: ListInfoProps) => (
-  <Card>
+  <Card className="w-full max-w-sm">
     <CardHeader>
       <CardTitle className="text-muted-foreground">
         {lists ? (
