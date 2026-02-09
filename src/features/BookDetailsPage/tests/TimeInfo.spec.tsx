@@ -1,6 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import { TimeInfo } from "../components/BookInfo/TimeInfo";
 
+jest.mock("next/navigation", () => ({
+  usePathname: () => "/livro/",
+}));
+
 describe("TimeInfo", () => {
   it("renders correctly with given props", () => {
     render(

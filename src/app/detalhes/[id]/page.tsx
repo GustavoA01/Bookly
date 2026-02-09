@@ -18,8 +18,8 @@ const GoogleDetailsPage = async ({
         rating={98}
         status={"reading"}
         imageUrl={"/detalhes-mock.jpg"}
+        sinopse={"Sinopse não disponível"}
         comment={null}
-        sinopse={"null"}
       />
     </div>
   );

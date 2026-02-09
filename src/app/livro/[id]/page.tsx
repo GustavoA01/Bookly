@@ -15,7 +15,7 @@ const DetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
         author={"J.R.R. Tolkien"}
         rating={98}
         status={"reading"}
-        sinopse={"Sinopse do livro muito grande"}
+        sinopse={null}
         comment={null}
         imageUrl={mockImage}
       />
