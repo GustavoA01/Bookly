@@ -1,17 +1,26 @@
 import { SearchBookCard } from "@/src/components/SearchBookCard";
-import { Input } from "@/src/components/ui/input";
+import { SearchForm } from "@/src/components/SearchForm";
 import { GoogleBooksResponse } from "@/src/data/types/api";
 
-const ExplorePage = async () => {
-  const books = (await fetch(
+const ExplorePage = async ({ q }: { q: Promise<string> }) => {
+  let books = (await fetch(
     "https://www.googleapis.com/books/v1/volumes?q=intitle:a&maxResults=10",
   ).then((res) => res.json())) as GoogleBooksResponse;
 
-  console.log(books.items);
+  const query = await q;
+
+  if (query) {
+    const searchedBooks = (await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=10`,
+    ).then((res) => res.json())) as GoogleBooksResponse;
+
+    console.log(searchedBooks);
+    books = searchedBooks.items?.length ? searchedBooks : books;
+  }
 
   return (
     <div className="space-y-4">
-      <Input placeholder="Buscar" className="w-full sm:max-w-80" />
+      <SearchForm />
 
       <div className="gap-2 sm:gap-4 space-y-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {books.items?.map((book) => (

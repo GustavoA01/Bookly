@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
@@ -33,10 +34,15 @@ export const SearchBookCard = ({
         className="rounded-md group-hover:opacity-75 transition-opacity w-full h-auto"
       />
 
-      <Button className="w-[80%] absolute z-20 bottom-5 m-auto opacity-0 group-hover:opacity-100 bg-accent-foreground hover:bg-primary transition-all duration-300 ">
-        <Plus />
-        <p>Adicionar</p>
-      </Button>
+      <Link
+        href={"#"}
+        className="w-[80%] absolute z-20 bottom-5 m-auto opacity-0 group-hover:opacity-100 bg-accent-foreground hover:bg-primary transition-all duration-300 rounded-md"
+      >
+        <Button className="w-full bg-accent-foreground hover:bg-primary transition-all duration-300">
+          <Plus />
+          <p>Adicionar</p>
+        </Button>
+      </Link>
     </div>
 
     <section className="flex flex-col gap-1">
