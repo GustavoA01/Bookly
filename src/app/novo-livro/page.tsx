@@ -1,4 +1,4 @@
-import { NewBookHeader } from "@/src/features/NewBook/components/NewBookHeader";
+import { NewBookHeader } from "@/src/features/NewBook/container/NewBookHeader";
 import { BookForm } from "@/src/features/NewBook/container/BookForm";
 
 const NewBookPage = () => {

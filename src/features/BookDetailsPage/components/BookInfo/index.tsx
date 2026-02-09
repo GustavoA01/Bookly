@@ -29,8 +29,8 @@ export const BookInfo = ({ isSinopseAndCommentNull }: BookInfoProps) => (
       }
     >
       <TimeInfo startDate="29/02/2025" endDate="--/--/----" progress={45} />
-      <ListInfo lists={mockLists} />
       <DetailsInfo currentPage={450} totalPages={1000} genre="Fantasia" />
+      <ListInfo lists={mockLists} />
     </div>
   </section>
 );

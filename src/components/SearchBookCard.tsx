@@ -19,19 +19,19 @@ export const SearchBookCard = ({
   imageUrl,
 }: SearchBookCardProps) => (
   <Link
-    href="#"
+    href="/detalhes/1"
     className="group flex flex-col select-none cursor-pointer gap-3"
   >
-    <div className="relative group-hover:-translate-y-1.5 transition-all duration-300 rounded-md ">
+    <div className="flex justify-center relative group-hover:-translate-y-1.5 transition-all duration-300 rounded-md ">
       <Image
         src={imageUrl}
         alt={`Capa do livro ${title}`}
         width={200}
         height={300}
-        className="rounded-md group-hover:opacity-75 transition-opacity"
+        className="rounded-md group-hover:opacity-75 transition-opacity w-full h-auto"
       />
 
-      <Button className="absolute z-20 bottom-5 left-5 opacity-0 group-hover:opacity-100 bg-accent-foreground hover:bg-primary transition-all duration-300 w-[80%]">
+      <Button className="w-[80%] absolute z-20 bottom-5 m-auto opacity-0 group-hover:opacity-100 bg-accent-foreground hover:bg-primary transition-all duration-300 ">
         <Plus />
         <p>Adicionar</p>
       </Button>

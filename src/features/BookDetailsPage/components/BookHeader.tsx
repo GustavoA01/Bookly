@@ -1,12 +1,12 @@
 import { Badge } from "@/src/components/ui/badge";
+import { BookType } from "@/src/data/types";
 import { BookOpen, Star } from "lucide-react";
 
-type BookHeaderProps = {
-  title: string;
-  author: string;
+type BookHeaderProps = Pick<
+  BookType,
+  "title" | "author" | "status" | "rating"
+> & {
   isImageNull: boolean;
-  status: string;
-  rating: number;
 };
 
 export const BookHeader = ({

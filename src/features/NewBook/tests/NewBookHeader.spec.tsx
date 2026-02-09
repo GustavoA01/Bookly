@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { NewBookHeader } from "../components/NewBookHeader";
+import { NewBookHeader } from "../container/NewBookHeader";
 
 const goBackFn = jest.fn();
 
