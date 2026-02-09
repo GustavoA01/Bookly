@@ -18,26 +18,29 @@ export const bookSchema = z
     if (numberOfPages && currentPage) {
       if (currentPage > numberOfPages) {
         ctx.addIssue({
+          path: ["currentPage"],
           message: "A página atual não pode ser maior que o número de páginas.",
           code: "invalid_value",
-          values: [],
+          values: ["currentPage"],
         });
       }
     }
 
     if (numberOfPages && numberOfPages <= 0) {
       ctx.addIssue({
+        path: ["numberOfPages"],
         message: "O número de páginas deve ser maior que zero.",
         code: "invalid_value",
-        values: [],
+        values: ["numberOfPages"],
       });
     }
 
     if (currentPage && currentPage < 0) {
       ctx.addIssue({
+        path: ["currentPage"],
         message: "A página atual deve ser maior que 0.",
         code: "invalid_value",
-        values: [],
+        values: ["currentPage"],
       });
     }
   });
