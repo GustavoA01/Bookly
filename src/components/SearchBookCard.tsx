@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Plus, Star } from "lucide-react";
 
 type SearchBookCardProps = {
+  id: string;
   title: string;
   author: string;
   imageUrl: string;
@@ -12,6 +13,7 @@ type SearchBookCardProps = {
 };
 
 export const SearchBookCard = ({
+  id,
   title,
   rating,
   author,
@@ -19,7 +21,7 @@ export const SearchBookCard = ({
   imageUrl,
 }: SearchBookCardProps) => (
   <Link
-    href="/detalhes/1"
+    href={`/detalhes/${id}`}
     className="group flex flex-col select-none cursor-pointer gap-3"
   >
     <div className="flex justify-center relative group-hover:-translate-y-1.5 transition-all duration-300 rounded-md ">

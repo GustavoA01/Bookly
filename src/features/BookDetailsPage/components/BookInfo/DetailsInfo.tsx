@@ -4,12 +4,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/src/components/ui/card";
+import { BookType } from "@/src/data/types/books";
 
-type DetailsInfoProps = {
-  genre: string;
-  currentPage: number;
-  totalPages: number;
-};
+type DetailsInfoProps = Pick<BookType, "currentPage" | "totalPages" | "genre">;
 
 export const DetailsInfo = ({
   currentPage,
@@ -21,16 +18,21 @@ export const DetailsInfo = ({
       <CardTitle>DETALHES</CardTitle>
     </CardHeader>
     <CardContent className="flex justify-between">
-      <div>
-        <p className="text-muted-foreground">GENÊRO</p>
-        <p className="font-bold">{genre}</p>
-      </div>
-      <div>
-        <p className="text-muted-foreground">PÁGINAS</p>
-        <p className="font-bold">
-          {currentPage}/{totalPages}
-        </p>
-      </div>
+      {genre && (
+        <div>
+          <p className="text-muted-foreground">GÊNERO</p>
+          <p className="font-bold">{genre}</p>
+        </div>
+      )}
+
+      {(currentPage || totalPages) && (
+        <div>
+          <p className="text-muted-foreground">PÁGINAS</p>
+          <p className="font-bold">
+            {currentPage !== null ? `${currentPage}/${totalPages}` : totalPages}
+          </p>
+        </div>
+      )}
     </CardContent>
   </Card>
 );

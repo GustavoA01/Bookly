@@ -8,7 +8,7 @@ import { ImageDialog } from "./ImageDialog";
 import { UseFormRegister } from "react-hook-form";
 import { BookFormType } from "@/src/data/schemas";
 import { Dispatch, SetStateAction } from "react";
-import { Status } from "@/src/data/types";
+import { Status } from "@/src/data/types/books";
 import Image from "next/image";
 import { Button } from "@/src/components/ui/button";
 

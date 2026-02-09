@@ -1,4 +1,5 @@
 import { BackButton } from "@/src/components/BackButton";
+import { GoogleBookItem } from "@/src/data/types/api";
 import { BookDetails } from "@/src/features/BookDetailsPage/container/BookDetails";
 
 const GoogleDetailsPage = async ({
@@ -6,19 +7,36 @@ const GoogleDetailsPage = async ({
 }: {
   params: Promise<{ id: string }>;
 }) => {
-  // const { id } = await params
+  const { id } = await params;
+
+  const book = (await fetch(
+    `https://www.googleapis.com/books/v1/volumes/${id}`,
+  ).then((res) => res.json())) as GoogleBookItem;
 
   return (
     <div className="space-y-8">
       <BackButton />
       <BookDetails
-        id="1"
-        title="Senhor dos anéis"
-        author={"Tolkien"}
+        id={book.id}
+        title={book.volumeInfo.title}
+        author={
+          book.volumeInfo.authors
+            ? book.volumeInfo.authors.join(", ")
+            : "Desconhecido"
+        }
+        genre={
+          book.volumeInfo.categories
+            ? book.volumeInfo.categories[0]
+            : "Desconhecido"
+        }
+        totalPages={book.volumeInfo.pageCount || null}
+        currentPage={null}
         rating={98}
         status={"reading"}
-        imageUrl={"/detalhes-mock.jpg"}
-        sinopse={"Sinopse não disponível"}
+        imageUrl={book.volumeInfo.imageLinks?.thumbnail || "/detalhes-mock.jpg"}
+        sinopse={book.volumeInfo.description || null}
+        startDate={null}
+        endDate={null}
         comment={null}
       />
     </div>

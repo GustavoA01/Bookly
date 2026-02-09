@@ -8,7 +8,7 @@ describe("DetailsInfo", () => {
     );
 
     expect(screen.getByText("DETALHES")).toBeInTheDocument();
-    expect(screen.getByText("GENÊRO")).toBeInTheDocument();
+    expect(screen.getByText("GÊNERO")).toBeInTheDocument();
     expect(screen.getByText("Fantasia")).toBeInTheDocument();
     expect(screen.getByText("PÁGINAS")).toBeInTheDocument();
     expect(screen.getByText("480/1000")).toBeInTheDocument();

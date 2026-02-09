@@ -7,12 +7,11 @@ import {
   CardTitle,
 } from "@/src/components/ui/card";
 import { Progress } from "@/src/components/ui/progress";
+import { BookType } from "@/src/data/types/books";
 import { Calendar, CheckCircle } from "lucide-react";
 import { usePathname } from "next/navigation";
 
-type TimeInfoProps = {
-  startDate: string;
-  endDate: string;
+type TimeInfoProps = Pick<BookType, "startDate" | "endDate"> & {
   progress: number;
 };
 

@@ -1,5 +1,5 @@
 import { Badge } from "@/src/components/ui/badge";
-import { BookType } from "@/src/data/types";
+import { BookType } from "@/src/data/types/books";
 import { BookOpen, Star } from "lucide-react";
 
 type BookHeaderProps = Pick<

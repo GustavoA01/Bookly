@@ -1,5 +1,5 @@
 import { BookFormType, bookSchema } from "@/src/data/schemas";
-import { Status } from "@/src/data/types";
+import { Status } from "@/src/data/types/books";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { isAfter } from "date-fns";
 import { useEffect, useState } from "react";

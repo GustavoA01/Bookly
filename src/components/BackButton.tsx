@@ -8,8 +8,9 @@ export const BackButton = () => {
 
   return (
     <Button
-      onClick={() => router.back()}
+      data-testid="back-button"
       variant="outline"
+      onClick={() => router.back()}
       className="rounded-full w-12 h-12"
     >
       <ArrowLeft className="w-auto h-auto" />

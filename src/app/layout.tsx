@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" suppressHydrationWarning={true} data-lt-installed="true">
+    <html lang="pt-br" data-lt-installed="true" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} dark antialiased`}
       >

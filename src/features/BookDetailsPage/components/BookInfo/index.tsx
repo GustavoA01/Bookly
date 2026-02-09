@@ -3,8 +3,12 @@ import { TimeInfo } from "./TimeInfo";
 import { DetailsInfo } from "./DetailsInfo";
 import { ListInfo } from "./ListInfo";
 import { AddBuyButton } from "../../container/AddBuyButton";
+import { BookType } from "@/src/data/types/books";
 
-type BookInfoProps = {
+type BookInfoProps = Pick<
+  BookType,
+  "currentPage" | "totalPages" | "startDate" | "endDate" | "genre"
+> & {
   isSinopseAndCommentNull: boolean;
 };
 
@@ -15,7 +19,14 @@ const mockLists = [
   { id: "4", name: "Quero Ler" },
 ];
 
-export const BookInfo = ({ isSinopseAndCommentNull }: BookInfoProps) => {
+export const BookInfo = ({
+  isSinopseAndCommentNull,
+  genre,
+  currentPage,
+  totalPages,
+  startDate,
+  endDate,
+}: BookInfoProps) => {
   return (
     <section className="space-y-4 max-sm:mt-4 col-span-1">
       <div className="flex items-center gap-2">
@@ -30,8 +41,12 @@ export const BookInfo = ({ isSinopseAndCommentNull }: BookInfoProps) => {
             : "flex flex-col space-y-6"
         }
       >
-        <TimeInfo startDate="29/02/2025" endDate="--/--/----" progress={45} />
-        <DetailsInfo currentPage={450} totalPages={1000} genre="Fantasia" />
+        <TimeInfo startDate={startDate} endDate={endDate} progress={45} />
+        <DetailsInfo
+          currentPage={currentPage}
+          totalPages={totalPages}
+          genre={genre}
+        />
         <ListInfo lists={mockLists} />
         <AddBuyButton />
       </div>

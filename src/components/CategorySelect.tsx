@@ -6,7 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/select";
-import { Status } from "../data/types";
+import { Status } from "../data/types/books";
 
 const defaultCategories = [
   { value: "read", label: "Lido" },

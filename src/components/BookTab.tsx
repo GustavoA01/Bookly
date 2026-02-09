@@ -5,7 +5,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Plus } from "lucide-react";
 import { Dispatch, SetStateAction, useState } from "react";
-import { Status } from "../data/types";
+import { Status } from "../data/types/books";
 
 export const BookTab = () => {
   const [status, setStatus] = useState<Status | "">("");

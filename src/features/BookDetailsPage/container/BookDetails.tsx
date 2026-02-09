@@ -2,16 +2,21 @@ import Image from "next/image";
 import { BookSinopse } from "../components/BookSinopse";
 import { BookHeader } from "../components/BookHeader";
 import { BookInfo } from "../components/BookInfo";
-import { BookType } from "@/src/data/types";
+import { BookType } from "@/src/data/types/books";
 
 export const BookDetails = ({
   title,
   author,
+  genre,
   status,
   rating,
   imageUrl,
   sinopse,
   comment,
+  currentPage,
+  totalPages,
+  startDate,
+  endDate,
 }: BookType) => {
   const isSinopseAndCommentNull = sinopse === null && comment === null;
   const notNullClassName =
@@ -55,7 +60,14 @@ export const BookDetails = ({
         }
       >
         <BookSinopse sinopse={sinopse} comment={comment} />
-        <BookInfo isSinopseAndCommentNull={isSinopseAndCommentNull} />
+        <BookInfo
+          genre={genre}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          startDate={startDate ?? "-/--/----"}
+          endDate={endDate ?? "-/--/----"}
+          isSinopseAndCommentNull={isSinopseAndCommentNull}
+        />
       </div>
     </main>
   );
