@@ -23,3 +23,5 @@ export interface GoogleBookItem {
     previewLink: string;
   };
 }
+
+export type FormSearchParamsType = { id: string; role: "google" | "firebase" };

@@ -8,7 +8,7 @@ import { DatesForm } from "../components/DatesForm";
 import { PagesForm } from "../components/PagesForm";
 import { AuthorForm } from "../components/AuthorForm";
 import { useNewBook } from "../hook/useNewBook";
-import { FormSearchParamsType } from "@/src/data/types/books";
+import { FormSearchParamsType } from "@/src/data/types/api";
 
 export const BookForm = ({ id, role }: FormSearchParamsType) => {
   const {

@@ -1,6 +1,6 @@
 import { NewBookHeader } from "@/src/features/NewBook/container/NewBookHeader";
 import { BookForm } from "@/src/features/NewBook/container/BookForm";
-import { FormSearchParamsType } from "@/src/data/types/books";
+import { FormSearchParamsType } from "@/src/data/types/api";
 
 const NewBookPage = async ({
   searchParams,
