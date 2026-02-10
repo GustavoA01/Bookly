@@ -15,3 +15,5 @@ export interface BookType {
   startDate: string | null;
   endDate: string | null;
 }
+
+export type FormSearchParamsType = { id: string; role: "google" | "firebase" };

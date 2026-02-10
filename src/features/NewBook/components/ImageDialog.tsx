@@ -77,9 +77,6 @@ export const ImageDialog = ({
         <DialogClose asChild>
           <Button variant="outline">Fechar</Button>
         </DialogClose>
-        <DialogClose asChild>
-          <Button>Salvar</Button>
-        </DialogClose>
       </DialogFooter>
     </DialogContent>
   );

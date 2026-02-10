@@ -1,17 +1,19 @@
 import { BookFormType, bookSchema } from "@/src/data/schemas";
-import { Status } from "@/src/data/types/books";
+import { GoogleBookItem } from "@/src/data/types/api";
+import { FormSearchParamsType, Status } from "@/src/data/types/books";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { isAfter } from "date-fns";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-export const useNewBook = () => {
+export const useNewBook = ({ id, role }: FormSearchParamsType) => {
   const methods = useForm<BookFormType>({
     resolver: zodResolver(bookSchema),
   });
   const {
     register,
     setValue,
+    reset,
     formState: { errors },
   } = methods;
 
@@ -25,6 +27,34 @@ export const useNewBook = () => {
     choosedFile &&
     (choosedFile.startsWith("http") || choosedFile.startsWith("blob:")) &&
     choosedFile.length > 10;
+
+  useEffect(() => {
+    if (id && role === "google") {
+      const fetchBook = async () => {
+        const book = (await fetch(
+          `https://www.googleapis.com/books/v1/volumes/${id}`,
+        ).then((res) => res.json())) as GoogleBookItem;
+
+        if (book) {
+          reset({
+            title: book.volumeInfo.title || "",
+            author: book.volumeInfo.authors
+              ? book.volumeInfo.authors.join(", ")
+              : "",
+            imageUrl: book.volumeInfo.imageLinks?.thumbnail || "",
+            numberOfPages: book.volumeInfo.pageCount || undefined,
+            synopsis: book.volumeInfo.description || "",
+            genre: book.volumeInfo.categories
+              ? book.volumeInfo.categories[0]
+              : "",
+          });
+          setChoosedFile(book.volumeInfo.imageLinks?.thumbnail || undefined);
+        }
+      };
+
+      fetchBook();
+    }
+  }, [id, reset, role]);
 
   useEffect(() => {
     return () => {
@@ -50,9 +80,10 @@ export const useNewBook = () => {
     const file = e.target.files?.[0];
 
     if (file) {
+      const fileURL = URL.createObjectURL(file);
+
       setValue("imageUrl", "");
       setValue("imageFile", file);
-      const fileURL = URL.createObjectURL(file);
       setChoosedFile(fileURL);
     }
   };

@@ -1,7 +1,11 @@
 import { BookActions } from "@/src/features/BookDetailsPage/components/BookActions";
 import { BookDetails } from "@/src/features/BookDetailsPage/container/BookDetails";
 
-const DetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+const BookDetailsPage = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
   // const {id} = await params
 
   const mockImage = "/detalhes-mock.jpg";
@@ -18,9 +22,14 @@ const DetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
         sinopse={null}
         comment={null}
         imageUrl={mockImage}
+        genre={"Fantasia"}
+        currentPage={150}
+        totalPages={500}
+        startDate={"2023-01-01"}
+        endDate={"2023-12-31"}
       />
     </div>
   );
 };
 
-export default DetailsPage;
+export default BookDetailsPage;

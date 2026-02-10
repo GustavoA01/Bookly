@@ -29,11 +29,11 @@ const GoogleDetailsPage = async ({
             ? book.volumeInfo.categories[0]
             : "Desconhecido"
         }
+        imageUrl={book.volumeInfo.imageLinks?.thumbnail || "/detalhes-mock.jpg"}
         totalPages={book.volumeInfo.pageCount || null}
         currentPage={null}
-        rating={98}
-        status={"reading"}
-        imageUrl={book.volumeInfo.imageLinks?.thumbnail || "/detalhes-mock.jpg"}
+        rating={book.volumeInfo.averageRating || null}
+        status={null}
         sinopse={book.volumeInfo.description || null}
         startDate={null}
         endDate={null}

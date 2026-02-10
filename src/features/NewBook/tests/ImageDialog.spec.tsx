@@ -28,7 +28,6 @@ describe("ImageDialog", () => {
     ).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Ex: https://...")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Fechar" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Salvar" })).toBeInTheDocument();
     expect(document.querySelector("#select-image")).toHaveAttribute(
       "type",
       "file",
