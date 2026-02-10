@@ -1,0 +1,1 @@
+export { SearchCardSkeleton } from "./SearchCard";

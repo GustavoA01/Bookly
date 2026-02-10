@@ -45,8 +45,6 @@ export const bookSchema = z
     }
   });
 
-export type BookFormType = z.infer<typeof bookSchema>;
-
 export const listSchema = z.object({
   name: z.string().min(3, "Nome é obrigatório"),
   description: z.string().optional(),
@@ -54,4 +52,5 @@ export const listSchema = z.object({
   imageFile: z.instanceof(File).optional(),
 });
 
+export type BookFormType = z.infer<typeof bookSchema>;
 export type ListFormType = z.infer<typeof listSchema>;

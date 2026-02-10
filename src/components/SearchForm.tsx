@@ -1,27 +1,32 @@
 "use client";
 import { Input } from "./ui/input";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const SearchForm = () => {
-  const { register, reset } = useForm<{ q: string }>();
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const search = searchParams.get("q") || "";
+  const [searchText, setSearchText] = useState(search);
 
   useEffect(() => {
-    if (search) reset({ q: search });
-  }, [search, reset]);
+    if (searchText === search) return;
+
+    const timer = setTimeout(() => {
+      if (searchText) router.push(`/explorar?q=${searchText}`);
+      else router.push(`/explorar`);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [searchText, search, router]);
 
   return (
-    <form action="" className="flex items-center gap-2">
+    <form className="flex items-center gap-2">
       <Input
-        {...register("q")}
+        value={searchText}
         placeholder="Buscar"
         className="w-full sm:max-w-80"
-        onChange={(e) => router.push(`/explorar?q=${e.target.value}`)}
+        onChange={(e) => setSearchText(e.target.value)}
       />
     </form>
   );
