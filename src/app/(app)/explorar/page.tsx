@@ -1,8 +1,8 @@
 import { BookCardsList } from "@/src/components/BookCardsList";
-import { SearchBookCard } from "@/src/components/SearchBookCard";
 import { SearchForm } from "@/src/components/SearchForm";
 import { SearchCardSkeleton } from "@/src/components/Skeletons";
 import { GoogleBooksResponse } from "@/src/data/types/api";
+import { api } from "@/src/lib/axios";
 import { Suspense } from "react";
 
 const ExplorePage = async ({
@@ -10,16 +10,16 @@ const ExplorePage = async ({
 }: {
   searchParams: Promise<{ q: string }>;
 }) => {
-  let books = (await fetch(
-    "https://www.googleapis.com/books/v1/volumes?q=intitle:a&maxResults=12",
-  ).then((res) => res.json())) as GoogleBooksResponse;
+  let books = (await api
+    .get("?q=intitle:a&maxResults=12")
+    .then((res) => res.data)) as GoogleBooksResponse;
 
   const query = await searchParams.then((params) => params.q);
 
   if (query) {
-    const searchedBooks = (await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=12`,
-    ).then((res) => res.json())) as GoogleBooksResponse;
+    const searchedBooks = (await api
+      .get(`?q=${query}&maxResults=12`)
+      .then((res) => res.data)) as GoogleBooksResponse;
 
     books = searchedBooks.items?.length ? searchedBooks : books;
   }

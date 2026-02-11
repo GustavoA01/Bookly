@@ -1,5 +1,5 @@
+import { getGoogleBook } from "@/src/api/getGoogleBook";
 import { BackButton } from "@/src/components/BackButton";
-import { GoogleBookItem } from "@/src/data/types/api";
 import { BookDetails } from "@/src/features/BookDetailsPage/container/BookDetails";
 
 const GoogleDetailsPage = async ({
@@ -9,9 +9,7 @@ const GoogleDetailsPage = async ({
 }) => {
   const { id } = await params;
 
-  const book = (await fetch(
-    `https://www.googleapis.com/books/v1/volumes/${id}`,
-  ).then((res) => res.json())) as GoogleBookItem;
+  const book = await getGoogleBook(id);
 
   return (
     <div className="space-y-8">

@@ -1,5 +1,6 @@
+import { getGoogleBook } from "@/src/api/getGoogleBook";
 import { BookFormType, bookSchema } from "@/src/data/schemas";
-import { FormSearchParamsType, GoogleBookItem } from "@/src/data/types/api";
+import { FormSearchParamsType } from "@/src/data/types/api";
 import { Status } from "@/src/data/types/books";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { isAfter } from "date-fns";
@@ -31,9 +32,7 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
   useEffect(() => {
     if (id && role === "google") {
       const fetchBook = async () => {
-        const book = (await fetch(
-          `https://www.googleapis.com/books/v1/volumes/${id}`,
-        ).then((res) => res.json())) as GoogleBookItem;
+        const book = await getGoogleBook(id);
 
         if (book) {
           reset({
@@ -48,6 +47,7 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
               ? book.volumeInfo.categories[0]
               : "",
           });
+
           setChoosedFile(book.volumeInfo.imageLinks?.thumbnail || undefined);
         }
       };
