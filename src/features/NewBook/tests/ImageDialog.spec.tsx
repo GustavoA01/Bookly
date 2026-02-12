@@ -33,4 +33,20 @@ describe("ImageDialog", () => {
       "file",
     );
   });
+
+  it("renders message error correctly", () => {
+    render(
+      <Dialog open>
+        <ImageDialog
+          choosedFile={undefined}
+          setChoosedFile={jest.fn()}
+          handleFileChange={jest.fn()}
+          chooseImageError={"Erro ao carregar a imagem"}
+          showImage={false}
+        />
+      </Dialog>,
+    );
+
+    expect(screen.getByText("Erro ao carregar a imagem")).toBeInTheDocument();
+  });
 });

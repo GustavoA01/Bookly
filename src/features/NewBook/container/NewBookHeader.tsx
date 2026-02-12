@@ -16,10 +16,12 @@ export const NewBookHeader = () => {
         >
           <ArrowLeft />
         </Button>
+
         <h1 className="text-lg sm:text-2xl font-semibold">
           Adicionar Novo Livro
         </h1>
       </div>
+
       <Button form="book-form" type="submit">
         <Save />
         <p>Salvar</p>
