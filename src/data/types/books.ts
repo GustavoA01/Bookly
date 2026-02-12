@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 export type Status = "read" | "reading" | "abandoned" | "toRead";
 
 export interface BookType {
@@ -5,7 +7,7 @@ export interface BookType {
   title: string;
   author: string | null;
   genre: string | null;
-  status: Status | null;
+  status: Status;
   rating: number | null;
   imageUrl: string | null;
   sinopse: string | null;
@@ -14,4 +16,12 @@ export interface BookType {
   totalPages: number | null;
   startDate: string | null;
   endDate: string | null;
+  createdAt: string;
 }
+
+export type StatusPropsType = {
+  bgColor: string;
+  textColor: string;
+  label: string;
+  icon: JSX.Element;
+};

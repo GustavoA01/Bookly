@@ -1,3 +1,4 @@
+import { FormErrorMessage } from "@/src/components/FormErrorMessage";
 import { Button } from "@/src/components/ui/button";
 import { DatePicker } from "@/src/components/ui/DatePicker";
 
@@ -27,9 +28,11 @@ export const DatesForm = ({
       <DatePicker label="Término" date={endDate} setDate={setEndDate} />
     </div>
 
-    {dateErrorMessage && (
-      <p className="sm:hidden text-sm text-red-600">{dateErrorMessage}</p>
-    )}
+    <FormErrorMessage
+      showMessage={!!dateErrorMessage}
+      message={dateErrorMessage}
+      className="sm:hidden"
+    />
 
     {(startDate || endDate) && (
       <Button

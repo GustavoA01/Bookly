@@ -7,8 +7,9 @@ import { FormProvider } from "react-hook-form";
 import { DatesForm } from "../components/DatesForm";
 import { PagesForm } from "../components/PagesForm";
 import { AuthorForm } from "../components/AuthorForm";
-import { useNewBook } from "../hook/useNewBook";
+import { useNewBook } from "../hooks/useNewBook";
 import { FormSearchParamsType } from "@/src/data/types/api";
+import { FormErrorMessage } from "@/src/components/FormErrorMessage";
 
 export const BookForm = ({ id, role }: FormSearchParamsType) => {
   const {
@@ -42,20 +43,18 @@ export const BookForm = ({ id, role }: FormSearchParamsType) => {
       <div className="col-span-3 flex flex-col space-y-4 p-4">
         <Label>Título*</Label>
         <Input {...register("title")} placeholder="Ex: O Hobbit" />
-
-        {errors.title && (
-          <p className="text-sm text-red-600">{errors.title?.message}</p>
-        )}
+        <FormErrorMessage
+          showMessage={!!errors.title}
+          message={errors.title?.message}
+        />
 
         <AuthorForm register={register} />
 
         <PagesForm register={register} />
-
-        {(errors.numberOfPages || errors.currentPage) && (
-          <p className="text-sm text-red-600">
-            {errors.numberOfPages?.message || errors.currentPage?.message}
-          </p>
-        )}
+        <FormErrorMessage
+          showMessage={!!(errors.numberOfPages || errors.currentPage)}
+          message={errors.numberOfPages?.message || errors.currentPage?.message}
+        />
 
         <DatesForm
           dateErrorMessage={dateErrorMessage}
@@ -65,12 +64,11 @@ export const BookForm = ({ id, role }: FormSearchParamsType) => {
           setEndDate={setEndDate}
           handleCleanDates={handleCleanDates}
         />
-
-        {dateErrorMessage && (
-          <p className="hidden sm:flex text-sm text-red-600">
-            {dateErrorMessage}
-          </p>
-        )}
+        <FormErrorMessage
+          showMessage={!!dateErrorMessage}
+          message={dateErrorMessage}
+          className="hidden sm:flex"
+        />
 
         <Label>Sinopse</Label>
         <Textarea {...register("synopsis")} className="resize-none" />

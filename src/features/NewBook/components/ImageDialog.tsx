@@ -1,3 +1,4 @@
+import { FormErrorMessage } from "@/src/components/FormErrorMessage";
 import { Button } from "@/src/components/ui/button";
 import {
   DialogClose,
@@ -68,9 +69,10 @@ export const ImageDialog = ({
             />
           </div>
         </label>
-        {chooseImageError && (
-          <p className="text-sm text-red-600">{chooseImageError}</p>
-        )}
+        <FormErrorMessage
+          showMessage={!!chooseImageError}
+          message={chooseImageError}
+        />
       </div>
 
       <DialogFooter>

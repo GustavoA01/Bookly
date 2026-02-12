@@ -16,7 +16,7 @@ export const BookTable = () => {
           author="J.R.R. Tolkien"
           createdAt="21/01/2026"
           genre="Fantasia"
-          status="Lido"
+          status="read"
           rating={5}
         />
         <BookRow
@@ -25,7 +25,7 @@ export const BookTable = () => {
           author="Bram Stoker"
           createdAt="21/01/2026"
           genre="Horror"
-          status="Lido"
+          status="abandoned"
           rating={5}
         />
         <BookRow
@@ -34,7 +34,7 @@ export const BookTable = () => {
           author="J.R.R. Tolkien"
           createdAt="21/01/2026"
           genre="Fantasia"
-          status="Lido"
+          status="reading"
           rating={5}
         />
       </TableBody>

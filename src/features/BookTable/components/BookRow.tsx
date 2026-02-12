@@ -2,16 +2,14 @@
 import { Badge } from "../../../components/ui/badge";
 import { TableCell, TableRow } from "../../../components/ui/table";
 import { useRouter } from "next/navigation";
+import { statusColors } from "@/src/data/constants";
+import { BookType } from "@/src/data/types/books";
+import { StatusChip } from "@/src/components/StatusChip";
 
-type BookRowProps = {
-  id: string;
-  title: string;
-  author: string;
-  createdAt: string;
-  genre: string;
-  status: string;
-  rating: number;
-};
+type BookRowProps = Pick<
+  BookType,
+  "id" | "title" | "author" | "createdAt" | "genre" | "status" | "rating"
+>;
 
 export const BookRow = ({
   id,
@@ -23,6 +21,7 @@ export const BookRow = ({
   rating,
 }: BookRowProps) => {
   const router = useRouter();
+  console.log(statusColors[status].textColor);
   return (
     <TableRow
       data-testid="book-row"
@@ -43,9 +42,13 @@ export const BookRow = ({
         </div>
       </TableCell>
       <TableCell>
-        <Badge>{genre}</Badge>
+        <Badge variant="outline" className="text-muted-foreground">
+          {genre}
+        </Badge>
       </TableCell>
-      <TableCell>{status}</TableCell>
+      <TableCell>
+        <StatusChip status={status} />
+      </TableCell>
       <TableCell>{rating}</TableCell>
     </TableRow>
   );

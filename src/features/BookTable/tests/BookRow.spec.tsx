@@ -17,7 +17,7 @@ describe("BookRow Component", () => {
         author="J.R.R. Tolkien"
         createdAt="21/01/2023"
         genre="Fantasia"
-        status="Lido"
+        status="read"
         rating={5}
       />,
     );

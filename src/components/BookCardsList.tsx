@@ -1,5 +1,3 @@
-import { Suspense } from "react";
-import { SearchCardSkeleton } from "./Skeletons";
 import { SearchBookCard } from "./SearchBookCard";
 import { GoogleBooksResponse } from "../data/types/api";
 
