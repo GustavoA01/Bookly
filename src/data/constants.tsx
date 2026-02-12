@@ -35,13 +35,13 @@ export const statusColors: Record<Status, StatusPropsType> = {
     icon: <BookOpen size={14} />,
   },
   read: {
-    bgColor: "green-500/15", //#2DD4BF
+    bgColor: "green-500/15",
     textColor: "green-500",
     label: "Lido",
     icon: <BadgeCheck size={14} />,
   },
   toRead: {
-    bgColor: "yellow-500/15", //#FBBF24
+    bgColor: "yellow-500/15",
     textColor: "yellow-500",
     label: "Quero ler",
     icon: <Clock size={14} />,

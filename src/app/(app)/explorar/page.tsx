@@ -1,5 +1,4 @@
 import { BookCardsList } from "@/src/components/BookCardsList";
-import { SearchBookCard } from "@/src/components/SearchBookCard";
 import { SearchForm } from "@/src/components/SearchForm";
 import { SearchCardSkeleton } from "@/src/components/Skeletons";
 import { GoogleBooksResponse } from "@/src/data/types/api";

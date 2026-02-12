@@ -15,7 +15,7 @@ export const SearchForm = () => {
     const timer = setTimeout(() => {
       if (searchText) router.push(`/explorar?q=${searchText}`);
       else router.push(`/explorar`);
-    }, 500);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [searchText, search, router]);
