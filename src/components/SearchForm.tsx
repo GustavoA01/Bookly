@@ -1,9 +1,10 @@
 "use client";
 import { Input } from "./ui/input";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 
 export const SearchForm = () => {
+  const [, startTransition] = useTransition();
   const router = useRouter();
   const searchParams = useSearchParams();
   const search = searchParams.get("q") || "";
@@ -13,9 +14,11 @@ export const SearchForm = () => {
     if (searchText === search) return;
 
     const timer = setTimeout(() => {
-      if (searchText) router.push(`/explorar?q=${searchText}`);
-      else router.push(`/explorar`);
-    }, 1000);
+      startTransition(() => {
+        if (searchText) router.push(`/explorar?q=${searchText}`);
+        else router.push(`/explorar`);
+      });
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [searchText, search, router]);

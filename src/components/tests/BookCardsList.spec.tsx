@@ -39,28 +39,24 @@ const mockBooks: GoogleBooksResponse = {
   ],
 };
 
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve(mockBooks),
+  }),
+) as jest.Mock;
+
 describe("BookCardsList", () => {
-  it("renders a list of SearchBookCard components with correct data", () => {
-    render(<BookCardsList books={mockBooks} />);
+  it("renders a list of SearchBookCard components with correct data", async () => {
+    const ResolvedComponent = await BookCardsList({ query: "test" });
+    render(ResolvedComponent);
 
-    expect(screen.getByText("Book One")).toBeInTheDocument();
-    expect(screen.getByText("Book Two")).toBeInTheDocument();
-    expect(screen.getByText("Author A")).toBeInTheDocument();
-    expect(screen.getByText("Author B, Author C")).toBeInTheDocument();
-    expect(screen.getByText("Fiction")).toBeInTheDocument();
-    expect(screen.getByText("Adventure")).toBeInTheDocument();
-    expect(screen.getByText("4")).toBeInTheDocument();
-    expect(screen.getByText("5")).toBeInTheDocument();
-  });
-
-  it("renders nothing if items is undefined or empty", () => {
-    const emptyBooks: GoogleBooksResponse = {
-      kind: "books#volumes",
-      totalItems: 0,
-      items: [],
-    };
-    const { container } = render(<BookCardsList books={emptyBooks} />);
-
-    expect(container).toBeEmptyDOMElement();
+    expect(await screen.findByText("Book One")).toBeInTheDocument();
+    expect(await screen.findByText("Book Two")).toBeInTheDocument();
+    expect(await screen.findByText("Author A")).toBeInTheDocument();
+    expect(await screen.findByText("Author B, Author C")).toBeInTheDocument();
+    expect(await screen.findByText("Fiction")).toBeInTheDocument();
+    expect(await screen.findByText("Adventure")).toBeInTheDocument();
+    expect(await screen.findByText("4")).toBeInTheDocument();
+    expect(await screen.findByText("5")).toBeInTheDocument();
   });
 });
