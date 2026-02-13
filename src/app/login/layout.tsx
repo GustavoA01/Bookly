@@ -1,0 +1,7 @@
+const LogInLayout = ({ children }: { children: React.ReactNode }) => (
+  <div className="flex flex-col min-h-screen justify-center items-center container mx-auto py-8 max-sm:px-4">
+    {children}
+  </div>
+);
+
+export default LogInLayout;

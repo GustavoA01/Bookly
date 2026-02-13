@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { navigationButtons } from "../data/constants";
+import { LogIn } from "lucide-react";
 
 export const Header = () => {
   const pathname = usePathname();
@@ -14,20 +15,28 @@ export const Header = () => {
         <p className="text-muted-foreground">Gerencie sua biblioteca pessoal</p>
       </div>
 
-      <nav className="hidden sm:flex bg-card p-2 rounded-lg gap-2 h-fit">
-        {navigationButtons.map((item) => (
-          <Link key={item.name} href={item.href}>
-            <Button
-              size="sm"
-              variant="ghost"
-              className={`${pathname === item.href ? "bg-accent" : ""}`}
-            >
-              <div className="text-primary">{item.icon}</div>
-              {item.name}
-            </Button>
-          </Link>
-        ))}
-      </nav>
+      <div className="flex gap-2 items-center">
+        <nav className="hidden sm:flex bg-card p-2 rounded-lg gap-2 h-fit">
+          {navigationButtons.map((item) => (
+            <Link key={item.name} href={item.href}>
+              <Button
+                size="sm"
+                variant="ghost"
+                className={`${pathname === item.href ? "bg-accent" : ""}`}
+              >
+                <div className="text-primary">{item.icon}</div>
+                {item.name}
+              </Button>
+            </Link>
+          ))}
+        </nav>
+        <Link href="/login">
+          <Button variant="outline">
+            <LogIn />
+            <p>Entrar</p>
+          </Button>
+        </Link>
+      </div>
     </header>
   );
 };

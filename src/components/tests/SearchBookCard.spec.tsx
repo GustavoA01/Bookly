@@ -5,6 +5,7 @@ describe("SearchBookCard", () => {
   it("renders the component correctly", () => {
     render(
       <SearchBookCard
+        id="1"
         title="Senhor dos Anéis"
         rating={4.8}
         author="J.R.R. Tolkien"
@@ -29,6 +30,7 @@ describe("SearchBookCard", () => {
   it("has a button to add to library", () => {
     render(
       <SearchBookCard
+        id="1"
         title="Senhor dos Anéis"
         rating={4.8}
         author="J.R.R. Tolkien"
