@@ -5,38 +5,29 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../components/ui/select";
+} from "./ui/select";
 import { Status } from "../data/types/books";
+import { defaultStatus } from "../data/constants";
 
-const defaultCategories = [
-  { value: "read", label: "Lido" },
-  { value: "reading", label: "Lendo" },
-  { value: "abandoned", label: "Abandonado" },
-  { value: "toRead", label: "Para ler" },
-];
-
-type CategorySelectProps = {
+type StatusSelectProps = {
   isHome?: boolean;
   className?: string;
   value: Status | "";
   onValueChange: Dispatch<SetStateAction<Status>>;
 };
 
-export const CategorySelect = ({
+export const StatusSelect = ({
   isHome,
   className,
   value,
   onValueChange,
-}: CategorySelectProps) => {
+}: StatusSelectProps) => {
   const categories = isHome
-    ? [{ value: "all", label: "Todos" }, ...defaultCategories]
-    : defaultCategories;
+    ? [{ value: "all", label: "Todos" }, ...defaultStatus]
+    : defaultStatus;
 
   return (
-    <Select
-      value={value}
-      onValueChange={(value) => onValueChange(value as Status)}
-    >
+    <Select value={value} onValueChange={(val) => onValueChange(val as Status)}>
       <SelectTrigger className={`w-fit min-w-30 ml-auto ${className}`}>
         <SelectValue placeholder="Status" />
       </SelectTrigger>

@@ -25,3 +25,12 @@ export type StatusPropsType = {
   label: string;
   icon: JSX.Element;
 };
+
+export type FilterOptionsType =
+  | "all"
+  | "title"
+  | "author"
+  | "rating"
+  | "startDate"
+  | "endDate"
+  | "createdAt";

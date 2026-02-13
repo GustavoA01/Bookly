@@ -6,11 +6,11 @@ import {
   DialogTitle,
 } from "@/src/components/ui/dialog";
 import { ImageOff } from "lucide-react";
-import { ImageForm } from "./ImageForm";
-import { FormFooter } from "./FormFooter";
+import { ImageForm } from "../components/NewListForm/ImageForm";
+import { FormFooter } from "../components/NewListForm/FormFooter";
 import { Button } from "@/src/components/ui/button";
-import { DescriptionForm } from "./DescriptionForm";
-import { useNewList } from "../../hook/useNewList";
+import { DescriptionForm } from "../components/NewListForm/DescriptionForm";
+import { useNewList } from "../hook/useNewList";
 
 export const NewListForm = () => {
   const {
@@ -41,8 +41,8 @@ export const NewListForm = () => {
 
       <form
         id="new-list-form"
-        onSubmit={handleSubmit(handleCreateList)}
         className="flex flex-col gap-4"
+        onSubmit={handleSubmit(handleCreateList)}
       >
         <DescriptionForm register={register} />
 

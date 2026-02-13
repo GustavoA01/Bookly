@@ -19,7 +19,13 @@ describe("BookTab", () => {
   it("renders CategorySelect", () => {
     render(<BookTab />);
 
-    expect(screen.getByText(/Status|Todos/)).toBeInTheDocument();
+    expect(screen.getByText("Status")).toBeInTheDocument();
+  });
+
+  it("renders FilterSelect", () => {
+    render(<BookTab />);
+
+    expect(screen.getByText("Filtrar")).toBeInTheDocument();
   });
 
   it("verifies if button is hidden in small screens", () => {

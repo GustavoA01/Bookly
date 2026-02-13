@@ -1,9 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { CategorySelect } from "../CategorySelect";
+import { StatusSelect } from "../StatusSelect";
 
-describe("CategorySelect", () => {
+describe("StatusSelect", () => {
   it("should render default categories when isHome is false", async () => {
-    render(<CategorySelect value="" onValueChange={jest.fn()} />);
+    render(<StatusSelect value="" onValueChange={jest.fn()} />);
 
     const button = await screen.findByRole("combobox");
     fireEvent.click(button);
@@ -15,7 +15,7 @@ describe("CategorySelect", () => {
   });
 
   it("should render correct categories when isHome is true", async () => {
-    render(<CategorySelect isHome value="" onValueChange={jest.fn()} />);
+    render(<StatusSelect isHome value="" onValueChange={jest.fn()} />);
 
     const button = await screen.findByRole("combobox");
     fireEvent.click(button);

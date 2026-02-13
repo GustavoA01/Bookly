@@ -7,7 +7,6 @@ export const BookTHeader = () => (
     </TableHead>
     <TableHead className="text-muted-foreground font-bold">Gênero</TableHead>
     <TableHead className="text-muted-foreground font-bold">Status</TableHead>
-
     <TableHead className="text-muted-foreground font-bold">Nota</TableHead>
   </TableRow>
 );

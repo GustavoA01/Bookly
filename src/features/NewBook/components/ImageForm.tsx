@@ -1,4 +1,4 @@
-import { CategorySelect } from "@/src/components/CategorySelect";
+import { StatusSelect } from "@/src/components/StatusSelect";
 import { Card } from "@/src/components/ui/card";
 import { Dialog, DialogTrigger } from "@/src/components/ui/dialog";
 import { Input } from "@/src/components/ui/input";
@@ -52,7 +52,7 @@ export const ImageForm = ({
 
       <div className="space-y-2 cols-span-1">
         <Label>Status</Label>
-        <CategorySelect
+        <StatusSelect
           value={status}
           onValueChange={setStatus as Dispatch<SetStateAction<Status>>}
           className="w-full"

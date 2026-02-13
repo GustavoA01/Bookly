@@ -2,7 +2,7 @@ import { ListCard } from "@/src/features/ListTab/components/ListCard";
 import { Card } from "@/src/components/ui/card";
 import { Plus } from "lucide-react";
 import { Dialog, DialogTrigger } from "@/src/components/ui/dialog";
-import { NewListForm } from "../components/NewListForm";
+import { NewListForm } from "./NewListForm";
 
 export const ListTabContent = () => {
   return (

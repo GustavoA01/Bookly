@@ -2,8 +2,8 @@ import { TabsNav } from "@/src/components/TabsNav";
 import { BookTable } from "@/src/features/BookTable/container";
 import { ListTabContent } from "@/src/features/ListTab/container/ListTabContent";
 import { MobileAddButton } from "@/src/components/MobileAddButton";
-import Link from "next/link";
 import { BookTab } from "@/src/components/BookTab";
+import Link from "next/link";
 
 const Home = async ({
   searchParams,

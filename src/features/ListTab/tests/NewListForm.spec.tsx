@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { NewListForm } from "../components/NewListForm";
+import { NewListForm } from "../container/NewListForm";
 import { Dialog } from "@/src/components/ui/dialog";
 
 describe("NewListForm", () => {

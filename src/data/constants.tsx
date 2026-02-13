@@ -1,3 +1,4 @@
+import { Status, StatusPropsType } from "./types/books";
 import {
   BadgeCheck,
   BadgeX,
@@ -7,7 +8,23 @@ import {
   Home,
   Sparkles,
 } from "lucide-react";
-import { Status, StatusPropsType } from "./types/books";
+
+export const filterOptions = [
+  { value: "all", label: "Todos" },
+  { value: "title", label: "Título" },
+  { value: "author", label: "Autor" },
+  { value: "rating", label: "Avaliação" },
+  { value: "startDate", label: "Início" },
+  { value: "endDate", label: "Fim" },
+  { value: "createdAt", label: "Criado em" },
+];
+
+export const defaultStatus = [
+  { value: "read", label: "Lido" },
+  { value: "reading", label: "Lendo" },
+  { value: "abandoned", label: "Abandonado" },
+  { value: "toRead", label: "Para ler" },
+];
 
 export const navigationButtons = [
   {

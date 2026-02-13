@@ -2,7 +2,6 @@
 import { Badge } from "../../../components/ui/badge";
 import { TableCell, TableRow } from "../../../components/ui/table";
 import { useRouter } from "next/navigation";
-import { statusColors } from "@/src/data/constants";
 import { BookType } from "@/src/data/types/books";
 import { StatusChip } from "@/src/components/StatusChip";
 
@@ -21,7 +20,7 @@ export const BookRow = ({
   rating,
 }: BookRowProps) => {
   const router = useRouter();
-  console.log(statusColors[status].textColor);
+
   return (
     <TableRow
       data-testid="book-row"
