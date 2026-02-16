@@ -2,7 +2,9 @@
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
+import { SignInFormType, SignUpFormType } from "@/src/data/schemas";
 import Link from "next/link";
+import { UseFormRegister } from "react-hook-form";
 
 type EmailPassProps = {
   actionLabel?: string;
@@ -11,6 +13,7 @@ type EmailPassProps = {
   pathPasswordRecovery?: string;
   labelPasswordRecovery?: string;
   showRecovery?: boolean;
+  register: UseFormRegister<SignUpFormType | SignInFormType>;
 };
 
 export const EmailPass = ({
@@ -20,16 +23,21 @@ export const EmailPass = ({
   labelPasswordRecovery,
   labelAction,
   showRecovery,
+  register,
 }: EmailPassProps) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="space-y-2">
         <Label>EMAIL</Label>
-        <Input placeholder="exemplo@bookly.com" />
+        <Input placeholder="exemplo@bookly.com" {...register("email")} />
       </div>
       <div className="space-y-2">
         <Label>SENHA</Label>
-        <Input type="password" placeholder="********" />
+        <Input
+          type="password"
+          placeholder="********"
+          {...register("password")}
+        />
       </div>
 
       <Button onClick={action} className="w-full">

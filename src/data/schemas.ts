@@ -52,5 +52,18 @@ export const listSchema = z.object({
   imageFile: z.instanceof(File).optional(),
 });
 
+export const signUpSchema = z.object({
+  name: z.string().min(3, "Nome é obrigatório"),
+  email: z.email("Email inválido"),
+  password: z.string().min(6, "A senha deve conter no mínimo 6 caracteres"),
+});
+
+export const signInSchema = z.object({
+  email: z.email("Email inválido"),
+  password: z.string().min(6, "A senha deve conter no mínimo 6 caracteres"),
+});
+
 export type BookFormType = z.infer<typeof bookSchema>;
 export type ListFormType = z.infer<typeof listSchema>;
+export type SignUpFormType = z.infer<typeof signUpSchema>;
+export type SignInFormType = z.infer<typeof signInSchema>;
