@@ -7,7 +7,7 @@ describe("BookHeader", () => {
       <BookHeader
         title="A Torre Negra"
         author="Stephen King"
-        status="Lendo"
+        status="reading"
         isImageNull
         rating={90}
       />,

@@ -1,9 +1,10 @@
 "use client";
 import { Button } from "@/src/components/ui/button";
 import { Plus } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export const AddBuyButton = () => {
+export const AddBuyButton = ({ buyLink }: { buyLink?: string }) => {
   const pathname = usePathname();
   const isGoogleDetailsPage = pathname.includes("/detalhes/");
 
@@ -16,7 +17,11 @@ export const AddBuyButton = () => {
             <p>Adicionar</p>
           </Button>
 
-          <Button>Comprar</Button>
+          {buyLink && (
+            <Link href={buyLink} target="_blank">
+              <Button className="w-full">Comprar</Button>
+            </Link>
+          )}
         </div>
       ) : null}
     </>

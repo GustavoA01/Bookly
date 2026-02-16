@@ -10,6 +10,7 @@ type BookInfoProps = Pick<
   "currentPage" | "totalPages" | "startDate" | "endDate" | "genre"
 > & {
   isSinopseAndCommentNull: boolean;
+  buyLink?: string;
 };
 
 const mockLists = [
@@ -26,6 +27,7 @@ export const BookInfo = ({
   totalPages,
   startDate,
   endDate,
+  buyLink,
 }: BookInfoProps) => {
   return (
     <section className="space-y-4 max-sm:mt-4 col-span-1">
@@ -48,7 +50,7 @@ export const BookInfo = ({
           genre={genre}
         />
         <ListInfo lists={mockLists} />
-        <AddBuyButton />
+        <AddBuyButton buyLink={buyLink} />
       </div>
     </section>
   );

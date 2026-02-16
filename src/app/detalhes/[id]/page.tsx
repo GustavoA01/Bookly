@@ -33,11 +33,11 @@ const GoogleDetailsPage = async ({
         totalPages={book.volumeInfo.pageCount || null}
         currentPage={null}
         rating={book.volumeInfo.averageRating || null}
-        status={null}
         sinopse={book.volumeInfo.description || null}
         startDate={null}
         endDate={null}
         comment={null}
+        buyLink={book.saleInfo?.buyLink || undefined}
       />
     </div>
   );

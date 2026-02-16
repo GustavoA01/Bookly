@@ -1,6 +1,11 @@
 import { render } from "@testing-library/react";
 import { ListInfo } from "../components/BookInfo/ListInfo";
 
+jest.mock("next/navigation", () => ({
+  ...jest.requireActual("next/navigation"),
+  usePathname: jest.fn().mockReturnValueOnce("/livro/"),
+}));
+
 describe("ListInfo", () => {
   it("should render list names when lists are provided", () => {
     render(

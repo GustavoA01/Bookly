@@ -2,14 +2,19 @@ import Image from "next/image";
 import { BookSinopse } from "../components/BookSinopse";
 import { BookHeader } from "../components/BookHeader";
 import { BookInfo } from "../components/BookInfo";
-import { BookType } from "@/src/data/types/books";
+import { BookType, Status } from "@/src/data/types/books";
+
+type BookDetailsProps = Omit<BookType, "status" | "createdAt"> & {
+  status?: Status;
+  buyLink?: string;
+};
 
 export const BookDetails = ({
   title,
   author,
   genre,
-  status,
   rating,
+  status,
   imageUrl,
   sinopse,
   comment,
@@ -17,7 +22,8 @@ export const BookDetails = ({
   totalPages,
   startDate,
   endDate,
-}: BookType) => {
+  buyLink,
+}: BookDetailsProps) => {
   const isSinopseAndCommentNull = sinopse === null && comment === null;
   const notNullClassName =
     "flex flex-col sm:grid sm:grid-cols-3 mt-8 sm:space-x-4";
@@ -49,7 +55,7 @@ export const BookDetails = ({
           title={title}
           author={author}
           isImageNull={imageUrl === null}
-          status={status}
+          status={status || undefined}
           rating={rating}
         />
       </div>
@@ -67,6 +73,7 @@ export const BookDetails = ({
           startDate={startDate ?? "-/--/----"}
           endDate={endDate ?? "-/--/----"}
           isSinopseAndCommentNull={isSinopseAndCommentNull}
+          buyLink={buyLink}
         />
       </div>
     </main>

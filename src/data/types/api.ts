@@ -22,6 +22,16 @@ export interface GoogleBookItem {
     language: string;
     previewLink: string;
   };
+  saleInfo?: {
+    country: string;
+    saleability: "FOR_SALE" | "NOT_FOR_SALE" | "FREE";
+    isEbook: boolean;
+    buyLink?: string;
+    listPrice?: {
+      amount: number;
+      currencyCode: string;
+    };
+  };
 }
 
 export type FormSearchParamsType = { id: string; role: "google" | "firebase" };
