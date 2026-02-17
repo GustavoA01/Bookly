@@ -3,10 +3,13 @@ import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { navigationButtons } from "../data/constants";
-import { LogIn } from "lucide-react";
+import { LogIn, User } from "lucide-react";
+import { auth } from "../services/firebase/firebaseConfig";
+import { Avatar, AvatarFallback } from "./ui/avatar";
 
 export const Header = () => {
   const pathname = usePathname();
+  const user = auth.currentUser;
 
   return (
     <header className="flex justify-between w-full items-center">
@@ -30,12 +33,20 @@ export const Header = () => {
             </Link>
           ))}
         </nav>
-        <Link href="/login">
-          <Button variant="outline">
-            <LogIn />
-            <p>Entrar</p>
-          </Button>
-        </Link>
+        {user ? (
+          <Avatar className="cursor-pointer">
+            <AvatarFallback>
+              <User size={20} />
+            </AvatarFallback>
+          </Avatar>
+        ) : (
+          <Link href="/login">
+            <Button variant="outline">
+              <LogIn />
+              <p>Entrar</p>
+            </Button>
+          </Link>
+        )}
       </div>
     </header>
   );

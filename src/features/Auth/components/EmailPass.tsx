@@ -2,28 +2,29 @@
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
+import { Spinner } from "@/src/components/ui/spinner";
 import { SignInFormType, SignUpFormType } from "@/src/data/schemas";
 import Link from "next/link";
 import { UseFormRegister } from "react-hook-form";
 
 type EmailPassProps = {
   actionLabel?: string;
-  action: () => void;
   labelAction?: string;
   pathPasswordRecovery?: string;
   labelPasswordRecovery?: string;
   showRecovery?: boolean;
   register: UseFormRegister<SignUpFormType | SignInFormType>;
+  isPending: boolean;
 };
 
 export const EmailPass = ({
-  action,
   actionLabel,
   pathPasswordRecovery,
   labelPasswordRecovery,
   labelAction,
   showRecovery,
   register,
+  isPending,
 }: EmailPassProps) => {
   return (
     <div className="flex flex-col gap-4">
@@ -40,8 +41,9 @@ export const EmailPass = ({
         />
       </div>
 
-      <Button onClick={action} className="w-full">
+      <Button className="w-full" disabled={isPending}>
         {actionLabel}
+        {isPending && <Spinner />}
       </Button>
 
       {showRecovery && (

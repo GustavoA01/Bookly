@@ -1,8 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import { Header } from "../Header";
 
+global.fetch = jest.fn();
+
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(() => "/bookly-ia"),
+}));
+
+jest.mock("firebase/auth", () => ({
+  getAuth: jest.fn(() => ({
+    currentUser: null,
+  })),
 }));
 
 describe("Header", () => {

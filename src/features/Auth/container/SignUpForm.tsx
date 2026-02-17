@@ -2,18 +2,16 @@
 import { Input } from "@/src/components/ui/input";
 import { EmailPass } from "../components/EmailPass";
 import { Label } from "@/src/components/ui/label";
-import { useForm } from "react-hook-form";
-import { SignUpFormType, signUpSchema } from "@/src/data/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { FormErrorMessage } from "@/src/components/FormErrorMessage";
+import { useSignUp } from "../hooks/useSignUp";
 
 export const SignUpForm = () => {
-  const { register, handleSubmit } = useForm<SignUpFormType>({
-    resolver: zodResolver(signUpSchema),
-  });
-
-  const handleSignUp = (data: SignUpFormType) => {
-    console.log(data);
-  };
+  const {
+    methods: { handleSubmit, register },
+    isPending,
+    errorMessage,
+    handleSignUp,
+  } = useSignUp();
 
   return (
     <form className="space-y-4" onSubmit={handleSubmit(handleSignUp)}>
@@ -25,8 +23,9 @@ export const SignUpForm = () => {
         register={register}
         pathPasswordRecovery="/password-recovery"
         actionLabel="Criar Conta"
-        action={() => {}}
+        isPending={isPending}
       />
+      <FormErrorMessage showMessage={!!errorMessage} message={errorMessage} />
     </form>
   );
 };
