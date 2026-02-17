@@ -6,10 +6,16 @@ import { navigationButtons } from "../data/constants";
 import { LogIn, User } from "lucide-react";
 import { auth } from "../services/firebase/firebaseConfig";
 import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Drawer, DrawerClose, DrawerContent, DrawerTitle } from "./ui/drawer";
+import { useState } from "react";
+import { Dialog, DialogClose, DialogContent, DialogTitle } from "./ui/dialog";
+import { LogOutButton } from "./LogOutButton";
 
 export const Header = () => {
   const pathname = usePathname();
   const user = auth.currentUser;
+  const [openSheet, setOpenSheet] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <header className="flex justify-between w-full items-center">
@@ -34,8 +40,17 @@ export const Header = () => {
           ))}
         </nav>
         {user ? (
-          <Avatar className="cursor-pointer">
-            <AvatarFallback>
+          <Avatar className="cursor-pointer ">
+            <AvatarFallback
+              className="sm:hidden"
+              onClick={() => setOpenSheet(true)}
+            >
+              <User size={20} />
+            </AvatarFallback>
+            <AvatarFallback
+              className="hidden sm:flex"
+              onClick={() => setOpenModal(true)}
+            >
               <User size={20} />
             </AvatarFallback>
           </Avatar>
@@ -48,6 +63,24 @@ export const Header = () => {
           </Link>
         )}
       </div>
+
+      <Drawer open={openSheet} onOpenChange={setOpenSheet}>
+        <DrawerContent className="p-4">
+          <DrawerTitle>{user?.displayName}</DrawerTitle>
+          <DrawerClose asChild>
+            <LogOutButton />
+          </DrawerClose>
+        </DrawerContent>
+      </Drawer>
+
+      <Dialog open={openModal} onOpenChange={setOpenModal}>
+        <DialogContent>
+          <DialogTitle>{user?.displayName}</DialogTitle>
+          <DialogClose asChild>
+            <LogOutButton />
+          </DialogClose>
+        </DialogContent>
+      </Dialog>
     </header>
   );
 };
