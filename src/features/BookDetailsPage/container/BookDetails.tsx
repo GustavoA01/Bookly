@@ -4,12 +4,14 @@ import { BookHeader } from "../components/BookHeader";
 import { BookInfo } from "../components/BookInfo";
 import { BookType, Status } from "@/src/data/types/books";
 
-type BookDetailsProps = Omit<BookType, "status" | "createdAt"> & {
+type BookDetailsProps = Omit<BookType, "id" | "status" | "createdAt"> & {
+  id?: string;
   status?: Status;
   buyLink?: string;
 };
 
 export const BookDetails = ({
+  id,
   title,
   author,
   genre,
@@ -67,6 +69,7 @@ export const BookDetails = ({
       >
         <BookSinopse sinopse={sinopse} comment={comment} />
         <BookInfo
+          id={id}
           genre={genre}
           currentPage={currentPage}
           totalPages={totalPages}

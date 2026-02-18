@@ -13,7 +13,6 @@ import { FormErrorMessage } from "@/src/components/FormErrorMessage";
 
 export const BookForm = ({ id, role }: FormSearchParamsType) => {
   const {
-    register,
     handleCreateBook,
     dateErrorMessage,
     startDate,
@@ -34,10 +33,12 @@ export const BookForm = ({ id, role }: FormSearchParamsType) => {
     methods,
   } = useNewBook({ id, role });
 
+  const { register, handleSubmit } = methods;
+
   return (
     <form
       id="book-form"
-      onSubmit={methods.handleSubmit(handleCreateBook)}
+      onSubmit={handleSubmit(handleCreateBook)}
       className="flex flex-col sm:grid grid-cols-5"
     >
       <div className="col-span-3 flex flex-col space-y-4 p-4">

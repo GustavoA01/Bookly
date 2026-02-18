@@ -4,7 +4,12 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export const AddBuyButton = ({ buyLink }: { buyLink?: string }) => {
+type AddBuyButtonProps = {
+  id?: string;
+  buyLink?: string;
+};
+
+export const AddBuyButton = ({ id, buyLink }: AddBuyButtonProps) => {
   const pathname = usePathname();
   const isGoogleDetailsPage = pathname.includes("/detalhes/");
 
@@ -12,10 +17,12 @@ export const AddBuyButton = ({ buyLink }: { buyLink?: string }) => {
     <>
       {isGoogleDetailsPage ? (
         <div className="flex flex-col gap-2">
-          <Button variant="secondary">
-            <Plus />
-            <p>Adicionar</p>
-          </Button>
+          <Link href={`/novo-livro?id=${id}&role=google`}>
+            <Button variant="secondary" className="w-full">
+              <Plus />
+              <p>Adicionar</p>
+            </Button>
+          </Link>
 
           {buyLink && (
             <Link href={buyLink} target="_blank">

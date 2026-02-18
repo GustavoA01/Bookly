@@ -18,7 +18,9 @@ export const BookHeader = ({
     <div
       className={`flex flex-col items-center space-y-2 ${isImageNull ? "" : "sm:items-start"}`}
     >
-      {status && <StatusChip className="rounded-lg text-sm" status={status} />}
+      {status && (
+        <StatusChip className="rounded-full text-sm" status={status} />
+      )}
 
       <h1 className="text-3xl sm:text-5xl font-bold font-montserrat max-w-lg text-center sm:text-left">
         {title}

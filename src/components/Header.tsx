@@ -39,6 +39,7 @@ export const Header = () => {
             </Link>
           ))}
         </nav>
+
         {user ? (
           <Avatar className="cursor-pointer ">
             <AvatarFallback

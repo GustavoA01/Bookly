@@ -8,6 +8,15 @@ import { useBookDates } from "./useBookDates";
 import { useImageBook } from "./useImageBook";
 
 export const useNewBook = ({ id, role }: FormSearchParamsType) => {
+  const methods = useForm<BookFormType>({
+    resolver: zodResolver(bookSchema),
+  });
+  const {
+    setValue,
+    reset,
+    formState: { errors },
+  } = methods;
+
   const {
     startDate,
     setStartDate,
@@ -16,16 +25,6 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
     handleCleanDates,
     dateErrorMessage,
   } = useBookDates();
-
-  const methods = useForm<BookFormType>({
-    resolver: zodResolver(bookSchema),
-  });
-  const {
-    register,
-    setValue,
-    reset,
-    formState: { errors },
-  } = methods;
 
   const {
     choosedFile,
@@ -39,6 +38,11 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
   } = useImageBook(setValue);
 
   const [status, setStatus] = useState<Status>("toRead");
+
+  const htmlToText = (html: string) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  };
 
   useEffect(() => {
     if (id && role === "google") {
@@ -55,7 +59,7 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
               : "",
             imageUrl: book.volumeInfo.imageLinks?.thumbnail || "",
             numberOfPages: book.volumeInfo.pageCount || undefined,
-            synopsis: book.volumeInfo.description || "",
+            synopsis: htmlToText(book.volumeInfo.description || ""),
             genre: book.volumeInfo.categories
               ? book.volumeInfo.categories[0]
               : "",
@@ -82,7 +86,6 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
 
   return {
     methods,
-    register,
     errors,
     startDate,
     setStartDate,

@@ -3,10 +3,12 @@ import { auth } from "@/src/services/firebase/firebaseConfig";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FirebaseError } from "firebase/app";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 export const useSignUp = () => {
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const methods = useForm<SignUpFormType>({
@@ -25,7 +27,7 @@ export const useSignUp = () => {
         const user = userCredential.user;
         if (user) await updateProfile(user, { displayName: data.name });
 
-        console.log("User created:", user);
+        router.push("/");
       } catch (error) {
         const authError = error as FirebaseError;
         const errorCode = authError.code;
