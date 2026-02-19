@@ -45,9 +45,20 @@ global.fetch = jest.fn(() =>
   }),
 ) as jest.Mock;
 
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(() => "/explorar"),
+  useSearchParams: jest.fn(() => ({
+    get: jest.fn((param) => {
+      if (param === "page") return "1";
+      return null;
+    }),
+  })),
+}));
+
 describe("BookCardsList", () => {
   it("renders a list of SearchBookCard components with correct data", async () => {
     const ResolvedComponent = await BookCardsList({ query: "test" });
+
     render(ResolvedComponent);
 
     expect(await screen.findByText("Book One")).toBeInTheDocument();

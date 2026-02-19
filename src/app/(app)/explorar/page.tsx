@@ -6,9 +6,11 @@ import { Suspense } from "react";
 const ExplorePage = async ({
   searchParams,
 }: {
-  searchParams: Promise<{ q: string }>;
+  searchParams: Promise<{ q: string; page: string }>;
 }) => {
-  const query = await searchParams.then((params) => params.q);
+  const params = await searchParams;
+  const query = params.q;
+  const page = params.page;
 
   return (
     <div className="space-y-4">

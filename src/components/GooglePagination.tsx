@@ -1,4 +1,5 @@
 "use client";
+import { usePathname, useSearchParams } from "next/navigation";
 import {
   Pagination,
   PaginationContent,
@@ -10,30 +11,95 @@ import {
 } from "./ui/pagination";
 
 export const GooglePagination = () => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentPage = Number(searchParams.get("page") || "1");
+  let numberOfPages = 3;
+
+  const initialPages = [1, 2, 3];
+  const middlePages = [currentPage - 1, currentPage, currentPage + 1];
+  const lastPages = [numberOfPages - 2, numberOfPages - 1, currentPage];
+
+  if (pathname.includes("/explorar")) {
+    numberOfPages = 6;
+  }
+
   return (
     <Pagination className="m-auto">
       <PaginationContent className="m-auto">
-        <PaginationItem>
-          <PaginationPrevious href="#" />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">2</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">3</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">6</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
-        </PaginationItem>
+        {currentPage > 1 && (
+          <PaginationItem>
+            <PaginationPrevious href={`?page=${currentPage - 1}`} />
+          </PaginationItem>
+        )}
+
+        {currentPage > 2 && (
+          <>
+            <PaginationItem>
+              <PaginationLink href={`?page=1`}>1</PaginationLink>
+            </PaginationItem>
+            {currentPage - 2 !== 1 && (
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+            )}
+          </>
+        )}
+
+        {currentPage === 1 &&
+          initialPages.map((page) => (
+            <PaginationItem key={page}>
+              <PaginationLink isActive={page === 1} href={`?page=${page}`}>
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+
+        {currentPage > 1 &&
+          currentPage < numberOfPages &&
+          middlePages.map((page) => (
+            <PaginationItem key={page}>
+              <PaginationLink
+                isActive={page === currentPage}
+                href={`?page=${page}`}
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+
+        {currentPage === numberOfPages &&
+          lastPages.map((page) => (
+            <PaginationItem key={page}>
+              <PaginationLink
+                isActive={page === currentPage}
+                href={`?page=${page}`}
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+
+        {currentPage < numberOfPages - 2 && (
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+        )}
+
+        {currentPage < numberOfPages && (
+          <>
+            {currentPage + 1 !== numberOfPages && (
+              <PaginationItem>
+                <PaginationLink href={`?page=${numberOfPages}`}>
+                  {numberOfPages}
+                </PaginationLink>
+              </PaginationItem>
+            )}
+            <PaginationItem>
+              <PaginationNext href={`?page=${currentPage + 1}`} />
+            </PaginationItem>
+          </>
+        )}
       </PaginationContent>
     </Pagination>
   );
