@@ -38,6 +38,9 @@ const GoogleDetailsPage = async ({
         endDate={null}
         comment={null}
         buyLink={book.saleInfo?.buyLink || undefined}
+        publisher={book.volumeInfo.publisher || undefined}
+        country={book.saleInfo?.country || undefined}
+        language={book.volumeInfo.language || undefined}
       />
     </div>
   );

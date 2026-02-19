@@ -8,6 +8,9 @@ type BookDetailsProps = Omit<BookType, "id" | "status" | "createdAt"> & {
   id?: string;
   status?: Status;
   buyLink?: string;
+  publisher?: string;
+  country?: string;
+  language?: string;
 };
 
 export const BookDetails = ({
@@ -25,6 +28,9 @@ export const BookDetails = ({
   startDate,
   endDate,
   buyLink,
+  publisher,
+  country,
+  language,
 }: BookDetailsProps) => {
   const isSinopseAndCommentNull = sinopse === null && comment === null;
   const notNullClassName =
@@ -77,6 +83,9 @@ export const BookDetails = ({
           endDate={endDate ?? "-/--/----"}
           isSinopseAndCommentNull={isSinopseAndCommentNull}
           buyLink={buyLink}
+          publisher={publisher}
+          country={country}
+          language={language}
         />
       </div>
     </main>

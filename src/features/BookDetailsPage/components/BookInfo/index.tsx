@@ -4,6 +4,7 @@ import { DetailsInfo } from "./DetailsInfo";
 import { ListInfo } from "./ListInfo";
 import { AddBuyButton } from "../../container/AddBuyButton";
 import { BookType } from "@/src/data/types/books";
+import { PublisherInfo } from "./PublisherInfo";
 
 type BookInfoProps = Pick<
   BookType,
@@ -12,6 +13,9 @@ type BookInfoProps = Pick<
   id?: string;
   isSinopseAndCommentNull: boolean;
   buyLink?: string;
+  publisher?: string;
+  country?: string;
+  language?: string;
 };
 
 const mockLists = [
@@ -30,6 +34,9 @@ export const BookInfo = ({
   startDate,
   endDate,
   buyLink,
+  publisher,
+  country,
+  language,
 }: BookInfoProps) => {
   return (
     <section className="space-y-4 max-sm:mt-4 col-span-1">
@@ -46,6 +53,11 @@ export const BookInfo = ({
         }
       >
         <TimeInfo startDate={startDate} endDate={endDate} progress={45} />
+        <PublisherInfo
+          publisher={publisher}
+          country={country}
+          language={language}
+        />
         <DetailsInfo
           currentPage={currentPage}
           totalPages={totalPages}

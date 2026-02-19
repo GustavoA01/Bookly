@@ -10,6 +10,7 @@ import { Progress } from "@/src/components/ui/progress";
 import { BookType } from "@/src/data/types/books";
 import { Calendar, CheckCircle } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { InfoSection } from "./InfoSection";
 
 type TimeInfoProps = Pick<BookType, "startDate" | "endDate"> & {
   progress: number;
@@ -28,23 +29,17 @@ export const TimeInfo = ({ startDate, endDate, progress }: TimeInfoProps) => {
       </CardHeader>
 
       <CardContent>
-        <div className="flex justify-between items-center mt-4">
-          <div className="flex items-center gap-2">
-            <Calendar className="text-muted-foreground w-5 h-5" />
-            <p className="text-muted-foreground text-sm">Início</p>
-          </div>
+        <InfoSection
+          label="Início"
+          value={startDate ?? "--/--/----"}
+          icon={<Calendar className="text-muted-foreground w-5 h-5" />}
+        />
 
-          <p className="font-bold">{startDate}</p>
-        </div>
-
-        <div className="flex justify-between items-center mt-4">
-          <div className="flex items-center gap-2">
-            <CheckCircle className="text-muted-foreground w-5 h-5" />
-            <p className="text-muted-foreground text-sm">Término</p>
-          </div>
-
-          <p className="font-bold">{endDate}</p>
-        </div>
+        <InfoSection
+          label="Término"
+          value={endDate ?? "--/--/----"}
+          icon={<CheckCircle className="text-muted-foreground w-5 h-5" />}
+        />
       </CardContent>
 
       <CardFooter className="flex flex-col space-y-2">
