@@ -30,7 +30,7 @@ export const useSignIn = () => {
 
         setTimeout(() => {
           setErrorMessage(null);
-        }, 3000);
+        }, 5000);
       }
     });
   };

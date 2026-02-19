@@ -8,11 +8,10 @@ import Link from "next/link";
 import { UseFormRegister } from "react-hook-form";
 
 type EmailPassProps = {
-  actionLabel?: string;
+  actionLabel: string;
   labelAction?: string;
   pathPasswordRecovery?: string;
   labelPasswordRecovery?: string;
-  showRecovery?: boolean;
   register: UseFormRegister<SignUpFormType | SignInFormType>;
   isPending: boolean;
 };
@@ -22,7 +21,6 @@ export const EmailPass = ({
   pathPasswordRecovery,
   labelPasswordRecovery,
   labelAction,
-  showRecovery,
   register,
   isPending,
 }: EmailPassProps) => {
@@ -43,14 +41,14 @@ export const EmailPass = ({
 
       <Button className="w-full" disabled={isPending}>
         {actionLabel}
-        {isPending && <Spinner />}
+        {isPending && <Spinner data-testid="auth-spinner" />}
       </Button>
 
-      {showRecovery && (
+      {pathPasswordRecovery && (
         <div className="text-right space-x-2 text-sm">
           <span className="text-muted-foreground">{labelPasswordRecovery}</span>
           <Link
-            href={pathPasswordRecovery!}
+            href={pathPasswordRecovery}
             className="text-primary font-semibold"
           >
             {labelAction}

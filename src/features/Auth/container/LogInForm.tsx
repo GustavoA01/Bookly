@@ -19,7 +19,6 @@ export const LogInForm = () => {
         labelAction="Recuperar"
         pathPasswordRecovery="/password-recovery"
         actionLabel="Entrar"
-        showRecovery
         isPending={isPending}
       />
       <FormErrorMessage showMessage={!!errorMessage} message={errorMessage} />

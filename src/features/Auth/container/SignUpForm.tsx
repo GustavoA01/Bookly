@@ -21,7 +21,6 @@ export const SignUpForm = () => {
       </div>
       <EmailPass
         register={register}
-        pathPasswordRecovery="/password-recovery"
         actionLabel="Criar Conta"
         isPending={isPending}
       />

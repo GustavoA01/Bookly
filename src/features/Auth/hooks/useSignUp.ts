@@ -38,7 +38,7 @@ export const useSignUp = () => {
 
         setTimeout(() => {
           setErrorMessage(null);
-        }, 3000);
+        }, 5000);
       }
     });
   };

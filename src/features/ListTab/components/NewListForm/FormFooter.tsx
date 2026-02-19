@@ -7,7 +7,7 @@ export const FormFooter = () => (
       <Button variant="outline">Cancelar</Button>
     </DialogClose>
     <Button form="new-list-form" type="submit">
-      Salvar
+      Criar
     </Button>
   </DialogFooter>
 );
