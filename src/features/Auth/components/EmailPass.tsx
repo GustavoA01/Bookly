@@ -49,7 +49,7 @@ export const EmailPass = ({
           <span className="text-muted-foreground">{labelPasswordRecovery}</span>
           <Link
             href={pathPasswordRecovery}
-            className="text-primary font-semibold"
+            className="text-primary font-semibold hover:underline"
           >
             {labelAction}
           </Link>

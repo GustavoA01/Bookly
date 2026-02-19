@@ -25,7 +25,7 @@ export const SearchBookCard = ({
         alt={`Capa do livro ${title}`}
         width={200}
         height={300}
-        className="rounded-md group-hover:opacity-75 transition-opacity w-full min-h-75"
+        className="rounded-md group-hover:opacity-75 transition-opacity aspect-2/3 w-full"
       />
 
       <Link

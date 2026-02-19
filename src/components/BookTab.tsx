@@ -27,7 +27,7 @@ export const BookTab = () => {
           isHome
         />
 
-        <Link href="/novo-livro">
+        <Link href="/novo-livro" title="Adicionar novo livro">
           <Button className="hidden sm:flex">
             <Plus />
             Novo Livro

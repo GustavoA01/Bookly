@@ -14,16 +14,18 @@ const ExplorePage = async ({
     <div className="space-y-4">
       <SearchForm />
 
-      <div className="gap-2 sm:gap-4 space-y-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-        <Suspense
-          key={query}
-          fallback={Array.from({ length: 12 }).map((_, index) => (
-            <SearchCardSkeleton key={`${query}-${index}`} />
-          ))}
-        >
-          <BookCardsList query={query || "intitle:a"} />
-        </Suspense>
-      </div>
+      <Suspense
+        key={query}
+        fallback={
+          <div className="gap-2 sm:gap-4 space-y-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {Array.from({ length: 12 }).map((_, index) => (
+              <SearchCardSkeleton key={`${query}-${index}`} />
+            ))}
+          </div>
+        }
+      >
+        <BookCardsList query={query || "intitle:a"} />
+      </Suspense>
     </div>
   );
 };

@@ -13,7 +13,10 @@ export const HaveAccount = ({
 }: HaveAccountProps) => (
   <p className="mt-4 text-sm">
     {label}{" "}
-    <Link href={labelHref} className="text-primary font-semibold">
+    <Link
+      href={labelHref}
+      className="text-primary font-semibold hover:underline"
+    >
       {labelAction}
     </Link>
   </p>

@@ -29,16 +29,19 @@ export const defaultStatus = [
 export const navigationButtons = [
   {
     name: "Início",
+    title: "Ir para início",
     href: "/",
     icon: <Home className="max-sm:h-5 max-sm:w-5" />,
   },
   {
     name: "Explorar",
+    title: "Explorar livros",
     href: "/explorar",
     icon: <Compass className="max-sm:h-5 max-sm:w-5" />,
   },
   {
     name: "Bookly IA",
+    title: "Descobrir com IA",
     href: "/bookly-ia",
     icon: <Sparkles className="max-sm:h-5 max-sm:w-5" />,
   },

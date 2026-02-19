@@ -27,7 +27,7 @@ export const Header = () => {
       <div className="flex gap-2 items-center">
         <nav className="hidden sm:flex bg-card p-2 rounded-lg gap-2 h-fit">
           {navigationButtons.map((item) => (
-            <Link key={item.name} href={item.href}>
+            <Link key={item.name} href={item.href} title={item.title}>
               <Button
                 size="sm"
                 variant="ghost"
@@ -56,7 +56,7 @@ export const Header = () => {
             </AvatarFallback>
           </Avatar>
         ) : (
-          <Link href="/login">
+          <Link href="/login" title="Fazer login">
             <Button variant="outline">
               <LogIn />
               <p>Entrar</p>

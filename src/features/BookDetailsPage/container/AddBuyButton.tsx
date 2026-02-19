@@ -17,7 +17,10 @@ export const AddBuyButton = ({ id, buyLink }: AddBuyButtonProps) => {
     <>
       {isGoogleDetailsPage ? (
         <div className="flex flex-col gap-2">
-          <Link href={`/novo-livro?id=${id}&role=google`}>
+          <Link
+            href={`/novo-livro?id=${id}&role=google`}
+            title="Adicionar livro à biblioteca"
+          >
             <Button variant="secondary" className="w-full">
               <Plus />
               <p>Adicionar</p>
@@ -25,7 +28,7 @@ export const AddBuyButton = ({ id, buyLink }: AddBuyButtonProps) => {
           </Link>
 
           {buyLink && (
-            <Link href={buyLink} target="_blank">
+            <Link href={buyLink} target="_blank" title="Ir para Google Play">
               <Button className="w-full">Comprar</Button>
             </Link>
           )}

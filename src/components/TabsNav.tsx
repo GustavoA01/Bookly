@@ -6,6 +6,7 @@ export const TabsNav = ({ tab = "books" }: { tab: string | undefined }) => {
   const tabs = [
     {
       label: "Livros",
+      title: "Livros da biblioteca",
       value: "books",
       variant: tab === "books" ? "secondary" : "ghost",
       className: tab === "books" ? "" : "text-muted-foreground",
@@ -13,6 +14,7 @@ export const TabsNav = ({ tab = "books" }: { tab: string | undefined }) => {
     },
     {
       label: "Listas",
+      title: "Listas de livros",
       value: "lists",
       variant: tab === "lists" ? "secondary" : "ghost",
       className: tab === "lists" ? "" : "text-muted-foreground",
@@ -22,10 +24,11 @@ export const TabsNav = ({ tab = "books" }: { tab: string | undefined }) => {
 
   return (
     <nav className="bg-card rounded-lg flex gap-2 p-1 w-fit mb-2 max-sm:w-full justify-center">
-      {tabs.map(({ label, value, variant, className, icon }) => (
+      {tabs.map(({ label, value, variant, className, icon, title }) => (
         <Link key={value} href={`?tab=${value}`} className="w-full">
           <Button
             size="sm"
+            title={title}
             variant={variant as "secondary" | "ghost"}
             className={`${className} w-full`}
           >
