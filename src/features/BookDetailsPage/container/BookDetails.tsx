@@ -1,11 +1,10 @@
 import Image from "next/image";
-import { BookSinopse } from "../components/BookSinopse";
 import { BookHeader } from "../components/BookHeader";
 import { BookInfo } from "../components/BookInfo";
 import { BookType, Status } from "@/src/data/types/books";
+import { BookSynopsis } from "../components/BookSynopsis";
 
-type BookDetailsProps = Omit<BookType, "id" | "status" | "createdAt"> & {
-  id?: string;
+type BookDetailsProps = Omit<BookType, "status" | "createdAt" | "userId"> & {
   status?: Status;
   buyLink?: string;
   publisher?: string;
@@ -21,7 +20,7 @@ export const BookDetails = ({
   rating,
   status,
   imageUrl,
-  sinopse,
+  synopsis,
   comment,
   currentPage,
   totalPages,
@@ -32,7 +31,7 @@ export const BookDetails = ({
   country,
   language,
 }: BookDetailsProps) => {
-  const isSinopseAndCommentNull = sinopse === null && comment === null;
+  const isSynopsisAndCommentNull = synopsis === null && comment === null;
   const notNullClassName =
     "flex flex-col sm:grid sm:grid-cols-3 mt-8 sm:space-x-4";
 
@@ -70,18 +69,18 @@ export const BookDetails = ({
 
       <div
         className={
-          isSinopseAndCommentNull ? "flex flex-col mt-8" : notNullClassName
+          isSynopsisAndCommentNull ? "flex flex-col mt-8" : notNullClassName
         }
       >
-        <BookSinopse sinopse={sinopse} comment={comment} />
+        <BookSynopsis synopsis={synopsis} comment={comment} />
         <BookInfo
           id={id}
           genre={genre}
           currentPage={currentPage}
           totalPages={totalPages}
-          startDate={startDate ?? "-/--/----"}
-          endDate={endDate ?? "-/--/----"}
-          isSinopseAndCommentNull={isSinopseAndCommentNull}
+          startDate={startDate}
+          endDate={endDate}
+          isSynopsisAndCommentNull={isSynopsisAndCommentNull}
           buyLink={buyLink}
           publisher={publisher}
           country={country}

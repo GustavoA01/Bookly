@@ -1,11 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import { BookSinopse } from "../components/BookSinopse";
-
-describe("BookSinopse", () => {
-  it("should render sinopse and comment when both are provided", () => {
+import { BookSynopsis } from "../components/BookSynopsis";
+describe("BookSynopsis", () => {
+  it("should render synopsis and comment when both are provided", () => {
     render(
-      <BookSinopse
-        sinopse="This is a great book."
+      <BookSynopsis
+        synopsis="This is a great book."
         comment="Great characters development."
       />,
     );
@@ -18,17 +17,17 @@ describe("BookSinopse", () => {
     ).toBeInTheDocument();
   });
 
-  it("should render only sinopse when comment is not provided", () => {
-    render(<BookSinopse sinopse="This is a great book." comment={null} />);
+  it("should render only synopsis when comment is not provided", () => {
+    render(<BookSynopsis synopsis="This is a great book." comment={null} />);
 
     expect(screen.getByText("Sinopse")).toBeInTheDocument();
     expect(screen.queryByText("Comentário")).not.toBeInTheDocument();
     expect(screen.getByText("This is a great book.")).toBeInTheDocument();
   });
 
-  it("should render only comment when sinopse is not provided", () => {
+  it("should render only comment when synopsis is not provided", () => {
     render(
-      <BookSinopse sinopse={null} comment="Great characters development." />,
+      <BookSynopsis synopsis={null} comment="Great characters development." />,
     );
 
     expect(screen.queryByText("Sinopse")).not.toBeInTheDocument();
@@ -38,8 +37,10 @@ describe("BookSinopse", () => {
     ).toBeInTheDocument();
   });
 
-  it("should render nothing when both sinopse and comment are null", () => {
-    const { container } = render(<BookSinopse sinopse={null} comment={null} />);
+  it("should render nothing when both synopsis and comment are null", () => {
+    const { container } = render(
+      <BookSynopsis synopsis={null} comment={null} />,
+    );
 
     expect(container.firstChild).toBeEmptyDOMElement();
   });

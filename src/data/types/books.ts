@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import { JSX } from "react";
 
 export type Status = "read" | "reading" | "abandoned" | "toRead";
@@ -10,13 +11,14 @@ export interface BookType {
   status: Status;
   rating: number | null;
   imageUrl: string | null;
-  sinopse: string | null;
+  synopsis: string | null;
   comment: string | null;
   currentPage: number | null;
   totalPages: number | null;
-  startDate: string | null;
-  endDate: string | null;
-  createdAt: string;
+  startDate: Timestamp | null;
+  endDate: Timestamp | null;
+  createdAt: Timestamp;
+  userId: string;
 }
 
 export type StatusPropsType = {

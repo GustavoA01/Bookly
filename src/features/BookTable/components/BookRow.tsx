@@ -4,6 +4,7 @@ import { TableCell, TableRow } from "../../../components/ui/table";
 import { useRouter } from "next/navigation";
 import { BookType } from "@/src/data/types/books";
 import { StatusChip } from "@/src/components/StatusChip";
+import { format } from "date-fns";
 
 type BookRowProps = Pick<
   BookType,
@@ -36,19 +37,24 @@ export const BookRow = ({
             {author}
           </p>
           <p className="hidden sm:block text-muted-foreground text-xs">
-            {createdAt}
+            {format(createdAt.toDate(), "dd/MM/yyyy")}
           </p>
         </div>
       </TableCell>
       <TableCell>
-        <Badge variant="outline" className="text-muted-foreground">
-          {genre}
-        </Badge>
+        {genre ? (
+          <Badge variant="outline" className="text-muted-foreground">
+            {genre}
+          </Badge>
+        ) : (
+          <p>-</p>
+        )}
       </TableCell>
       <TableCell>
         <StatusChip status={status} />
       </TableCell>
-      <TableCell>{rating}</TableCell>
+
+      {rating ? <TableCell>{rating}</TableCell> : <TableCell>-</TableCell>}
     </TableRow>
   );
 };

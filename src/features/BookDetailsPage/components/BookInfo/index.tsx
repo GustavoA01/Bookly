@@ -11,7 +11,7 @@ type BookInfoProps = Pick<
   "currentPage" | "totalPages" | "startDate" | "endDate" | "genre"
 > & {
   id?: string;
-  isSinopseAndCommentNull: boolean;
+  isSynopsisAndCommentNull: boolean;
   buyLink?: string;
   publisher?: string;
   country?: string;
@@ -27,7 +27,7 @@ const mockLists = [
 
 export const BookInfo = ({
   id,
-  isSinopseAndCommentNull,
+  isSynopsisAndCommentNull,
   genre,
   currentPage,
   totalPages,
@@ -38,6 +38,10 @@ export const BookInfo = ({
   country,
   language,
 }: BookInfoProps) => {
+  const progress =
+    currentPage && totalPages
+      ? Math.floor((currentPage * 100) / totalPages)
+      : null;
   return (
     <section className="space-y-4 max-sm:mt-4 col-span-1">
       <div className="flex items-center gap-2">
@@ -47,12 +51,12 @@ export const BookInfo = ({
 
       <div
         className={
-          isSinopseAndCommentNull
+          isSynopsisAndCommentNull
             ? "gap-4 flex max-sm:flex-col justify-between"
             : "flex flex-col space-y-6"
         }
       >
-        <TimeInfo startDate={startDate} endDate={endDate} progress={45} />
+        <TimeInfo startDate={startDate} endDate={endDate} progress={progress} />
         <PublisherInfo
           publisher={publisher}
           country={country}

@@ -1,14 +1,14 @@
 import { Card, CardContent } from "@/src/components/ui/card";
 import { BookOpen, PencilLine } from "lucide-react";
 
-type BookSinopseProps = {
-  sinopse: string | null;
+type BookSynopsisProps = {
+  synopsis: string | null;
   comment: string | null;
 };
 
-export const BookSinopse = ({ sinopse, comment }: BookSinopseProps) => (
+export const BookSynopsis = ({ synopsis, comment }: BookSynopsisProps) => (
   <div className="col-span-2 space-y-4">
-    {sinopse && (
+    {synopsis && (
       <section>
         <div className="flex items-center gap-2">
           <BookOpen className="text-primary" />
@@ -17,7 +17,7 @@ export const BookSinopse = ({ sinopse, comment }: BookSinopseProps) => (
 
         <Card className="bg-transparent border border-border mt-4 p-6">
           <CardContent className="text-muted-foreground">
-            <p dangerouslySetInnerHTML={{ __html: sinopse }}></p>
+            <p dangerouslySetInnerHTML={{ __html: synopsis }}></p>
           </CardContent>
         </Card>
       </section>

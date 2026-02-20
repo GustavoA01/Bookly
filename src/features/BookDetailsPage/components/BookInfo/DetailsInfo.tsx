@@ -12,27 +12,33 @@ export const DetailsInfo = ({
   currentPage,
   totalPages,
   genre,
-}: DetailsInfoProps) => (
-  <Card className="w-full ">
-    <CardHeader>
-      <CardTitle>DETALHES</CardTitle>
-    </CardHeader>
-    <CardContent className="flex justify-between">
-      {genre && (
-        <div>
-          <p className="text-muted-foreground">GÊNERO</p>
-          <p className="font-bold">{genre}</p>
-        </div>
-      )}
+}: DetailsInfoProps) => {
+  if (!currentPage && !totalPages && !genre) return null;
 
-      {(currentPage || totalPages) && (
-        <div>
-          <p className="text-muted-foreground">PÁGINAS</p>
-          <p className="font-bold">
-            {currentPage !== null ? `${currentPage}/${totalPages}` : totalPages}
-          </p>
-        </div>
-      )}
-    </CardContent>
-  </Card>
-);
+  return (
+    <Card className="w-full ">
+      <CardHeader>
+        <CardTitle>DETALHES</CardTitle>
+      </CardHeader>
+      <CardContent className="flex justify-between gap-2">
+        {genre && (
+          <div>
+            <p className="text-muted-foreground">GÊNERO</p>
+            <p className="font-bold line-clamp-1">{genre}</p>
+          </div>
+        )}
+
+        {(currentPage || totalPages) && (
+          <div>
+            <p className="text-muted-foreground">PÁGINAS</p>
+            <p className="font-bold">
+              {currentPage !== null
+                ? `${currentPage}/${totalPages}`
+                : totalPages}
+            </p>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+};

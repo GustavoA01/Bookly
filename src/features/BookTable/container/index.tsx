@@ -1,8 +1,16 @@
+"use client";
 import { Table, TableBody, TableHeader } from "../../../components/ui/table";
 import { BookRow } from "../components/BookRow";
 import { BookTHeader } from "../components/BookTHeader";
+import { useQuery } from "@tanstack/react-query";
+import { getBooks } from "@/src/services/firebase/books/getBooks";
 
 export const BookTable = () => {
+  const { data: books } = useQuery({
+    queryKey: ["books"],
+    queryFn: getBooks,
+  });
+
   return (
     <Table className="mt-2 bg-card rounded-lg">
       <TableHeader>
@@ -10,33 +18,28 @@ export const BookTable = () => {
       </TableHeader>
 
       <TableBody>
-        <BookRow
-          id="1"
-          title="O Senhor dos Anéis"
-          author="J.R.R. Tolkien"
-          createdAt="21/01/2026"
-          genre="Fantasia"
-          status="read"
-          rating={5}
-        />
-        <BookRow
-          id="1"
-          title="Dracula"
-          author="Bram Stoker"
-          createdAt="21/01/2026"
-          genre="Horror"
-          status="abandoned"
-          rating={5}
-        />
-        <BookRow
-          id="1"
-          title="O Senhor dos Anéis"
-          author="J.R.R. Tolkien"
-          createdAt="21/01/2026"
-          genre="Fantasia"
-          status="reading"
-          rating={5}
-        />
+        {!books || books.length === 0 ? (
+          <tr>
+            <td colSpan={6}>
+              <p className="text-center text-muted-foreground my-4">
+                Nenhum livro encontrado
+              </p>
+            </td>
+          </tr>
+        ) : (
+          books.map((book) => (
+            <BookRow
+              key={book.id}
+              id={book.id}
+              title={book.title}
+              author={book.author}
+              genre={book.genre}
+              createdAt={book.createdAt}
+              status={book.status}
+              rating={book.rating}
+            />
+          ))
+        )}
       </TableBody>
     </Table>
   );

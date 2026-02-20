@@ -1,33 +1,43 @@
+"use client";
 import { BookActions } from "@/src/features/BookDetailsPage/components/BookActions";
 import { BookDetails } from "@/src/features/BookDetailsPage/container/BookDetails";
+import { getBookById } from "@/src/services/firebase/books/getBookById";
+import { useQuery } from "@tanstack/react-query";
+import { use } from "react";
 
-const BookDetailsPage = async ({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) => {
-  // const {id} = await params
+const BookDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = use(params);
 
   const mockImage = "/detalhes-mock.jpg";
 
+  const { data: book } = useQuery({
+    queryKey: ["book", id],
+    queryFn: () => getBookById(id),
+    enabled: !!id,
+  });
+
   return (
     <div className="space-y-8">
-      <BookActions />
-      <BookDetails
-        id="1"
-        title="O Senhor dos Anéis"
-        author={"J.R.R. Tolkien"}
-        rating={98}
-        status={"reading"}
-        sinopse={null}
-        comment={null}
-        imageUrl={mockImage}
-        genre={"Fantasia"}
-        currentPage={150}
-        totalPages={500}
-        startDate={"2023-01-01"}
-        endDate={"2023-12-31"}
-      />
+      {book && (
+        <>
+          <BookActions />
+          <BookDetails
+            id={book.id || "1"}
+            title={book.title}
+            author={book.author}
+            rating={book.rating}
+            status={book.status}
+            synopsis={book.synopsis}
+            comment={book.comment}
+            imageUrl={book.imageUrl}
+            genre={book.genre}
+            currentPage={book.currentPage}
+            totalPages={book.totalPages}
+            startDate={book.startDate}
+            endDate={book.endDate}
+          />
+        </>
+      )}
     </div>
   );
 };

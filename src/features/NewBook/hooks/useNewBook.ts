@@ -6,8 +6,15 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useBookDates } from "./useBookDates";
 import { useImageBook } from "./useImageBook";
+import { Timestamp } from "firebase/firestore";
+import { createBook } from "@/src/services/firebase/books/createBook";
+import { auth } from "@/src/services/firebase/firebaseConfig";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 export const useNewBook = ({ id, role }: FormSearchParamsType) => {
+  const router = useRouter();
   const methods = useForm<BookFormType>({
     resolver: zodResolver(bookSchema),
   });
@@ -72,16 +79,40 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
     }
   }, [id, reset, role, setChoosedFile]);
 
-  const handleCreateBook = (data: BookFormType) => {
+  const { mutateAsync: createBookFn } = useMutation({
+    mutationFn: createBook,
+    onSuccess: () => {
+      toast.success("Livro adicionado!");
+      router.push("/");
+    },
+  });
+
+  const handleCreateBook = async (data: BookFormType) => {
+    const user = auth.currentUser;
+    if (user === null) {
+      router.push("/login");
+      return;
+    }
     if (dateErrorMessage) return;
 
     const book = {
-      ...data,
+      title: data.title,
+      author: data.author || null,
+      genre: data.genre || null,
       status,
-      startDate,
-      endDate,
+      rating: data.rating ?? null,
+      totalPages: data.numberOfPages || null,
+      currentPage: data.currentPage ?? null,
+      synopsis: data.synopsis || null,
+      comment: data.comment || null,
+      imageUrl: data.imageUrl || choosedFile || null,
+      startDate: startDate === undefined ? null : Timestamp.fromDate(startDate),
+      endDate: endDate === undefined ? null : Timestamp.fromDate(endDate),
+      createdAt: Timestamp.now(),
+      userId: user.uid,
     };
-    console.log(book);
+
+    await createBookFn(book);
   };
 
   return {
