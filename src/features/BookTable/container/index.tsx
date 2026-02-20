@@ -4,10 +4,12 @@ import { BookRow } from "../components/BookRow";
 import { BookTHeader } from "../components/BookTHeader";
 import { useQuery } from "@tanstack/react-query";
 import { getBooks } from "@/src/services/firebase/books/getBooks";
+import { keys } from "@/src/services/keys";
+import { BookTableSkeleton } from "@/src/components/Skeletons";
 
 export const BookTable = () => {
-  const { data: books } = useQuery({
-    queryKey: ["books"],
+  const { data: books, isLoading } = useQuery({
+    queryKey: [keys.queryKeys.books],
     queryFn: getBooks,
   });
 
@@ -18,7 +20,9 @@ export const BookTable = () => {
       </TableHeader>
 
       <TableBody>
-        {!books || books.length === 0 ? (
+        {isLoading ? (
+          <BookTableSkeleton />
+        ) : !books || books.length === 0 ? (
           <tr>
             <td colSpan={6}>
               <p className="text-center text-muted-foreground my-4">

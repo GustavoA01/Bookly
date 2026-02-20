@@ -34,4 +34,4 @@ export interface GoogleBookItem {
   };
 }
 
-export type FormSearchParamsType = { id: string; role: "google" | "firebase" };
+export type FormSearchParamsType = { id: string; role: "google" | "library" };

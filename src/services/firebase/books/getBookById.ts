@@ -1,11 +1,11 @@
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import { booksKey } from "../firebaseKeys";
 import { BookType } from "@/src/data/types/books";
+import { keys } from "../../keys";
 
 export const getBookById = async (bookId: string) => {
   try {
-    const bookDoc = await getDoc(doc(db, booksKey, bookId));
+    const bookDoc = await getDoc(doc(db, keys.firebase.books, bookId));
 
     if (!bookDoc.exists()) throw new Error("Livro não encontrado");
 

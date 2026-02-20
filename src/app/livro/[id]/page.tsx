@@ -1,7 +1,8 @@
 "use client";
-import { BookActions } from "@/src/features/BookDetailsPage/components/BookActions";
+import { BookActions } from "@/src/features/BookDetailsPage/container/BookActions";
 import { BookDetails } from "@/src/features/BookDetailsPage/container/BookDetails";
 import { getBookById } from "@/src/services/firebase/books/getBookById";
+import { keys } from "@/src/services/keys";
 import { useQuery } from "@tanstack/react-query";
 import { use } from "react";
 
@@ -11,7 +12,7 @@ const BookDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const mockImage = "/detalhes-mock.jpg";
 
   const { data: book } = useQuery({
-    queryKey: ["book", id],
+    queryKey: [keys.queryKeys.bookId, id],
     queryFn: () => getBookById(id),
     enabled: !!id,
   });
@@ -22,7 +23,7 @@ const BookDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
         <>
           <BookActions />
           <BookDetails
-            id={book.id || "1"}
+            id={book.id}
             title={book.title}
             author={book.author}
             rating={book.rating}

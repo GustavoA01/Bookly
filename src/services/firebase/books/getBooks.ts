@@ -1,9 +1,8 @@
 "use client";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { booksKey } from "../firebaseKeys";
 import { auth, db } from "../firebaseConfig";
 import { BookType } from "@/src/data/types/books";
-
+import { keys } from "../../keys";
 export const getBooks = async () => {
   try {
     if (!auth.currentUser) {
@@ -11,7 +10,7 @@ export const getBooks = async () => {
       return [];
     }
     const q = query(
-      collection(db, booksKey),
+      collection(db, keys.firebase.books),
       where("userId", "==", auth.currentUser?.uid),
     );
     const querySnapshot = (await getDocs(q)).docs;
