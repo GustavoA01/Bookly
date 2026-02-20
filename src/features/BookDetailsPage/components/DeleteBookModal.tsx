@@ -11,7 +11,7 @@ import {
 export const DeleteBookModal = ({ deleteFn }: { deleteFn: () => void }) => (
   <DialogContent>
     <DialogHeader>
-      <DialogTitle>Excluir Livro</DialogTitle>
+      <DialogTitle>Excluir livro</DialogTitle>
       <DialogDescription>
         Tem certeza que deseja excluir este livro? Ele também será deletado de
         todas as listas em que está.

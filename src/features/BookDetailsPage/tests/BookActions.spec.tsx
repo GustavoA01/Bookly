@@ -1,6 +1,5 @@
-import { render, renderHook, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { BookActions } from "../container/BookActions";
-import { useDeleteBook } from "../hooks/useDeleteBook";
 
 const mockGoback = jest.fn();
 jest.mock("next/navigation", () => ({
@@ -33,9 +32,6 @@ jest.mock("firebase/auth", () => ({
 
 describe("BookActions", () => {
   it("should call go back function when back button is clicked", () => {
-    const { result } = renderHook(() => useDeleteBook());
-    result.current.deleteBookFn = jest.fn();
-
     render(<BookActions />);
 
     const backButton = screen.getByTestId("back-button");
