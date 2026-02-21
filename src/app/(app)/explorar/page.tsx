@@ -26,7 +26,7 @@ const ExplorePage = async ({
           </div>
         }
       >
-        <BookCardsList query={query || "intitle:a"} />
+        <BookCardsList currentPage={currentPage} query={query || "intitle:a"} />
       </Suspense>
     </div>
   );

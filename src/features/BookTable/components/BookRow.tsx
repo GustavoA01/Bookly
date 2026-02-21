@@ -30,10 +30,10 @@ export const BookRow = ({
     >
       <TableCell className="flex flex-col max-w-md">
         <div className="flex flex-col ml-8">
-          <h2 className="group-hover:text-primary transition duration-200 font-bold sm:text-lg whitespace-nowrap">
+          <h2 className="line-clamp-1 max-w-85 truncate group-hover:text-primary transition duration-200 font-bold sm:text-lg whitespace-nowrap">
             {title}
           </h2>
-          <p className="text-muted-foreground text-xs sm:text-sm whitespace-nowrap">
+          <p className="line-clamp-1 text-muted-foreground text-xs sm:text-sm whitespace-nowrap">
             {author}
           </p>
           <p className="hidden sm:block text-muted-foreground text-xs">
@@ -43,7 +43,10 @@ export const BookRow = ({
       </TableCell>
       <TableCell>
         {genre ? (
-          <Badge variant="outline" className="text-muted-foreground">
+          <Badge
+            variant="outline"
+            className="text-muted-foreground line-clamp-1"
+          >
             {genre}
           </Badge>
         ) : (

@@ -1,19 +1,22 @@
 import { SearchBookCard } from "./SearchBookCard";
-import { GoogleBooksResponse } from "../data/types/api";
 import { GooglePagination } from "./GooglePagination";
+import { getGoogleBooks } from "../services/getGoogleBooks";
 
-export const BookCardsList = async ({ query }: { query: string }) => {
-  const searchedBooks = (await fetch(
-    `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=12`,
-    {
-      next: { revalidate: 60 * 60 },
-    },
-  ).then((res) => res.json())) as GoogleBooksResponse;
+type BookCardsListProps = {
+  query: string;
+  currentPage: number;
+};
+
+export const BookCardsList = async ({
+  query,
+  currentPage,
+}: BookCardsListProps) => {
+  const searchedBooks = await getGoogleBooks(query, currentPage);
 
   return (
     <div>
       <div className="gap-2 sm:gap-4 space-y-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-        {searchedBooks.items?.map((book) => (
+        {searchedBooks?.items?.map((book) => (
           <SearchBookCard
             key={book.id}
             id={book.id}
@@ -34,7 +37,13 @@ export const BookCardsList = async ({ query }: { query: string }) => {
         ))}
       </div>
 
-      <GooglePagination />
+      {searchedBooks?.totalItems && <GooglePagination />}
+
+      {searchedBooks?.totalItems === 0 && (
+        <p className="text-center text-gray-500 mt-8">
+          Nenhum livro encontrado.
+        </p>
+      )}
     </div>
   );
 };

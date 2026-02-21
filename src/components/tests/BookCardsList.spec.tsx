@@ -41,10 +41,11 @@ const mockBooks: GoogleBooksResponse = {
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
+    ok: true,
+    status: 200,
     json: () => Promise.resolve(mockBooks),
   }),
 ) as jest.Mock;
-
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(() => "/explorar"),
   useSearchParams: jest.fn(() => ({
@@ -57,7 +58,10 @@ jest.mock("next/navigation", () => ({
 
 describe("BookCardsList", () => {
   it("renders a list of SearchBookCard components with correct data", async () => {
-    const ResolvedComponent = await BookCardsList({ query: "test" });
+    const ResolvedComponent = await BookCardsList({
+      query: "test",
+      currentPage: 1,
+    });
 
     render(ResolvedComponent);
 
