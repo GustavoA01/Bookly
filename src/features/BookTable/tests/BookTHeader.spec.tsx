@@ -1,9 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import { BookTHeader } from "../components/BookTHeader";
+import { Table, TableHeader } from "@/src/components/ui/table";
 
 describe("BookTHeader", () => {
   it("renders component correctly", () => {
-    render(<BookTHeader />);
+    render(
+      <Table>
+        <TableHeader>
+          <BookTHeader />
+        </TableHeader>
+      </Table>,
+    );
 
     expect(screen.getByText("Livro")).toBeInTheDocument();
     expect(screen.getByText("Gênero")).toBeInTheDocument();

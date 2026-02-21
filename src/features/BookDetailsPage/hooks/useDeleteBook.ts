@@ -3,6 +3,7 @@ import { keys } from "@/src/services/keys";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export const useDeleteBook = () => {
   const queryClient = useQueryClient();
@@ -15,6 +16,7 @@ export const useDeleteBook = () => {
     mutationFn: deleteBook,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [keys.queryKeys.books] });
+      toast.success("Livro deletado");
       router.back();
     },
   });

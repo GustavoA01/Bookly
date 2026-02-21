@@ -18,7 +18,7 @@ const GoogleDetailsPage = async ({
       <BackButton />
       <BookDetails
         id={book.id}
-        title={book.volumeInfo.title}
+        title={book.volumeInfo.title ?? "Título Indisponível"}
         author={
           book.volumeInfo.authors
             ? book.volumeInfo.authors.join(", ")

@@ -3,7 +3,6 @@ import { BookTable } from "@/src/features/BookTable/container";
 import { ListTabContent } from "@/src/features/ListTab/container/ListTabContent";
 import { MobileAddButton } from "@/src/components/MobileAddButton";
 import { BookTab } from "@/src/components/BookTab";
-import Link from "next/link";
 
 const Home = async ({
   searchParams,
@@ -20,9 +19,7 @@ const Home = async ({
         <>
           <BookTab />
           <BookTable />
-          <Link href="/novo-livro">
-            <MobileAddButton />
-          </Link>
+          <MobileAddButton />
         </>
       ) : (
         <ListTabContent />

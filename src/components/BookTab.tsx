@@ -7,10 +7,13 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { FilterOptionsType, Status } from "../data/types/books";
 import { FilterSelect } from "./FilterSelect";
 import { StatusSelect } from "./StatusSelect";
+import { auth } from "../services/firebase/firebaseConfig";
 
 export const BookTab = () => {
   const [status, setStatus] = useState<Status | "">("");
   const [filter, setFilter] = useState<FilterOptionsType | "">("");
+  const user = auth.currentUser;
+  const redirecHref = user ? "/novo-livro" : "/login";
 
   return (
     <div className="sm:flex space-y-2 justify-between">
@@ -27,7 +30,7 @@ export const BookTab = () => {
           isHome
         />
 
-        <Link href="/novo-livro" title="Adicionar novo livro">
+        <Link href={redirecHref} title="Adicionar novo livro">
           <Button className="hidden sm:flex">
             <Plus />
             Novo Livro

@@ -16,6 +16,12 @@ export const GooglePagination = () => {
   const currentPage = Number(searchParams.get("page") || "1");
   let numberOfPages = 3;
 
+  const createPageUrl = (pageNumber: number | string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", pageNumber.toString());
+    return `${pathname}?${params.toString()}`;
+  };
+
   if (pathname.includes("/explorar")) {
     numberOfPages = 6;
   }
@@ -29,14 +35,14 @@ export const GooglePagination = () => {
       <PaginationContent className="m-auto">
         {currentPage > 1 && (
           <PaginationItem>
-            <PaginationPrevious href={`?page=${currentPage - 1}`} />
+            <PaginationPrevious href={createPageUrl(currentPage - 1)} />
           </PaginationItem>
         )}
 
         {currentPage > 2 && (
           <>
             <PaginationItem>
-              <PaginationLink href={`?page=1`}>1</PaginationLink>
+              <PaginationLink href={createPageUrl(1)}>1</PaginationLink>
             </PaginationItem>
             {currentPage - 2 !== 1 && (
               <PaginationItem>
@@ -49,7 +55,7 @@ export const GooglePagination = () => {
         {currentPage === 1 &&
           initialPages.map((page) => (
             <PaginationItem key={page}>
-              <PaginationLink isActive={page === 1} href={`?page=${page}`}>
+              <PaginationLink isActive={page === 1} href={createPageUrl(page)}>
                 {page}
               </PaginationLink>
             </PaginationItem>
@@ -61,7 +67,7 @@ export const GooglePagination = () => {
             <PaginationItem key={page}>
               <PaginationLink
                 isActive={page === currentPage}
-                href={`?page=${page}`}
+                href={createPageUrl(page)}
               >
                 {page}
               </PaginationLink>
@@ -73,7 +79,7 @@ export const GooglePagination = () => {
             <PaginationItem key={page}>
               <PaginationLink
                 isActive={page === currentPage}
-                href={`?page=${page}`}
+                href={createPageUrl(page)}
               >
                 {page}
               </PaginationLink>
@@ -90,13 +96,13 @@ export const GooglePagination = () => {
           <>
             {currentPage + 1 !== numberOfPages && (
               <PaginationItem>
-                <PaginationLink href={`?page=${numberOfPages}`}>
+                <PaginationLink href={createPageUrl(numberOfPages)}>
                   {numberOfPages}
                 </PaginationLink>
               </PaginationItem>
             )}
             <PaginationItem>
-              <PaginationNext href={`?page=${currentPage + 1}`} />
+              <PaginationNext href={createPageUrl(currentPage + 1)} />
             </PaginationItem>
           </>
         )}
