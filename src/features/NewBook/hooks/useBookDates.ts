@@ -13,8 +13,6 @@ export const useBookDates = () => {
     return "";
   };
 
-  const dateErrorMessage = getErrorMessages();
-
   const handleCleanDates = () => {
     setStartDate(undefined);
     setEndDate(undefined);
@@ -26,6 +24,6 @@ export const useBookDates = () => {
     endDate,
     setEndDate,
     handleCleanDates,
-    dateErrorMessage,
+    dateErrorMessage: getErrorMessages(),
   };
 };

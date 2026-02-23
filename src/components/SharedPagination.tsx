@@ -10,7 +10,7 @@ import {
   PaginationPrevious,
 } from "./ui/pagination";
 
-export const GooglePagination = () => {
+export const SharedPagination = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page") || "1");

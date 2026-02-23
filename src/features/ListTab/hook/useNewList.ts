@@ -39,15 +39,16 @@ export const useNewList = () => {
     const file = e.target.files?.[0];
 
     if (file) {
+      const fileURL = URL.createObjectURL(file);
+
       setValue("imageUrl", "");
       setValue("imageFile", file);
-      const fileURL = URL.createObjectURL(file);
       setChoosedFile(fileURL);
     }
   };
 
   const handleCreateList = (data: ListFormType) => {
-    if (data.imageUrl && data.imageUrl.trim()) {
+    if (data.imageUrl) {
       setValue("imageFile", undefined);
       setChoosedFile(data.imageUrl);
     }

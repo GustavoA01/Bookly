@@ -1,6 +1,6 @@
 import { SearchBookCard } from "./SearchBookCard";
-import { GooglePagination } from "./GooglePagination";
 import { getGoogleBooks } from "../services/getGoogleBooks";
+import { SharedPagination } from "./SharedPagination";
 
 type BookCardsListProps = {
   query: string;
@@ -37,7 +37,7 @@ export const BookCardsList = async ({
         ))}
       </div>
 
-      {searchedBooks?.totalItems && <GooglePagination />}
+      {searchedBooks?.totalItems && <SharedPagination />}
 
       {searchedBooks?.totalItems === 0 && (
         <p className="text-center text-gray-500 mt-8">
