@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useBookDates } from "./useBookDates";
-import { useImageBook } from "./useImageBook";
+import { useImageForm } from "../../../hooks/useImageForm";
 import { Timestamp } from "firebase/firestore";
 import { auth } from "@/src/services/firebase/firebaseConfig";
 import { useRouter } from "next/navigation";
@@ -37,12 +37,11 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
     choosedFile,
     setChoosedFile,
     chooseImageError,
-    setChooseImageError,
     showImage,
     cleanCurrentImage,
     handleImageError,
     handleFileChange,
-  } = useImageBook(setValue);
+  } = useImageForm(setValue);
 
   const { createBookFn, updateBookFn } = useBookMutation(id);
 
@@ -118,7 +117,6 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
     choosedFile,
     setChoosedFile,
     chooseImageError,
-    setChooseImageError,
     showImage,
     cleanCurrentImage,
     handleImageError,

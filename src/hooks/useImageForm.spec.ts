@@ -1,10 +1,10 @@
 import { act, renderHook } from "@testing-library/react";
-import { useImageBook } from "../useImageBook";
+import { useImageForm } from "./useImageForm";
 
-describe("useImageBook", () => {
+describe("useImageForm", () => {
   test("cleanCurrentImage", () => {
     const mockSetValue = jest.fn();
-    const { result } = renderHook(() => useImageBook(mockSetValue));
+    const { result } = renderHook(() => useImageForm(mockSetValue));
     result.current.cleanCurrentImage();
 
     expect(mockSetValue).toHaveBeenCalledWith("imageUrl", "");
@@ -14,7 +14,7 @@ describe("useImageBook", () => {
 
   test("handleImageError", () => {
     jest.useFakeTimers();
-    const { result } = renderHook(() => useImageBook(jest.fn()));
+    const { result } = renderHook(() => useImageForm(jest.fn()));
     result.current.handleImageError();
 
     act(() => {
@@ -37,7 +37,7 @@ describe("useImageBook", () => {
     window.URL.createObjectURL = jest
       .fn()
       .mockReturnValue(() => "blob:http://localhost/example");
-    const { result } = renderHook(() => useImageBook(mockSetValue));
+    const { result } = renderHook(() => useImageForm(mockSetValue));
     const file = new File(["dummy content"], "example.png", {
       type: "image/png",
     });

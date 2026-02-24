@@ -1,8 +1,10 @@
-import { BookFormType } from "@/src/data/schemas";
+import { BookFormType, ListFormType } from "@/src/data/schemas";
 import { useEffect, useState } from "react";
 import { UseFormSetValue } from "react-hook-form";
 
-export const useImageBook = (setValue: UseFormSetValue<BookFormType>) => {
+type UseImageFormProps = UseFormSetValue<BookFormType | ListFormType>;
+
+export const useImageForm = (setValue: UseImageFormProps) => {
   const [choosedFile, setChoosedFile] = useState<string | undefined>(undefined);
   const [chooseImageError, setChooseImageError] = useState<string | null>(null);
   const showImage =
@@ -46,7 +48,6 @@ export const useImageBook = (setValue: UseFormSetValue<BookFormType>) => {
     choosedFile,
     setChoosedFile,
     chooseImageError,
-    setChooseImageError,
     showImage,
     cleanCurrentImage,
     handleImageError,
