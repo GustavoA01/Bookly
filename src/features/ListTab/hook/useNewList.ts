@@ -16,19 +16,8 @@ export const useNewList = () => {
     showImage,
     cleanCurrentImage,
     handleImageError,
+    handleFileChange,
   } = useImageForm(setValue);
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-
-    if (file) {
-      const fileURL = URL.createObjectURL(file);
-
-      setValue("imageUrl", "");
-      setValue("imageFile", file);
-      setChoosedFile(fileURL);
-    }
-  };
 
   const handleCreateList = (data: ListFormType) => {
     if (data.imageUrl) {
@@ -46,9 +35,7 @@ export const useNewList = () => {
     handleImageError,
     chooseImageError,
     cleanCurrentImage,
-    register: methods.register,
-    handleSubmit: methods.handleSubmit,
     handleCreateList,
-    setValue,
+    methods,
   };
 };

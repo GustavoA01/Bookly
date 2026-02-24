@@ -20,11 +20,9 @@ export const NewListForm = () => {
     handleCreateList,
     handleFileChange,
     handleImageError,
-    register,
-    setValue,
     showImage,
-    handleSubmit,
     setChoosedFile,
+    methods: { register, handleSubmit, setValue },
   } = useNewList();
 
   return (
