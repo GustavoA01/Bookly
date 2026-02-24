@@ -21,6 +21,16 @@ export interface BookType {
   userId: string;
 }
 
+export interface ListType {
+  id: string;
+  name: string;
+  description: string | null;
+  books: string[];
+  imageUrl: string | null;
+  createdAt: Timestamp;
+  userId: string;
+}
+
 export type StatusPropsType = {
   bgColor: string;
   textColor: string;

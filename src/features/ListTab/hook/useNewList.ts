@@ -1,7 +1,11 @@
 import { ListFormType, listSchema } from "@/src/data/schemas";
+import { ListType } from "@/src/data/types/books";
 import { useImageForm } from "@/src/hooks/useImageForm";
+import { auth } from "@/src/services/firebase/firebaseConfig";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Timestamp } from "firebase/firestore";
 import { useForm } from "react-hook-form";
+import { useListMutation } from "./useListMutation";
 
 export const useNewList = () => {
   const methods = useForm<ListFormType>({
@@ -19,12 +23,28 @@ export const useNewList = () => {
     handleFileChange,
   } = useImageForm(setValue);
 
-  const handleCreateList = (data: ListFormType) => {
+  const { createListFn } = useListMutation();
+
+  const handleCreateList = async (data: ListFormType) => {
+    const user = auth.currentUser;
+
+    if (!user) return;
     if (data.imageUrl) {
       setValue("imageFile", undefined);
       setChoosedFile(data.imageUrl);
     }
-    console.log(data);
+
+    const newList: Omit<ListType, "id"> = {
+      name: data.name,
+      description: data.description || null,
+      imageUrl: data.imageUrl || null,
+      createdAt: Timestamp.now(),
+      books: [],
+      userId: user.uid,
+    };
+
+    console.log(newList);
+    await createListFn(newList);
   };
 
   return {
