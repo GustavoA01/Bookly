@@ -1,8 +1,6 @@
 import { Timestamp } from "firebase/firestore";
 import { JSX } from "react";
 
-export type Status = "read" | "reading" | "abandoned" | "toRead";
-
 export interface BookType {
   id: string;
   title: string;
@@ -30,6 +28,8 @@ export interface ListType {
   createdAt: Timestamp;
   userId: string;
 }
+
+export type Status = "read" | "reading" | "abandoned" | "toRead";
 
 export type StatusPropsType = {
   bgColor: string;

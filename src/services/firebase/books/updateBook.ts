@@ -9,7 +9,7 @@ export const updateBook = async (
 ) => {
   try {
     const user = auth.currentUser;
-    if (user === null) throw new Error("Usuário não autenticado");
+    if (!user) throw new Error("Usuário não autenticado");
 
     const docRef = doc(db, keys.firebase.books, id);
     await updateDoc(docRef, book);
