@@ -7,5 +7,6 @@ export const keys = {
     books: "books",
     bookId: "book",
     lists: "lists",
+    listId: "list",
   },
 };

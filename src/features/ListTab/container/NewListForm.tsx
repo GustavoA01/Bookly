@@ -10,7 +10,7 @@ import { ImageForm } from "../components/NewListForm/ImageForm";
 import { FormFooter } from "../components/NewListForm/FormFooter";
 import { Button } from "@/src/components/ui/button";
 import { DescriptionForm } from "../components/NewListForm/DescriptionForm";
-import { useNewList } from "../hook/useNewList";
+import { useNewList } from "../hooks/useNewList";
 
 export const NewListForm = () => {
   const {

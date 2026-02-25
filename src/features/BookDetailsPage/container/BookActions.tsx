@@ -21,8 +21,8 @@ export const BookActions = () => {
           </Button>
         </Link>
         <Button
-          data-testid="delete-button"
           variant="outline"
+          data-testid="delete-button"
           className="rounded-full w-12 h-12"
           onClick={() => setOpenDeleteDialog(true)}
         >

@@ -5,7 +5,8 @@ import { keys } from "../../keys";
 
 export const getBookById = async (bookId: string) => {
   try {
-    const bookDoc = await getDoc(doc(db, keys.firebase.books, bookId));
+    const docRef = doc(db, keys.firebase.books, bookId);
+    const bookDoc = await getDoc(docRef);
 
     if (!bookDoc.exists()) throw new Error("Livro não encontrado");
 

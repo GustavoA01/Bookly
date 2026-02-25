@@ -6,15 +6,10 @@ import { ListInfo } from "./ListInfo";
 import { AddBuyButton } from "../../container/AddBuyButton";
 import { BookType } from "@/src/data/types/books";
 import { PublisherInfo } from "./PublisherInfo";
-import { keys } from "@/src/services/keys";
-import { useQuery } from "@tanstack/react-query";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
 import { Drawer, DrawerContent, DrawerTitle } from "@/src/components/ui/drawer";
 import { Dialog, DialogContent, DialogTitle } from "@/src/components/ui/dialog";
 import { AddListContent } from "../../container/AddListContent";
-import { auth } from "@/src/services/firebase/firebaseConfig";
-import { getListsContainingBook } from "@/src/services/firebase/lists/getListsConteinsBooks";
+import { useBookInfo } from "../../hooks/useBookInfo";
 
 type BookInfoProps = Pick<
   BookType,
@@ -41,22 +36,15 @@ export const BookInfo = ({
   country,
   language,
 }: BookInfoProps) => {
-  const pathname = usePathname();
-  const isBooksDetailsPage = pathname.includes("/livro/");
-  const user = auth.currentUser;
-  const [openDrawer, setOpenDrawer] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
-
-  const { data: listsContainingBook } = useQuery({
-    queryKey: [keys.queryKeys.lists, id],
-    queryFn: () => getListsContainingBook(id!, user!.uid),
-    enabled: isBooksDetailsPage,
-  });
-
-  const progress =
-    currentPage && totalPages
-      ? Math.floor((currentPage * 100) / totalPages)
-      : null;
+  const {
+    isBooksDetailsPage,
+    listsContainingBook,
+    progress,
+    openDrawer,
+    openModal,
+    setOpenDrawer,
+    setOpenModal,
+  } = useBookInfo(id!, currentPage, totalPages);
 
   return (
     <section className="space-y-4 max-sm:mt-4 col-span-1">
