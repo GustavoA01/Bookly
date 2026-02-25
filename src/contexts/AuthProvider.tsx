@@ -1,5 +1,5 @@
 import { User, onAuthStateChanged } from "firebase/auth";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { auth } from "../services/firebase/firebaseConfig";
 
 type AuthContextType = {
@@ -18,14 +18,19 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setUser(user);
       setIsLoading(false);
     });
+
     return () => unsubscribe();
   }, []);
 
-  return (
-    <AuthContext.Provider value={{ user, isLoading }}>
-      {children}
-    </AuthContext.Provider>
+  const value = useMemo(
+    () => ({
+      user,
+      isLoading,
+    }),
+    [user, isLoading],
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

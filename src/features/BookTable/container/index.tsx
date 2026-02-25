@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getBooks } from "@/src/services/firebase/books/getBooks";
 import { keys } from "@/src/services/keys";
 import { BookTableSkeleton } from "@/src/components/Skeletons";
-import { useAuth } from "@/src/hooks/AuthProvider";
+import { useAuth } from "@/src/contexts/AuthProvider";
 
 export const BookTable = () => {
   const { user, isLoading: isUserLoading } = useAuth();

@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/src/services/keys";
 import { getLists } from "@/src/services/firebase/lists/getLists";
 import { Skeleton } from "@/src/components/ui/skeleton";
-import { useAuth } from "@/src/hooks/AuthProvider";
+import { useAuth } from "@/src/contexts/AuthProvider";
 
 export const ListTabContent = () => {
   const { user } = useAuth();

@@ -10,7 +10,7 @@ import { Timestamp } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { useBookMutation } from "./useBookMutation";
 import { useFetchBookForm } from "./useFetchBookForm";
-import { useAuth } from "@/src/hooks/AuthProvider";
+import { useAuth } from "@/src/contexts/AuthProvider";
 
 export const useNewBook = ({ id, role }: FormSearchParamsType) => {
   const { user } = useAuth();

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { BookTab } from "../BookTab";
 
-jest.mock("../../hooks/AuthProvider", () => ({
+jest.mock("../../contexts/AuthProvider", () => ({
   useAuth: () => ({ user: { uid: "123" } }),
 }));
 

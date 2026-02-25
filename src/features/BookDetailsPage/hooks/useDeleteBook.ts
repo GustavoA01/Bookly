@@ -1,4 +1,4 @@
-import { useAuth } from "@/src/hooks/AuthProvider";
+import { useAuth } from "@/src/contexts/AuthProvider";
 import { deleteBook } from "@/src/services/firebase/books/deleteBook";
 import { keys } from "@/src/services/keys";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

@@ -2,7 +2,7 @@
 import { Plus } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { useAuth } from "../hooks/AuthProvider";
+import { useAuth } from "../contexts/AuthProvider";
 
 export const MobileAddButton = () => {
   const { user } = useAuth();

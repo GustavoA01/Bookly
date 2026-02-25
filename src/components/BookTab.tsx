@@ -7,7 +7,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { FilterOptionsType, Status } from "../data/types/books";
 import { FilterSelect } from "./FilterSelect";
 import { StatusSelect } from "./StatusSelect";
-import { useAuth } from "../hooks/AuthProvider";
+import { useAuth } from "../contexts/AuthProvider";
 
 export const BookTab = () => {
   const { user } = useAuth();

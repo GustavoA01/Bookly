@@ -9,7 +9,7 @@ import { Drawer, DrawerClose, DrawerContent, DrawerTitle } from "./ui/drawer";
 import { useState } from "react";
 import { Dialog, DialogClose, DialogContent, DialogTitle } from "./ui/dialog";
 import { LogOutButton } from "./LogOutButton";
-import { useAuth } from "../hooks/AuthProvider";
+import { useAuth } from "../contexts/AuthProvider";
 import { Skeleton } from "./ui/skeleton";
 
 export const Header = () => {
