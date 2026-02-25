@@ -1,10 +1,19 @@
+"use client";
 import { ListCard } from "@/src/features/ListTab/components/ListCard";
 import { Card } from "@/src/components/ui/card";
 import { Plus } from "lucide-react";
 import { Dialog, DialogTrigger } from "@/src/components/ui/dialog";
 import { NewListForm } from "./NewListForm";
+import { useQuery } from "@tanstack/react-query";
+import { keys } from "@/src/services/keys";
+import { getLists } from "@/src/services/firebase/lists/getLists";
 
 export const ListTabContent = () => {
+  const { data: lists, isLoading: isListsLoading } = useQuery({
+    queryKey: [keys.queryKeys.lists],
+    queryFn: getLists,
+  });
+
   return (
     <main className="sm:grid sm:grid-cols-2 md:grid-cols-3 max-sm:space-y-2 lg:grid-cols-4 gap-2 mt-2">
       <Dialog>
@@ -21,13 +30,30 @@ export const ListTabContent = () => {
         <NewListForm />
       </Dialog>
 
-      {[...Array(8)].map((_, index) => (
-        <ListCard
-          name={`Lista ${index + 1}`}
-          itemCount={index + 1}
-          key={index}
-        />
-      ))}
+      {isListsLoading ? (
+        <div className="col-span-full flex justify-center items-center h-40">
+          <p className="text-muted-foreground">Carregando listas...</p>
+        </div>
+      ) : (
+        <>
+          {lists && lists.length === 0 ? (
+            <div className="col-span-full flex justify-center items-center h-40">
+              <p className="text-muted-foreground">
+                Nenhuma lista criada ainda
+              </p>
+            </div>
+          ) : null}
+        </>
+      )}
+
+      {lists &&
+        lists.map((list) => (
+          <ListCard
+            key={list.id}
+            name={list.name}
+            itemCount={list.books.length}
+          />
+        ))}
     </main>
   );
 };
