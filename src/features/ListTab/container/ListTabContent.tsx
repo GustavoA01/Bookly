@@ -7,6 +7,7 @@ import { NewListForm } from "./NewListForm";
 import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/src/services/keys";
 import { getLists } from "@/src/services/firebase/lists/getLists";
+import { Skeleton } from "@/src/components/ui/skeleton";
 
 export const ListTabContent = () => {
   const { data: lists, isLoading: isListsLoading } = useQuery({
@@ -31,9 +32,11 @@ export const ListTabContent = () => {
       </Dialog>
 
       {isListsLoading ? (
-        <div className="col-span-full flex justify-center items-center h-40">
-          <p className="text-muted-foreground">Carregando listas...</p>
-        </div>
+        <>
+          {[...Array(7)].map((_, index) => (
+            <Skeleton key={index} className="h-25 rounded-lg" />
+          ))}
+        </>
       ) : (
         <>
           {lists && lists.length === 0 ? (

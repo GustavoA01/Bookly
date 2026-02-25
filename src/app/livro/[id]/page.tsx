@@ -9,8 +9,6 @@ import { use } from "react";
 const BookDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = use(params);
 
-  const mockImage = "/detalhes-mock.jpg";
-
   const { data: book } = useQuery({
     queryKey: [keys.queryKeys.bookId, id],
     queryFn: () => getBookById(id),
