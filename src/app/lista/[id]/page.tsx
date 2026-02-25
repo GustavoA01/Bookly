@@ -21,7 +21,7 @@ const ListDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <div>
       <header className="flex justify-between items-center">
-        <Link href="/explorar">
+        <Link href="/?tab=lists" replace>
           <Button
             data-testid="back-button"
             variant="outline"
