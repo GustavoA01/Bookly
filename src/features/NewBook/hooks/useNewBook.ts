@@ -7,12 +7,13 @@ import { useForm } from "react-hook-form";
 import { useBookDates } from "./useBookDates";
 import { useImageForm } from "../../../hooks/useImageForm";
 import { Timestamp } from "firebase/firestore";
-import { auth } from "@/src/services/firebase/firebaseConfig";
 import { useRouter } from "next/navigation";
 import { useBookMutation } from "./useBookMutation";
 import { useFetchBookForm } from "./useFetchBookForm";
+import { useAuth } from "@/src/hooks/AuthProvider";
 
 export const useNewBook = ({ id, role }: FormSearchParamsType) => {
+  const { user } = useAuth();
   const router = useRouter();
   const methods = useForm<BookFormType>({
     resolver: zodResolver(bookSchema),
@@ -74,8 +75,7 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
   };
 
   const handleCreateBook = async (data: BookFormType) => {
-    const user = auth.currentUser;
-    if (user === null) {
+    if (!user) {
       router.push("/login");
       return;
     }

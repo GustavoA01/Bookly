@@ -7,12 +7,12 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { FilterOptionsType, Status } from "../data/types/books";
 import { FilterSelect } from "./FilterSelect";
 import { StatusSelect } from "./StatusSelect";
-import { auth } from "../services/firebase/firebaseConfig";
+import { useAuth } from "../hooks/AuthProvider";
 
 export const BookTab = () => {
+  const { user } = useAuth();
   const [status, setStatus] = useState<Status | "">("");
   const [filter, setFilter] = useState<FilterOptionsType | "">("");
-  const user = auth.currentUser;
   const redirecHref = user ? "/novo-livro" : "/login";
 
   return (

@@ -2,11 +2,12 @@
 import { Plus } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { auth } from "../services/firebase/firebaseConfig";
+import { useAuth } from "../hooks/AuthProvider";
 
 export const MobileAddButton = () => {
-  const user = auth.currentUser;
+  const { user } = useAuth();
   const redirecHref = user ? "/novo-livro" : "/login";
+
   return (
     <Link href={redirecHref}>
       <Button

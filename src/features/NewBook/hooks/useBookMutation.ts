@@ -1,4 +1,5 @@
 import { BookType } from "@/src/data/types/books";
+import { useAuth } from "@/src/hooks/AuthProvider";
 import { createBook } from "@/src/services/firebase/books/createBook";
 import { updateBook } from "@/src/services/firebase/books/updateBook";
 import { keys } from "@/src/services/keys";
@@ -8,6 +9,7 @@ import { toast } from "sonner";
 
 export const useBookMutation = (id: string) => {
   const router = useRouter();
+  const { user } = useAuth();
   const queryClient = useQueryClient();
 
   const { mutateAsync: createBookFn } = useMutation({
@@ -23,7 +25,7 @@ export const useBookMutation = (id: string) => {
 
   const { mutateAsync: updateBookFn } = useMutation({
     mutationFn: (book: Omit<BookType, "userId" | "id" | "createdAt">) =>
-      updateBook(book, id),
+      updateBook(book, id, user),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [keys.queryKeys.books] });
       toast.success("Livro atualizado!");

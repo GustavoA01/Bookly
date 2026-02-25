@@ -1,13 +1,14 @@
 import { ListFormType, listSchema } from "@/src/data/schemas";
 import { ListType } from "@/src/data/types/books";
 import { useImageForm } from "@/src/hooks/useImageForm";
-import { auth } from "@/src/services/firebase/firebaseConfig";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Timestamp } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { useListMutation } from "./useListMutation";
+import { useAuth } from "@/src/hooks/AuthProvider";
 
 export const useNewList = () => {
+  const { user } = useAuth();
   const methods = useForm<ListFormType>({
     resolver: zodResolver(listSchema),
   });
@@ -26,8 +27,6 @@ export const useNewList = () => {
   const { createListFn } = useListMutation();
 
   const handleCreateList = async (data: ListFormType) => {
-    const user = auth.currentUser;
-
     if (!user) return;
     if (data.imageUrl) {
       setValue("imageFile", undefined);

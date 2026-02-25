@@ -1,5 +1,5 @@
 import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from "../firebaseConfig";
+import { db } from "../firebaseConfig";
 import { keys } from "../../keys";
 import { ListType } from "@/src/data/types/books";
 

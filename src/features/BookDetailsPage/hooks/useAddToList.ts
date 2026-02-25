@@ -34,7 +34,7 @@ export const useAddToList = ({ id, open, setOpen }: UseAddListContentType) => {
   });
 
   const lists = useMemo(() => {
-    if (!data) return undefined;
+    if (data?.length === 0) return undefined;
 
     return data?.filter((list) => !list.books.includes(id!));
   }, [data, id]);

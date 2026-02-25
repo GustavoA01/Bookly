@@ -8,10 +8,10 @@ import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/src/services/keys";
 import { getLists } from "@/src/services/firebase/lists/getLists";
 import { Skeleton } from "@/src/components/ui/skeleton";
-import { auth } from "@/src/services/firebase/firebaseConfig";
+import { useAuth } from "@/src/hooks/AuthProvider";
 
 export const ListTabContent = () => {
-  const user = auth.currentUser;
+  const { user } = useAuth();
 
   const { data: lists, isLoading: isListsLoading } = useQuery({
     queryKey: [keys.queryKeys.lists],

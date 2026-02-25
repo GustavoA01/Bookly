@@ -28,7 +28,9 @@ export const AddListContent = ({ id, open, setOpen }: AddListContentProps) => {
               <p className="font-semibold">{list.name}</p>
               {list.books.length > 0 ? (
                 <p className="text-muted-foreground text-sm">
-                  {list.books.length} livros
+                  {list.books.length === 1
+                    ? "1 livro"
+                    : `${list.books.length} livros`}
                 </p>
               ) : (
                 <p className="text-muted-foreground text-sm">

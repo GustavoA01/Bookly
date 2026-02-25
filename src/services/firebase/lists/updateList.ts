@@ -1,14 +1,15 @@
 import { ListType } from "@/src/data/types/books";
-import { auth, db } from "../firebaseConfig";
+import { db } from "../firebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";
 import { keys } from "../../keys";
+import { User } from "firebase/auth";
 
 export const updateList = async (
   list: Pick<ListType, "name" | "description" | "imageUrl">,
   id: string,
+  user: User | null,
 ) => {
   try {
-    const user = auth.currentUser;
     if (!user) throw new Error("Usuário não autenticado");
 
     const docRef = doc(db, keys.firebase.lists, id);

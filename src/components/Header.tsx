@@ -4,16 +4,17 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { navigationButtons } from "../data/constants";
 import { LogIn, User } from "lucide-react";
-import { auth } from "../services/firebase/firebaseConfig";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import { Drawer, DrawerClose, DrawerContent, DrawerTitle } from "./ui/drawer";
 import { useState } from "react";
 import { Dialog, DialogClose, DialogContent, DialogTitle } from "./ui/dialog";
 import { LogOutButton } from "./LogOutButton";
+import { useAuth } from "../hooks/AuthProvider";
+import { Skeleton } from "./ui/skeleton";
 
 export const Header = () => {
+  const { user, isLoading } = useAuth();
   const pathname = usePathname();
-  const user = auth.currentUser;
   const [openSheet, setOpenSheet] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
@@ -40,7 +41,9 @@ export const Header = () => {
           ))}
         </nav>
 
-        {user ? (
+        {isLoading ? (
+          <Skeleton className="w-10 h-10 rounded-full" />
+        ) : user ? (
           <Avatar className="cursor-pointer ">
             <AvatarFallback
               className="sm:hidden"

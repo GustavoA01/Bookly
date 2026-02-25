@@ -6,11 +6,15 @@ import { useQuery } from "@tanstack/react-query";
 import { getBooks } from "@/src/services/firebase/books/getBooks";
 import { keys } from "@/src/services/keys";
 import { BookTableSkeleton } from "@/src/components/Skeletons";
+import { useAuth } from "@/src/hooks/AuthProvider";
 
 export const BookTable = () => {
-  const { data: books, isLoading } = useQuery({
+  const { user, isLoading: isUserLoading } = useAuth();
+
+  const { data: books, isLoading: isBooksLoading } = useQuery({
     queryKey: [keys.queryKeys.books],
-    queryFn: getBooks,
+    queryFn: () => getBooks(user),
+    enabled: !!user,
   });
 
   return (
@@ -20,7 +24,7 @@ export const BookTable = () => {
       </TableHeader>
 
       <TableBody>
-        {isLoading ? (
+        {isBooksLoading || isUserLoading ? (
           <BookTableSkeleton />
         ) : !books || books.length === 0 ? (
           <tr>

@@ -2,11 +2,11 @@
 import { renderHook } from "@testing-library/react";
 import { useNewBook } from "../useNewBook";
 import { BookFormType } from "@/src/data/schemas";
-import { auth } from "@/src/services/firebase/firebaseConfig";
 import { useBookDates } from "../useBookDates";
 import { useMutation } from "@tanstack/react-query";
 import { BookType } from "@/src/data/types/books";
 import { Timestamp } from "firebase/firestore";
+import { useAuth } from "@/src/hooks/AuthProvider";
 
 jest.mock("sonner", () => ({
   toast: {
@@ -14,16 +14,17 @@ jest.mock("sonner", () => ({
   },
 }));
 
-jest.mock("../../../../services/firebase/firebaseConfig", () => ({
-  auth: {
-    currentUser: null,
-  },
+jest.mock("../../../../hooks/AuthProvider");
+
+jest.mock("firebase/auth", () => ({
+  getAuth: jest.fn(),
 }));
 
 jest.mock("firebase/firestore", () => ({
   Timestamp: {
     now: jest.fn().mockReturnValue("mocked-timestamp"),
   },
+  getFirestore: jest.fn(),
 }));
 
 const mockRouterPush = jest.fn();
@@ -90,6 +91,9 @@ describe("useNewBook", () => {
   });
 
   it("should return the correct initial values", () => {
+    (useAuth as jest.Mock).mockReturnValue({
+      user: { uid: "test-user-id" },
+    });
     const { result } = renderHook(() =>
       useNewBook({ id: "123", role: "library" }),
     );
@@ -101,6 +105,9 @@ describe("useNewBook", () => {
   });
 
   test("handleCreateBook with id and role undefined", async () => {
+    (useAuth as jest.Mock).mockReturnValue({
+      user: null,
+    });
     const { result } = renderHook(() =>
       // @ts-ignore
       useNewBook({ id: undefined, role: undefined }),
@@ -113,7 +120,6 @@ describe("useNewBook", () => {
     expect(returnedUserNullValue).toBeUndefined();
 
     // @ts-ignore
-    auth.currentUser = { uid: "test-user-id" } as unknown;
     const { result: bookDatesResult } = renderHook(() => useBookDates());
     bookDatesResult.current.dateErrorMessage = "Test Date Error";
 
@@ -121,7 +127,17 @@ describe("useNewBook", () => {
       await result.current.handleCreateBook(mockFormData);
 
     expect(returnedDateErrorMessage).toBeUndefined();
+  });
 
+  test("handleCreateBook calls createBookFn", async () => {
+    (useAuth as jest.Mock).mockReturnValue({
+      user: { uid: "test-user-id" },
+    });
+    const { result } = renderHook(() =>
+      // @ts-ignore
+      useNewBook({ id: undefined, role: undefined }),
+    );
+    const { result: bookDatesResult } = renderHook(() => useBookDates());
     bookDatesResult.current.dateErrorMessage = "";
     const { mutateAsync: mockCreateBookFn } = useMutation({});
 

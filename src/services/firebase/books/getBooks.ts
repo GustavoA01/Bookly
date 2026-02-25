@@ -1,18 +1,19 @@
 "use client";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { auth, db } from "../firebaseConfig";
+import { db } from "../firebaseConfig";
 import { BookType } from "@/src/data/types/books";
 import { keys } from "../../keys";
+import { User } from "firebase/auth";
 
-export const getBooks = async () => {
+export const getBooks = async (user: User | null) => {
   try {
-    if (!auth.currentUser) {
+    if (!user) {
       console.warn("Usuário não autenticado");
       return [];
     }
     const q = query(
       collection(db, keys.firebase.books),
-      where("userId", "==", auth.currentUser?.uid),
+      where("userId", "==", user.uid),
     );
     const querySnapshot = (await getDocs(q)).docs;
 

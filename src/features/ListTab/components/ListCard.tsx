@@ -15,6 +15,12 @@ type ListCardProps = {
 
 export const ListCard = ({ id, name, itemCount }: ListCardProps) => {
   const router = useRouter();
+  const descriptionText =
+    itemCount === 0
+      ? "Nenhum livro"
+      : itemCount === 1
+        ? "1 livro"
+        : `${itemCount} livros`;
 
   return (
     <Card
@@ -23,7 +29,7 @@ export const ListCard = ({ id, name, itemCount }: ListCardProps) => {
     >
       <CardHeader>
         <CardTitle>{name}</CardTitle>
-        <CardDescription>{itemCount} livros</CardDescription>
+        <CardDescription>{descriptionText}</CardDescription>
       </CardHeader>
     </Card>
   );

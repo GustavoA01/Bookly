@@ -1,10 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { BookTab } from "../BookTab";
 
-jest.mock("firebase/auth", () => ({
-  getAuth: () => ({
-    currentUser: { uid: "123" }, //
-  }),
+jest.mock("../../hooks/AuthProvider", () => ({
+  useAuth: () => ({ user: { uid: "123" } }),
 }));
 
 describe("BookTab", () => {
