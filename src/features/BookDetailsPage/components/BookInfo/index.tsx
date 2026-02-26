@@ -1,4 +1,5 @@
 "use client";
+import { Dialog, DialogContent, DialogTitle } from "@/src/components/ui/dialog";
 import { Info as InfoIcon } from "lucide-react";
 import { TimeInfo } from "./TimeInfo";
 import { DetailsInfo } from "./DetailsInfo";
@@ -7,9 +8,9 @@ import { AddBuyButton } from "../../container/AddBuyButton";
 import { BookType } from "@/src/data/types/books";
 import { PublisherInfo } from "./PublisherInfo";
 import { Drawer, DrawerContent, DrawerTitle } from "@/src/components/ui/drawer";
-import { Dialog, DialogContent, DialogTitle } from "@/src/components/ui/dialog";
 import { AddListContent } from "../../container/AddListContent";
 import { useBookInfo } from "../../hooks/useBookInfo";
+import { RemoveListModal } from "../RemoveModal";
 
 type BookInfoProps = Pick<
   BookType,
@@ -44,6 +45,11 @@ export const BookInfo = ({
     openModal,
     setOpenDrawer,
     setOpenModal,
+    openRemoveBookModal,
+    setOpenRemoveBookModal,
+    deleteListFn,
+    listIdToRemove,
+    setListIdToRemove,
   } = useBookInfo(id!, currentPage, totalPages);
 
   return (
@@ -76,6 +82,8 @@ export const BookInfo = ({
             lists={listsContainingBook}
             setOpenDrawer={setOpenDrawer}
             setOpenModal={setOpenModal}
+            setOpenRemoveBookModal={setOpenRemoveBookModal}
+            setListIdToRemove={setListIdToRemove}
           />
         )}
         <AddBuyButton id={id} buyLink={buyLink} />
@@ -93,6 +101,10 @@ export const BookInfo = ({
           <DialogTitle>Adicionar à lista</DialogTitle>
           <AddListContent id={id} open={openModal} setOpen={setOpenModal} />
         </DialogContent>
+      </Dialog>
+
+      <Dialog open={openRemoveBookModal} onOpenChange={setOpenRemoveBookModal}>
+        <RemoveListModal removeFn={() => deleteListFn(listIdToRemove)} />
       </Dialog>
     </section>
   );

@@ -1,26 +1,23 @@
-import { auth } from "@/src/services/firebase/firebaseConfig";
-import { getListsContainingBook } from "@/src/services/firebase/lists/getListsConteinsBooks";
-import { keys } from "@/src/services/keys";
-import { useQuery } from "@tanstack/react-query";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useListMutation } from "./useListMutation";
 
 export const useBookInfo = (
   id: string,
   currentPage: number | null,
   totalPages: number | null,
 ) => {
-  const pathname = usePathname();
-  const isBooksDetailsPage = pathname.includes("/livro/");
-  const user = auth.currentUser;
+  const {
+    listsContainingBook,
+    deleteListFn,
+    openRemoveBookModal,
+    setOpenRemoveBookModal,
+    isBooksDetailsPage,
+    listIdToRemove,
+    setListIdToRemove,
+  } = useListMutation(id);
+
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-
-  const { data: listsContainingBook } = useQuery({
-    queryKey: [keys.queryKeys.lists, id],
-    queryFn: () => getListsContainingBook(id, user!.uid),
-    enabled: isBooksDetailsPage,
-  });
 
   const progress =
     currentPage && totalPages
@@ -35,5 +32,10 @@ export const useBookInfo = (
     setOpenModal,
     listsContainingBook,
     progress,
+    openRemoveBookModal,
+    setOpenRemoveBookModal,
+    deleteListFn,
+    listIdToRemove,
+    setListIdToRemove,
   };
 };
