@@ -12,6 +12,6 @@ describe("FormFooter", () => {
     const buttons = screen.getAllByRole("button");
 
     expect(buttons[0]).toHaveTextContent("Cancelar");
-    expect(buttons[1]).toHaveTextContent("Criar");
+    expect(buttons[1]).toHaveTextContent("Salvar");
   });
 });

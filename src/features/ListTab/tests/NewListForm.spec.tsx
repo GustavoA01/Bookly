@@ -41,6 +41,6 @@ describe("NewListForm", () => {
     expect(
       screen.getByRole("button", { name: "Cancelar" }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Criar" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Salvar" })).toBeInTheDocument();
   });
 });

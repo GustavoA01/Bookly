@@ -7,7 +7,7 @@ import { BookType } from "@/src/data/types/books";
 type BookTableProps = {
   books: BookType[] | undefined;
   isBooksLoading: boolean;
-  isUserLoading: boolean;
+  isUserLoading?: boolean;
 };
 
 export const BookTable = ({

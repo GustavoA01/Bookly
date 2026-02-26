@@ -7,10 +7,15 @@ import { useForm } from "react-hook-form";
 import { useListMutation } from "./useListMutation";
 import { useAuth } from "@/src/contexts/AuthProvider";
 
-export const useNewList = () => {
+export const useNewList = (list?: ListType) => {
   const { user } = useAuth();
   const methods = useForm<ListFormType>({
     resolver: zodResolver(listSchema),
+    defaultValues: {
+      name: list?.name || "",
+      description: list?.description || "",
+      imageUrl: list?.imageUrl || undefined,
+    },
   });
   const { setValue } = methods;
 
@@ -24,7 +29,23 @@ export const useNewList = () => {
     handleFileChange,
   } = useImageForm(setValue);
 
-  const { createListFn } = useListMutation();
+  const { createListFn, updateListFn } = useListMutation();
+
+  const handleUpdateList = async (data: ListFormType) => {
+    if (!user || !list) return;
+    if (data.imageUrl) {
+      setValue("imageFile", undefined);
+      setChoosedFile(data.imageUrl);
+    }
+
+    const updatedList: Pick<ListType, "name" | "description" | "imageUrl"> = {
+      name: data.name,
+      description: data.description || null,
+      imageUrl: data.imageUrl || null,
+    };
+
+    await updateListFn({ list: updatedList, listId: list.id, user });
+  };
 
   const handleCreateList = async (data: ListFormType) => {
     if (!user) return;
@@ -46,15 +67,17 @@ export const useNewList = () => {
     await createListFn(newList);
   };
 
+  const submitForm = list ? handleUpdateList : handleCreateList;
+
   return {
     choosedFile,
     setChoosedFile,
     handleFileChange,
+    submitForm,
     showImage,
     handleImageError,
     chooseImageError,
     cleanCurrentImage,
-    handleCreateList,
     methods,
   };
 };

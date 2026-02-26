@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import { navigationButtons } from "../data/constants";
-import { LogIn, User } from "lucide-react";
+import { LogIn } from "lucide-react";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import { Drawer, DrawerClose, DrawerContent, DrawerTitle } from "./ui/drawer";
 import { useState } from "react";
@@ -52,13 +52,13 @@ export const Header = () => {
               className="sm:hidden"
               onClick={() => setOpenSheet(true)}
             >
-              <User size={20} />
+              <p>{user?.displayName?.charAt(0).toUpperCase()}</p>
             </AvatarFallback>
             <AvatarFallback
               className="hidden sm:flex"
               onClick={() => setOpenModal(true)}
             >
-              <User size={20} />
+              <p>{user?.displayName?.charAt(0).toUpperCase()}</p>
             </AvatarFallback>
           </Avatar>
         ) : (

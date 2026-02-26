@@ -11,19 +11,20 @@ import { FormFooter } from "../components/NewListForm/FormFooter";
 import { Button } from "@/src/components/ui/button";
 import { DescriptionForm } from "../components/NewListForm/DescriptionForm";
 import { useNewList } from "../hooks/useNewList";
+import { ListType } from "@/src/data/types/books";
 
-export const NewListForm = () => {
+export const NewListForm = ({ list }: { list?: ListType }) => {
   const {
     chooseImageError,
     cleanCurrentImage,
     choosedFile,
-    handleCreateList,
-    handleFileChange,
     handleImageError,
     showImage,
     setChoosedFile,
+    handleFileChange,
+    submitForm,
     methods: { register, handleSubmit, setValue },
-  } = useNewList();
+  } = useNewList(list);
 
   return (
     <DialogContent
@@ -40,7 +41,7 @@ export const NewListForm = () => {
       <form
         id="new-list-form"
         className="flex flex-col gap-4"
-        onSubmit={handleSubmit(handleCreateList)}
+        onSubmit={handleSubmit(submitForm)}
       >
         <DescriptionForm register={register} />
 
