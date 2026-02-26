@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { InfoSection } from "../components/BookInfo/InfoSection";
+import { InfoSection } from "../../components/BookInfo/InfoSection";
 
 describe("InfoSection", () => {
   it("renders component with correct props", () => {

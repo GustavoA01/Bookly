@@ -1,14 +1,14 @@
-import { SlidersHorizontal } from "lucide-react";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
-import { filterOptions } from "../data/constants";
+} from "@/src/components/ui/select";
+import { filterOptions } from "@/src/data/constants";
+import { FilterOptionsType } from "@/src/data/types/books";
+import { SlidersHorizontal } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
-import { FilterOptionsType } from "../data/types/books";
 
 type FilterSelectProps = {
   value: FilterOptionsType | "";

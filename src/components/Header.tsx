@@ -1,14 +1,14 @@
 "use client";
+import { Dialog, DialogClose, DialogContent, DialogTitle } from "./ui/dialog";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
-import Link from "next/link";
 import { navigationButtons } from "../data/constants";
 import { LogIn, User } from "lucide-react";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import { Drawer, DrawerClose, DrawerContent, DrawerTitle } from "./ui/drawer";
 import { useState } from "react";
-import { Dialog, DialogClose, DialogContent, DialogTitle } from "./ui/dialog";
-import { LogOutButton } from "./LogOutButton";
+import { ConfirmLogout } from "./ConfirmLogout";
 import { useAuth } from "../contexts/AuthProvider";
 import { Skeleton } from "./ui/skeleton";
 
@@ -17,6 +17,9 @@ export const Header = () => {
   const pathname = usePathname();
   const [openSheet, setOpenSheet] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [openConfirmModal, setOpenConfirmModal] = useState(false);
+
+  const handleLogout = () => setOpenConfirmModal(true);
 
   return (
     <header className="flex justify-between w-full items-center">
@@ -72,7 +75,10 @@ export const Header = () => {
         <DrawerContent className="p-4">
           <DrawerTitle>{user?.displayName}</DrawerTitle>
           <DrawerClose asChild>
-            <LogOutButton />
+            <Button variant="outline" onClick={handleLogout}>
+              <LogIn />
+              <p>Sair</p>
+            </Button>
           </DrawerClose>
         </DrawerContent>
       </Drawer>
@@ -81,9 +87,16 @@ export const Header = () => {
         <DialogContent>
           <DialogTitle>{user?.displayName}</DialogTitle>
           <DialogClose asChild>
-            <LogOutButton />
+            <Button variant="outline" onClick={handleLogout}>
+              <LogIn />
+              <p>Sair</p>
+            </Button>
           </DialogClose>
         </DialogContent>
+      </Dialog>
+
+      <Dialog open={openConfirmModal} onOpenChange={setOpenConfirmModal}>
+        <ConfirmLogout setCloseModal={setOpenConfirmModal} />
       </Dialog>
     </header>
   );

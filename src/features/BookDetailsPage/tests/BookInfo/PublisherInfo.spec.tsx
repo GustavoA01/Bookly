@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { PublisherInfo } from "../components/BookInfo/PublisherInfo";
+import { PublisherInfo } from "../../components/BookInfo/PublisherInfo";
 
 describe("PublisherInfo", () => {
   it("should render the PublisherInfo component with all props", () => {

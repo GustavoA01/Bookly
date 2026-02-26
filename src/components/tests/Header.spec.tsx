@@ -13,6 +13,12 @@ jest.mock("firebase/auth", () => ({
   })),
 }));
 
+jest.mock("@tanstack/react-query", () => ({
+  useQueryClient: jest.fn(() => ({
+    removeQueries: jest.fn(),
+  })),
+}));
+
 describe("Header", () => {
   it("renders component correctly", () => {
     render(<Header />);

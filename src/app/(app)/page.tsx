@@ -1,8 +1,6 @@
 import { TabsNav } from "@/src/components/TabsNav";
-import { BookTable } from "@/src/features/BookTable/container";
 import { ListTabContent } from "@/src/features/ListTab/container/ListTabContent";
-import { MobileAddButton } from "@/src/components/MobileAddButton";
-import { BookTab } from "@/src/components/BookTab";
+import { BookTabContent } from "@/src/features/BookTab/container/BookTabContent";
 
 const Home = async ({
   searchParams,
@@ -14,16 +12,7 @@ const Home = async ({
   return (
     <main>
       <TabsNav tab={tab} />
-
-      {!tab || tab === "books" ? (
-        <>
-          <BookTab />
-          <BookTable />
-          <MobileAddButton />
-        </>
-      ) : (
-        <ListTabContent />
-      )}
+      {!tab || tab === "books" ? <BookTabContent /> : <ListTabContent />}
     </main>
   );
 };

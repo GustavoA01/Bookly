@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { FilterSelect } from "../FilterSelect";
+import { FilterSelect } from "../components/FilterSelect";
 
 describe("FilterSelect", () => {
   it("deve renderizar categorias padrão quando isHome for false", async () => {

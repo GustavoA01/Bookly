@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { TimeInfo } from "../components/BookInfo/TimeInfo";
+import { TimeInfo } from "../../components/BookInfo/TimeInfo";
 import { Timestamp } from "firebase/firestore";
 
 jest.mock("next/navigation", () => ({

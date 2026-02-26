@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { DetailsInfo } from "../components/BookInfo/DetailsInfo";
+import { DetailsInfo } from "../../components/BookInfo/DetailsInfo";
 
 describe("DetailsInfo", () => {
   it("should render genre and pages correctly", () => {

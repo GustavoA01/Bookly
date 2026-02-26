@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { ListInfo } from "../components/BookInfo/ListInfo";
+import { ListInfo } from "../../components/BookInfo/ListInfo";
 import { ListType } from "@/src/data/types/books";
 import { Timestamp } from "firebase/firestore";
 
