@@ -13,8 +13,8 @@ export const useBookTab = () => {
   const redirecHref = user ? "/novo-livro" : "/login";
 
   const { data, isLoading: isBooksLoading } = useQuery({
-    queryKey: [keys.queryKeys.books],
-    queryFn: () => getBooks(user),
+    queryKey: [keys.queryKeys.books, status, filter],
+    queryFn: () => getBooks(user, filter, status),
     enabled: !!user,
   });
 
