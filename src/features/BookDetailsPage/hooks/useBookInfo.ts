@@ -12,8 +12,9 @@ export const useBookInfo = (
     openRemoveBookModal,
     setOpenRemoveBookModal,
     isBooksDetailsPage,
-    listIdToRemove,
     setListIdToRemove,
+    openOptionsDrawer,
+    setOpenOptionsDrawer,
   } = useListMutation(id);
 
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -35,7 +36,8 @@ export const useBookInfo = (
     openRemoveBookModal,
     setOpenRemoveBookModal,
     deleteListFn,
-    listIdToRemove,
     setListIdToRemove,
+    openOptionsDrawer,
+    setOpenOptionsDrawer,
   };
 };

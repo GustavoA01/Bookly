@@ -22,9 +22,7 @@ export const SharedPagination = () => {
     return `${pathname}?${params.toString()}`;
   };
 
-  if (pathname.includes("/explorar")) {
-    numberOfPages = 6;
-  }
+  if (pathname.includes("/explorar")) numberOfPages = 6;
 
   const initialPages = [1, 2, 3];
   const middlePages = [currentPage - 1, currentPage, currentPage + 1];

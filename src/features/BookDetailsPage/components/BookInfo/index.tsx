@@ -48,8 +48,9 @@ export const BookInfo = ({
     openRemoveBookModal,
     setOpenRemoveBookModal,
     deleteListFn,
-    listIdToRemove,
     setListIdToRemove,
+    openOptionsDrawer,
+    setOpenOptionsDrawer,
   } = useBookInfo(id!, currentPage, totalPages);
 
   return (
@@ -84,6 +85,8 @@ export const BookInfo = ({
             setOpenModal={setOpenModal}
             setOpenRemoveBookModal={setOpenRemoveBookModal}
             setListIdToRemove={setListIdToRemove}
+            setOpenOptionsDrawer={setOpenOptionsDrawer}
+            openOptionsDrawer={openOptionsDrawer}
           />
         )}
         <AddBuyButton id={id} buyLink={buyLink} />
@@ -104,7 +107,7 @@ export const BookInfo = ({
       </Dialog>
 
       <Dialog open={openRemoveBookModal} onOpenChange={setOpenRemoveBookModal}>
-        <RemoveListModal removeFn={() => deleteListFn(listIdToRemove)} />
+        <RemoveListModal removeFn={deleteListFn} />
       </Dialog>
     </section>
   );

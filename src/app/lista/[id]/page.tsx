@@ -25,7 +25,7 @@ const ListDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const booksExists = !!list?.books && list.books.length > 0;
 
   const { data: books, isLoading: isBooksLoading } = useQuery({
-    queryKey: [keys.queryKeys.listId, id, keys.queryKeys.books],
+    queryKey: [keys.queryKeys.listId, id, keys.queryKeys.books, list?.books],
     queryFn: () => getBooksFromList(list!.books),
     enabled: booksExists,
   });

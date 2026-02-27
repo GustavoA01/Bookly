@@ -14,6 +14,7 @@ export const useListMutation = (id: string) => {
   const isBooksDetailsPage = pathname.includes("/livro/");
   const [listIdToRemove, setListIdToRemove] = useState<string>("");
   const [openRemoveBookModal, setOpenRemoveBookModal] = useState(false);
+  const [openOptionsDrawer, setOpenOptionsDrawer] = useState(false);
 
   const { data: listsContainingBook } = useQuery({
     queryKey: [keys.queryKeys.lists, id],
@@ -24,6 +25,9 @@ export const useListMutation = (id: string) => {
   const { mutateAsync: deleteListFn } = useMutation({
     mutationFn: () => updateListBooks(listIdToRemove, id, "remove"),
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [keys.queryKeys.listId, listIdToRemove],
+      });
       queryClient.invalidateQueries({ queryKey: [keys.queryKeys.lists, id] });
       setOpenRemoveBookModal(false);
       toast.success("Livro removido da lista");
@@ -36,7 +40,8 @@ export const useListMutation = (id: string) => {
     openRemoveBookModal,
     setOpenRemoveBookModal,
     isBooksDetailsPage,
-    listIdToRemove,
     setListIdToRemove,
+    openOptionsDrawer,
+    setOpenOptionsDrawer,
   };
 };
