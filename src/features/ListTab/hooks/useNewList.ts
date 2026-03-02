@@ -63,7 +63,6 @@ export const useNewList = (list?: ListType) => {
       userId: user.uid,
     };
 
-    console.log(newList);
     await createListFn(newList);
   };
 
