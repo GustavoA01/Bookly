@@ -42,6 +42,7 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
     cleanCurrentImage,
     handleImageError,
     handleFileChange,
+    uploadImageToCloudinary,
   } = useImageForm(setValue);
 
   const { createBookFn, updateBookFn } = useBookMutation(id);
@@ -55,7 +56,10 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
     setStatus,
   });
 
-  const handleUpdateBook = async (book: Omit<BookFormType, "userId">) => {
+  const handleUpdateBook = async (
+    book: Omit<BookFormType, "userId">,
+    finalImageUrl: string | null,
+  ) => {
     const bookToUpdate: Omit<BookType, "userId" | "id" | "createdAt"> = {
       title: book.title,
       author: book.author || null,
@@ -66,7 +70,7 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
       currentPage: book.currentPage ?? null,
       synopsis: book.synopsis || null,
       comment: book.comment || null,
-      imageUrl: book.imageUrl || choosedFile || null,
+      imageUrl: finalImageUrl,
       startDate: startDate === undefined ? null : Timestamp.fromDate(startDate),
       endDate: endDate === undefined ? null : Timestamp.fromDate(endDate),
     };
@@ -80,8 +84,20 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
       return;
     }
     if (dateErrorMessage) return;
+
+    let finalImageUrl = data.imageUrl || null;
+
+    if (data.imageFile) {
+      try {
+        finalImageUrl = await uploadImageToCloudinary(data.imageFile);
+      } catch (error) {
+        console.error("Erro no upload da imagem:", error);
+        return;
+      }
+    }
+
     if (id && role === "library") {
-      handleUpdateBook(data);
+      handleUpdateBook(data, finalImageUrl);
       return;
     }
 
@@ -95,7 +111,7 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
       currentPage: data.currentPage ?? null,
       synopsis: data.synopsis || null,
       comment: data.comment || null,
-      imageUrl: data.imageUrl || choosedFile || null,
+      imageUrl: finalImageUrl,
       startDate: startDate === undefined ? null : Timestamp.fromDate(startDate),
       endDate: endDate === undefined ? null : Timestamp.fromDate(endDate),
       createdAt: Timestamp.now(),

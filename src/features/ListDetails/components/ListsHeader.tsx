@@ -11,7 +11,7 @@ export const ListsHeader = ({
   setOpenEditModal,
   setOpenDeleteDialog,
 }: ListsHeaderProps) => (
-  <header className="flex justify-between items-center">
+  <header className="flex justify-between items-center mb-8">
     <Link href="/?tab=lists" replace>
       <Button
         data-testid="back-button"

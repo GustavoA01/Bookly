@@ -27,7 +27,7 @@ export const useListDetails = (id: string) => {
     },
   });
 
-  const booksExists = !!list?.books && list.books.length > 0;
+  const booksExists = !!list && list.books.length > 0;
 
   const { data: books, isLoading: isBooksLoading } = useQuery({
     queryKey: [keys.queryKeys.listId, id, keys.queryKeys.books, list?.books],

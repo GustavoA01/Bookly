@@ -1,6 +1,10 @@
 import { act, renderHook } from "@testing-library/react";
 import { useImageForm } from "./useImageForm";
 
+jest.mock("firebase/auth", () => ({
+  getAuth: jest.fn(),
+}));
+
 describe("useImageForm", () => {
   test("cleanCurrentImage", () => {
     const mockSetValue = jest.fn();

@@ -27,21 +27,20 @@ export const useNewList = (list?: ListType) => {
     cleanCurrentImage,
     handleImageError,
     handleFileChange,
+    uploadImageToCloudinary,
   } = useImageForm(setValue);
 
   const { createListFn, updateListFn } = useListMutation();
 
-  const handleUpdateList = async (data: ListFormType) => {
-    if (!user || !list) return;
-    if (data.imageUrl) {
-      setValue("imageFile", undefined);
-      setChoosedFile(data.imageUrl);
-    }
-
+  const handleUpdateList = async (
+    data: ListFormType,
+    finalImageUrl: string | null,
+  ) => {
+    if (!list || !user) return;
     const updatedList: Pick<ListType, "name" | "description" | "imageUrl"> = {
       name: data.name,
       description: data.description || null,
-      imageUrl: data.imageUrl || null,
+      imageUrl: finalImageUrl,
     };
 
     await updateListFn({ list: updatedList, listId: list.id, user });
@@ -49,15 +48,27 @@ export const useNewList = (list?: ListType) => {
 
   const handleCreateList = async (data: ListFormType) => {
     if (!user) return;
-    if (data.imageUrl) {
-      setValue("imageFile", undefined);
-      setChoosedFile(data.imageUrl);
+
+    let finalImageUrl = data.imageUrl || null;
+
+    if (data.imageFile) {
+      try {
+        finalImageUrl = await uploadImageToCloudinary(data.imageFile);
+      } catch (error) {
+        console.error("Erro no upload da imagem:", error);
+        return;
+      }
+    }
+
+    if (list) {
+      handleUpdateList(data, finalImageUrl);
+      return;
     }
 
     const newList: Omit<ListType, "id"> = {
       name: data.name,
       description: data.description || null,
-      imageUrl: data.imageUrl || null,
+      imageUrl: finalImageUrl,
       createdAt: Timestamp.now(),
       books: [],
       userId: user.uid,
@@ -66,7 +77,7 @@ export const useNewList = (list?: ListType) => {
     await createListFn(newList);
   };
 
-  const submitForm = list ? handleUpdateList : handleCreateList;
+  const submitForm = handleCreateList;
 
   return {
     choosedFile,

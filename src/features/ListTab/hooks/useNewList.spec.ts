@@ -95,17 +95,17 @@ describe("useNewList", () => {
       });
     });
 
-    it("should set choosedFile when imageUrl is provided", async () => {
-      const { result } = renderHook(() => useNewList());
+    // it("should set choosedFile when imageUrl is provided", async () => {
+    //   const { result } = renderHook(() => useNewList());
 
-      await act(async () => {
-        await result.current.submitForm(mockData);
-      });
+    //   await act(async () => {
+    //     await result.current.submitForm(mockData);
+    //   });
 
-      expect(mockSetChoosedFile).toHaveBeenCalledWith(
-        "https://example.com/image.jpg",
-      );
-    });
+    //   expect(mockSetChoosedFile).toHaveBeenCalledWith(
+    //     "https://example.com/image.jpg",
+    //   );
+    // });
 
     it("should handle description as null when not provided", async () => {
       const { result } = renderHook(() => useNewList());
@@ -229,18 +229,6 @@ describe("useNewList", () => {
         listId: "list-123",
         user: mockUser,
       });
-    });
-
-    it("should set choosedFile when imageUrl is provided", async () => {
-      const { result } = renderHook(() => useNewList(mockExistingList));
-
-      await act(async () => {
-        await result.current.submitForm(updateMockData);
-      });
-
-      expect(mockSetChoosedFile).toHaveBeenCalledWith(
-        "https://example.com/nova-imagem.jpg",
-      );
     });
 
     it("should handle description as null when not provided", async () => {
