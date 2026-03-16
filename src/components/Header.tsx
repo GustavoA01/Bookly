@@ -11,6 +11,7 @@ import { useState } from "react";
 import { ConfirmLogout } from "./ConfirmLogout";
 import { useAuth } from "../contexts/AuthProvider";
 import { Skeleton } from "./ui/skeleton";
+import Image from "next/image";
 
 export const Header = () => {
   const { user, isLoading } = useAuth();
@@ -24,7 +25,16 @@ export const Header = () => {
   return (
     <header className="flex justify-between w-full items-center">
       <div>
-        <h1 className="font-bold text-xl">Bookly</h1>
+        <div className="flex items-center gap-2">
+          <Image
+            src="/icon.png"
+            alt="Logo do Bookly"
+            className="rounded-lg"
+            width={50}
+            height={50}
+          />
+          <h1 className="font-bold text-xl">Bookly</h1>
+        </div>
         <p className="text-muted-foreground">Gerencie sua biblioteca pessoal</p>
       </div>
 

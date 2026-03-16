@@ -19,8 +19,43 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  // metadataBase: new URL("http://localhost:3000"),
+
   title: "Bookly",
   description: "Encontre e salve livros na sua biblioteca usando IA.",
+  abstract:
+    "Bookly é um aplicativo de biblioteca pessoal que utiliza inteligência artificial para ajudar os usuários a encontrar e salvar livros.",
+  authors: [{ name: "Gustavo Aguiar" }],
+  creator: "Gustavo Aguiar",
+  publisher: "Bookly",
+  keywords: [
+    "bookly",
+    "biblioteca pessoal",
+    "inteligência artificial",
+    "encontrar livros",
+    "livros",
+    "gestão de leitura",
+  ],
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: "Bookly",
+    description: "Salve e encontre livros usando IA.",
+    siteName: "Bookly",
+    locale: "pt_BR",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Preview do site Bookly",
+      },
+    ],
+  },
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({
