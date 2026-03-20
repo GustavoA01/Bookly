@@ -58,6 +58,33 @@ body {
   }
 }
 
+@theme {
+  --animate-fade-in-title: fade-in-title 1s ease-out;
+  --animate-fade-in-subtitle: fade-in-subtitle 1s ease-out;
+}
+
+@keyframes fade-in-title {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-subtitle {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

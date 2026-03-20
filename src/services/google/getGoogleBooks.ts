@@ -1,4 +1,4 @@
-import { GoogleBooksResponse } from "../data/types/api";
+import { GoogleBooksResponse } from "../../data/types/api";
 
 export const getGoogleBooks = async (
   query: string,

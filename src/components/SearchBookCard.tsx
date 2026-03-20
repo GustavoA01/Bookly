@@ -21,7 +21,7 @@ export const SearchBookCard = ({
   <div className="group flex flex-col select-none cursor-pointer gap-3">
     <div className="flex justify-center relative group-hover:-translate-y-1.5 transition-all duration-300 rounded-md ">
       <Image
-        src={imageUrl || "/detalhes-mock.jpg"}
+        src={imageUrl!}
         alt={`Capa do livro ${title}`}
         width={200}
         height={300}

@@ -2,7 +2,7 @@ import { TabsNav } from "@/src/components/TabsNav";
 import { ListTabContent } from "@/src/features/ListTab/container/ListTabContent";
 import { BookTabContent } from "@/src/features/BookTab/container/BookTabContent";
 
-const Home = async ({
+const HomePage = async ({
   searchParams,
 }: {
   searchParams: Promise<{ tab?: string }>;
@@ -17,4 +17,4 @@ const Home = async ({
   );
 };
 
-export default Home;
+export default HomePage;

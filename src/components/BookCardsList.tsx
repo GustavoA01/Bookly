@@ -1,5 +1,5 @@
 import { SearchBookCard } from "./SearchBookCard";
-import { getGoogleBooks } from "../services/getGoogleBooks";
+import { getGoogleBooks } from "../services/google/getGoogleBooks";
 import { SharedPagination } from "./SharedPagination";
 
 type BookCardsListProps = {

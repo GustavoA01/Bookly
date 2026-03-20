@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     title: "Bookly",
-    description: "Salve e encontre livros usando IA.",
+    description: "Salve e encontre livros usando IA",
     siteName: "Bookly",
     locale: "pt_BR",
     images: [
@@ -58,11 +58,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
   return (
     <html lang="pt-br" data-lt-installed="true" suppressHydrationWarning>
       <body
@@ -72,4 +72,6 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;
