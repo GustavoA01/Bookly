@@ -35,3 +35,8 @@ export interface GoogleBookItem {
 }
 
 export type FormSearchParamsType = { id: string; role: "google" | "library" };
+
+export type GeminiResponseType = {
+  response: string;
+  suggestions: { title: string; author: string }[];
+};
