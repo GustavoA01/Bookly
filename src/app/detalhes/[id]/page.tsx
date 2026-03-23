@@ -29,7 +29,9 @@ const GoogleDetailsPage = async ({
             ? book.volumeInfo.categories[0]
             : "Desconhecido"
         }
-        imageUrl={book.volumeInfo.imageLinks?.thumbnail || "/detalhes-mock.jpg"}
+        imageUrl={
+          book.volumeInfo.imageLinks?.thumbnail || "/img-placeholder.jpg"
+        }
         totalPages={book.volumeInfo.pageCount || null}
         currentPage={null}
         rating={book.volumeInfo.averageRating || null}
