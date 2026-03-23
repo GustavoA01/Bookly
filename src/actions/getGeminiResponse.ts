@@ -1,4 +1,5 @@
 "use server";
+import { GeminiResponseType } from "../data/types/api";
 import { ai } from "../services/google/geminiConfig";
 
 export const getGeminiResponse = async (prompt: string) => {
@@ -19,9 +20,10 @@ export const getGeminiResponse = async (prompt: string) => {
         },
       ],
     });
+    console.log("Gemini response:", response.text);
+    if (!response.text) throw new Error("Failed to fetch Gemini response");
 
-    console.log(response.text);
-    return response.text;
+    return JSON.parse(response.text) as GeminiResponseType;
   } catch (error) {
     console.error("Error fetching Gemini response:", error);
     throw new Error("Failed to fetch Gemini response");
