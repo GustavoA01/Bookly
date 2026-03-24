@@ -27,7 +27,7 @@ export const BookCardsList = async ({
                 : "Desconhecido"
             }
             imageUrl={
-              book.volumeInfo.imageLinks?.thumbnail || "/detalhes-mock.jpg" //TODO:trocar para imagem placeholder
+              book.volumeInfo.imageLinks?.thumbnail || "/img-placeholder.jpg"
             }
             rating={book.volumeInfo.averageRating || null}
             genre={

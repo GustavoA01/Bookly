@@ -97,7 +97,7 @@ const BooklyIAPage = () => {
               title={book.volumeInfo.title || "Desconhecido"}
               author={book.volumeInfo.authors?.[0] || "Desconhecido"}
               imageUrl={
-                book.volumeInfo.imageLinks?.thumbnail || "/detalhes-mock.jpg"
+                book.volumeInfo.imageLinks?.thumbnail || "/img-placeholder.jpg"
               }
               genre={book.volumeInfo.categories?.[0] ?? null}
               rating={book.volumeInfo.averageRating ?? null}
