@@ -63,7 +63,12 @@ export const signInSchema = z.object({
   password: z.string().min(6, "A senha deve conter no mínimo 6 caracteres"),
 });
 
+export const chatSchema = z.object({
+  prompt: z.string().min(1, "A mensagem é obrigatória"),
+});
+
 export type BookFormType = z.infer<typeof bookSchema>;
 export type ListFormType = z.infer<typeof listSchema>;
 export type SignUpFormType = z.infer<typeof signUpSchema>;
 export type SignInFormType = z.infer<typeof signInSchema>;
+export type ChatFormType = z.infer<typeof chatSchema>;

@@ -40,3 +40,8 @@ export type GeminiResponseType = {
   response: string;
   suggestions: { title: string; author: string }[];
 };
+
+export type SuggestionsResponseType = {
+  chatResponse: string;
+  suggestions: GoogleBookItem[];
+};
