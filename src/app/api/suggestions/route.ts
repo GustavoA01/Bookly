@@ -1,9 +1,10 @@
 import { GeminiResponseType } from "@/src/data/types/api";
+import { BookType } from "@/src/data/types/books";
 import { ai } from "@/src/services/google/geminiConfig";
 
 export const POST = async (req: Request) => {
   try {
-    const { prompt } = await req.json();
+    const { prompt, userBooks } = await req.json();
 
     if (!prompt)
       return Response.json({ error: "Prompt is required" }, { status: 400 });
@@ -13,7 +14,8 @@ export const POST = async (req: Request) => {
       config: {
         responseMimeType: "application/json",
         systemInstruction: `Você é um assistente que sugere livros baseado no gosto do usuário para meu site de livros que oferece recomendações personalizadas.
-        Você vai receber a lista de livros adicionados do usuário, e irá sugerir livros similares a esses com a API Google Books. 
+        Você vai receber a lista de livros adicionados do usuário, e irá sugerir livros similares a esses com a API Google Books.
+        Livros do usuário: ${userBooks.map((book: BookType) => `${book.title} de ${book.author}`).join(", ")} 
         Responda apenas com o nome do livro e o autor, e com um texto de resposta que permitirá o usuário interagir com você.
         Responda no formato: {"response": string, "suggestions": [{"title": string, "author": string}]}
         `,
