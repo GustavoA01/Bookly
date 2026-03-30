@@ -10,7 +10,7 @@ describe("SearchBookCard", () => {
         rating={4.8}
         author="J.R.R. Tolkien"
         genre="Fantasia"
-        imageUrl="/mockImage.jpg"
+        imageUrl="/img-placeholder.jpg"
       />,
     );
     const image = screen.getByAltText(
@@ -19,7 +19,7 @@ describe("SearchBookCard", () => {
 
     expect(image).toHaveAttribute(
       "src",
-      "/_next/image?url=%2FmockImage.jpg&w=640&q=75",
+      "/_next/image?url=%2Fimg-placeholder.jpg&w=3840&q=75",
     );
     expect(screen.getByText("Senhor dos Anéis")).toBeInTheDocument();
     expect(screen.getByText("J.R.R. Tolkien")).toBeInTheDocument();

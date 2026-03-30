@@ -19,13 +19,13 @@ export const SearchBookCard = ({
   imageUrl,
 }: SearchBookCardProps) => (
   <div className="group flex flex-col select-none cursor-pointer gap-3">
-    <div className="flex justify-center relative group-hover:-translate-y-1.5 transition-all duration-300 rounded-md ">
+    <div className="flex justify-center relative aspect-2/3 w-full overflow-hidden group-hover:-translate-y-1.5 transition-all duration-300 rounded-md">
       <Image
         src={imageUrl!}
         alt={`Capa do livro ${title}`}
-        width={200}
-        height={300}
-        className="rounded-md group-hover:opacity-75 transition-opacity aspect-2/3 w-full"
+        fill
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 200px"
+        className="object-cover group-hover:opacity-75 transition-opacity"
       />
 
       <Link
