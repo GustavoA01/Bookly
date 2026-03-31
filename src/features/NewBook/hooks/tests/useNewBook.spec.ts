@@ -6,7 +6,7 @@ import { useBookDates } from "../useBookDates";
 import { useMutation } from "@tanstack/react-query";
 import { BookType } from "@/src/data/types/books";
 import { Timestamp } from "firebase/firestore";
-import { useAuth } from "@/src/contexts/AuthProvider";
+import { useAuth } from "@/src/data/contexts/AuthProvider";
 
 jest.mock("sonner", () => ({
   toast: {
@@ -14,7 +14,7 @@ jest.mock("sonner", () => ({
   },
 }));
 
-jest.mock("../../../../contexts/AuthProvider");
+jest.mock("../../../../data/contexts/AuthProvider");
 
 jest.mock("firebase/auth", () => ({
   getAuth: jest.fn(),

@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/src/components/ui/button";
-import { useAuth } from "@/src/contexts/AuthProvider";
+import { useAuth } from "@/src/data/contexts/AuthProvider";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

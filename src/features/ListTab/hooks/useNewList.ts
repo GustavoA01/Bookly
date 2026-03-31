@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Timestamp } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { useListMutation } from "./useListMutation";
-import { useAuth } from "@/src/contexts/AuthProvider";
+import { useAuth } from "@/src/data/contexts/AuthProvider";
 
 export const useNewList = (list?: ListType) => {
   const { user } = useAuth();

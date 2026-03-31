@@ -8,14 +8,14 @@ type IaFormType = {
   handleSubmit: UseFormHandleSubmit<{ prompt: string }>;
   handleSearch: (data: { prompt: string }) => Promise<void>;
   register: UseFormRegister<{ prompt: string }>;
-  isPending: boolean;
+  isRequestPending: boolean;
 };
 
 export const IaForm = ({
   handleSubmit,
   handleSearch,
   register,
-  isPending,
+  isRequestPending,
 }: IaFormType) => (
   <form
     onSubmit={handleSubmit(handleSearch)}
@@ -32,8 +32,8 @@ export const IaForm = ({
         }
       }}
     />
-    <Button className="mt-auto" disabled={isPending}>
-      {isPending ? <Spinner /> : <Send />}
+    <Button className="mt-auto" disabled={isRequestPending}>
+      {isRequestPending ? <Spinner /> : <Send />}
     </Button>
   </form>
 );

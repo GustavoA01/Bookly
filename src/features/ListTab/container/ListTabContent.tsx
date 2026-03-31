@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/src/services/keys";
 import { getLists } from "@/src/services/firebase/lists/getLists";
 import { Skeleton } from "@/src/components/ui/skeleton";
-import { useAuth } from "@/src/contexts/AuthProvider";
+import { useAuth } from "@/src/data/contexts/AuthProvider";
 import { Input } from "@/src/components/ui/input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";

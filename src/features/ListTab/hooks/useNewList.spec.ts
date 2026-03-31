@@ -2,12 +2,12 @@ import { renderHook, act } from "@testing-library/react";
 import { Timestamp } from "firebase/firestore";
 import { useListMutation } from "./useListMutation";
 import { useNewList } from "./useNewList";
-import { useAuth } from "@/src/contexts/AuthProvider";
+import { useAuth } from "@/src/data/contexts/AuthProvider";
 import { useImageForm } from "@/src/hooks/useImageForm";
 import { ListFormType } from "@/src/data/schemas";
 import { ListType } from "@/src/data/types/books";
 
-jest.mock("../../../contexts/AuthProvider");
+jest.mock("../../../data/contexts/AuthProvider");
 jest.mock("./useListMutation");
 jest.mock("../../../hooks/useImageForm");
 jest.mock("firebase/firestore", () => ({

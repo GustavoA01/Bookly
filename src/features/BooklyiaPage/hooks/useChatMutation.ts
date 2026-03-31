@@ -1,4 +1,4 @@
-import { useAuth } from "@/src/contexts/AuthProvider";
+import { useAuth } from "@/src/data/contexts/AuthProvider";
 import { SuggestionsResponseType } from "@/src/data/types/api";
 import { getBooks } from "@/src/services/firebase/books/getBooks";
 import { createChat } from "@/src/services/firebase/chat/createChat";
@@ -18,7 +18,7 @@ export const useChatMutation = () => {
     enabled: !!user,
   });
 
-  const { data: chat } = useQuery({
+  const { data: chat, isPending: isChatPending } = useQuery({
     queryKey: [keys.queryKeys.chat, user?.uid],
     queryFn: () => getChat(user?.uid as string),
     enabled: !!user,
@@ -61,7 +61,8 @@ export const useChatMutation = () => {
     userMessage,
     suggestions: data?.suggestions || [],
     searchBooks,
-    isPending,
+    isChatPending,
+    isRequestPending: isPending,
     setUserMessage,
   };
 };

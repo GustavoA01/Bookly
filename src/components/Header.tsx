@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback } from "./ui/avatar";
 import { Drawer, DrawerClose, DrawerContent, DrawerTitle } from "./ui/drawer";
 import { useState } from "react";
 import { ConfirmLogout } from "./ConfirmLogout";
-import { useAuth } from "../contexts/AuthProvider";
+import { useAuth } from "../data/contexts/AuthProvider";
 import { Skeleton } from "./ui/skeleton";
 import Image from "next/image";
 

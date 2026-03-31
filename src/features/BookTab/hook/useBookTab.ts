@@ -1,4 +1,4 @@
-import { useAuth } from "@/src/contexts/AuthProvider";
+import { useAuth } from "@/src/data/contexts/AuthProvider";
 import { FilterOptionsType, Status } from "@/src/data/types/books";
 import { getBooks } from "@/src/services/firebase/books/getBooks";
 import { keys } from "@/src/services/keys";
