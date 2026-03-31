@@ -5,16 +5,20 @@ import { Recommendations } from "../components/Recommendations";
 import { useBooklyIa } from "../hooks/useBooklyIa";
 
 export const IaPageContent = () => {
-  const { userMessage, data, handleSearch, register, handleSubmit, isPending } =
-    useBooklyIa();
+  const {
+    userMessage,
+    suggestions,
+    handleSearch,
+    register,
+    handleSubmit,
+    isPending,
+    chat,
+  } = useBooklyIa();
 
   return (
     <>
-      {userMessage && (
-        <ChatContent
-          userMessage={userMessage}
-          chatMessage={data?.chatResponse}
-        />
+      {chat?.messages && (
+        <ChatContent messages={chat.messages} temporaryMessage={userMessage} />
       )}
 
       <IaForm
@@ -23,7 +27,7 @@ export const IaPageContent = () => {
         handleSubmit={handleSubmit}
         isPending={isPending}
       />
-      <Recommendations books={data?.suggestions || []} />
+      <Recommendations books={suggestions} />
     </>
   );
 };

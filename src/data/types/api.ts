@@ -45,3 +45,8 @@ export type SuggestionsResponseType = {
   chatResponse: string;
   suggestions: GoogleBookItem[];
 };
+
+export type ChatMessageType = {
+  messages: { sender: "user" | "bot"; text: string; timestamp: Date }[];
+  suggestions: GoogleBookItem[];
+};
