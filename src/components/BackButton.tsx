@@ -4,13 +4,13 @@ import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 
 export const BackButton = () => {
-  const router = useRouter();
+  const { back } = useRouter();
 
   return (
     <Button
       data-testid="back-button"
       variant="outline"
-      onClick={() => router.back()}
+      onClick={() => back()}
       className="rounded-full w-12 h-12"
     >
       <ArrowLeft className="w-auto h-auto" />

@@ -24,7 +24,7 @@ export const ConfirmDeleteModal = ({
     <DialogHeader>
       <DialogTitle>Excluir Conversa</DialogTitle>
       <DialogDescription>
-        Tem certeza que deseja deletear a conversa?
+        Tem certeza que deseja deletar a conversa?
       </DialogDescription>
     </DialogHeader>
     <DialogFooter>
