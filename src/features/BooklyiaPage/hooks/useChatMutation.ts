@@ -2,13 +2,16 @@ import { useAuth } from "@/src/data/contexts/AuthProvider";
 import { SuggestionsResponseType } from "@/src/data/types/api";
 import { getBooks } from "@/src/services/firebase/books/getBooks";
 import { createChat } from "@/src/services/firebase/chat/createChat";
+import { deleteChat } from "@/src/services/firebase/chat/deleteChat";
 import { getChat } from "@/src/services/firebase/chat/getChat";
 import { keys } from "@/src/services/keys";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export const useChatMutation = () => {
   const [userMessage, setUserMessage] = useState<string>("");
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const { user } = useAuth();
   const queryClient = useQueryClient();
 
@@ -56,6 +59,21 @@ export const useChatMutation = () => {
     },
   });
 
+  const { mutateAsync: deleteChatFn, isPending: isDeletingChat } = useMutation({
+    mutationFn: deleteChat,
+    onSuccess: async () => {
+      setIsDeleteModalOpen(false);
+      queryClient.invalidateQueries({
+        queryKey: [keys.queryKeys.chat, user?.uid],
+      });
+      toast.success("Chat excluído");
+    },
+    onError: (error) => {
+      console.error("Error deleting chat:", error);
+      toast.error("Erro ao excluir chat");
+    },
+  });
+
   return {
     chat,
     userMessage,
@@ -64,5 +82,9 @@ export const useChatMutation = () => {
     isChatPending,
     isRequestPending: isPending,
     setUserMessage,
+    isDeleteModalOpen,
+    setIsDeleteModalOpen,
+    deleteChatFn,
+    isDeletingChat,
   };
 };

@@ -7,8 +7,12 @@ export const getChat = async (userId: string) => {
   try {
     const chatRef = doc(db, keys.firebase.chat, userId);
     const chatDoc = await getDoc(chatRef);
+    const chat = {
+      id: chatDoc.id,
+      ...chatDoc.data(),
+    } as ChatMessageType;
 
-    if (chatDoc.exists()) return chatDoc.data() as ChatMessageType;
+    if (chatDoc.exists()) return chat;
     else return null;
   } catch (error) {
     console.error("Error fetching chat document:", error);

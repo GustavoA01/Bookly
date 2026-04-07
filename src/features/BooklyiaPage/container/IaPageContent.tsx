@@ -4,6 +4,8 @@ import { ChatContent } from "../components/ChatContent";
 import { IaForm } from "../components/IaForm";
 import { Recommendations } from "../components/Recommendations";
 import { useBooklyIa } from "../hooks/useBooklyIa";
+import { Dialog } from "@/src/components/ui/dialog";
+import { ConfirmDeleteModal } from "../components/ConfirmDeleteModal";
 
 export const IaPageContent = () => {
   const {
@@ -15,6 +17,10 @@ export const IaPageContent = () => {
     isRequestPending,
     chat,
     isChatPending,
+    isDeleteModalOpen,
+    setIsDeleteModalOpen,
+    deleteChatFn,
+    isDeletingChat,
   } = useBooklyIa();
 
   return (
@@ -23,7 +29,11 @@ export const IaPageContent = () => {
         <Skeleton className="w-full sm:max-w-2xl m-auto h-40" />
       )}
       {chat?.messages && (
-        <ChatContent messages={chat.messages} temporaryMessage={userMessage} />
+        <ChatContent
+          setIsDeleteModalOpen={setIsDeleteModalOpen}
+          messages={chat.messages}
+          temporaryMessage={userMessage}
+        />
       )}
       <IaForm
         handleSearch={handleSearch}
@@ -31,10 +41,21 @@ export const IaPageContent = () => {
         handleSubmit={handleSubmit}
         isRequestPending={isRequestPending}
       />
-      <Recommendations
-        books={suggestions ?? []}
-        isChatPending={isChatPending}
-      />
+      {chat && (
+        <>
+          <Recommendations
+            books={suggestions ?? []}
+            isChatPending={isChatPending}
+          />
+          <Dialog open={isDeleteModalOpen} onOpenChange={setIsDeleteModalOpen}>
+            <ConfirmDeleteModal
+              chat={chat}
+              deleteChatFn={deleteChatFn}
+              isDeletingChat={isDeletingChat}
+            />
+          </Dialog>
+        </>
+      )}
     </>
   );
 };

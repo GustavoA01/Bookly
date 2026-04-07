@@ -12,6 +12,7 @@ export const useBooklyIa = () => {
   const { register, handleSubmit, reset } = useForm<{ prompt: string }>({
     resolver: zodResolver(chatSchema),
   });
+
   useEffect(() => {
     if (!user) push("/login");
   }, [user, push]);
@@ -24,6 +25,10 @@ export const useBooklyIa = () => {
     searchBooks,
     isRequestPending,
     isChatPending,
+    isDeleteModalOpen,
+    setIsDeleteModalOpen,
+    deleteChatFn,
+    isDeletingChat,
   } = useChatMutation();
 
   const handleSearch = async (data: { prompt: string }) => {
@@ -45,5 +50,9 @@ export const useBooklyIa = () => {
     userMessage,
     chat,
     isChatPending,
+    isDeleteModalOpen,
+    setIsDeleteModalOpen,
+    deleteChatFn,
+    isDeletingChat,
   };
 };
