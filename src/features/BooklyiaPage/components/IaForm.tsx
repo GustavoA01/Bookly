@@ -9,6 +9,7 @@ type IaFormType = {
   handleSearch: (data: { prompt: string }) => Promise<void>;
   register: UseFormRegister<{ prompt: string }>;
   isRequestPending: boolean;
+  notLoggedIn: boolean;
 };
 
 export const IaForm = ({
@@ -16,6 +17,7 @@ export const IaForm = ({
   handleSearch,
   register,
   isRequestPending,
+  notLoggedIn,
 }: IaFormType) => (
   <form
     onSubmit={handleSubmit(handleSearch)}
@@ -23,6 +25,7 @@ export const IaForm = ({
   >
     <Textarea
       className="resize-none max-w-2xl min-h-10 max-h-20"
+      disabled={isRequestPending || notLoggedIn}
       placeholder="Peça livros..."
       {...register("prompt")}
       onKeyDown={(e) => {
@@ -32,7 +35,7 @@ export const IaForm = ({
         }
       }}
     />
-    <Button className="mt-auto" disabled={isRequestPending}>
+    <Button className="mt-auto" disabled={isRequestPending || notLoggedIn}>
       {isRequestPending ? <Spinner /> : <Send />}
     </Button>
   </form>

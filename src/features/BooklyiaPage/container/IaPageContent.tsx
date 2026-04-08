@@ -6,6 +6,9 @@ import { Recommendations } from "../components/Recommendations";
 import { useBooklyIa } from "../hooks/useBooklyIa";
 import { Dialog } from "@/src/components/ui/dialog";
 import { ConfirmDeleteModal } from "../components/ConfirmDeleteModal";
+import Link from "next/link";
+import { Button } from "@/src/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 export const IaPageContent = () => {
   const {
@@ -21,11 +24,13 @@ export const IaPageContent = () => {
     setIsDeleteModalOpen,
     deleteChatFn,
     isDeletingChat,
+    notLoggedIn,
+    isLoggedIn,
   } = useBooklyIa();
 
   return (
     <>
-      {isChatPending && (
+      {isLoggedIn && isChatPending && (
         <Skeleton className="w-full sm:max-w-2xl m-auto h-40" />
       )}
       {chat?.messages && (
@@ -36,11 +41,25 @@ export const IaPageContent = () => {
           isRequestPending={isRequestPending}
         />
       )}
+      {notLoggedIn && (
+        <div className="text-center mt-10 space-y-4 animate-fade-in-title">
+          <p className="text-lg text-muted-foreground">
+            Faça login para acessar os recursos da IA.
+          </p>
+          <Link href="/login">
+            <Button>
+              <p>Ir para login</p>
+              <ArrowRight />
+            </Button>
+          </Link>
+        </div>
+      )}
       <IaForm
         handleSearch={handleSearch}
         register={register}
         handleSubmit={handleSubmit}
         isRequestPending={isRequestPending}
+        notLoggedIn={notLoggedIn}
       />
       {chat && (
         <>

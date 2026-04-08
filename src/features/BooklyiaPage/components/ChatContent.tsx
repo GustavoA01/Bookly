@@ -36,8 +36,8 @@ export const ChatContent = ({
         </Button>
       </CardAction>
     </CardHeader>
-    <CardContent className="flex flex-col-reverse gap-4 overflow-y-auto max-h-60">
-      {[...messages].map((message, index) => (
+    <CardContent className="flex flex-col gap-4 overflow-y-auto max-h-60">
+      {messages.map((message, index) => (
         <span
           key={index}
           className={`text-sm py-2 px-4 rounded-lg ml-${message.sender === "user" ? "auto" : "0"} ${

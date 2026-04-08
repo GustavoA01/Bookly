@@ -2,20 +2,15 @@ import { chatSchema } from "@/src/data/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useChatMutation } from "./useChatMutation";
-import { useEffect } from "react";
 import { useAuth } from "@/src/data/contexts/AuthProvider";
-import { useRouter } from "next/navigation";
 
 export const useBooklyIa = () => {
   const { user, isLoading } = useAuth();
-  const { push } = useRouter();
   const { register, handleSubmit, reset } = useForm<{ prompt: string }>({
     resolver: zodResolver(chatSchema),
   });
-
-  useEffect(() => {
-    if (!user && !isLoading) push("/login");
-  }, [user, isLoading, push]);
+  const notLoggedIn = !user && !isLoading;
+  const isLoggedIn = user && !isLoading;
 
   const {
     chat,
@@ -54,5 +49,7 @@ export const useBooklyIa = () => {
     setIsDeleteModalOpen,
     deleteChatFn,
     isDeletingChat,
+    notLoggedIn,
+    isLoggedIn,
   };
 };

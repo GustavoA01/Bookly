@@ -12,19 +12,20 @@ import { toast } from "sonner";
 export const useChatMutation = () => {
   const [userTemporaryMessage, setUserTemporaryMessage] = useState<string>("");
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
   const queryClient = useQueryClient();
+  const isLogged = !!user?.uid && !isLoading;
 
   const { data: userBooks } = useQuery({
     queryKey: [keys.queryKeys.books, user?.uid],
     queryFn: () => getBooks(user, "all", "all"),
-    enabled: !!user,
+    enabled: isLogged,
   });
 
   const { data: chat, isPending: isChatPending } = useQuery({
     queryKey: [keys.queryKeys.chat, user?.uid],
     queryFn: () => getChat(user?.uid as string),
-    enabled: !!user,
+    enabled: isLogged,
   });
 
   const {
