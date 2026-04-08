@@ -7,20 +7,20 @@ import { useAuth } from "@/src/data/contexts/AuthProvider";
 import { useRouter } from "next/navigation";
 
 export const useBooklyIa = () => {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
   const { push } = useRouter();
   const { register, handleSubmit, reset } = useForm<{ prompt: string }>({
     resolver: zodResolver(chatSchema),
   });
 
   useEffect(() => {
-    if (!user) push("/login");
-  }, [user, push]);
+    if (!user && !isLoading) push("/login");
+  }, [user, isLoading, push]);
 
   const {
     chat,
-    userMessage,
-    setUserMessage,
+    userTemporaryMessage,
+    setUserTemporaryMessage,
     suggestions,
     searchBooks,
     isRequestPending,
@@ -34,7 +34,7 @@ export const useBooklyIa = () => {
   const handleSearch = async (data: { prompt: string }) => {
     try {
       reset({ prompt: "" });
-      setUserMessage(data.prompt);
+      setUserTemporaryMessage(data.prompt);
       await searchBooks(data.prompt);
     } catch (error) {
       console.error("Error fetching books:", error);
@@ -47,7 +47,7 @@ export const useBooklyIa = () => {
     handleSubmit,
     isRequestPending,
     suggestions: suggestions.length === 0 ? chat?.suggestions : suggestions,
-    userMessage,
+    userTemporaryMessage,
     chat,
     isChatPending,
     isDeleteModalOpen,

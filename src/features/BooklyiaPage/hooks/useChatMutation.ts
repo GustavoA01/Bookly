@@ -10,7 +10,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 export const useChatMutation = () => {
-  const [userMessage, setUserMessage] = useState<string>("");
+  const [userTemporaryMessage, setUserTemporaryMessage] = useState<string>("");
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const { user } = useAuth();
   const queryClient = useQueryClient();
@@ -49,9 +49,9 @@ export const useChatMutation = () => {
         user?.uid as string,
         data.chatResponse,
         data.suggestions,
-        userMessage,
+        userTemporaryMessage,
       ).then(() => {
-        setUserMessage("");
+        setUserTemporaryMessage("");
         queryClient.invalidateQueries({
           queryKey: [keys.queryKeys.chat, user?.uid],
         });
@@ -76,12 +76,12 @@ export const useChatMutation = () => {
 
   return {
     chat,
-    userMessage,
+    userTemporaryMessage,
     suggestions: data?.suggestions || [],
     searchBooks,
     isChatPending,
     isRequestPending: isPending,
-    setUserMessage,
+    setUserTemporaryMessage,
     isDeleteModalOpen,
     setIsDeleteModalOpen,
     deleteChatFn,

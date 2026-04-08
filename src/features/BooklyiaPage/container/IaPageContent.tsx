@@ -9,7 +9,7 @@ import { ConfirmDeleteModal } from "../components/ConfirmDeleteModal";
 
 export const IaPageContent = () => {
   const {
-    userMessage,
+    userTemporaryMessage,
     suggestions,
     handleSearch,
     register,
@@ -32,7 +32,8 @@ export const IaPageContent = () => {
         <ChatContent
           setIsDeleteModalOpen={setIsDeleteModalOpen}
           messages={chat.messages}
-          temporaryMessage={userMessage}
+          temporaryMessage={userTemporaryMessage}
+          isRequestPending={isRequestPending}
         />
       )}
       <IaForm
