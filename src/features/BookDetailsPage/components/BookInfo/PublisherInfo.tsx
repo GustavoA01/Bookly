@@ -1,11 +1,6 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/src/components/ui/card";
-import { BookText, Earth, Languages } from "lucide-react";
-import { InfoSection } from "./InfoSection";
+import { Card, CardContent, CardHeader, CardTitle } from '@/src/components/ui/card';
+import { BookText, Earth, Languages } from 'lucide-react';
+import { InfoSection } from './InfoSection';
 
 type PublisherInfoProps = {
   publisher?: string;
@@ -13,11 +8,7 @@ type PublisherInfoProps = {
   language?: string;
 };
 
-export const PublisherInfo = ({
-  publisher,
-  country,
-  language,
-}: PublisherInfoProps) => {
+export const PublisherInfo = ({ publisher, country, language }: PublisherInfoProps) => {
   if (!publisher && !country && !language) return null;
 
   return (
@@ -36,19 +27,11 @@ export const PublisherInfo = ({
         )}
 
         {country && (
-          <InfoSection
-            label="PAÍS"
-            value={country}
-            icon={<Earth className="text-muted-foreground w-5 h-5" />}
-          />
+          <InfoSection label="PAÍS" value={country} icon={<Earth className="text-muted-foreground w-5 h-5" />} />
         )}
 
         {language && (
-          <InfoSection
-            label="IDIOMA"
-            value={language}
-            icon={<Languages className="text-muted-foreground w-5 h-5" />}
-          />
+          <InfoSection label="IDIOMA" value={language} icon={<Languages className="text-muted-foreground w-5 h-5" />} />
         )}
       </CardContent>
     </Card>

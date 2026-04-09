@@ -1,11 +1,6 @@
-"use client";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/src/components/ui/card";
-import { useRouter } from "next/navigation";
+'use client';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/src/components/ui/card';
+import { useRouter } from 'next/navigation';
 
 type ListCardProps = {
   id: string;
@@ -15,12 +10,7 @@ type ListCardProps = {
 
 export const ListCard = ({ id, name, itemCount }: ListCardProps) => {
   const router = useRouter();
-  const descriptionText =
-    itemCount === 0
-      ? "Nenhum livro"
-      : itemCount === 1
-        ? "1 livro"
-        : `${itemCount} livros`;
+  const descriptionText = itemCount === 0 ? 'Nenhum livro' : itemCount === 1 ? '1 livro' : `${itemCount} livros`;
 
   return (
     <Card

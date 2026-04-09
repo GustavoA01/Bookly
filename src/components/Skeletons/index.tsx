@@ -1,2 +1,2 @@
-export { BookTableSkeleton } from "./BookTableSkeleton";
-export { SearchCardSkeleton } from "./SearchCard";
+export { BookTableSkeleton } from './BookTableSkeleton';
+export { SearchCardSkeleton } from './SearchCard';

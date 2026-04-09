@@ -1,11 +1,7 @@
-import { useState } from "react";
-import { useListMutation } from "./useListMutation";
+import { useState } from 'react';
+import { useListMutation } from './useListMutation';
 
-export const useBookInfo = (
-  id: string,
-  currentPage: number | null,
-  totalPages: number | null,
-) => {
+export const useBookInfo = (id: string, currentPage: number | null, totalPages: number | null) => {
   const {
     listsContainingBook,
     deleteListFn,
@@ -20,10 +16,7 @@ export const useBookInfo = (
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  const progress =
-    currentPage && totalPages
-      ? Math.floor((currentPage * 100) / totalPages)
-      : null;
+  const progress = currentPage && totalPages ? Math.floor((currentPage * 100) / totalPages) : null;
 
   return {
     isBooksDetailsPage,

@@ -1,5 +1,5 @@
-import { Timestamp } from "firebase/firestore";
-import { JSX } from "react";
+import { Timestamp } from 'firebase/firestore';
+import { JSX } from 'react';
 
 export interface BookType {
   id: string;
@@ -29,7 +29,7 @@ export interface ListType {
   userId: string;
 }
 
-export type Status = "read" | "reading" | "abandoned" | "toRead";
+export type Status = 'read' | 'reading' | 'abandoned' | 'toRead';
 
 export type StatusPropsType = {
   bgColor: string;
@@ -38,11 +38,4 @@ export type StatusPropsType = {
   icon: JSX.Element;
 };
 
-export type FilterOptionsType =
-  | "all"
-  | "title"
-  | "author"
-  | "rating"
-  | "startDate"
-  | "endDate"
-  | "createdAt";
+export type FilterOptionsType = 'all' | 'title' | 'author' | 'rating' | 'startDate' | 'endDate' | 'createdAt';

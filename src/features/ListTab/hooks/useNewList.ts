@@ -1,19 +1,19 @@
-import { ListFormType, listSchema } from "@/src/data/schemas";
-import { ListType } from "@/src/data/types/books";
-import { useImageForm } from "@/src/hooks/useImageForm";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Timestamp } from "firebase/firestore";
-import { useForm } from "react-hook-form";
-import { useListMutation } from "./useListMutation";
-import { useAuth } from "@/src/data/contexts/AuthProvider";
+import { ListFormType, listSchema } from '@/src/data/schemas';
+import { ListType } from '@/src/data/types/books';
+import { useImageForm } from '@/src/hooks/useImageForm';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Timestamp } from 'firebase/firestore';
+import { useForm } from 'react-hook-form';
+import { useListMutation } from './useListMutation';
+import { useAuth } from '@/src/data/contexts/AuthProvider';
 
 export const useNewList = (list?: ListType) => {
   const { user } = useAuth();
   const methods = useForm<ListFormType>({
     resolver: zodResolver(listSchema),
     defaultValues: {
-      name: list?.name || "",
-      description: list?.description || "",
+      name: list?.name || '',
+      description: list?.description || '',
       imageUrl: list?.imageUrl || undefined,
     },
   });
@@ -32,12 +32,9 @@ export const useNewList = (list?: ListType) => {
 
   const { createListFn, updateListFn } = useListMutation();
 
-  const handleUpdateList = async (
-    data: ListFormType,
-    finalImageUrl: string | null,
-  ) => {
+  const handleUpdateList = async (data: ListFormType, finalImageUrl: string | null) => {
     if (!list || !user) return;
-    const updatedList: Pick<ListType, "name" | "description" | "imageUrl"> = {
+    const updatedList: Pick<ListType, 'name' | 'description' | 'imageUrl'> = {
       name: data.name,
       description: data.description || null,
       imageUrl: finalImageUrl,
@@ -55,7 +52,7 @@ export const useNewList = (list?: ListType) => {
       try {
         finalImageUrl = await uploadImageToCloudinary(data.imageFile);
       } catch (error) {
-        console.error("Erro no upload da imagem:", error);
+        console.error('Erro no upload da imagem:', error);
         return;
       }
     }
@@ -65,7 +62,7 @@ export const useNewList = (list?: ListType) => {
       return;
     }
 
-    const newList: Omit<ListType, "id"> = {
+    const newList: Omit<ListType, 'id'> = {
       name: data.name,
       description: data.description || null,
       imageUrl: finalImageUrl,

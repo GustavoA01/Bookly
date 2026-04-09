@@ -1,4 +1,4 @@
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from '../ui/skeleton';
 
 export const SearchCardSkeleton = () => (
   <div className="flex flex-col gap-3">

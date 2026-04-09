@@ -1,9 +1,9 @@
-import { Input } from "@/src/components/ui/input";
-import { Label } from "@/src/components/ui/label";
-import { ListFormType } from "@/src/data/schemas";
-import { ImageUp } from "lucide-react";
-import Image from "next/image";
-import { UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { Input } from '@/src/components/ui/input';
+import { Label } from '@/src/components/ui/label';
+import { ListFormType } from '@/src/data/schemas';
+import { ImageUp } from 'lucide-react';
+import Image from 'next/image';
+import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 
 type ImageFormProps = {
   register: UseFormRegister<ListFormType>;
@@ -27,13 +27,13 @@ export const ImageForm = ({
   <div className="flex flex-col gap-4">
     <Label>Selecionar Imagem</Label>
     <Input
-      {...register("imageUrl")}
+      {...register('imageUrl')}
       placeholder="Ex: https://..."
       onChange={(e) => {
         const value = e.target.value;
-        register("imageUrl").onChange(e);
-        if (value) setValue("imageFile", undefined);
-        if (value.startsWith("http")) setChoosedFile(value);
+        register('imageUrl').onChange(e);
+        if (value) setValue('imageFile', undefined);
+        if (value.startsWith('http')) setChoosedFile(value);
         else if (choosedFile) setChoosedFile(undefined);
       }}
     />
@@ -42,12 +42,7 @@ export const ImageForm = ({
       htmlFor="select-image"
       className="flex items-center justify-center border rounded-xl bg-card p-4 h-auto cursor-pointer"
     >
-      <Input
-        id="select-image"
-        type="file"
-        className="hidden"
-        onChange={handleFileChange}
-      />
+      <Input id="select-image" type="file" className="hidden" onChange={handleFileChange} />
 
       {showImage ? (
         <Image

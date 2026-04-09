@@ -1,7 +1,7 @@
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebaseConfig";
-import { keys } from "../../keys";
-import { ChatMessageType } from "@/src/data/types/api";
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
+import { keys } from '../../keys';
+import { ChatMessageType } from '@/src/data/types/api';
 
 export const getChat = async (userId: string) => {
   try {
@@ -15,7 +15,7 @@ export const getChat = async (userId: string) => {
     if (chatDoc.exists()) return chat;
     else return null;
   } catch (error) {
-    console.error("Error fetching chat document:", error);
+    console.error('Error fetching chat document:', error);
     return null;
   }
 };

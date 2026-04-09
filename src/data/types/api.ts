@@ -24,7 +24,7 @@ export interface GoogleBookItem {
   };
   saleInfo?: {
     country: string;
-    saleability: "FOR_SALE" | "NOT_FOR_SALE" | "FREE";
+    saleability: 'FOR_SALE' | 'NOT_FOR_SALE' | 'FREE';
     isEbook: boolean;
     buyLink?: string;
     listPrice?: {
@@ -34,7 +34,7 @@ export interface GoogleBookItem {
   };
 }
 
-export type FormSearchParamsType = { id: string; role: "google" | "library" };
+export type FormSearchParamsType = { id: string; role: 'google' | 'library' };
 
 export type GeminiResponseType = {
   response: string;
@@ -48,6 +48,6 @@ export type SuggestionsResponseType = {
 
 export type ChatMessageType = {
   id: string;
-  messages: { sender: "user" | "bot"; text: string; timestamp: Date }[];
+  messages: { sender: 'user' | 'bot'; text: string; timestamp: Date }[];
   suggestions: GoogleBookItem[];
 };

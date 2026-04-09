@@ -1,8 +1,8 @@
-import { chatSchema } from "@/src/data/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useChatMutation } from "./useChatMutation";
-import { useAuth } from "@/src/data/contexts/AuthProvider";
+import { chatSchema } from '@/src/data/schemas';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { useChatMutation } from './useChatMutation';
+import { useAuth } from '@/src/data/contexts/AuthProvider';
 
 export const useBooklyIa = () => {
   const { user, isLoading } = useAuth();
@@ -28,11 +28,11 @@ export const useBooklyIa = () => {
 
   const handleSearch = async (data: { prompt: string }) => {
     try {
-      reset({ prompt: "" });
+      reset({ prompt: '' });
       setUserTemporaryMessage(data.prompt);
       await searchBooks(data.prompt);
     } catch (error) {
-      console.error("Error fetching books:", error);
+      console.error('Error fetching books:', error);
     }
   };
 

@@ -1,13 +1,9 @@
-import { BookCardsList } from "@/src/components/BookCardsList";
-import { SearchForm } from "@/src/components/SearchForm";
-import { SearchCardSkeleton } from "@/src/components/Skeletons";
-import { Suspense } from "react";
+import { BookCardsList } from '@/src/components/BookCardsList';
+import { SearchForm } from '@/src/components/SearchForm';
+import { SearchCardSkeleton } from '@/src/components/Skeletons';
+import { Suspense } from 'react';
 
-const ExplorePage = async ({
-  searchParams,
-}: {
-  searchParams: Promise<{ q: string; page: string }>;
-}) => {
+const ExplorePage = async ({ searchParams }: { searchParams: Promise<{ q: string; page: string }> }) => {
   const params = await searchParams;
   const query = params.q;
   const currentPage = Number(params.page) || 1;
@@ -26,7 +22,7 @@ const ExplorePage = async ({
           </div>
         }
       >
-        <BookCardsList currentPage={currentPage} query={query || "intitle:a"} />
+        <BookCardsList currentPage={currentPage} query={query || 'intitle:a'} />
       </Suspense>
     </div>
   );

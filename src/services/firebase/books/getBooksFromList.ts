@@ -1,13 +1,7 @@
-import {
-  collection,
-  documentId,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
-import { db } from "../firebaseConfig";
-import { keys } from "../../keys";
-import { BookType } from "@/src/data/types/books";
+import { collection, documentId, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
+import { keys } from '../../keys';
+import { BookType } from '@/src/data/types/books';
 
 export const getBooksFromList = async (books: string[]) => {
   try {
@@ -18,7 +12,7 @@ export const getBooksFromList = async (books: string[]) => {
     for (let i = 0; i < books.length; i += 30) {
       const chunk = books.slice(i, i + 30);
 
-      const booksQuery = query(booksRef, where(documentId(), "in", chunk));
+      const booksQuery = query(booksRef, where(documentId(), 'in', chunk));
 
       batches.push(getDocs(booksQuery));
     }
@@ -37,7 +31,7 @@ export const getBooksFromList = async (books: string[]) => {
 
     return booksData as BookType[];
   } catch (error) {
-    console.error("Erro ao buscar livros da lista:", error);
+    console.error('Erro ao buscar livros da lista:', error);
     return [];
   }
 };

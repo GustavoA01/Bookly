@@ -1,16 +1,16 @@
-import { StatusSelect } from "@/src/components/StatusSelect";
-import { Card } from "@/src/components/ui/card";
-import { Dialog, DialogTrigger } from "@/src/components/ui/dialog";
-import { Input } from "@/src/components/ui/input";
-import { Label } from "@/src/components/ui/label";
-import { ImageOff, ImageUp } from "lucide-react";
-import { ImageDialog } from "./ImageDialog";
-import { UseFormRegister } from "react-hook-form";
-import { BookFormType } from "@/src/data/schemas";
-import { Dispatch, SetStateAction } from "react";
-import { Status } from "@/src/data/types/books";
-import Image from "next/image";
-import { Button } from "@/src/components/ui/button";
+import { StatusSelect } from '@/src/components/StatusSelect';
+import { Card } from '@/src/components/ui/card';
+import { Dialog, DialogTrigger } from '@/src/components/ui/dialog';
+import { Input } from '@/src/components/ui/input';
+import { Label } from '@/src/components/ui/label';
+import { ImageOff, ImageUp } from 'lucide-react';
+import { ImageDialog } from './ImageDialog';
+import { UseFormRegister } from 'react-hook-form';
+import { BookFormType } from '@/src/data/schemas';
+import { Dispatch, SetStateAction } from 'react';
+import { Status } from '@/src/data/types/books';
+import Image from 'next/image';
+import { Button } from '@/src/components/ui/button';
 
 type ImageFormProps = {
   register: UseFormRegister<BookFormType>;
@@ -44,19 +44,15 @@ export const ImageForm = ({
         <Input
           type="number"
           placeholder="Ex: 10"
-          {...register("rating", {
-            setValueAs: (val) => (val === "" ? undefined : Number(val)),
+          {...register('rating', {
+            setValueAs: (val) => (val === '' ? undefined : Number(val)),
           })}
         />
       </div>
 
       <div className="space-y-2 cols-span-1">
         <Label>Status</Label>
-        <StatusSelect
-          value={status}
-          onValueChange={setStatus as Dispatch<SetStateAction<Status>>}
-          className="w-full"
-        />
+        <StatusSelect value={status} onValueChange={setStatus as Dispatch<SetStateAction<Status>>} className="w-full" />
       </div>
     </div>
 
@@ -84,11 +80,7 @@ export const ImageForm = ({
       </DialogTrigger>
 
       {choosedFile && (
-        <Button
-          variant="destructive"
-          className="w-full h-8"
-          onClick={cleanCurrentImage}
-        >
+        <Button variant="destructive" className="w-full h-8" onClick={cleanCurrentImage}>
           <ImageOff />
         </Button>
       )}

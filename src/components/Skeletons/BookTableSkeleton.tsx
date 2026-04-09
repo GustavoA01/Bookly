@@ -1,5 +1,5 @@
-import { TableRow, TableCell } from "../ui/table";
-import { Skeleton } from "../ui/skeleton";
+import { TableRow, TableCell } from '../ui/table';
+import { Skeleton } from '../ui/skeleton';
 
 export const BookTableSkeleton = () => (
   <>

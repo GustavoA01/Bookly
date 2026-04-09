@@ -1,14 +1,13 @@
-import { BackButton } from "@/src/components/BackButton";
-import { Button } from "@/src/components/ui/button";
-import { Dialog } from "@/src/components/ui/dialog";
-import { Pencil, Trash } from "lucide-react";
-import { useDeleteBook } from "../hooks/useDeleteBook";
-import { DeleteBookModal } from "../components/DeleteBookModal";
-import Link from "next/link";
+import { BackButton } from '@/src/components/BackButton';
+import { Button } from '@/src/components/ui/button';
+import { Dialog } from '@/src/components/ui/dialog';
+import { Pencil, Trash } from 'lucide-react';
+import { useDeleteBook } from '../hooks/useDeleteBook';
+import { DeleteBookModal } from '../components/DeleteBookModal';
+import Link from 'next/link';
 
 export const BookActions = () => {
-  const { id, openDeleteDialog, setOpenDeleteDialog, deleteBookFn } =
-    useDeleteBook();
+  const { id, openDeleteDialog, setOpenDeleteDialog, deleteBookFn } = useDeleteBook();
 
   return (
     <header className="flex justify-between items-center">

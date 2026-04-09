@@ -1,19 +1,19 @@
-import { render, screen } from "@testing-library/react";
-import { BookActions } from "../container/BookActions";
+import { render, screen } from '@testing-library/react';
+import { BookActions } from '../container/BookActions';
 
 const mockGoback = jest.fn();
-jest.mock("next/navigation", () => ({
+jest.mock('next/navigation', () => ({
   useRouter: () => ({
     back: mockGoback,
   }),
   useParams: () => {
     return {
-      id: "1",
+      id: '1',
     };
   },
 }));
 
-jest.mock("@tanstack/react-query", () => ({
+jest.mock('@tanstack/react-query', () => ({
   useMutation: () => ({
     mutateAsync: jest.fn(),
   }),
@@ -22,19 +22,19 @@ jest.mock("@tanstack/react-query", () => ({
   }),
 }));
 
-jest.mock("firebase/auth", () => ({
+jest.mock('firebase/auth', () => ({
   getAuth: () => ({
     currentUser: {
-      uid: "123",
+      uid: '123',
     },
   }),
 }));
 
-describe("BookActions", () => {
-  it("should call go back function when back button is clicked", () => {
+describe('BookActions', () => {
+  it('should call go back function when back button is clicked', () => {
     render(<BookActions />);
 
-    const backButton = screen.getByTestId("back-button");
+    const backButton = screen.getByTestId('back-button');
     backButton.click();
 
     expect(mockGoback).toHaveBeenCalled();

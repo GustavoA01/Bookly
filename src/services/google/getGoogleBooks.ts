@@ -1,9 +1,6 @@
-import { GoogleBooksResponse } from "../../data/types/api";
+import { GoogleBooksResponse } from '../../data/types/api';
 
-export const getGoogleBooks = async (
-  query: string,
-  currentPage: number,
-): Promise<GoogleBooksResponse | null> => {
+export const getGoogleBooks = async (query: string, currentPage: number): Promise<GoogleBooksResponse | null> => {
   if (!query) return null;
 
   const startIndex = (currentPage - 1) * 12;
@@ -20,7 +17,7 @@ export const getGoogleBooks = async (
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error("Erro de rede ao buscar livros:", error);
+    console.error('Erro de rede ao buscar livros:', error);
     return null;
   }
 };

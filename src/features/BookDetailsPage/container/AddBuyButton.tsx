@@ -1,9 +1,9 @@
-"use client";
-import { Button } from "@/src/components/ui/button";
-import { useAuth } from "@/src/data/contexts/AuthProvider";
-import { Plus } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+'use client';
+import { Button } from '@/src/components/ui/button';
+import { useAuth } from '@/src/data/contexts/AuthProvider';
+import { Plus } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 type AddBuyButtonProps = {
   id?: string;
@@ -13,8 +13,8 @@ type AddBuyButtonProps = {
 export const AddBuyButton = ({ id, buyLink }: AddBuyButtonProps) => {
   const pathname = usePathname();
   const { user } = useAuth();
-  const isGoogleDetailsPage = pathname.includes("/detalhes/");
-  const redirectHref = user ? `/novo-livro?id=${id}&role=google` : "/login";
+  const isGoogleDetailsPage = pathname.includes('/detalhes/');
+  const redirectHref = user ? `/novo-livro?id=${id}&role=google` : '/login';
 
   return (
     <>

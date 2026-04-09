@@ -1,16 +1,16 @@
-import { BookFormType, bookSchema } from "@/src/data/schemas";
-import { FormSearchParamsType } from "@/src/data/types/api";
-import { BookType, Status } from "@/src/data/types/books";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useBookDates } from "./useBookDates";
-import { useImageForm } from "../../../hooks/useImageForm";
-import { Timestamp } from "firebase/firestore";
-import { useRouter } from "next/navigation";
-import { useBookMutation } from "./useBookMutation";
-import { useFetchBookForm } from "./useFetchBookForm";
-import { useAuth } from "@/src/data/contexts/AuthProvider";
+import { BookFormType, bookSchema } from '@/src/data/schemas';
+import { FormSearchParamsType } from '@/src/data/types/api';
+import { BookType, Status } from '@/src/data/types/books';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useBookDates } from './useBookDates';
+import { useImageForm } from '../../../hooks/useImageForm';
+import { Timestamp } from 'firebase/firestore';
+import { useRouter } from 'next/navigation';
+import { useBookMutation } from './useBookMutation';
+import { useFetchBookForm } from './useFetchBookForm';
+import { useAuth } from '@/src/data/contexts/AuthProvider';
 
 export const useNewBook = ({ id, role }: FormSearchParamsType) => {
   const { user } = useAuth();
@@ -23,16 +23,9 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
     reset,
     formState: { errors },
   } = methods;
-  const [status, setStatus] = useState<Status>("toRead");
+  const [status, setStatus] = useState<Status>('toRead');
 
-  const {
-    startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
-    handleCleanDates,
-    dateErrorMessage,
-  } = useBookDates();
+  const { startDate, setStartDate, endDate, setEndDate, handleCleanDates, dateErrorMessage } = useBookDates();
 
   const {
     choosedFile,
@@ -56,11 +49,8 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
     setStatus,
   });
 
-  const handleUpdateBook = async (
-    book: Omit<BookFormType, "userId">,
-    finalImageUrl: string | null,
-  ) => {
-    const bookToUpdate: Omit<BookType, "userId" | "id" | "createdAt"> = {
+  const handleUpdateBook = async (book: Omit<BookFormType, 'userId'>, finalImageUrl: string | null) => {
+    const bookToUpdate: Omit<BookType, 'userId' | 'id' | 'createdAt'> = {
       title: book.title,
       author: book.author || null,
       genre: book.genre || null,
@@ -80,7 +70,7 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
 
   const handleCreateBook = async (data: BookFormType) => {
     if (!user) {
-      router.push("/login");
+      router.push('/login');
       return;
     }
     if (dateErrorMessage) return;
@@ -91,12 +81,12 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
       try {
         finalImageUrl = await uploadImageToCloudinary(data.imageFile);
       } catch (error) {
-        console.error("Erro no upload da imagem:", error);
+        console.error('Erro no upload da imagem:', error);
         return;
       }
     }
 
-    if (id && role === "library") {
+    if (id && role === 'library') {
       handleUpdateBook(data, finalImageUrl);
       return;
     }

@@ -1,29 +1,29 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { StatusSelect } from "../StatusSelect";
+import { fireEvent, render, screen } from '@testing-library/react';
+import { StatusSelect } from '../StatusSelect';
 
-describe("StatusSelect", () => {
-  it("should render default categories when isHome is false", async () => {
+describe('StatusSelect', () => {
+  it('should render default categories when isHome is false', async () => {
     render(<StatusSelect value="" onValueChange={jest.fn()} />);
 
-    const button = await screen.findByRole("combobox");
+    const button = await screen.findByRole('combobox');
     fireEvent.click(button);
 
-    expect(screen.getByText("Lido")).toBeInTheDocument();
-    expect(screen.getByText("Lendo")).toBeInTheDocument();
-    expect(screen.getByText("Abandonado")).toBeInTheDocument();
-    expect(screen.getByText("Para ler")).toBeInTheDocument();
+    expect(screen.getByText('Lido')).toBeInTheDocument();
+    expect(screen.getByText('Lendo')).toBeInTheDocument();
+    expect(screen.getByText('Abandonado')).toBeInTheDocument();
+    expect(screen.getByText('Para ler')).toBeInTheDocument();
   });
 
-  it("should render correct categories when isHome is true", async () => {
+  it('should render correct categories when isHome is true', async () => {
     render(<StatusSelect isHome value="" onValueChange={jest.fn()} />);
 
-    const button = await screen.findByRole("combobox");
+    const button = await screen.findByRole('combobox');
     fireEvent.click(button);
 
-    expect(screen.getByText("Todos")).toBeInTheDocument();
-    expect(screen.getByText("Lido")).toBeInTheDocument();
-    expect(screen.getByText("Lendo")).toBeInTheDocument();
-    expect(screen.getByText("Abandonado")).toBeInTheDocument();
-    expect(screen.getByText("Para ler")).toBeInTheDocument();
+    expect(screen.getByText('Todos')).toBeInTheDocument();
+    expect(screen.getByText('Lido')).toBeInTheDocument();
+    expect(screen.getByText('Lendo')).toBeInTheDocument();
+    expect(screen.getByText('Abandonado')).toBeInTheDocument();
+    expect(screen.getByText('Para ler')).toBeInTheDocument();
   });
 });

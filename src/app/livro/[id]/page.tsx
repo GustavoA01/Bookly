@@ -1,10 +1,10 @@
-"use client";
-import { BookActions } from "@/src/features/BookDetailsPage/container/BookActions";
-import { BookDetails } from "@/src/features/BookDetailsPage/container/BookDetails";
-import { getBookById } from "@/src/services/firebase/books/getBookById";
-import { keys } from "@/src/services/keys";
-import { useQuery } from "@tanstack/react-query";
-import { use } from "react";
+'use client';
+import { BookActions } from '@/src/features/BookDetailsPage/container/BookActions';
+import { BookDetails } from '@/src/features/BookDetailsPage/container/BookDetails';
+import { getBookById } from '@/src/services/firebase/books/getBookById';
+import { keys } from '@/src/services/keys';
+import { useQuery } from '@tanstack/react-query';
+import { use } from 'react';
 
 const BookDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = use(params);

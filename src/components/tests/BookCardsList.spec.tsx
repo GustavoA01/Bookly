@@ -1,39 +1,39 @@
-import { render, screen } from "@testing-library/react";
-import { BookCardsList } from "../BookCardsList";
-import { GoogleBooksResponse } from "@/src/data/types/api";
+import { render, screen } from '@testing-library/react';
+import { BookCardsList } from '../BookCardsList';
+import { GoogleBooksResponse } from '@/src/data/types/api';
 
 const mockBooks: GoogleBooksResponse = {
-  kind: "books#volumes",
+  kind: 'books#volumes',
   totalItems: 2,
   items: [
     {
-      id: "1",
+      id: '1',
       volumeInfo: {
-        title: "Book One",
-        authors: ["Author A"],
-        categories: ["Fiction"],
+        title: 'Book One',
+        authors: ['Author A'],
+        categories: ['Fiction'],
         averageRating: 4,
         imageLinks: {
-          thumbnail: "/book1.jpg",
-          smallThumbnail: "/book1-small.jpg",
+          thumbnail: '/book1.jpg',
+          smallThumbnail: '/book1-small.jpg',
         },
-        language: "en",
-        previewLink: "#",
+        language: 'en',
+        previewLink: '#',
       },
     },
     {
-      id: "2",
+      id: '2',
       volumeInfo: {
-        title: "Book Two",
-        authors: ["Author B", "Author C"],
-        categories: ["Adventure"],
+        title: 'Book Two',
+        authors: ['Author B', 'Author C'],
+        categories: ['Adventure'],
         averageRating: 5,
         imageLinks: {
-          thumbnail: "/book2.jpg",
-          smallThumbnail: "/book2-small.jpg",
+          thumbnail: '/book2.jpg',
+          smallThumbnail: '/book2-small.jpg',
         },
-        language: "en",
-        previewLink: "#",
+        language: 'en',
+        previewLink: '#',
       },
     },
   ],
@@ -44,34 +44,34 @@ global.fetch = jest.fn(() =>
     ok: true,
     status: 200,
     json: () => Promise.resolve(mockBooks),
-  }),
+  })
 ) as jest.Mock;
-jest.mock("next/navigation", () => ({
-  usePathname: jest.fn(() => "/explorar"),
+jest.mock('next/navigation', () => ({
+  usePathname: jest.fn(() => '/explorar'),
   useSearchParams: jest.fn(() => ({
     get: jest.fn((param) => {
-      if (param === "page") return "1";
+      if (param === 'page') return '1';
       return null;
     }),
   })),
 }));
 
-describe("BookCardsList", () => {
-  it("renders a list of SearchBookCard components with correct data", async () => {
+describe('BookCardsList', () => {
+  it('renders a list of SearchBookCard components with correct data', async () => {
     const ResolvedComponent = await BookCardsList({
-      query: "test",
+      query: 'test',
       currentPage: 1,
     });
 
     render(ResolvedComponent);
 
-    expect(await screen.findByText("Book One")).toBeInTheDocument();
-    expect(await screen.findByText("Book Two")).toBeInTheDocument();
-    expect(await screen.findByText("Author A")).toBeInTheDocument();
-    expect(await screen.findByText("Author B, Author C")).toBeInTheDocument();
-    expect(await screen.findByText("Fiction")).toBeInTheDocument();
-    expect(await screen.findByText("Adventure")).toBeInTheDocument();
-    expect(await screen.findByText("4")).toBeInTheDocument();
-    expect(await screen.findByText("5")).toBeInTheDocument();
+    expect(await screen.findByText('Book One')).toBeInTheDocument();
+    expect(await screen.findByText('Book Two')).toBeInTheDocument();
+    expect(await screen.findByText('Author A')).toBeInTheDocument();
+    expect(await screen.findByText('Author B, Author C')).toBeInTheDocument();
+    expect(await screen.findByText('Fiction')).toBeInTheDocument();
+    expect(await screen.findByText('Adventure')).toBeInTheDocument();
+    expect(await screen.findByText('4')).toBeInTheDocument();
+    expect(await screen.findByText('5')).toBeInTheDocument();
   });
 });

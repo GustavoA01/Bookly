@@ -1,5 +1,5 @@
-import { Card, CardContent } from "@/src/components/ui/card";
-import { BookOpen, PencilLine } from "lucide-react";
+import { Card, CardContent } from '@/src/components/ui/card';
+import { BookOpen, PencilLine } from 'lucide-react';
 
 type BookSynopsisProps = {
   synopsis: string | null;

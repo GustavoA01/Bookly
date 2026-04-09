@@ -1,12 +1,16 @@
-import { TableHead, TableRow } from "../../../components/ui/table";
+import { TableHead, TableRow } from '../../../components/ui/table';
+
+const tableHeaderClassName = 'text-muted-foreground font-bold';
 
 export const BookTHeader = () => (
-  <TableRow className="mt-4 px-8">
-    <TableHead className="text-muted-foreground font-bold">
+  <TableRow>
+    <TableHead className={tableHeaderClassName}>
       <p className="ml-8">Livro</p>
     </TableHead>
-    <TableHead className="text-muted-foreground font-bold">Gênero</TableHead>
-    <TableHead className="text-muted-foreground font-bold">Status</TableHead>
-    <TableHead className="text-muted-foreground font-bold">Nota</TableHead>
+    <TableHead className={tableHeaderClassName}>Gênero</TableHead>
+    <TableHead className={tableHeaderClassName}>Status</TableHead>
+    <TableHead className={tableHeaderClassName}>
+      <p className="max-sm:mr-8">Nota</p>
+    </TableHead>
   </TableRow>
 );

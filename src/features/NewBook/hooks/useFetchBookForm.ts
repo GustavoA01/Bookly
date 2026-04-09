@@ -1,11 +1,11 @@
-import { BookFormType } from "@/src/data/schemas";
-import { FormSearchParamsType, GoogleBookItem } from "@/src/data/types/api";
-import { Status } from "@/src/data/types/books";
-import { getBookById } from "@/src/services/firebase/books/getBookById";
-import { keys } from "@/src/services/keys";
-import { useQuery } from "@tanstack/react-query";
-import { useCallback, useEffect } from "react";
-import { UseFormReset } from "react-hook-form";
+import { BookFormType } from '@/src/data/schemas';
+import { FormSearchParamsType, GoogleBookItem } from '@/src/data/types/api';
+import { Status } from '@/src/data/types/books';
+import { getBookById } from '@/src/services/firebase/books/getBookById';
+import { keys } from '@/src/services/keys';
+import { useQuery } from '@tanstack/react-query';
+import { useCallback, useEffect } from 'react';
+import { UseFormReset } from 'react-hook-form';
 
 type UseFetchBookFormReturnType = {
   params: FormSearchParamsType;
@@ -25,12 +25,12 @@ export const useFetchBookForm = ({
   setEndDate,
 }: UseFetchBookFormReturnType) => {
   const { id, role } = params;
-  const isLibrary = !!id && role === "library";
-  const isGoogle = !!id && role === "google";
+  const isLibrary = !!id && role === 'library';
+  const isGoogle = !!id && role === 'google';
 
   const htmlToText = (html: string) => {
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    return doc.body.textContent || "";
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || '';
   };
 
   const { data: libraryBook } = useQuery({
@@ -40,20 +40,18 @@ export const useFetchBookForm = ({
   });
 
   const fetchBook = useCallback(async () => {
-    const book = (await fetch(
-      `https://www.googleapis.com/books/v1/volumes/${id}`,
-    ).then((res) => res.json())) as GoogleBookItem;
+    const book = (await fetch(`https://www.googleapis.com/books/v1/volumes/${id}`).then((res) =>
+      res.json()
+    )) as GoogleBookItem;
 
     if (book) {
       reset({
-        title: book.volumeInfo.title || "",
-        author: book.volumeInfo.authors
-          ? book.volumeInfo.authors.join(", ")
-          : "",
-        imageUrl: book.volumeInfo.imageLinks?.thumbnail || "",
+        title: book.volumeInfo.title || '',
+        author: book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : '',
+        imageUrl: book.volumeInfo.imageLinks?.thumbnail || '',
         numberOfPages: book.volumeInfo.pageCount || undefined,
-        synopsis: htmlToText(book.volumeInfo.description || ""),
-        genre: book.volumeInfo.categories ? book.volumeInfo.categories[0] : "",
+        synopsis: htmlToText(book.volumeInfo.description || ''),
+        genre: book.volumeInfo.categories ? book.volumeInfo.categories[0] : '',
       });
       setChoosedFile(book.volumeInfo.imageLinks?.thumbnail || undefined);
     }
@@ -63,21 +61,17 @@ export const useFetchBookForm = ({
     if (libraryBook) {
       reset({
         title: libraryBook.title,
-        author: libraryBook.author || "",
-        genre: libraryBook.genre || "",
-        synopsis: libraryBook.synopsis || "",
+        author: libraryBook.author || '',
+        genre: libraryBook.genre || '',
+        synopsis: libraryBook.synopsis || '',
         numberOfPages: libraryBook.totalPages || undefined,
         currentPage: libraryBook.currentPage || undefined,
         rating: libraryBook.rating || undefined,
       });
       setChoosedFile(libraryBook.imageUrl || undefined);
       setStatus(libraryBook.status);
-      setStartDate(
-        libraryBook.startDate ? libraryBook.startDate.toDate() : undefined,
-      );
-      setEndDate(
-        libraryBook.endDate ? libraryBook.endDate.toDate() : undefined,
-      );
+      setStartDate(libraryBook.startDate ? libraryBook.startDate.toDate() : undefined);
+      setEndDate(libraryBook.endDate ? libraryBook.endDate.toDate() : undefined);
     }
   }, [setStatus, setStartDate, setEndDate, setChoosedFile, reset, libraryBook]);
 

@@ -1,5 +1,5 @@
-import { SearchCardSkeleton } from "@/src/components/Skeletons";
-import { Skeleton } from "@/src/components/ui/skeleton";
+import { SearchCardSkeleton } from '@/src/components/Skeletons';
+import { Skeleton } from '@/src/components/ui/skeleton';
 
 const ExploreLoading = () => {
   return (

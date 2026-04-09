@@ -1,42 +1,42 @@
-import { renderHook, act } from "@testing-library/react";
-import { Timestamp } from "firebase/firestore";
-import { useListMutation } from "./useListMutation";
-import { useNewList } from "./useNewList";
-import { useAuth } from "@/src/data/contexts/AuthProvider";
-import { useImageForm } from "@/src/hooks/useImageForm";
-import { ListFormType } from "@/src/data/schemas";
-import { ListType } from "@/src/data/types/books";
+import { renderHook, act } from '@testing-library/react';
+import { Timestamp } from 'firebase/firestore';
+import { useListMutation } from './useListMutation';
+import { useNewList } from './useNewList';
+import { useAuth } from '@/src/data/contexts/AuthProvider';
+import { useImageForm } from '@/src/hooks/useImageForm';
+import { ListFormType } from '@/src/data/schemas';
+import { ListType } from '@/src/data/types/books';
 
-jest.mock("../../../data/contexts/AuthProvider");
-jest.mock("./useListMutation");
-jest.mock("../../../hooks/useImageForm");
-jest.mock("firebase/firestore", () => ({
+jest.mock('../../../data/contexts/AuthProvider');
+jest.mock('./useListMutation');
+jest.mock('../../../hooks/useImageForm');
+jest.mock('firebase/firestore', () => ({
   Timestamp: {
     now: jest.fn(),
   },
   getFirestore: jest.fn(),
 }));
-jest.mock("firebase/auth", () => ({
+jest.mock('firebase/auth', () => ({
   getAuth: jest.fn(),
 }));
 
 global.URL.revokeObjectURL = jest.fn();
 
 const mockData: ListFormType = {
-  name: "Minha Lista",
-  description: "Descrição da minha lista",
-  imageUrl: "https://example.com/image.jpg",
+  name: 'Minha Lista',
+  description: 'Descrição da minha lista',
+  imageUrl: 'https://example.com/image.jpg',
 };
 
 const updateMockData: ListFormType = {
-  name: "Lista Atualizada",
-  description: "Descrição atualizada",
-  imageUrl: "https://example.com/nova-imagem.jpg",
+  name: 'Lista Atualizada',
+  description: 'Descrição atualizada',
+  imageUrl: 'https://example.com/nova-imagem.jpg',
 };
 
-describe("useNewList", () => {
-  describe("handleCreateList", () => {
-    const mockUser = { uid: "user-123" };
+describe('useNewList', () => {
+  describe('handleCreateList', () => {
+    const mockUser = { uid: 'user-123' };
     const mockCreateListFn = jest.fn();
     const mockUpdateListFn = jest.fn();
     const mockSetChoosedFile = jest.fn();
@@ -63,7 +63,7 @@ describe("useNewList", () => {
       });
     });
 
-    it("should return undefined if user is not authenticated", async () => {
+    it('should return undefined if user is not authenticated', async () => {
       (useAuth as jest.Mock).mockReturnValue({ user: null });
 
       const { result } = renderHook(() => useNewList());
@@ -77,7 +77,7 @@ describe("useNewList", () => {
       expect(mockCreateListFn).not.toHaveBeenCalled();
     });
 
-    it("should call createListFn when user is authenticated", async () => {
+    it('should call createListFn when user is authenticated', async () => {
       const { result } = renderHook(() => useNewList());
 
       await act(async () => {
@@ -86,12 +86,12 @@ describe("useNewList", () => {
 
       expect(mockCreateListFn).toHaveBeenCalledTimes(1);
       expect(mockCreateListFn).toHaveBeenCalledWith({
-        name: "Minha Lista",
-        description: "Descrição da minha lista",
-        imageUrl: "https://example.com/image.jpg",
+        name: 'Minha Lista',
+        description: 'Descrição da minha lista',
+        imageUrl: 'https://example.com/image.jpg',
         createdAt: { seconds: 1234567890, nanoseconds: 0 },
         books: [],
-        userId: "user-123",
+        userId: 'user-123',
       });
     });
 
@@ -107,13 +107,13 @@ describe("useNewList", () => {
     //   );
     // });
 
-    it("should handle description as null when not provided", async () => {
+    it('should handle description as null when not provided', async () => {
       const { result } = renderHook(() => useNewList());
 
       const dataWithoutDescription = {
-        name: "Minha Lista",
+        name: 'Minha Lista',
         description: undefined,
-        imageUrl: "https://example.com/image.jpg",
+        imageUrl: 'https://example.com/image.jpg',
       };
 
       await act(async () => {
@@ -123,16 +123,16 @@ describe("useNewList", () => {
       expect(mockCreateListFn).toHaveBeenCalledWith(
         expect.objectContaining({
           description: null,
-        }),
+        })
       );
     });
 
-    it("should handle imageUrl as null when not provided", async () => {
+    it('should handle imageUrl as null when not provided', async () => {
       const { result } = renderHook(() => useNewList());
 
       const dataWithoutImage = {
-        name: "Minha Lista",
-        description: "Descrição",
+        name: 'Minha Lista',
+        description: 'Descrição',
         imageUrl: undefined,
       };
 
@@ -143,25 +143,25 @@ describe("useNewList", () => {
       expect(mockCreateListFn).toHaveBeenCalledWith(
         expect.objectContaining({
           imageUrl: null,
-        }),
+        })
       );
     });
   });
 
-  describe("handleUpdateList", () => {
-    const mockUser = { uid: "user-123" };
+  describe('handleUpdateList', () => {
+    const mockUser = { uid: 'user-123' };
     const mockCreateListFn = jest.fn();
     const mockUpdateListFn = jest.fn();
     const mockSetChoosedFile = jest.fn();
 
     const mockExistingList: ListType = {
-      id: "list-123",
-      name: "Lista Antiga",
-      description: "Descrição antiga",
-      imageUrl: "https://example.com/imagem-antiga.jpg",
+      id: 'list-123',
+      name: 'Lista Antiga',
+      description: 'Descrição antiga',
+      imageUrl: 'https://example.com/imagem-antiga.jpg',
       createdAt: { seconds: 1234567890, nanoseconds: 0 } as Timestamp,
       books: [],
-      userId: "user-123",
+      userId: 'user-123',
     };
 
     beforeEach(() => {
@@ -186,7 +186,7 @@ describe("useNewList", () => {
       });
     });
 
-    it("should return undefined if user is not authenticated", async () => {
+    it('should return undefined if user is not authenticated', async () => {
       (useAuth as jest.Mock).mockReturnValue({ user: null });
 
       const { result } = renderHook(() => useNewList(mockExistingList));
@@ -200,7 +200,7 @@ describe("useNewList", () => {
       expect(mockUpdateListFn).not.toHaveBeenCalled();
     });
 
-    it("should return undefined if list is not provided", async () => {
+    it('should return undefined if list is not provided', async () => {
       const { result } = renderHook(() => useNewList());
       let returnValue;
       await act(async () => {
@@ -212,7 +212,7 @@ describe("useNewList", () => {
       expect(mockCreateListFn).toHaveBeenCalled();
     });
 
-    it("should call updateListFn when user and list are provided", async () => {
+    it('should call updateListFn when user and list are provided', async () => {
       const { result } = renderHook(() => useNewList(mockExistingList));
 
       await act(async () => {
@@ -222,22 +222,22 @@ describe("useNewList", () => {
       expect(mockUpdateListFn).toHaveBeenCalledTimes(1);
       expect(mockUpdateListFn).toHaveBeenCalledWith({
         list: {
-          name: "Lista Atualizada",
-          description: "Descrição atualizada",
-          imageUrl: "https://example.com/nova-imagem.jpg",
+          name: 'Lista Atualizada',
+          description: 'Descrição atualizada',
+          imageUrl: 'https://example.com/nova-imagem.jpg',
         },
-        listId: "list-123",
+        listId: 'list-123',
         user: mockUser,
       });
     });
 
-    it("should handle description as null when not provided", async () => {
+    it('should handle description as null when not provided', async () => {
       const { result } = renderHook(() => useNewList(mockExistingList));
 
       const dataWithoutDescription = {
-        name: "Lista Atualizada",
+        name: 'Lista Atualizada',
         description: undefined,
-        imageUrl: "https://example.com/nova-imagem.jpg",
+        imageUrl: 'https://example.com/nova-imagem.jpg',
       };
 
       await act(async () => {
@@ -246,21 +246,21 @@ describe("useNewList", () => {
 
       expect(mockUpdateListFn).toHaveBeenCalledWith({
         list: {
-          name: "Lista Atualizada",
+          name: 'Lista Atualizada',
           description: null,
-          imageUrl: "https://example.com/nova-imagem.jpg",
+          imageUrl: 'https://example.com/nova-imagem.jpg',
         },
-        listId: "list-123",
+        listId: 'list-123',
         user: mockUser,
       });
     });
 
-    it("should handle imageUrl as null when not provided", async () => {
+    it('should handle imageUrl as null when not provided', async () => {
       const { result } = renderHook(() => useNewList(mockExistingList));
 
       const dataWithoutImage = {
-        name: "Lista Atualizada",
-        description: "Descrição atualizada",
+        name: 'Lista Atualizada',
+        description: 'Descrição atualizada',
         imageUrl: undefined,
       };
 
@@ -270,21 +270,21 @@ describe("useNewList", () => {
 
       expect(mockUpdateListFn).toHaveBeenCalledWith({
         list: {
-          name: "Lista Atualizada",
-          description: "Descrição atualizada",
+          name: 'Lista Atualizada',
+          description: 'Descrição atualizada',
           imageUrl: null,
         },
-        listId: "list-123",
+        listId: 'list-123',
         user: mockUser,
       });
     });
 
-    it("should not call setChoosedFile when imageUrl is not provided", async () => {
+    it('should not call setChoosedFile when imageUrl is not provided', async () => {
       const { result } = renderHook(() => useNewList(mockExistingList));
 
       const dataWithoutImage = {
-        name: "Lista Atualizada",
-        description: "Descrição atualizada",
+        name: 'Lista Atualizada',
+        description: 'Descrição atualizada',
         imageUrl: undefined,
       };
 
@@ -295,13 +295,13 @@ describe("useNewList", () => {
       expect(mockSetChoosedFile).not.toHaveBeenCalled();
     });
 
-    it("should handle update with empty description", async () => {
+    it('should handle update with empty description', async () => {
       const { result } = renderHook(() => useNewList(mockExistingList));
 
       const dataWithEmptyDescription = {
-        name: "Lista Atualizada",
-        description: "",
-        imageUrl: "https://example.com/nova-imagem.jpg",
+        name: 'Lista Atualizada',
+        description: '',
+        imageUrl: 'https://example.com/nova-imagem.jpg',
       };
 
       await act(async () => {
@@ -310,22 +310,22 @@ describe("useNewList", () => {
 
       expect(mockUpdateListFn).toHaveBeenCalledWith({
         list: {
-          name: "Lista Atualizada",
+          name: 'Lista Atualizada',
           description: null,
-          imageUrl: "https://example.com/nova-imagem.jpg",
+          imageUrl: 'https://example.com/nova-imagem.jpg',
         },
-        listId: "list-123",
+        listId: 'list-123',
         user: mockUser,
       });
     });
 
-    it("should handle update with empty imageUrl", async () => {
+    it('should handle update with empty imageUrl', async () => {
       const { result } = renderHook(() => useNewList(mockExistingList));
 
       const dataWithEmptyImage = {
-        name: "Lista Atualizada",
-        description: "Descrição atualizada",
-        imageUrl: "",
+        name: 'Lista Atualizada',
+        description: 'Descrição atualizada',
+        imageUrl: '',
       };
 
       await act(async () => {
@@ -334,11 +334,11 @@ describe("useNewList", () => {
 
       expect(mockUpdateListFn).toHaveBeenCalledWith({
         list: {
-          name: "Lista Atualizada",
-          description: "Descrição atualizada",
+          name: 'Lista Atualizada',
+          description: 'Descrição atualizada',
           imageUrl: null,
         },
-        listId: "list-123",
+        listId: 'list-123',
         user: mockUser,
       });
     });

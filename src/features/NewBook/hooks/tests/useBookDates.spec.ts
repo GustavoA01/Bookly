@@ -1,8 +1,8 @@
-import { act, renderHook } from "@testing-library/react";
-import { useBookDates } from "../useBookDates";
+import { act, renderHook } from '@testing-library/react';
+import { useBookDates } from '../useBookDates';
 
-describe("useBookDates", () => {
-  test("handleCleanMessages", () => {
+describe('useBookDates', () => {
+  test('handleCleanMessages', () => {
     const { result } = renderHook(() => useBookDates());
     const startDate = new Date(2023, 0, 2);
     const endDate = new Date(2023, 0, 1);
@@ -17,7 +17,7 @@ describe("useBookDates", () => {
     expect(result.current.endDate).toBeUndefined();
   });
 
-  test("getErrorMessages - endDate before startDate", () => {
+  test('getErrorMessages - endDate before startDate', () => {
     const { result } = renderHook(() => useBookDates());
     const startDate = new Date(2023, 0, 2);
     const endDate = new Date(2023, 0, 1);
@@ -27,12 +27,10 @@ describe("useBookDates", () => {
       result.current.setEndDate(endDate);
     });
 
-    expect(result.current.dateErrorMessage).toBe(
-      "A data de término não pode ser anterior à data de início.",
-    );
+    expect(result.current.dateErrorMessage).toBe('A data de término não pode ser anterior à data de início.');
   });
 
-  test("getErrorMessages - endDate defined but startDate not defined", () => {
+  test('getErrorMessages - endDate defined but startDate not defined', () => {
     const { result } = renderHook(() => useBookDates());
     const endDate = new Date(2023, 0, 1);
 
@@ -40,8 +38,6 @@ describe("useBookDates", () => {
       result.current.setEndDate(endDate);
     });
 
-    expect(result.current.dateErrorMessage).toBe(
-      "A data de início é obrigatória para definir a data de término.",
-    );
+    expect(result.current.dateErrorMessage).toBe('A data de início é obrigatória para definir a data de término.');
   });
 });

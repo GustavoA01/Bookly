@@ -1,22 +1,22 @@
-import { act, renderHook } from "@testing-library/react";
-import { useImageForm } from "./useImageForm";
+import { act, renderHook } from '@testing-library/react';
+import { useImageForm } from './useImageForm';
 
-jest.mock("firebase/auth", () => ({
+jest.mock('firebase/auth', () => ({
   getAuth: jest.fn(),
 }));
 
-describe("useImageForm", () => {
-  test("cleanCurrentImage", () => {
+describe('useImageForm', () => {
+  test('cleanCurrentImage', () => {
     const mockSetValue = jest.fn();
     const { result } = renderHook(() => useImageForm(mockSetValue));
     result.current.cleanCurrentImage();
 
-    expect(mockSetValue).toHaveBeenCalledWith("imageUrl", "");
-    expect(mockSetValue).toHaveBeenCalledWith("imageFile", undefined);
+    expect(mockSetValue).toHaveBeenCalledWith('imageUrl', '');
+    expect(mockSetValue).toHaveBeenCalledWith('imageFile', undefined);
     expect(result.current.choosedFile).toBeUndefined();
   });
 
-  test("handleImageError", () => {
+  test('handleImageError', () => {
     jest.useFakeTimers();
     const { result } = renderHook(() => useImageForm(jest.fn()));
     result.current.handleImageError();
@@ -25,7 +25,7 @@ describe("useImageForm", () => {
       result.current.handleImageError();
     });
 
-    expect(result.current.chooseImageError).toBe("Erro ao carregar a imagem");
+    expect(result.current.chooseImageError).toBe('Erro ao carregar a imagem');
     expect(result.current.choosedFile).toBeUndefined();
 
     act(() => {
@@ -36,14 +36,12 @@ describe("useImageForm", () => {
     jest.useRealTimers();
   });
 
-  test("handleFileChange", () => {
+  test('handleFileChange', () => {
     const mockSetValue = jest.fn();
-    window.URL.createObjectURL = jest
-      .fn()
-      .mockReturnValue(() => "blob:http://localhost/example");
+    window.URL.createObjectURL = jest.fn().mockReturnValue(() => 'blob:http://localhost/example');
     const { result } = renderHook(() => useImageForm(mockSetValue));
-    const file = new File(["dummy content"], "example.png", {
-      type: "image/png",
+    const file = new File(['dummy content'], 'example.png', {
+      type: 'image/png',
     });
     const event = {
       target: { files: [file] },
@@ -51,7 +49,7 @@ describe("useImageForm", () => {
 
     result.current.handleFileChange(event);
 
-    expect(mockSetValue).toHaveBeenCalledWith("imageUrl", "");
-    expect(mockSetValue).toHaveBeenCalledWith("imageFile", file);
+    expect(mockSetValue).toHaveBeenCalledWith('imageUrl', '');
+    expect(mockSetValue).toHaveBeenCalledWith('imageFile', file);
   });
 });

@@ -1,4 +1,4 @@
-import { Button } from "@/src/components/ui/button";
+import { Button } from '@/src/components/ui/button';
 import {
   DialogClose,
   DialogContent,
@@ -6,15 +6,14 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/src/components/ui/dialog";
+} from '@/src/components/ui/dialog';
 
 export const DeleteBookModal = ({ deleteFn }: { deleteFn: () => void }) => (
   <DialogContent>
     <DialogHeader>
       <DialogTitle>Excluir livro</DialogTitle>
       <DialogDescription>
-        Tem certeza que deseja excluir este livro? Ele também será deletado de
-        todas as listas em que está.
+        Tem certeza que deseja excluir este livro? Ele também será deletado de todas as listas em que está.
       </DialogDescription>
     </DialogHeader>
 

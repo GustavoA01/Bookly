@@ -1,11 +1,11 @@
-import { SignUpFormType, signUpSchema } from "@/src/data/schemas";
-import { auth } from "@/src/services/firebase/firebaseConfig";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FirebaseError } from "firebase/app";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
+import { SignUpFormType, signUpSchema } from '@/src/data/schemas';
+import { auth } from '@/src/services/firebase/firebaseConfig';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FirebaseError } from 'firebase/app';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
+import { useForm } from 'react-hook-form';
 
 export const useSignUp = () => {
   const router = useRouter();
@@ -18,22 +18,18 @@ export const useSignUp = () => {
   const handleSignUp = async (data: SignUpFormType) => {
     startTransition(async () => {
       try {
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
-          data.email,
-          data.password,
-        );
+        const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
 
         const user = userCredential.user;
         if (user) await updateProfile(user, { displayName: data.name });
 
-        router.push("/");
+        router.push('/');
       } catch (error) {
         const authError = error as FirebaseError;
         const errorCode = authError.code;
         const errorMessage = authError.message;
 
-        console.error("Erro ao criar usuário:", errorCode, errorMessage);
+        console.error('Erro ao criar usuário:', errorCode, errorMessage);
         setErrorMessage(errorMessage);
 
         setTimeout(() => {

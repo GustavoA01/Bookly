@@ -1,14 +1,14 @@
 export const keys = {
   firebase: {
-    books: "books",
-    lists: "lists",
-    chat: "chat",
+    books: 'books',
+    lists: 'lists',
+    chat: 'chat',
   },
   queryKeys: {
-    books: "books",
-    bookId: "book",
-    lists: "lists",
-    listId: "list",
-    chat: "chat",
+    books: 'books',
+    bookId: 'book',
+    lists: 'lists',
+    listId: 'list',
+    chat: 'chat',
   },
 };

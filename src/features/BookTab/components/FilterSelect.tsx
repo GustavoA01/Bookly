@@ -1,25 +1,16 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/src/components/ui/select";
-import { filterOptions } from "@/src/data/constants";
-import { FilterOptionsType } from "@/src/data/types/books";
-import { SlidersHorizontal } from "lucide-react";
-import { Dispatch, SetStateAction } from "react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/src/components/ui/select';
+import { filterOptions } from '@/src/data/constants';
+import { FilterOptionsType } from '@/src/data/types/books';
+import { SlidersHorizontal } from 'lucide-react';
+import { Dispatch, SetStateAction } from 'react';
 
 type FilterSelectProps = {
-  value: FilterOptionsType | "";
+  value: FilterOptionsType | '';
   onSelect: Dispatch<SetStateAction<FilterOptionsType>>;
 };
 
 export const FilterSelect = ({ value, onSelect }: FilterSelectProps) => (
-  <Select
-    value={value}
-    onValueChange={(val) => onSelect(val as FilterOptionsType)}
-  >
+  <Select value={value} onValueChange={(val) => onSelect(val as FilterOptionsType)}>
     <SelectTrigger>
       <SlidersHorizontal />
       <SelectValue placeholder="Filtrar" />

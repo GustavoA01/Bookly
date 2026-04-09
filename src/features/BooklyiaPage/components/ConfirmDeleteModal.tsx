@@ -1,4 +1,4 @@
-import { Button } from "@/src/components/ui/button";
+import { Button } from '@/src/components/ui/button';
 import {
   DialogClose,
   DialogContent,
@@ -6,8 +6,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/src/components/ui/dialog";
-import { ChatMessageType } from "@/src/data/types/api";
+} from '@/src/components/ui/dialog';
+import { ChatMessageType } from '@/src/data/types/api';
 
 type ConfirmDeleteModalProps = {
   chat: ChatMessageType;
@@ -15,24 +15,18 @@ type ConfirmDeleteModalProps = {
   isDeletingChat: boolean;
 };
 
-export const ConfirmDeleteModal = ({
-  chat,
-  deleteChatFn,
-  isDeletingChat,
-}: ConfirmDeleteModalProps) => (
+export const ConfirmDeleteModal = ({ chat, deleteChatFn, isDeletingChat }: ConfirmDeleteModalProps) => (
   <DialogContent>
     <DialogHeader>
       <DialogTitle>Excluir Conversa</DialogTitle>
-      <DialogDescription>
-        Tem certeza que deseja deletar a conversa?
-      </DialogDescription>
+      <DialogDescription>Tem certeza que deseja deletar a conversa?</DialogDescription>
     </DialogHeader>
     <DialogFooter>
       <DialogClose asChild>
         <Button variant="outline">Cancelar</Button>
       </DialogClose>
       <Button variant="destructive" onClick={() => deleteChatFn(chat.id)}>
-        {isDeletingChat ? "Excluindo..." : "Excluir"}
+        {isDeletingChat ? 'Excluindo...' : 'Excluir'}
       </Button>
     </DialogFooter>
   </DialogContent>

@@ -1,7 +1,7 @@
-import { Input } from "@/src/components/ui/input";
-import { Label } from "@/src/components/ui/label";
-import { BookFormType } from "@/src/data/schemas";
-import { UseFormRegister } from "react-hook-form";
+import { Input } from '@/src/components/ui/input';
+import { Label } from '@/src/components/ui/label';
+import { BookFormType } from '@/src/data/schemas';
+import { UseFormRegister } from 'react-hook-form';
 
 type PagesFormProps = {
   register: UseFormRegister<BookFormType>;
@@ -13,9 +13,9 @@ export const PagesForm = ({ register }: PagesFormProps) => (
       <Label>Número de páginas</Label>
       <Input
         type="number"
-        {...register("numberOfPages", {
+        {...register('numberOfPages', {
           setValueAs(value) {
-            return value === "" ? undefined : Number(value);
+            return value === '' ? undefined : Number(value);
           },
         })}
         placeholder="Ex: 300"
@@ -26,9 +26,9 @@ export const PagesForm = ({ register }: PagesFormProps) => (
       <Label>Página atual</Label>
       <Input
         type="number"
-        {...register("currentPage", {
+        {...register('currentPage', {
           setValueAs(value) {
-            return value === "" ? undefined : Number(value);
+            return value === '' ? undefined : Number(value);
           },
         })}
         placeholder="Ex: 150"

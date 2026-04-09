@@ -1,13 +1,13 @@
-import { render, screen } from "@testing-library/react";
-import { ImageForm } from "../components/ImageForm";
+import { render, screen } from '@testing-library/react';
+import { ImageForm } from '../components/ImageForm';
 
-jest.mock("react-hook-form", () => ({
+jest.mock('react-hook-form', () => ({
   useFormContext: () => ({
     register: jest.fn(),
   }),
 }));
 
-jest.mock("next/image", () => {
+jest.mock('next/image', () => {
   const mockImage = ({
     src,
     alt,
@@ -22,12 +22,12 @@ jest.mock("next/image", () => {
     // eslint-disable-next-line @next/next/no-img-element
   }) => <img src={src} alt={alt} width={width} height={height} />;
 
-  mockImage.displayName = "MockImage";
+  mockImage.displayName = 'MockImage';
   return mockImage;
 });
 
-describe("ImageForm", () => {
-  it("renders component correctly", () => {
+describe('ImageForm', () => {
+  it('renders component correctly', () => {
     render(
       <ImageForm
         register={jest.fn()}
@@ -40,15 +40,15 @@ describe("ImageForm", () => {
         handleImageError={jest.fn()}
         cleanCurrentImage={jest.fn()}
         chooseImageError={undefined}
-      />,
+      />
     );
 
-    expect(screen.getByText("Nota")).toBeInTheDocument();
-    expect(screen.getAllByText("Status")[0]).toBeInTheDocument();
+    expect(screen.getByText('Nota')).toBeInTheDocument();
+    expect(screen.getAllByText('Status')[0]).toBeInTheDocument();
   });
 
-  it("renders chosen image correctly", () => {
-    const imageUrl = "https://example.com/image.jpg";
+  it('renders chosen image correctly', () => {
+    const imageUrl = 'https://example.com/image.jpg';
 
     render(
       <ImageForm
@@ -62,10 +62,10 @@ describe("ImageForm", () => {
         handleImageError={jest.fn()}
         cleanCurrentImage={jest.fn()}
         chooseImageError={undefined}
-      />,
+      />
     );
 
-    const imgElement = screen.getByRole("img") as HTMLImageElement;
+    const imgElement = screen.getByRole('img') as HTMLImageElement;
     expect(imgElement).toBeInTheDocument();
     expect(imgElement.src).toBe(imageUrl);
   });

@@ -1,15 +1,15 @@
-"use client";
-import { Input } from "@/src/components/ui/input";
-import { Label } from "@/src/components/ui/label";
-import { Textarea } from "@/src/components/ui/textarea";
-import { ImageForm } from "@/src/features/NewBook/components/ImageForm";
-import { FormProvider } from "react-hook-form";
-import { DatesForm } from "../components/DatesForm";
-import { PagesForm } from "../components/PagesForm";
-import { AuthorForm } from "../components/AuthorForm";
-import { useNewBook } from "../hooks/useNewBook";
-import { FormSearchParamsType } from "@/src/data/types/api";
-import { FormErrorMessage } from "@/src/components/FormErrorMessage";
+'use client';
+import { Input } from '@/src/components/ui/input';
+import { Label } from '@/src/components/ui/label';
+import { Textarea } from '@/src/components/ui/textarea';
+import { ImageForm } from '@/src/features/NewBook/components/ImageForm';
+import { FormProvider } from 'react-hook-form';
+import { DatesForm } from '../components/DatesForm';
+import { PagesForm } from '../components/PagesForm';
+import { AuthorForm } from '../components/AuthorForm';
+import { useNewBook } from '../hooks/useNewBook';
+import { FormSearchParamsType } from '@/src/data/types/api';
+import { FormErrorMessage } from '@/src/components/FormErrorMessage';
 
 export const BookForm = ({ id, role }: FormSearchParamsType) => {
   const {
@@ -36,18 +36,11 @@ export const BookForm = ({ id, role }: FormSearchParamsType) => {
   const { register, handleSubmit } = methods;
 
   return (
-    <form
-      id="book-form"
-      onSubmit={handleSubmit(handleCreateBook)}
-      className="flex flex-col sm:grid grid-cols-5"
-    >
+    <form id="book-form" onSubmit={handleSubmit(handleCreateBook)} className="flex flex-col sm:grid grid-cols-5">
       <div className="col-span-3 flex flex-col space-y-4 p-4">
         <Label>Título*</Label>
-        <Input {...register("title")} placeholder="Ex: O Hobbit" />
-        <FormErrorMessage
-          showMessage={!!errors.title}
-          message={errors.title?.message}
-        />
+        <Input {...register('title')} placeholder="Ex: O Hobbit" />
+        <FormErrorMessage showMessage={!!errors.title} message={errors.title?.message} />
 
         <AuthorForm register={register} />
 
@@ -65,17 +58,13 @@ export const BookForm = ({ id, role }: FormSearchParamsType) => {
           setEndDate={setEndDate}
           handleCleanDates={handleCleanDates}
         />
-        <FormErrorMessage
-          showMessage={!!dateErrorMessage}
-          message={dateErrorMessage}
-          className="hidden sm:flex"
-        />
+        <FormErrorMessage showMessage={!!dateErrorMessage} message={dateErrorMessage} className="hidden sm:flex" />
 
         <Label>Sinopse</Label>
-        <Textarea {...register("synopsis")} className="resize-none" />
+        <Textarea {...register('synopsis')} className="resize-none" />
 
         <Label>Comentário</Label>
-        <Textarea {...register("comment")} className="resize-none" />
+        <Textarea {...register('comment')} className="resize-none" />
       </div>
 
       <FormProvider {...methods}>

@@ -1,7 +1,7 @@
-"use client";
-import { usePathname } from "next/navigation";
-import { navigationButtons } from "../data/constants";
-import Link from "next/link";
+'use client';
+import { usePathname } from 'next/navigation';
+import { navigationButtons } from '../data/constants';
+import Link from 'next/link';
 
 export const BottomNavigation = () => {
   const pathname = usePathname();
@@ -11,13 +11,9 @@ export const BottomNavigation = () => {
       {navigationButtons.map((item) => (
         <Link href={item.href} key={item.name}>
           <div
-            className={`flex flex-col items-center text-muted-foreground space-y-1 ${pathname === item.href ? "text-primary" : ""}`}
+            className={`flex flex-col items-center text-muted-foreground space-y-1 ${pathname === item.href ? 'text-primary' : ''}`}
           >
-            <div
-              className={`text-muted-foreground ${pathname === item.href ? "text-primary" : ""}`}
-            >
-              {item.icon}
-            </div>
+            <div className={`text-muted-foreground ${pathname === item.href ? 'text-primary' : ''}`}>{item.icon}</div>
             <span className="text-sm">{item.name}</span>
           </div>
         </Link>

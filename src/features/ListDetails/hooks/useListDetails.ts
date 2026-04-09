@@ -1,10 +1,10 @@
-import { getBooksFromList } from "@/src/services/firebase/books/getBooksFromList";
-import { deleteList } from "@/src/services/firebase/lists/deleteList";
-import { getListById } from "@/src/services/firebase/lists/getListById";
-import { keys } from "@/src/services/keys";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { getBooksFromList } from '@/src/services/firebase/books/getBooksFromList';
+import { deleteList } from '@/src/services/firebase/lists/deleteList';
+import { getListById } from '@/src/services/firebase/lists/getListById';
+import { keys } from '@/src/services/keys';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export const useListDetails = (id: string) => {
   const router = useRouter();
@@ -23,7 +23,7 @@ export const useListDetails = (id: string) => {
     onSuccess: () => {
       setOpenDeleteDialog(false);
       queryClient.invalidateQueries({ queryKey: [keys.queryKeys.lists] });
-      router.push("/?tab=lists");
+      router.push('/?tab=lists');
     },
   });
 

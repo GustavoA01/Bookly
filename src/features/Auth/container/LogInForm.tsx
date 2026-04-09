@@ -1,7 +1,7 @@
-"use client";
-import { EmailPass } from "../components/EmailPass";
-import { FormErrorMessage } from "@/src/components/FormErrorMessage";
-import { useSignIn } from "../hooks/useSignIn";
+'use client';
+import { EmailPass } from '../components/EmailPass';
+import { FormErrorMessage } from '@/src/components/FormErrorMessage';
+import { useSignIn } from '../hooks/useSignIn';
 
 export const LogInForm = () => {
   const {

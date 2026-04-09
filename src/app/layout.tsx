@@ -1,60 +1,60 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Montserrat } from "next/font/google";
-import "./globals.css";
-import { Providers } from "../components/Providers";
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono, Montserrat } from 'next/font/google';
+import './globals.css';
+import { Providers } from '../components/Providers';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
+  variable: '--font-montserrat',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
   // metadataBase: new URL("http://localhost:3000"),
 
-  title: "Bookly",
-  description: "Encontre e salve livros na sua biblioteca usando IA.",
+  title: 'Bookly',
+  description: 'Encontre e salve livros na sua biblioteca usando IA.',
   abstract:
-    "Bookly é um aplicativo de biblioteca pessoal que utiliza inteligência artificial para ajudar os usuários a encontrar e salvar livros.",
-  authors: [{ name: "Gustavo Aguiar" }],
-  creator: "Gustavo Aguiar",
-  publisher: "Bookly",
+    'Bookly é um aplicativo de biblioteca pessoal que utiliza inteligência artificial para ajudar os usuários a encontrar e salvar livros.',
+  authors: [{ name: 'Gustavo Aguiar' }],
+  creator: 'Gustavo Aguiar',
+  publisher: 'Bookly',
   keywords: [
-    "bookly",
-    "biblioteca pessoal",
-    "inteligência artificial",
-    "encontrar livros",
-    "livros",
-    "gestão de leitura",
+    'bookly',
+    'biblioteca pessoal',
+    'inteligência artificial',
+    'encontrar livros',
+    'livros',
+    'gestão de leitura',
   ],
   openGraph: {
-    type: "website",
-    url: "/",
-    title: "Bookly",
-    description: "Salve e encontre livros usando IA",
-    siteName: "Bookly",
-    locale: "pt_BR",
+    type: 'website',
+    url: '/',
+    title: 'Bookly',
+    description: 'Salve e encontre livros usando IA',
+    siteName: 'Bookly',
+    locale: 'pt_BR',
     images: [
       {
-        url: "/opengraph-image.png",
+        url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: "Preview do site Bookly",
+        alt: 'Preview do site Bookly',
       },
     ],
   },
   icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
+    icon: '/icon.png',
+    apple: '/icon.png',
   },
 };
 
@@ -65,9 +65,7 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="pt-br" data-lt-installed="true" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} dark antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} dark antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -1,5 +1,5 @@
-import { statusColors } from "../data/constants";
-import { Status } from "../data/types/books";
+import { statusColors } from '../data/constants';
+import { Status } from '../data/types/books';
 
 type StatusChipProps = {
   status: Status;

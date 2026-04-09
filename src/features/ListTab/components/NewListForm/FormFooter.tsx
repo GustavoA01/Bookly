@@ -1,5 +1,5 @@
-import { Button } from "@/src/components/ui/button";
-import { DialogClose, DialogFooter } from "@/src/components/ui/dialog";
+import { Button } from '@/src/components/ui/button';
+import { DialogClose, DialogFooter } from '@/src/components/ui/dialog';
 
 export const FormFooter = () => (
   <DialogFooter>

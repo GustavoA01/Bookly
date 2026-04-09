@@ -1,4 +1,4 @@
-import { Button } from "@/src/components/ui/button";
+import { Button } from '@/src/components/ui/button';
 import {
   DialogClose,
   DialogContent,
@@ -6,15 +6,14 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/src/components/ui/dialog";
+} from '@/src/components/ui/dialog';
 
 export const DeleteListModal = ({ deleteFn }: { deleteFn: () => void }) => (
   <DialogContent>
     <DialogHeader>
       <DialogTitle>Excluir lista</DialogTitle>
       <DialogDescription>
-        Tem certeza que deseja excluir esta lista? Os livros contidos nela não
-        serão deletados.
+        Tem certeza que deseja excluir esta lista? Os livros contidos nela não serão deletados.
       </DialogDescription>
     </DialogHeader>
 

@@ -1,6 +1,6 @@
-import { FormErrorMessage } from "@/src/components/FormErrorMessage";
-import { Button } from "@/src/components/ui/button";
-import { DatePicker } from "@/src/components/ui/DatePicker";
+import { FormErrorMessage } from '@/src/components/FormErrorMessage';
+import { Button } from '@/src/components/ui/button';
+import { DatePicker } from '@/src/components/ui/DatePicker';
 
 type DatesFormProps = {
   startDate: Date | undefined;
@@ -28,18 +28,10 @@ export const DatesForm = ({
       <DatePicker label="Término" date={endDate} setDate={setEndDate} />
     </div>
 
-    <FormErrorMessage
-      showMessage={!!dateErrorMessage}
-      message={dateErrorMessage}
-      className="sm:hidden"
-    />
+    <FormErrorMessage showMessage={!!dateErrorMessage} message={dateErrorMessage} className="sm:hidden" />
 
     {(startDate || endDate) && (
-      <Button
-        variant="outline"
-        onClick={handleCleanDates}
-        className="w-full sm:w-auto mt-auto"
-      >
+      <Button variant="outline" onClick={handleCleanDates} className="w-full sm:w-auto mt-auto">
         Limpar datas
       </Button>
     )}

@@ -1,5 +1,5 @@
-import { BottomNavigation } from "@/src/components/BottomNavigation";
-import { Header } from "@/src/components/Header";
+import { BottomNavigation } from '@/src/components/BottomNavigation';
+import { Header } from '@/src/components/Header';
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => (
   <div>

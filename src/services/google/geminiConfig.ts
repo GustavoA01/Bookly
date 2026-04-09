@@ -1,8 +1,8 @@
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI } from '@google/genai';
 
 const apiKey = process.env.GEMINI_API_KEY;
 
-if (!apiKey) throw new Error("Variável de ambiente não configurada");
+if (!apiKey) throw new Error('Variável de ambiente não configurada');
 
 export const ai = new GoogleGenAI({
   apiKey: apiKey,

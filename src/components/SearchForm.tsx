@@ -1,13 +1,13 @@
-"use client";
-import { Input } from "./ui/input";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState, useTransition } from "react";
+'use client';
+import { Input } from './ui/input';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState, useTransition } from 'react';
 
 export const SearchForm = () => {
   const [, startTransition] = useTransition();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const search = searchParams.get("q") || "";
+  const search = searchParams.get('q') || '';
   const [searchText, setSearchText] = useState(search);
 
   useEffect(() => {

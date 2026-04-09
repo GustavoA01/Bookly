@@ -1,27 +1,18 @@
-import {
-  arrayRemove,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  query,
-  where,
-  writeBatch,
-} from "firebase/firestore";
-import { keys } from "../../keys";
-import { User } from "firebase/auth";
-import { db } from "../firebaseConfig";
+import { arrayRemove, collection, deleteDoc, doc, getDocs, query, where, writeBatch } from 'firebase/firestore';
+import { keys } from '../../keys';
+import { User } from 'firebase/auth';
+import { db } from '../firebaseConfig';
 
 export const deleteBook = async (id: string, user: User | null) => {
   try {
-    if (!user) throw new Error("Usuário não autenticado");
+    if (!user) throw new Error('Usuário não autenticado');
 
     const batch = writeBatch(db);
 
     const listQuery = query(
       collection(db, keys.firebase.lists),
-      where("userId", "==", user.uid),
-      where("books", "array-contains", id),
+      where('userId', '==', user.uid),
+      where('books', 'array-contains', id)
     );
     const listsSnapshot = await getDocs(listQuery);
 
@@ -37,9 +28,7 @@ export const deleteBook = async (id: string, user: User | null) => {
 
     await deleteDoc(doc(db, keys.firebase.books, id));
   } catch (error) {
-    console.error("Erro ao deletar livro:", error);
-    throw new Error(
-      "Não foi possível deletar o livro. Tente novamente mais tarde.",
-    );
+    console.error('Erro ao deletar livro:', error);
+    throw new Error('Não foi possível deletar o livro. Tente novamente mais tarde.');
   }
 };
