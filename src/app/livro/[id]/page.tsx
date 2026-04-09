@@ -5,15 +5,25 @@ import { getBookById } from '@/src/services/firebase/books/getBookById';
 import { keys } from '@/src/services/keys';
 import { useQuery } from '@tanstack/react-query';
 import { use } from 'react';
+import BookDetailsSkeleton from './loading';
+import BookDetailsError from './error';
 
 const BookDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = use(params);
-
-  const { data: book } = useQuery({
+  const {
+    data: book,
+    isLoading,
+    error,
+    isError,
+  } = useQuery({
     queryKey: [keys.queryKeys.bookId, id],
     queryFn: () => getBookById(id),
     enabled: !!id,
   });
+
+  if (isLoading) return <BookDetailsSkeleton />;
+
+  if (isError) return <BookDetailsError error={error} />;
 
   return (
     <div className="space-y-8">
