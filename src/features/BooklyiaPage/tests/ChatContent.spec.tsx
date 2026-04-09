@@ -2,6 +2,8 @@ import { ChatMessageType } from "@/src/data/types/api";
 import { ChatContent } from "../components/ChatContent";
 import { fireEvent, render, screen } from "@testing-library/react";
 
+HTMLElement.prototype.scrollTo = jest.fn();
+
 const mockMessages: ChatMessageType["messages"] = [
   { sender: "user", text: "Hello", timestamp: new Date() },
   { sender: "bot", text: "Hi there!", timestamp: new Date() },
