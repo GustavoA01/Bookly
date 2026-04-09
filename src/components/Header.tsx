@@ -1,26 +1,19 @@
 'use client';
-import { Dialog, DialogClose, DialogContent, DialogTitle } from './ui/dialog';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from './ui/button';
 import { navigationButtons } from '../data/constants';
-import { LogIn } from 'lucide-react';
-import { Avatar, AvatarFallback } from './ui/avatar';
-import { Drawer, DrawerClose, DrawerContent, DrawerTitle } from './ui/drawer';
 import { useState } from 'react';
-import { ConfirmLogout } from './ConfirmLogout';
 import { useAuth } from '../data/contexts/AuthProvider';
-import { Skeleton } from './ui/skeleton';
 import Image from 'next/image';
+import { UserIcon } from '../features/MenuOptions/components/UserIcon';
+import { Menu } from '../features/MenuOptions/container/Menu';
 
 export const Header = () => {
   const { user, isLoading } = useAuth();
   const pathname = usePathname();
   const [openSheet, setOpenSheet] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [openConfirmModal, setOpenConfirmModal] = useState(false);
-
-  const handleLogout = () => setOpenConfirmModal(true);
 
   return (
     <header className="flex justify-between w-full items-center">
@@ -43,55 +36,16 @@ export const Header = () => {
             </Link>
           ))}
         </nav>
-
-        {isLoading ? (
-          <Skeleton className="w-10 h-10 rounded-full" />
-        ) : user ? (
-          <Avatar className="cursor-pointer ">
-            <AvatarFallback className="sm:hidden" onClick={() => setOpenSheet(true)}>
-              <p>{user?.displayName?.charAt(0).toUpperCase()}</p>
-            </AvatarFallback>
-            <AvatarFallback className="hidden sm:flex" onClick={() => setOpenModal(true)}>
-              <p>{user?.displayName?.charAt(0).toUpperCase()}</p>
-            </AvatarFallback>
-          </Avatar>
-        ) : (
-          <Link href="/login" title="Fazer login">
-            <Button variant="outline">
-              <LogIn />
-              <p>Entrar</p>
-            </Button>
-          </Link>
-        )}
+        <UserIcon user={user} isLoading={isLoading} setOpenSheet={setOpenSheet} setOpenModal={setOpenModal} />
       </div>
 
-      <Drawer open={openSheet} onOpenChange={setOpenSheet}>
-        <DrawerContent className="p-4">
-          <DrawerTitle>{user?.displayName}</DrawerTitle>
-          <DrawerClose asChild>
-            <Button variant="outline" onClick={handleLogout}>
-              <LogIn />
-              <p>Sair</p>
-            </Button>
-          </DrawerClose>
-        </DrawerContent>
-      </Drawer>
-
-      <Dialog open={openModal} onOpenChange={setOpenModal}>
-        <DialogContent>
-          <DialogTitle>{user?.displayName}</DialogTitle>
-          <DialogClose asChild>
-            <Button variant="outline" onClick={handleLogout}>
-              <LogIn />
-              <p>Sair</p>
-            </Button>
-          </DialogClose>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={openConfirmModal} onOpenChange={setOpenConfirmModal}>
-        <ConfirmLogout setCloseModal={setOpenConfirmModal} />
-      </Dialog>
+      <Menu
+        user={user}
+        openSheet={openSheet}
+        openModal={openModal}
+        setOpenSheet={setOpenSheet}
+        setOpenModal={setOpenModal}
+      />
     </header>
   );
 };
