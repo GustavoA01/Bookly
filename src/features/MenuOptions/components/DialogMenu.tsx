@@ -2,7 +2,7 @@ import { LogIn } from 'lucide-react';
 import { Button } from '../../../components/ui/button';
 import { DialogClose, DialogContent, DialogTitle } from '../../../components/ui/dialog';
 import { User } from 'firebase/auth';
-import { Options } from '../components/Options';
+import { Options } from './Options';
 
 type DialogMenuProps = {
   user: User | null;

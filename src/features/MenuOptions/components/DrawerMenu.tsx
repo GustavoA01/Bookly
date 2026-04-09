@@ -2,7 +2,7 @@ import { LogIn } from 'lucide-react';
 import { Button } from '../../../components/ui/button';
 import { DrawerClose, DrawerContent, DrawerTitle } from '../../../components/ui/drawer';
 import { User } from 'firebase/auth';
-import { Options } from '../components/Options';
+import { Options } from './Options';
 
 type DrawerMenuProps = {
   user: User | null;

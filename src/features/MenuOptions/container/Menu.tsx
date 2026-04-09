@@ -1,10 +1,12 @@
-import { User } from 'firebase/auth';
-import { Drawer } from '../../../components/ui/drawer';
-import { DrawerMenu } from './DrawerMenu';
-import { Dialog, DialogContent, DialogTitle } from '../../../components/ui/dialog';
-import { DialogMenu } from './DialogMenu';
+import { Dialog, DialogContent } from '../../../components/ui/dialog';
 import { ConfirmLogout } from '../../../components/ConfirmLogout';
+import { Drawer } from '../../../components/ui/drawer';
+import { DrawerMenu } from '../components/DrawerMenu';
+import { DialogMenu } from '../components/DialogMenu';
+import { NameForm } from './NameForm';
+import { User } from 'firebase/auth';
 import { useState } from 'react';
+import { PasswordForm } from './PasswordForm';
 
 type MenuProps = {
   user: User | null;
@@ -44,17 +46,6 @@ export const Menu = ({ user, openSheet, openModal, setOpenSheet, setOpenModal }:
         />
       </Drawer>
 
-      <Dialog open={openUserNameDialog} onOpenChange={setOpenUserNameDialog}>
-        <DialogContent>
-          <DialogTitle>Alterar nome de usuário</DialogTitle>
-        </DialogContent>
-      </Dialog>
-      <Dialog open={openPasswordDialog} onOpenChange={setOpenPasswordDialog}>
-        <DialogContent>
-          <DialogTitle>Alterar senha</DialogTitle>
-        </DialogContent>
-      </Dialog>
-
       <Dialog open={openModal} onOpenChange={setOpenModal}>
         <DialogMenu
           user={user}
@@ -63,6 +54,18 @@ export const Menu = ({ user, openSheet, openModal, setOpenSheet, setOpenModal }:
           handleOpenPasswordDialog={handleOpenPasswordDialog}
         />
       </Dialog>
+
+      <Dialog open={openUserNameDialog} onOpenChange={setOpenUserNameDialog}>
+        <DialogContent>
+          <NameForm />
+        </DialogContent>
+      </Dialog>
+      <Dialog open={openPasswordDialog} onOpenChange={setOpenPasswordDialog}>
+        <DialogContent>
+          <PasswordForm />
+        </DialogContent>
+      </Dialog>
+
       <Dialog open={openConfirmModal} onOpenChange={setOpenConfirmModal}>
         <ConfirmLogout setCloseModal={setOpenConfirmModal} />
       </Dialog>
