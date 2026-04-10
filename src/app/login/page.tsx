@@ -7,7 +7,10 @@ import { LogInForm } from '@/src/features/Auth/container/LogInForm';
 const LogInPage = () => {
   return (
     <Card className="max-w-lg w-full">
-      <AuthHeader title="Bem-vindo de volta!" description="Faça login para acessar sua biblioteca." />
+      <AuthHeader
+        title="Bem-vindo de volta!"
+        description="Faça login para acessar sua biblioteca."
+      />
 
       <CardContent>
         <LogInForm />
@@ -20,7 +23,11 @@ const LogInPage = () => {
           Google
         </Button>
         <CardFooter className="flex flex-col">
-          <HaveAccount label="Não tem uma conta?" labelAction="Cadastre-se" labelHref="/signup" />
+          <HaveAccount
+            label="Não tem uma conta?"
+            labelAction="Cadastre-se"
+            labelHref="/signup"
+          />
         </CardFooter>
       </CardContent>
     </Card>

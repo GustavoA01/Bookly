@@ -38,7 +38,9 @@ describe('useImageForm', () => {
 
   test('handleFileChange', () => {
     const mockSetValue = jest.fn();
-    window.URL.createObjectURL = jest.fn().mockReturnValue(() => 'blob:http://localhost/example');
+    window.URL.createObjectURL = jest
+      .fn()
+      .mockReturnValue(() => 'blob:http://localhost/example');
     const { result } = renderHook(() => useImageForm(mockSetValue));
     const file = new File(['dummy content'], 'example.png', {
       type: 'image/png',

@@ -13,13 +13,17 @@ describe('EmailPass', () => {
 
     expect(screen.getByText('EMAIL')).toBeInTheDocument();
     expect(screen.getByText('SENHA')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('exemplo@bookly.com')).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('exemplo@bookly.com')
+    ).toBeInTheDocument();
   });
 
   it('displays the correct action label on the button', () => {
     render(<EmailPass {...defaultProps} />);
 
-    expect(screen.getByRole('button', { name: /Sign In/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /Sign In/i })
+    ).toBeInTheDocument();
   });
 
   it('renders password recovery link when pathPasswordRecovery is provided', () => {
@@ -33,7 +37,10 @@ describe('EmailPass', () => {
     render(<EmailPass {...recoveryProps} />);
 
     expect(screen.getByText('Esqueceu a senha?')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Recuperar' })).toHaveAttribute('href', '/password-recovery');
+    expect(screen.getByRole('link', { name: 'Recuperar' })).toHaveAttribute(
+      'href',
+      '/password-recovery'
+    );
   });
 
   it('does not render recovery section when pathPasswordRecovery is missing', () => {

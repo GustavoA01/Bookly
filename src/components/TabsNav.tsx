@@ -26,7 +26,12 @@ export const TabsNav = ({ tab = 'books' }: { tab: string | undefined }) => {
     <nav className="bg-card rounded-lg flex gap-2 p-1 w-fit mb-2 max-sm:w-full justify-center">
       {tabs.map(({ label, value, variant, className, icon, title }) => (
         <Link key={value} href={`?tab=${value}`} className="w-full">
-          <Button size="sm" title={title} variant={variant as 'secondary' | 'ghost'} className={`${className} w-full`}>
+          <Button
+            size="sm"
+            title={title}
+            variant={variant as 'secondary' | 'ghost'}
+            className={`${className} w-full`}
+          >
             {icon}
             <p>{label}</p>
           </Button>

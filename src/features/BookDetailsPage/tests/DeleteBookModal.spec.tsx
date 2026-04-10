@@ -16,7 +16,9 @@ describe('DeleteBookModal', () => {
 
     expect(getByText('Excluir livro')).toBeInTheDocument();
     expect(
-      getByText('Tem certeza que deseja excluir este livro? Ele também será deletado de todas as listas em que está.')
+      getByText(
+        'Tem certeza que deseja excluir este livro? Ele também será deletado de todas as listas em que está.'
+      )
     ).toBeInTheDocument();
     expect(deleteFn).toHaveBeenCalled();
   });

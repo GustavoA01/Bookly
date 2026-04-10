@@ -15,11 +15,17 @@ type ConfirmDeleteModalProps = {
   isDeletingChat: boolean;
 };
 
-export const ConfirmDeleteModal = ({ chat, deleteChatFn, isDeletingChat }: ConfirmDeleteModalProps) => (
+export const ConfirmDeleteModal = ({
+  chat,
+  deleteChatFn,
+  isDeletingChat,
+}: ConfirmDeleteModalProps) => (
   <DialogContent>
     <DialogHeader>
       <DialogTitle>Excluir Conversa</DialogTitle>
-      <DialogDescription>Tem certeza que deseja deletar a conversa?</DialogDescription>
+      <DialogDescription>
+        Tem certeza que deseja deletar a conversa?
+      </DialogDescription>
     </DialogHeader>
     <DialogFooter>
       <DialogClose asChild>

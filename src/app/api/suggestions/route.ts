@@ -6,7 +6,8 @@ export const POST = async (req: Request) => {
   try {
     const { prompt, userBooks } = await req.json();
 
-    if (!prompt) return Response.json({ error: 'Prompt is required' }, { status: 400 });
+    if (!prompt)
+      return Response.json({ error: 'Prompt is required' }, { status: 400 });
 
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
@@ -32,7 +33,9 @@ export const POST = async (req: Request) => {
 
     const bookPromises = geminiData.suggestions.map(async (s) => {
       const q = encodeURIComponent(`intitle:${s.title} inauthor:${s.author}`);
-      const res = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${q}&maxResults=1`);
+      const res = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${q}&maxResults=1`
+      );
       const data = await res.json();
       return data.items?.[0] || null;
     });

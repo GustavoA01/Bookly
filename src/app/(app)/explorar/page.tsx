@@ -3,7 +3,11 @@ import { SearchForm } from '@/src/components/SearchForm';
 import { SearchCardSkeleton } from '@/src/components/Skeletons';
 import { Suspense } from 'react';
 
-const ExplorePage = async ({ searchParams }: { searchParams: Promise<{ q: string; page: string }> }) => {
+const ExplorePage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ q: string; page: string }>;
+}) => {
   const params = await searchParams;
   const query = params.q;
   const currentPage = Number(params.page) || 1;

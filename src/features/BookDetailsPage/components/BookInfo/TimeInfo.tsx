@@ -1,5 +1,11 @@
 'use client';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/src/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/src/components/ui/card';
 import { Progress } from '@/src/components/ui/progress';
 import { BookType } from '@/src/data/types/books';
 import { Calendar, CheckCircle } from 'lucide-react';
@@ -15,8 +21,12 @@ export const TimeInfo = ({ startDate, endDate, progress }: TimeInfoProps) => {
   const pathname = usePathname();
   const isDetailsPage = pathname.includes('/detalhes/');
 
-  const formattedStartDate = startDate ? format(startDate.toDate(), 'dd/MM/yyyy') : '--/--/----';
-  const formattedEndDate = endDate ? format(endDate.toDate(), 'dd/MM/yyyy') : '--/--/----';
+  const formattedStartDate = startDate
+    ? format(startDate.toDate(), 'dd/MM/yyyy')
+    : '--/--/----';
+  const formattedEndDate = endDate
+    ? format(endDate.toDate(), 'dd/MM/yyyy')
+    : '--/--/----';
 
   if (isDetailsPage) return null;
 
@@ -44,7 +54,9 @@ export const TimeInfo = ({ startDate, endDate, progress }: TimeInfoProps) => {
         <CardFooter className="flex flex-col space-y-2">
           <div className="flex justify-between w-full">
             <span className="text-sm text-muted-foreground">Progresso</span>
-            <span className="text-primary font-semibold text-sm">{progress}%</span>
+            <span className="text-primary font-semibold text-sm">
+              {progress}%
+            </span>
           </div>
 
           <Progress value={progress} />

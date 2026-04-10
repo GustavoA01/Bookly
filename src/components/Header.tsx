@@ -19,7 +19,13 @@ export const Header = () => {
     <header className="flex justify-between w-full items-center">
       <div>
         <div className="flex items-center gap-2">
-          <Image src="/icon.png" alt="Logo do Bookly" className="rounded-lg" width={50} height={50} />
+          <Image
+            src="/icon.png"
+            alt="Logo do Bookly"
+            className="rounded-lg"
+            width={50}
+            height={50}
+          />
           <h1 className="font-bold text-xl">Bookly</h1>
         </div>
         <p className="text-muted-foreground">Gerencie sua biblioteca pessoal</p>
@@ -29,14 +35,23 @@ export const Header = () => {
         <nav className="hidden sm:flex bg-card p-2 rounded-lg gap-2 h-fit">
           {navigationButtons.map((item) => (
             <Link key={item.name} href={item.href} title={item.title}>
-              <Button size="sm" variant="ghost" className={`${pathname === item.href ? 'bg-accent' : ''}`}>
+              <Button
+                size="sm"
+                variant="ghost"
+                className={`${pathname === item.href ? 'bg-accent' : ''}`}
+              >
                 <div className="text-primary">{item.icon}</div>
                 {item.name}
               </Button>
             </Link>
           ))}
         </nav>
-        <UserIcon user={user} isLoading={isLoading} setOpenSheet={setOpenSheet} setOpenModal={setOpenModal} />
+        <UserIcon
+          user={user}
+          isLoading={isLoading}
+          setOpenSheet={setOpenSheet}
+          setOpenModal={setOpenModal}
+        />
       </div>
 
       <Menu

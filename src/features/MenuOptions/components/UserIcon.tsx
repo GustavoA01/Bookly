@@ -12,16 +12,27 @@ type MenuProps = {
   setOpenModal: (open: boolean) => void;
 };
 
-export const UserIcon = ({ user, isLoading, setOpenSheet, setOpenModal }: MenuProps) => (
+export const UserIcon = ({
+  user,
+  isLoading,
+  setOpenSheet,
+  setOpenModal,
+}: MenuProps) => (
   <>
     {isLoading ? (
       <Skeleton className="w-10 h-10 rounded-full" />
     ) : user ? (
       <Avatar className="cursor-pointer ">
-        <AvatarFallback className="sm:hidden" onClick={() => setOpenSheet(true)}>
+        <AvatarFallback
+          className="sm:hidden"
+          onClick={() => setOpenSheet(true)}
+        >
           <p>{user?.displayName?.charAt(0).toUpperCase()}</p>
         </AvatarFallback>
-        <AvatarFallback className="hidden sm:flex" onClick={() => setOpenModal(true)}>
+        <AvatarFallback
+          className="hidden sm:flex"
+          onClick={() => setOpenModal(true)}
+        >
           <p>{user?.displayName?.charAt(0).toUpperCase()}</p>
         </AvatarFallback>
       </Avatar>

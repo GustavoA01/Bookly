@@ -24,11 +24,19 @@ export const ListTabContent = () => {
   });
 
   const lists =
-    searchText === '' ? data : data?.filter((list) => list.name.toLowerCase().includes(searchText.toLowerCase()));
+    searchText === ''
+      ? data
+      : data?.filter((list) =>
+          list.name.toLowerCase().includes(searchText.toLowerCase())
+        );
 
   return (
     <div className="space-y-2">
-      <Input className="w-full sm:max-w-80" placeholder="Pesquisar" onChange={(e) => setSearchText(e.target.value)} />
+      <Input
+        className="w-full sm:max-w-80"
+        placeholder="Pesquisar"
+        onChange={(e) => setSearchText(e.target.value)}
+      />
 
       <main className="sm:grid sm:grid-cols-2 md:grid-cols-3 max-sm:space-y-2 lg:grid-cols-4 gap-2 mt-2">
         <Dialog>
@@ -46,14 +54,23 @@ export const ListTabContent = () => {
           <>
             {lists && lists.length === 0 ? (
               <div className="col-span-full flex justify-center items-center h-40">
-                <p className="text-muted-foreground">Nenhuma lista criada ainda</p>
+                <p className="text-muted-foreground">
+                  Nenhuma lista criada ainda
+                </p>
               </div>
             ) : null}
           </>
         )}
 
         {lists &&
-          lists.map((list) => <ListCard key={list.id} id={list.id} name={list.name} itemCount={list.books.length} />)}
+          lists.map((list) => (
+            <ListCard
+              key={list.id}
+              id={list.id}
+              name={list.name}
+              itemCount={list.books.length}
+            />
+          ))}
       </main>
     </div>
   );

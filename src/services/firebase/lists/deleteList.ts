@@ -7,6 +7,8 @@ export const deleteList = async (id: string) => {
     await deleteDoc(doc(db, keys.firebase.lists, id));
   } catch (error) {
     console.error('Erro ao deletar lista:', error);
-    throw new Error('Não foi possível deletar a lista. Tente novamente mais tarde.');
+    throw new Error(
+      'Não foi possível deletar a lista. Tente novamente mais tarde.'
+    );
   }
 };

@@ -13,7 +13,8 @@ export const DeleteListModal = ({ deleteFn }: { deleteFn: () => void }) => (
     <DialogHeader>
       <DialogTitle>Excluir lista</DialogTitle>
       <DialogDescription>
-        Tem certeza que deseja excluir esta lista? Os livros contidos nela não serão deletados.
+        Tem certeza que deseja excluir esta lista? Os livros contidos nela não
+        serão deletados.
       </DialogDescription>
     </DialogHeader>
 

@@ -1,6 +1,10 @@
 import { Input } from '@/src/components/ui/input';
 import { Label } from '@/src/components/ui/label';
-import { DialogClose, DialogFooter, DialogTitle } from '@/src/components/ui/dialog';
+import {
+  DialogClose,
+  DialogFooter,
+  DialogTitle,
+} from '@/src/components/ui/dialog';
 import { Button } from '@/src/components/ui/button';
 import { useNameForm } from '../hooks/useNameForm';
 
@@ -10,7 +14,11 @@ export const NameForm = () => {
   return (
     <>
       <DialogTitle>Alterar nome de usuário</DialogTitle>
-      <form id="name-form" onSubmit={handleSubmit(handleChangeName)} className="flex flex-col gap-4">
+      <form
+        id="name-form"
+        onSubmit={handleSubmit(handleChangeName)}
+        className="flex flex-col gap-4"
+      >
         <Label>Escreva seu novo nome</Label>
         <Input placeholder="Ex: Jão Silva" {...register('name')} />
       </form>

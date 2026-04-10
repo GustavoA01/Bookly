@@ -38,4 +38,11 @@ export type StatusPropsType = {
   icon: JSX.Element;
 };
 
-export type FilterOptionsType = 'all' | 'title' | 'author' | 'rating' | 'startDate' | 'endDate' | 'createdAt';
+export type FilterOptionsType =
+  | 'all'
+  | 'title'
+  | 'author'
+  | 'rating'
+  | 'startDate'
+  | 'endDate'
+  | 'createdAt';

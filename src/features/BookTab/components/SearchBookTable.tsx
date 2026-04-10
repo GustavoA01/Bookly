@@ -25,11 +25,22 @@ export const SearchBookTable = ({
   redirectHref,
 }: SearchBookTableProps) => (
   <div className="sm:flex space-y-2 justify-between">
-    <Input placeholder="Pesquisar" className="w-full sm:max-w-80" onChange={(e) => setSearchBookText(e.target.value)} />
+    <Input
+      placeholder="Pesquisar"
+      className="w-full sm:max-w-80"
+      onChange={(e) => setSearchBookText(e.target.value)}
+    />
 
     <div className="flex gap-2">
-      <FilterSelect value={filter} onSelect={setFilter as Dispatch<SetStateAction<FilterOptionsType>>} />
-      <StatusSelect value={status} onValueChange={setStatus as Dispatch<SetStateAction<Status>>} isHome />
+      <FilterSelect
+        value={filter}
+        onSelect={setFilter as Dispatch<SetStateAction<FilterOptionsType>>}
+      />
+      <StatusSelect
+        value={status}
+        onValueChange={setStatus as Dispatch<SetStateAction<Status>>}
+        isHome
+      />
 
       <Link href={redirectHref} title="Adicionar novo livro">
         <Button className="hidden sm:flex">

@@ -1,4 +1,12 @@
-import { BadgeCheck, BadgeX, BookOpen, Clock, Compass, Home, Sparkles } from 'lucide-react';
+import {
+  BadgeCheck,
+  BadgeX,
+  BookOpen,
+  Clock,
+  Compass,
+  Home,
+  Sparkles,
+} from 'lucide-react';
 import { Status, StatusPropsType } from './types/books';
 
 export const filterOptions = [

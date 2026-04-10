@@ -36,7 +36,9 @@ jest.mock('next/navigation', () => ({
 
 jest.mock('@tanstack/react-query', () => ({
   useQueryClient: jest.fn(),
-  useQuery: jest.fn().mockReturnValue({ title: 'Test Book', author: 'Test Author' }),
+  useQuery: jest
+    .fn()
+    .mockReturnValue({ title: 'Test Book', author: 'Test Author' }),
   useMutation: jest.fn().mockReturnValue({ mutateAsync: jest.fn() }),
 }));
 
@@ -92,7 +94,9 @@ describe('useNewBook', () => {
     (useAuth as jest.Mock).mockReturnValue({
       user: { uid: 'test-user-id' },
     });
-    const { result } = renderHook(() => useNewBook({ id: '123', role: 'library' }));
+    const { result } = renderHook(() =>
+      useNewBook({ id: '123', role: 'library' })
+    );
 
     expect(result.current.startDate).toBeUndefined();
     expect(result.current.endDate).toBeUndefined();
@@ -109,7 +113,8 @@ describe('useNewBook', () => {
       useNewBook({ id: undefined, role: undefined })
     );
 
-    const returnedUserNullValue = await result.current.handleCreateBook(mockFormData);
+    const returnedUserNullValue =
+      await result.current.handleCreateBook(mockFormData);
 
     expect(mockRouterPush).toHaveBeenCalledWith('/login');
     expect(returnedUserNullValue).toBeUndefined();
@@ -118,7 +123,8 @@ describe('useNewBook', () => {
     const { result: bookDatesResult } = renderHook(() => useBookDates());
     bookDatesResult.current.dateErrorMessage = 'Test Date Error';
 
-    const returnedDateErrorMessage = await result.current.handleCreateBook(mockFormData);
+    const returnedDateErrorMessage =
+      await result.current.handleCreateBook(mockFormData);
 
     expect(returnedDateErrorMessage).toBeUndefined();
   });
@@ -141,9 +147,12 @@ describe('useNewBook', () => {
   });
 
   test('handleCreateBook with id and role defined', async () => {
-    const { result } = renderHook(() => useNewBook({ id: '123', role: 'library' }));
+    const { result } = renderHook(() =>
+      useNewBook({ id: '123', role: 'library' })
+    );
     const { mutateAsync: mockUpdateBookFn } = useMutation({});
-    const returnedUndefinedValue = await result.current.handleCreateBook(mockFormData);
+    const returnedUndefinedValue =
+      await result.current.handleCreateBook(mockFormData);
 
     expect(returnedUndefinedValue).toBeUndefined();
     expect(mockUpdateBookFn).toHaveBeenCalledWith(mockBookToUpdate);

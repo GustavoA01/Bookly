@@ -13,9 +13,14 @@ describe('SearchBookCard', () => {
         imageUrl="/img-placeholder.jpg"
       />
     );
-    const image = screen.getByAltText('Capa do livro Senhor dos Anéis') as HTMLImageElement;
+    const image = screen.getByAltText(
+      'Capa do livro Senhor dos Anéis'
+    ) as HTMLImageElement;
 
-    expect(image).toHaveAttribute('src', '/_next/image?url=%2Fimg-placeholder.jpg&w=3840&q=75');
+    expect(image).toHaveAttribute(
+      'src',
+      '/_next/image?url=%2Fimg-placeholder.jpg&w=3840&q=75'
+    );
     expect(screen.getByText('Senhor dos Anéis')).toBeInTheDocument();
     expect(screen.getByText('J.R.R. Tolkien')).toBeInTheDocument();
     expect(screen.getByText('Fantasia')).toBeInTheDocument();

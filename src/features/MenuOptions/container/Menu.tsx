@@ -16,7 +16,13 @@ type MenuProps = {
   setOpenModal: (open: boolean) => void;
 };
 
-export const Menu = ({ user, openSheet, openModal, setOpenSheet, setOpenModal }: MenuProps) => {
+export const Menu = ({
+  user,
+  openSheet,
+  openModal,
+  setOpenSheet,
+  setOpenModal,
+}: MenuProps) => {
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
   const [openUserNameDialog, setOpenUserNameDialog] = useState(false);
   const [openPasswordDialog, setOpenPasswordDialog] = useState(false);

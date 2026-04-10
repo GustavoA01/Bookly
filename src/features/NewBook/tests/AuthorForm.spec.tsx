@@ -13,7 +13,9 @@ describe('AuthorForm', () => {
 
     expect(screen.getByText('Autor')).toBeInTheDocument();
     expect(screen.getByText('Gênero')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Ex: J.R.R. Tolkien')).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('Ex: J.R.R. Tolkien')
+    ).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Ex: Fantasia')).toBeInTheDocument();
   });
 });

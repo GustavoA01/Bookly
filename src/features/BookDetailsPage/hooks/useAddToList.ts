@@ -21,8 +21,11 @@ export const useAddToList = ({ id, open, setOpen }: UseAddListContentType) => {
   });
 
   const { mutateAsync: addToListFn } = useMutation({
-    mutationFn: (params: { listId: string; bookId: string; action: 'add' | 'remove' }) =>
-      updateListBooks(params.listId, params.bookId!, params.action),
+    mutationFn: (params: {
+      listId: string;
+      bookId: string;
+      action: 'add' | 'remove';
+    }) => updateListBooks(params.listId, params.bookId!, params.action),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [keys.queryKeys.lists] });
       setOpen(false);

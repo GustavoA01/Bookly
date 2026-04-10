@@ -2,7 +2,11 @@ import { TabsNav } from '@/src/components/TabsNav';
 import { ListTabContent } from '@/src/features/ListTab/container/ListTabContent';
 import { BookTabContent } from '@/src/features/BookTab/container/BookTabContent';
 
-const HomePage = async ({ searchParams }: { searchParams: Promise<{ tab?: string }> }) => {
+const HomePage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ tab?: string }>;
+}) => {
   const { tab } = await searchParams;
 
   return (

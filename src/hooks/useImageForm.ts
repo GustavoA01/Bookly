@@ -8,7 +8,9 @@ export const useImageForm = (setValue: UseImageFormProps) => {
   const [choosedFile, setChoosedFile] = useState<string | undefined>(undefined);
   const [chooseImageError, setChooseImageError] = useState<string | null>(null);
   const showImage =
-    choosedFile && (choosedFile.startsWith('http') || choosedFile.startsWith('blob:')) && choosedFile.length > 10;
+    choosedFile &&
+    (choosedFile.startsWith('http') || choosedFile.startsWith('blob:')) &&
+    choosedFile.length > 10;
 
   useEffect(() => {
     return () => {
@@ -39,15 +41,20 @@ export const useImageForm = (setValue: UseImageFormProps) => {
     formData.append('upload_preset', uploadPreset);
 
     try {
-      const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
-        method: 'POST',
-        body: formData,
-      });
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
         console.error('Ocorreu um erro:', errorData);
-        throw new Error(errorData.error?.message || 'Erro na resposta do Cloudinary');
+        throw new Error(
+          errorData.error?.message || 'Erro na resposta do Cloudinary'
+        );
       }
 
       const data = await response.json();

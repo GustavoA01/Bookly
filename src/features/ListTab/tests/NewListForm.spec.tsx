@@ -35,8 +35,12 @@ describe('NewListForm', () => {
     );
 
     expect(screen.getByText('Criar Nova Lista')).toBeInTheDocument();
-    expect(screen.getByText('Crie listas personalizadas e adicione livros a elas.')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Cancelar' })).toBeInTheDocument();
+    expect(
+      screen.getByText('Crie listas personalizadas e adicione livros a elas.')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Cancelar' })
+    ).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Salvar' })).toBeInTheDocument();
   });
 });

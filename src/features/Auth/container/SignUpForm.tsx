@@ -19,7 +19,11 @@ export const SignUpForm = () => {
         <Label>NOME</Label>
         <Input placeholder="Seu nome" {...register('name')} />
       </div>
-      <EmailPass register={register} actionLabel="Criar Conta" isPending={isPending} />
+      <EmailPass
+        register={register}
+        actionLabel="Criar Conta"
+        isPending={isPending}
+      />
       <FormErrorMessage showMessage={!!errorMessage} message={errorMessage} />
     </form>
   );

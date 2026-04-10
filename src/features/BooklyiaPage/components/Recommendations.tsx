@@ -7,7 +7,10 @@ type RecommendationsProps = {
   books: GoogleBookItem[];
 };
 
-export const Recommendations = ({ books, isChatPending }: RecommendationsProps) => (
+export const Recommendations = ({
+  books,
+  isChatPending,
+}: RecommendationsProps) => (
   <div className="mt-8 flex gap-4 overflow-x-auto pb-4 hide-scrollbar sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 max-w-225 mx-auto">
     {isChatPending &&
       [...Array(5)].map((_, i) => (
@@ -21,7 +24,9 @@ export const Recommendations = ({ books, isChatPending }: RecommendationsProps) 
           id={book.id}
           title={book.volumeInfo.title || 'Desconhecido'}
           author={book.volumeInfo.authors?.[0] || 'Desconhecido'}
-          imageUrl={book.volumeInfo.imageLinks?.thumbnail || '/img-placeholder.jpg'}
+          imageUrl={
+            book.volumeInfo.imageLinks?.thumbnail || '/img-placeholder.jpg'
+          }
           genre={book.volumeInfo.categories?.[0] ?? null}
           rating={book.volumeInfo.averageRating ?? null}
         />

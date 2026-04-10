@@ -32,7 +32,11 @@ export const EmailPass = ({
       </div>
       <div className="space-y-2">
         <Label>SENHA</Label>
-        <Input type="password" placeholder="********" {...register('password')} />
+        <Input
+          type="password"
+          placeholder="********"
+          {...register('password')}
+        />
       </div>
 
       <Button className="w-full" disabled={isPending}>
@@ -43,7 +47,10 @@ export const EmailPass = ({
       {pathPasswordRecovery && (
         <div className="text-right space-x-2 text-sm">
           <span className="text-muted-foreground">{labelPasswordRecovery}</span>
-          <Link href={pathPasswordRecovery} className="text-primary font-semibold hover:underline">
+          <Link
+            href={pathPasswordRecovery}
+            className="text-primary font-semibold hover:underline"
+          >
             {labelAction}
           </Link>
         </div>

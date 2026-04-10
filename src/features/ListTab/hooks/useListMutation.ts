@@ -21,8 +21,11 @@ export const useListMutation = () => {
   });
 
   const { mutateAsync: updateListFn } = useMutation({
-    mutationFn: (params: { list: Pick<ListType, 'name' | 'description' | 'imageUrl'>; listId: string; user: User }) =>
-      updateList(params.list, params.listId, params.user),
+    mutationFn: (params: {
+      list: Pick<ListType, 'name' | 'description' | 'imageUrl'>;
+      listId: string;
+      user: User;
+    }) => updateList(params.list, params.listId, params.user),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [keys.queryKeys.listId] });
       toast.success('Lista atualizada com sucesso!');

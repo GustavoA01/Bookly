@@ -14,6 +14,8 @@ describe('DescriptionForm', () => {
     expect(screen.getByText('Nome')).toBeInTheDocument();
     expect(screen.getByText('Descrição')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Ex: Fantasia')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Melhores livros...')).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText('Melhores livros...')
+    ).toBeInTheDocument();
   });
 });

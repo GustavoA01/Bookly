@@ -1,7 +1,14 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/src/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/src/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/src/components/ui/card';
 import { AlertCircle, Home, RefreshCw, BookX } from 'lucide-react';
 
 type BookDetailsErrorProps = {
@@ -11,7 +18,9 @@ type BookDetailsErrorProps = {
 const BookDetailsError = ({ error }: BookDetailsErrorProps) => {
   const router = useRouter();
 
-  const isNotFoundError = error?.message?.includes('not-found') || error?.message?.includes('NOT_FOUND');
+  const isNotFoundError =
+    error?.message?.includes('not-found') ||
+    error?.message?.includes('NOT_FOUND');
 
   return (
     <div className="flex items-center justify-center min-h-[70vh] px-4">
@@ -52,7 +61,11 @@ const BookDetailsError = ({ error }: BookDetailsErrorProps) => {
         <CardFooter className="flex flex-col gap-3">
           <div className="flex gap-3 w-full">
             {!isNotFoundError && (
-              <Button onClick={() => window.location.reload()} variant="outline" className="flex-1 gap-2">
+              <Button
+                onClick={() => window.location.reload()}
+                variant="outline"
+                className="flex-1 gap-2"
+              >
                 <RefreshCw className="w-4 h-4" />
                 Tentar novamente
               </Button>

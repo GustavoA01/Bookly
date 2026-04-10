@@ -27,7 +27,9 @@ describe('useBookDates', () => {
       result.current.setEndDate(endDate);
     });
 
-    expect(result.current.dateErrorMessage).toBe('A data de término não pode ser anterior à data de início.');
+    expect(result.current.dateErrorMessage).toBe(
+      'A data de término não pode ser anterior à data de início.'
+    );
   });
 
   test('getErrorMessages - endDate defined but startDate not defined', () => {
@@ -38,6 +40,8 @@ describe('useBookDates', () => {
       result.current.setEndDate(endDate);
     });
 
-    expect(result.current.dateErrorMessage).toBe('A data de início é obrigatória para definir a data de término.');
+    expect(result.current.dateErrorMessage).toBe(
+      'A data de início é obrigatória para definir a data de término.'
+    );
   });
 });

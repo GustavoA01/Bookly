@@ -1,4 +1,10 @@
-import { collection, documentId, getDocs, query, where } from 'firebase/firestore';
+import {
+  collection,
+  documentId,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { keys } from '../../keys';
 import { BookType } from '@/src/data/types/books';

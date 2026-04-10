@@ -12,7 +12,7 @@ export const useListDetails = (id: string) => {
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
-  const { data: list } = useQuery({
+  const { data: list, isLoading: isListLoading } = useQuery({
     queryKey: [keys.queryKeys.listId, id],
     queryFn: () => getListById(id),
     enabled: !!id,
@@ -44,5 +44,6 @@ export const useListDetails = (id: string) => {
     openDeleteDialog,
     setOpenDeleteDialog,
     deleteListFn,
+    isListLoading,
   };
 };

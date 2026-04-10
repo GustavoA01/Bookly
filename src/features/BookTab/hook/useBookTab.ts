@@ -25,7 +25,10 @@ export const useBookTab = () => {
           const searhTextLower = searchBookText.toLowerCase();
           const bookTitle = book.title.toLowerCase();
           if (book.author)
-            return bookTitle.includes(searhTextLower) || book.author.toLowerCase().includes(searhTextLower);
+            return (
+              bookTitle.includes(searhTextLower) ||
+              book.author.toLowerCase().includes(searhTextLower)
+            );
           return bookTitle.includes(searhTextLower);
         });
 

@@ -1,5 +1,10 @@
 'use client';
-import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/src/components/ui/dialog';
+import {
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/src/components/ui/dialog';
 import { ImageOff } from 'lucide-react';
 import { ImageForm } from '../components/NewListForm/ImageForm';
 import { FormFooter } from '../components/NewListForm/FormFooter';
@@ -22,13 +27,22 @@ export const NewListForm = ({ list }: { list?: ListType }) => {
   } = useNewList(list);
 
   return (
-    <DialogContent showCloseButton={false} className="overflow-y-auto max-h-[90%]">
+    <DialogContent
+      showCloseButton={false}
+      className="overflow-y-auto max-h-[90%]"
+    >
       <DialogHeader>
         <DialogTitle>Criar Nova Lista</DialogTitle>
-        <DialogDescription>Crie listas personalizadas e adicione livros a elas.</DialogDescription>
+        <DialogDescription>
+          Crie listas personalizadas e adicione livros a elas.
+        </DialogDescription>
       </DialogHeader>
 
-      <form id="new-list-form" className="flex flex-col gap-4" onSubmit={handleSubmit(submitForm)}>
+      <form
+        id="new-list-form"
+        className="flex flex-col gap-4"
+        onSubmit={handleSubmit(submitForm)}
+      >
         <DescriptionForm register={register} />
 
         <ImageForm
@@ -43,12 +57,18 @@ export const NewListForm = ({ list }: { list?: ListType }) => {
       </form>
 
       {choosedFile && (
-        <Button variant="destructive" onClick={cleanCurrentImage} className="max-sm:w-full w-8 h-8 ml-auto">
+        <Button
+          variant="destructive"
+          onClick={cleanCurrentImage}
+          className="max-sm:w-full w-8 h-8 ml-auto"
+        >
           <ImageOff />
         </Button>
       )}
 
-      {chooseImageError && <p className="text-sm text-red-600">{chooseImageError}</p>}
+      {chooseImageError && (
+        <p className="text-sm text-red-600">{chooseImageError}</p>
+      )}
 
       <FormFooter />
     </DialogContent>

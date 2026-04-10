@@ -1,5 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from './ui/select';
 import { Status } from '../data/types/books';
 import { defaultStatus } from '../data/constants';
 
@@ -10,8 +16,15 @@ type StatusSelectProps = {
   onValueChange: Dispatch<SetStateAction<Status>>;
 };
 
-export const StatusSelect = ({ isHome, className, value, onValueChange }: StatusSelectProps) => {
-  const categories = isHome ? [{ value: 'all', label: 'Todos' }, ...defaultStatus] : defaultStatus;
+export const StatusSelect = ({
+  isHome,
+  className,
+  value,
+  onValueChange,
+}: StatusSelectProps) => {
+  const categories = isHome
+    ? [{ value: 'all', label: 'Todos' }, ...defaultStatus]
+    : defaultStatus;
 
   return (
     <Select value={value} onValueChange={(val) => onValueChange(val as Status)}>

@@ -12,8 +12,17 @@ type IaFormType = {
   notLoggedIn: boolean;
 };
 
-export const IaForm = ({ handleSubmit, handleSearch, register, isRequestPending, notLoggedIn }: IaFormType) => (
-  <form onSubmit={handleSubmit(handleSearch)} className="flex justify-center gap-2 m-auto mt-8 w-full">
+export const IaForm = ({
+  handleSubmit,
+  handleSearch,
+  register,
+  isRequestPending,
+  notLoggedIn,
+}: IaFormType) => (
+  <form
+    onSubmit={handleSubmit(handleSearch)}
+    className="flex justify-center gap-2 m-auto mt-8 w-full"
+  >
     <Textarea
       className="resize-none max-w-2xl min-h-10 max-h-20"
       disabled={isRequestPending || notLoggedIn}

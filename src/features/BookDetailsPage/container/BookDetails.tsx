@@ -32,7 +32,8 @@ export const BookDetails = ({
   language,
 }: BookDetailsProps) => {
   const isSynopsisAndCommentNull = synopsis === null && comment === null;
-  const notNullClassName = 'flex flex-col sm:grid sm:grid-cols-3 mt-8 sm:space-x-4';
+  const notNullClassName =
+    'flex flex-col sm:grid sm:grid-cols-3 mt-8 sm:space-x-4';
 
   return (
     <main className="flex flex-col justify-center">
@@ -66,7 +67,11 @@ export const BookDetails = ({
         />
       </div>
 
-      <div className={isSynopsisAndCommentNull ? 'flex flex-col mt-8' : notNullClassName}>
+      <div
+        className={
+          isSynopsisAndCommentNull ? 'flex flex-col mt-8' : notNullClassName
+        }
+      >
         <BookSynopsis synopsis={synopsis} comment={comment} />
         <BookInfo
           id={id}

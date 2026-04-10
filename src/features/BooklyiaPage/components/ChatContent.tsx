@@ -1,5 +1,11 @@
 import { Button } from '@/src/components/ui/button';
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from '@/src/components/ui/card';
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/src/components/ui/card';
 import { Skeleton } from '@/src/components/ui/skeleton';
 import { ChatMessageType } from '@/src/data/types/api';
 import { Trash } from 'lucide-react';
@@ -34,12 +40,19 @@ export const ChatContent = ({
       <CardHeader>
         <CardTitle>Chat</CardTitle>
         <CardAction>
-          <Button variant="destructive" data-testid="delete-chat-button" onClick={() => setIsDeleteModalOpen(true)}>
+          <Button
+            variant="destructive"
+            data-testid="delete-chat-button"
+            onClick={() => setIsDeleteModalOpen(true)}
+          >
             <Trash />
           </Button>
         </CardAction>
       </CardHeader>
-      <CardContent ref={scrollRef} className="flex flex-col gap-4 overflow-y-auto max-h-60">
+      <CardContent
+        ref={scrollRef}
+        className="flex flex-col gap-4 overflow-y-auto max-h-60"
+      >
         {messages.map((message, index) => (
           <span
             key={index}
@@ -53,10 +66,14 @@ export const ChatContent = ({
           </span>
         ))}
         {temporaryMessage && (
-          <span className="ml-auto text-sm py-2 px-4 bg-primary/60 rounded-lg rounded-tr-none">{temporaryMessage}</span>
+          <span className="ml-auto text-sm py-2 px-4 bg-primary/60 rounded-lg rounded-tr-none">
+            {temporaryMessage}
+          </span>
         )}
         {isRequestPending && (
-          <Skeleton className="mr-auto text-sm py-2 px-4 rounded-lg rounded-tl-none">Buscando livros...</Skeleton>
+          <Skeleton className="mr-auto text-sm py-2 px-4 rounded-lg rounded-tl-none">
+            Buscando livros...
+          </Skeleton>
         )}
       </CardContent>
     </Card>

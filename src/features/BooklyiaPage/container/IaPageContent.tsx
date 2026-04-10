@@ -30,7 +30,9 @@ export const IaPageContent = () => {
 
   return (
     <>
-      {isLoggedIn && isChatPending && <Skeleton className="w-full sm:max-w-2xl m-auto h-40" />}
+      {isLoggedIn && isChatPending && (
+        <Skeleton className="w-full sm:max-w-2xl m-auto h-40" />
+      )}
 
       {chat?.messages && (
         <ChatContent
@@ -42,7 +44,9 @@ export const IaPageContent = () => {
       )}
       {notLoggedIn && (
         <div className="text-center mt-10 space-y-4 animate-fade-in-title">
-          <p className="text-lg text-muted-foreground">Faça login para acessar os recursos da IA.</p>
+          <p className="text-lg text-muted-foreground">
+            Faça login para acessar os recursos da IA.
+          </p>
           <Link href="/login">
             <Button>
               <p>Ir para login</p>
@@ -61,9 +65,16 @@ export const IaPageContent = () => {
       />
       {chat && (
         <>
-          <Recommendations books={suggestions ?? []} isChatPending={isChatPending} />
+          <Recommendations
+            books={suggestions ?? []}
+            isChatPending={isChatPending}
+          />
           <Dialog open={isDeleteModalOpen} onOpenChange={setIsDeleteModalOpen}>
-            <ConfirmDeleteModal chat={chat} deleteChatFn={deleteChatFn} isDeletingChat={isDeletingChat} />
+            <ConfirmDeleteModal
+              chat={chat}
+              deleteChatFn={deleteChatFn}
+              isDeletingChat={isDeletingChat}
+            />
           </Dialog>
         </>
       )}

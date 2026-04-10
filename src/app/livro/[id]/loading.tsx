@@ -42,7 +42,10 @@ const BookDetailsSkeleton = () => (
             <CardContent className="p-6">
               <div className="space-y-2">
                 {[...Array(6)].map((_, i) => (
-                  <Skeleton key={i} className={`h-4 ${i === 0 ? 'w-full' : `w-${11 - i}/12`}`} />
+                  <Skeleton
+                    key={i}
+                    className={`h-4 ${i === 0 ? 'w-full' : `w-${11 - i}/12`}`}
+                  />
                 ))}
               </div>
             </CardContent>

@@ -8,7 +8,10 @@ export const getLists = async () => {
     const user = auth.currentUser;
     if (!user) throw new Error('Usuário não autenticado');
 
-    const listQuery = query(collection(db, keys.firebase.lists), where('userId', '==', user.uid));
+    const listQuery = query(
+      collection(db, keys.firebase.lists),
+      where('userId', '==', user.uid)
+    );
     const querySnapshot = await getDocs(listQuery);
     const lists = querySnapshot.docs.map((doc) => ({
       id: doc.id,

@@ -7,7 +7,8 @@ import { DeleteBookModal } from '../components/DeleteBookModal';
 import Link from 'next/link';
 
 export const BookActions = () => {
-  const { id, openDeleteDialog, setOpenDeleteDialog, deleteBookFn } = useDeleteBook();
+  const { id, openDeleteDialog, setOpenDeleteDialog, deleteBookFn } =
+    useDeleteBook();
 
   return (
     <header className="flex justify-between items-center">

@@ -1,4 +1,8 @@
-import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem } from '@/src/components/ui/dropdown-menu';
+import {
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+} from '@/src/components/ui/dropdown-menu';
 import Link from 'next/link';
 
 type ListOptionsProps = {
@@ -7,7 +11,11 @@ type ListOptionsProps = {
   setListIdToRemove: (id: string) => void;
 };
 
-export const ListOptions = ({ listId, setOpenRemoveBookModal, setListIdToRemove }: ListOptionsProps) => (
+export const ListOptions = ({
+  listId,
+  setOpenRemoveBookModal,
+  setListIdToRemove,
+}: ListOptionsProps) => (
   <DropdownMenuGroup>
     <DropdownMenuContent className="w-40">
       <DropdownMenuItem className="w-full" asChild>

@@ -52,7 +52,11 @@ export const ImageForm = ({
 
       <div className="space-y-2 cols-span-1">
         <Label>Status</Label>
-        <StatusSelect value={status} onValueChange={setStatus as Dispatch<SetStateAction<Status>>} className="w-full" />
+        <StatusSelect
+          value={status}
+          onValueChange={setStatus as Dispatch<SetStateAction<Status>>}
+          className="w-full"
+        />
       </div>
     </div>
 
@@ -80,7 +84,11 @@ export const ImageForm = ({
       </DialogTrigger>
 
       {choosedFile && (
-        <Button variant="destructive" className="w-full h-8" onClick={cleanCurrentImage}>
+        <Button
+          variant="destructive"
+          className="w-full h-8"
+          onClick={cleanCurrentImage}
+        >
           <ImageOff />
         </Button>
       )}

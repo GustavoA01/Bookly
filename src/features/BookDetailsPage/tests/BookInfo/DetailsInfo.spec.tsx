@@ -3,7 +3,9 @@ import { DetailsInfo } from '../../components/BookInfo/DetailsInfo';
 
 describe('DetailsInfo', () => {
   it('should render genre and pages correctly', () => {
-    render(<DetailsInfo currentPage={480} totalPages={1000} genre="Fantasia" />);
+    render(
+      <DetailsInfo currentPage={480} totalPages={1000} genre="Fantasia" />
+    );
 
     expect(screen.getByText('DETALHES')).toBeInTheDocument();
     expect(screen.getByText('GÊNERO')).toBeInTheDocument();

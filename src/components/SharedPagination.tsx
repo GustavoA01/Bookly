@@ -63,7 +63,10 @@ export const SharedPagination = () => {
           currentPage < numberOfPages &&
           middlePages.map((page) => (
             <PaginationItem key={page}>
-              <PaginationLink isActive={page === currentPage} href={createPageUrl(page)}>
+              <PaginationLink
+                isActive={page === currentPage}
+                href={createPageUrl(page)}
+              >
                 {page}
               </PaginationLink>
             </PaginationItem>
@@ -72,7 +75,10 @@ export const SharedPagination = () => {
         {currentPage === numberOfPages &&
           lastPages.map((page) => (
             <PaginationItem key={page}>
-              <PaginationLink isActive={page === currentPage} href={createPageUrl(page)}>
+              <PaginationLink
+                isActive={page === currentPage}
+                href={createPageUrl(page)}
+              >
                 {page}
               </PaginationLink>
             </PaginationItem>
@@ -88,7 +94,9 @@ export const SharedPagination = () => {
           <>
             {currentPage + 1 !== numberOfPages && (
               <PaginationItem>
-                <PaginationLink href={createPageUrl(numberOfPages)}>{numberOfPages}</PaginationLink>
+                <PaginationLink href={createPageUrl(numberOfPages)}>
+                  {numberOfPages}
+                </PaginationLink>
               </PaginationItem>
             )}
             <PaginationItem>

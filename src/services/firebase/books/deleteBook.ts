@@ -1,4 +1,13 @@
-import { arrayRemove, collection, deleteDoc, doc, getDocs, query, where, writeBatch } from 'firebase/firestore';
+import {
+  arrayRemove,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  where,
+  writeBatch,
+} from 'firebase/firestore';
 import { keys } from '../../keys';
 import { User } from 'firebase/auth';
 import { db } from '../firebaseConfig';
@@ -29,6 +38,8 @@ export const deleteBook = async (id: string, user: User | null) => {
     await deleteDoc(doc(db, keys.firebase.books, id));
   } catch (error) {
     console.error('Erro ao deletar livro:', error);
-    throw new Error('Não foi possível deletar o livro. Tente novamente mais tarde.');
+    throw new Error(
+      'Não foi possível deletar o livro. Tente novamente mais tarde.'
+    );
   }
 };

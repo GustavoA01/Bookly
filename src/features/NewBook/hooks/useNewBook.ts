@@ -25,7 +25,14 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
   } = methods;
   const [status, setStatus] = useState<Status>('toRead');
 
-  const { startDate, setStartDate, endDate, setEndDate, handleCleanDates, dateErrorMessage } = useBookDates();
+  const {
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    handleCleanDates,
+    dateErrorMessage,
+  } = useBookDates();
 
   const {
     choosedFile,
@@ -49,7 +56,10 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
     setStatus,
   });
 
-  const handleUpdateBook = async (book: Omit<BookFormType, 'userId'>, finalImageUrl: string | null) => {
+  const handleUpdateBook = async (
+    book: Omit<BookFormType, 'userId'>,
+    finalImageUrl: string | null
+  ) => {
     const bookToUpdate: Omit<BookType, 'userId' | 'id' | 'createdAt'> = {
       title: book.title,
       author: book.author || null,

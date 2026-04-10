@@ -65,7 +65,9 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="pt-br" data-lt-installed="true" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} dark antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} dark antialiased`}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>

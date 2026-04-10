@@ -16,7 +16,8 @@ export const useDeleteBook = () => {
   const id = String(params.id);
 
   const { mutateAsync: deleteBookFn } = useMutation({
-    mutationFn: (params: { id: string; user: User | null }) => deleteBook(params.id, params.user),
+    mutationFn: (params: { id: string; user: User | null }) =>
+      deleteBook(params.id, params.user),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [keys.queryKeys.books] });
       toast.success('Livro deletado');

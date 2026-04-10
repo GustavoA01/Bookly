@@ -46,7 +46,12 @@ export const useChatMutation = () => {
       return response;
     },
     onSuccess: async (data) =>
-      await createChat(user?.uid as string, data.chatResponse, data.suggestions, userTemporaryMessage).then(() => {
+      await createChat(
+        user?.uid as string,
+        data.chatResponse,
+        data.suggestions,
+        userTemporaryMessage
+      ).then(() => {
         setUserTemporaryMessage('');
         queryClient.invalidateQueries({
           queryKey: [keys.queryKeys.chat, user?.uid],

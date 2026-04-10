@@ -10,8 +10,18 @@ jest.mock('../../../components/ui/spinner', () => ({
 }));
 
 jest.mock('../../../components/ui/textarea', () => ({
-  Textarea: ({ className, placeholder }: { className: string; placeholder: string }) => (
-    <textarea data-testid="textarea" className={className} placeholder={placeholder} />
+  Textarea: ({
+    className,
+    placeholder,
+  }: {
+    className: string;
+    placeholder: string;
+  }) => (
+    <textarea
+      data-testid="textarea"
+      className={className}
+      placeholder={placeholder}
+    />
   ),
 }));
 
@@ -29,7 +39,13 @@ jest.mock('../../../components/ui/button', () => ({
     className?: string;
     type?: 'submit' | 'reset' | 'button' | undefined;
   }) => (
-    <button data-testid="submit-button" disabled={disabled} onClick={onClick} className={className} type={type}>
+    <button
+      data-testid="submit-button"
+      disabled={disabled}
+      onClick={onClick}
+      className={className}
+      type={type}
+    >
       {children}
     </button>
   ),
@@ -85,7 +101,12 @@ describe('IaForm', () => {
     render(<IaForm {...defaultProps} />);
 
     const textarea = screen.getByTestId('textarea');
-    expect(textarea).toHaveClass('resize-none', 'max-w-2xl', 'min-h-10', 'max-h-20');
+    expect(textarea).toHaveClass(
+      'resize-none',
+      'max-w-2xl',
+      'min-h-10',
+      'max-h-20'
+    );
   });
 
   it('should call handleSearch when form is submitted', async () => {
@@ -138,7 +159,14 @@ describe('IaForm', () => {
     render(<IaForm {...defaultProps} />);
 
     const form = screen.getByTestId('submit-button').closest('form');
-    expect(form).toHaveClass('flex', 'justify-center', 'gap-2', 'm-auto', 'mt-8', 'w-full');
+    expect(form).toHaveClass(
+      'flex',
+      'justify-center',
+      'gap-2',
+      'm-auto',
+      'mt-8',
+      'w-full'
+    );
   });
 
   it('should have mt-auto class on button', () => {

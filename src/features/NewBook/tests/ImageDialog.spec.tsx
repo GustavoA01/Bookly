@@ -23,10 +23,15 @@ describe('ImageDialog', () => {
     );
 
     expect(screen.getByText('Adicionar Imagem do Livro')).toBeInTheDocument();
-    expect(screen.getByText('Faça upload de uma imagem ou cole uma URL da web')).toBeInTheDocument();
+    expect(
+      screen.getByText('Faça upload de uma imagem ou cole uma URL da web')
+    ).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Ex: https://...')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Fechar' })).toBeInTheDocument();
-    expect(document.querySelector('#select-image')).toHaveAttribute('type', 'file');
+    expect(document.querySelector('#select-image')).toHaveAttribute(
+      'type',
+      'file'
+    );
   });
 
   it('renders message error correctly', () => {

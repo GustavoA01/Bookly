@@ -5,7 +5,10 @@ type OptionsProps = {
   handleOpenPasswordDialog: () => void;
 };
 
-export const Options = ({ handleOpenUserDialog, handleOpenPasswordDialog }: OptionsProps) => (
+export const Options = ({
+  handleOpenUserDialog,
+  handleOpenPasswordDialog,
+}: OptionsProps) => (
   <>
     <Button variant="outline" onClick={handleOpenUserDialog}>
       Alterar nome de usuário

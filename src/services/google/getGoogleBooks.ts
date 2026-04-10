@@ -1,6 +1,9 @@
 import { GoogleBooksResponse } from '../../data/types/api';
 
-export const getGoogleBooks = async (query: string, currentPage: number): Promise<GoogleBooksResponse | null> => {
+export const getGoogleBooks = async (
+  query: string,
+  currentPage: number
+): Promise<GoogleBooksResponse | null> => {
   if (!query) return null;
 
   const startIndex = (currentPage - 1) * 12;

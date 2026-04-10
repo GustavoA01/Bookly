@@ -3,7 +3,10 @@ import { db } from '../firebaseConfig';
 import { keys } from '../../keys';
 import { ListType } from '@/src/data/types/books';
 
-export const getListsContainingBook = async (bookId: string, userId: string | null) => {
+export const getListsContainingBook = async (
+  bookId: string,
+  userId: string | null
+) => {
   try {
     if (!userId) return [];
 

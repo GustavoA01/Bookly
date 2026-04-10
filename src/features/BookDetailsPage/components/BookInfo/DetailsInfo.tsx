@@ -1,9 +1,18 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/src/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/src/components/ui/card';
 import { BookType } from '@/src/data/types/books';
 
 type DetailsInfoProps = Pick<BookType, 'currentPage' | 'totalPages' | 'genre'>;
 
-export const DetailsInfo = ({ currentPage, totalPages, genre }: DetailsInfoProps) => {
+export const DetailsInfo = ({
+  currentPage,
+  totalPages,
+  genre,
+}: DetailsInfoProps) => {
   if (!currentPage && !totalPages && !genre) return null;
 
   return (
@@ -22,7 +31,11 @@ export const DetailsInfo = ({ currentPage, totalPages, genre }: DetailsInfoProps
         {(currentPage || totalPages) && (
           <div>
             <p className="text-muted-foreground">PÁGINAS</p>
-            <p className="font-bold">{currentPage !== null ? `${currentPage}/${totalPages}` : totalPages}</p>
+            <p className="font-bold">
+              {currentPage !== null
+                ? `${currentPage}/${totalPages}`
+                : totalPages}
+            </p>
           </div>
         )}
       </CardContent>

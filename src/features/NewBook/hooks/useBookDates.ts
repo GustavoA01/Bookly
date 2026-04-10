@@ -8,7 +8,8 @@ export const useBookDates = () => {
   const getErrorMessages = () => {
     if (startDate && endDate && isAfter(startDate, endDate))
       return 'A data de término não pode ser anterior à data de início.';
-    if (!startDate && endDate) return 'A data de início é obrigatória para definir a data de término.';
+    if (!startDate && endDate)
+      return 'A data de início é obrigatória para definir a data de término.';
     return '';
   };
 

@@ -5,9 +5,19 @@ import { Button } from './ui/button';
 import { Plus, Star } from 'lucide-react';
 import { BookType } from '../data/types/books';
 
-type SearchBookCardProps = Pick<BookType, 'id' | 'title' | 'author' | 'genre' | 'imageUrl' | 'rating'>;
+type SearchBookCardProps = Pick<
+  BookType,
+  'id' | 'title' | 'author' | 'genre' | 'imageUrl' | 'rating'
+>;
 
-export const SearchBookCard = ({ id, title, rating, author, genre, imageUrl }: SearchBookCardProps) => (
+export const SearchBookCard = ({
+  id,
+  title,
+  rating,
+  author,
+  genre,
+  imageUrl,
+}: SearchBookCardProps) => (
   <div className="group flex flex-col select-none cursor-pointer gap-3">
     <div className="flex justify-center relative aspect-2/3 w-full overflow-hidden group-hover:-translate-y-1.5 transition-all duration-300 rounded-md">
       <Image
@@ -18,7 +28,11 @@ export const SearchBookCard = ({ id, title, rating, author, genre, imageUrl }: S
         className="object-cover group-hover:opacity-75 transition-opacity"
       />
 
-      <Link href={`/detalhes/${id}`} className="absolute inset-0 z-10" title={`Ver detalhes de ${title}`} />
+      <Link
+        href={`/detalhes/${id}`}
+        className="absolute inset-0 z-10"
+        title={`Ver detalhes de ${title}`}
+      />
 
       <Link
         href={`/novo-livro?id=${id}&role=google`}
@@ -33,7 +47,9 @@ export const SearchBookCard = ({ id, title, rating, author, genre, imageUrl }: S
     </div>
 
     <section className="flex flex-col gap-1">
-      <h3 className="font-semibold group-hover:text-primary transition-all duration-300 line-clamp-2">{title}</h3>
+      <h3 className="font-semibold group-hover:text-primary transition-all duration-300 line-clamp-2">
+        {title}
+      </h3>
       <p className="text-sm text-muted-foreground line-clamp-2">{author}</p>
 
       <div className="hidden sm:flex items-center gap-2">
@@ -44,7 +60,9 @@ export const SearchBookCard = ({ id, title, rating, author, genre, imageUrl }: S
           </div>
         )}
 
-        {genre && <div className="bg-primary/10 text-xs py-1 px-2 rounded">{genre}</div>}
+        {genre && (
+          <div className="bg-primary/10 text-xs py-1 px-2 rounded">{genre}</div>
+        )}
       </div>
     </section>
   </div>

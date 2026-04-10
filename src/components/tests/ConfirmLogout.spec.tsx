@@ -37,7 +37,11 @@ describe('ConfirmLogout', () => {
     expect(logOutButton).toBeInTheDocument();
     expect(mockQueryClearFn).toHaveBeenCalled();
     expect(mockSetCloseModal).toHaveBeenCalledWith(false);
-    expect(screen.getByText('Tem certeza que deseja sair da conta?')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Cancelar/i })).toBeInTheDocument();
+    expect(
+      screen.getByText('Tem certeza que deseja sair da conta?')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /Cancelar/i })
+    ).toBeInTheDocument();
   });
 });

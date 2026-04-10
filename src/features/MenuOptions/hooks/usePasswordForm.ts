@@ -1,4 +1,8 @@
-import { EmailAuthProvider, reauthenticateWithCredential, updatePassword } from 'firebase/auth';
+import {
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  updatePassword,
+} from 'firebase/auth';
 import { toast } from 'sonner';
 import { PasswordFormType, passwordSchema } from '../schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,8 +13,10 @@ import { useState } from 'react';
 
 const getErrorMessage = {
   'auth/wrong-password': 'Senha atual incorreta.',
-  'auth/weak-password': 'A nova senha é muito fraca. Use pelo menos 6 caracteres.',
-  'auth/requires-recent-login': 'Por segurança, faça login novamente e tente outra vez.',
+  'auth/weak-password':
+    'A nova senha é muito fraca. Use pelo menos 6 caracteres.',
+  'auth/requires-recent-login':
+    'Por segurança, faça login novamente e tente outra vez.',
   default: 'Não foi possível alterar a senha. Tente novamente.',
 };
 
@@ -23,7 +29,10 @@ export const usePasswordForm = () => {
 
   const handleChangePassword = async (data: PasswordFormType) => {
     if (user) {
-      const credential = EmailAuthProvider.credential(user.email!, data.previousPassword);
+      const credential = EmailAuthProvider.credential(
+        user.email!,
+        data.previousPassword
+      );
 
       try {
         setIsChanging(true);
@@ -33,7 +42,9 @@ export const usePasswordForm = () => {
       } catch (err) {
         const error = err as FirebaseError;
         console.error('Error changing password:', error);
-        const message = getErrorMessage[error.code as keyof typeof getErrorMessage] || getErrorMessage.default;
+        const message =
+          getErrorMessage[error.code as keyof typeof getErrorMessage] ||
+          getErrorMessage.default;
         toast.error(message);
       } finally {
         setIsChanging(false);
@@ -46,7 +57,8 @@ export const usePasswordForm = () => {
     handleSubmit: methods.handleSubmit,
     register: methods.register,
     errorPassMessage: methods.formState.errors.password?.message,
-    errorPreviousPassMessage: methods.formState.errors.previousPassword?.message,
+    errorPreviousPassMessage:
+      methods.formState.errors.previousPassword?.message,
     isChanging,
   };
 };

@@ -36,11 +36,18 @@ export const BookForm = ({ id, role }: FormSearchParamsType) => {
   const { register, handleSubmit } = methods;
 
   return (
-    <form id="book-form" onSubmit={handleSubmit(handleCreateBook)} className="flex flex-col sm:grid grid-cols-5">
+    <form
+      id="book-form"
+      onSubmit={handleSubmit(handleCreateBook)}
+      className="flex flex-col sm:grid grid-cols-5"
+    >
       <div className="col-span-3 flex flex-col space-y-4 p-4">
         <Label>Título*</Label>
         <Input {...register('title')} placeholder="Ex: O Hobbit" />
-        <FormErrorMessage showMessage={!!errors.title} message={errors.title?.message} />
+        <FormErrorMessage
+          showMessage={!!errors.title}
+          message={errors.title?.message}
+        />
 
         <AuthorForm register={register} />
 
@@ -58,7 +65,11 @@ export const BookForm = ({ id, role }: FormSearchParamsType) => {
           setEndDate={setEndDate}
           handleCleanDates={handleCleanDates}
         />
-        <FormErrorMessage showMessage={!!dateErrorMessage} message={dateErrorMessage} className="hidden sm:flex" />
+        <FormErrorMessage
+          showMessage={!!dateErrorMessage}
+          message={dateErrorMessage}
+          className="hidden sm:flex"
+        />
 
         <Label>Sinopse</Label>
         <Textarea {...register('synopsis')} className="resize-none" />

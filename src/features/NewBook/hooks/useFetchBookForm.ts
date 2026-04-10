@@ -40,14 +40,16 @@ export const useFetchBookForm = ({
   });
 
   const fetchBook = useCallback(async () => {
-    const book = (await fetch(`https://www.googleapis.com/books/v1/volumes/${id}`).then((res) =>
-      res.json()
-    )) as GoogleBookItem;
+    const book = (await fetch(
+      `https://www.googleapis.com/books/v1/volumes/${id}`
+    ).then((res) => res.json())) as GoogleBookItem;
 
     if (book) {
       reset({
         title: book.volumeInfo.title || '',
-        author: book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : '',
+        author: book.volumeInfo.authors
+          ? book.volumeInfo.authors.join(', ')
+          : '',
         imageUrl: book.volumeInfo.imageLinks?.thumbnail || '',
         numberOfPages: book.volumeInfo.pageCount || undefined,
         synopsis: htmlToText(book.volumeInfo.description || ''),
@@ -70,8 +72,12 @@ export const useFetchBookForm = ({
       });
       setChoosedFile(libraryBook.imageUrl || undefined);
       setStatus(libraryBook.status);
-      setStartDate(libraryBook.startDate ? libraryBook.startDate.toDate() : undefined);
-      setEndDate(libraryBook.endDate ? libraryBook.endDate.toDate() : undefined);
+      setStartDate(
+        libraryBook.startDate ? libraryBook.startDate.toDate() : undefined
+      );
+      setEndDate(
+        libraryBook.endDate ? libraryBook.endDate.toDate() : undefined
+      );
     }
   }, [setStatus, setStartDate, setEndDate, setChoosedFile, reset, libraryBook]);
 

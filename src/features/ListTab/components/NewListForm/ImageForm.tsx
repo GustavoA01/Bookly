@@ -42,7 +42,12 @@ export const ImageForm = ({
       htmlFor="select-image"
       className="flex items-center justify-center border rounded-xl bg-card p-4 h-auto cursor-pointer"
     >
-      <Input id="select-image" type="file" className="hidden" onChange={handleFileChange} />
+      <Input
+        id="select-image"
+        type="file"
+        className="hidden"
+        onChange={handleFileChange}
+      />
 
       {showImage ? (
         <Image

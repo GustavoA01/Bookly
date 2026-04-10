@@ -12,15 +12,23 @@ describe('TabsNav', () => {
   it('highlights the correct tab based on prop', () => {
     render(<TabsNav tab="books" />);
 
-    expect(screen.getByRole('button', { name: 'Livros' })).toHaveClass('bg-secondary');
-    expect(screen.getByRole('button', { name: 'Listas' })).not.toHaveClass('bg-secondary');
+    expect(screen.getByRole('button', { name: 'Livros' })).toHaveClass(
+      'bg-secondary'
+    );
+    expect(screen.getByRole('button', { name: 'Listas' })).not.toHaveClass(
+      'bg-secondary'
+    );
   });
 
   it('renders with default tab when no prop is provided', () => {
     render(<TabsNav tab={undefined} />);
 
-    expect(screen.getByRole('button', { name: 'Livros' })).toHaveClass('bg-secondary');
-    expect(screen.getByRole('button', { name: 'Listas' })).not.toHaveClass('bg-secondary');
+    expect(screen.getByRole('button', { name: 'Livros' })).toHaveClass(
+      'bg-secondary'
+    );
+    expect(screen.getByRole('button', { name: 'Listas' })).not.toHaveClass(
+      'bg-secondary'
+    );
   });
 
   it('redirects to correct URL on tab click', () => {

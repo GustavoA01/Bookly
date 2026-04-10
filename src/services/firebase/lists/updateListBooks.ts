@@ -2,7 +2,11 @@ import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { keys } from '../../keys';
 
-export const updateListBooks = async (listId: string, bookId: string, action: 'add' | 'remove') => {
+export const updateListBooks = async (
+  listId: string,
+  bookId: string,
+  action: 'add' | 'remove'
+) => {
   try {
     const listRef = doc(db, keys.firebase.lists, listId);
 

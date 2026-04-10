@@ -1,6 +1,14 @@
-import { DropdownMenu, DropdownMenuTrigger } from '@/src/components/ui/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+} from '@/src/components/ui/dropdown-menu';
 import { Button } from '@/src/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/src/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/src/components/ui/card';
 import { ListType } from '@/src/data/types/books';
 import { Plus } from 'lucide-react';
 import { ListOptions } from './ListOptions';
@@ -29,7 +37,11 @@ export const ListInfo = ({
   <Card className="w-full">
     <CardHeader>
       <CardTitle className="text-muted-foreground">
-        {lists ? <p>PRESENTE EM</p> : <p>Este livro não está presente em nenhuma lista</p>}
+        {lists ? (
+          <p>PRESENTE EM</p>
+        ) : (
+          <p>Este livro não está presente em nenhuma lista</p>
+        )}
       </CardTitle>
     </CardHeader>
     <CardContent className="flex gap-2 flex-wrap">
@@ -49,7 +61,12 @@ export const ListInfo = ({
 
       {lists &&
         lists.map((list) => (
-          <Drawer key={list.id} direction="bottom" open={openOptionsDrawer} onOpenChange={setOpenOptionsDrawer}>
+          <Drawer
+            key={list.id}
+            direction="bottom"
+            open={openOptionsDrawer}
+            onOpenChange={setOpenOptionsDrawer}
+          >
             <DrawerTrigger asChild>
               <Button className="sm:hidden" variant="outline">
                 {list.name}

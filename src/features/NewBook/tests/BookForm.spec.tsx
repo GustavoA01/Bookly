@@ -13,7 +13,9 @@ jest.mock('next/navigation', () => ({
 
 jest.mock('@tanstack/react-query', () => ({
   useQueryClient: jest.fn(),
-  useQuery: jest.fn().mockReturnValue({ title: 'Test Book', author: 'Test Author' }),
+  useQuery: jest
+    .fn()
+    .mockReturnValue({ title: 'Test Book', author: 'Test Author' }),
   useMutation: jest.fn().mockReturnValue({ mutateAsync: jest.fn() }),
 }));
 

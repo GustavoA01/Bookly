@@ -12,6 +12,9 @@ describe('HaveAccount', () => {
 
     expect(getByText('Já possui uma conta?')).toBeInTheDocument();
     expect(getByText('Entrar')).toBeInTheDocument();
-    expect(getByText(props.labelAction).closest('a')).toHaveAttribute('href', '/login');
+    expect(getByText(props.labelAction).closest('a')).toHaveAttribute(
+      'href',
+      '/login'
+    );
   });
 });

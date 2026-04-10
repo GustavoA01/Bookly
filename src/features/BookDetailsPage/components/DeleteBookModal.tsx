@@ -13,7 +13,8 @@ export const DeleteBookModal = ({ deleteFn }: { deleteFn: () => void }) => (
     <DialogHeader>
       <DialogTitle>Excluir livro</DialogTitle>
       <DialogDescription>
-        Tem certeza que deseja excluir este livro? Ele também será deletado de todas as listas em que está.
+        Tem certeza que deseja excluir este livro? Ele também será deletado de
+        todas as listas em que está.
       </DialogDescription>
     </DialogHeader>
 

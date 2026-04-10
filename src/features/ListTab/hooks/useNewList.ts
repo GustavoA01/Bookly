@@ -32,7 +32,10 @@ export const useNewList = (list?: ListType) => {
 
   const { createListFn, updateListFn } = useListMutation();
 
-  const handleUpdateList = async (data: ListFormType, finalImageUrl: string | null) => {
+  const handleUpdateList = async (
+    data: ListFormType,
+    finalImageUrl: string | null
+  ) => {
     if (!list || !user) return;
     const updatedList: Pick<ListType, 'name' | 'description' | 'imageUrl'> = {
       name: data.name,

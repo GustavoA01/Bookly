@@ -18,7 +18,11 @@ export const useSignUp = () => {
   const handleSignUp = async (data: SignUpFormType) => {
     startTransition(async () => {
       try {
-        const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          data.email,
+          data.password
+        );
 
         const user = userCredential.user;
         if (user) await updateProfile(user, { displayName: data.name });

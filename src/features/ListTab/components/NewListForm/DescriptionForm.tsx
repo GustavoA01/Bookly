@@ -17,7 +17,11 @@ export const DescriptionForm = ({ register }: DescriptionFormProps) => (
 
     <div className="flex flex-col gap-2">
       <Label>Descrição</Label>
-      <Textarea {...register('description')} placeholder="Melhores livros..." className="resize-none" />
+      <Textarea
+        {...register('description')}
+        placeholder="Melhores livros..."
+        className="resize-none"
+      />
     </div>
   </>
 );

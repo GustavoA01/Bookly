@@ -2,7 +2,11 @@ import { NewBookHeader } from '@/src/features/NewBook/container/NewBookHeader';
 import { BookForm } from '@/src/features/NewBook/container/BookForm';
 import { FormSearchParamsType } from '@/src/data/types/api';
 
-const NewBookPage = async ({ searchParams }: { searchParams: Promise<FormSearchParamsType> }) => {
+const NewBookPage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<FormSearchParamsType>;
+}) => {
   const { id, role } = await searchParams;
 
   return (

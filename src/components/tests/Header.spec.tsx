@@ -24,13 +24,24 @@ describe('Header', () => {
     render(<Header />);
 
     expect(screen.getByText('Bookly')).toBeInTheDocument();
-    expect(screen.getByText('Gerencie sua biblioteca pessoal')).toBeInTheDocument();
+    expect(
+      screen.getByText('Gerencie sua biblioteca pessoal')
+    ).toBeInTheDocument();
     expect(screen.getByText('Início')).toBeInTheDocument();
     expect(screen.getByText('Explorar')).toBeInTheDocument();
     expect(screen.getByText('Bookly IA')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Início' })).toHaveAttribute('href', '/');
-    expect(screen.getByRole('link', { name: 'Explorar' })).toHaveAttribute('href', '/explorar');
-    expect(screen.getByRole('link', { name: 'Bookly IA' })).toHaveAttribute('href', '/bookly-ia');
+    expect(screen.getByRole('link', { name: 'Início' })).toHaveAttribute(
+      'href',
+      '/'
+    );
+    expect(screen.getByRole('link', { name: 'Explorar' })).toHaveAttribute(
+      'href',
+      '/explorar'
+    );
+    expect(screen.getByRole('link', { name: 'Bookly IA' })).toHaveAttribute(
+      'href',
+      '/bookly-ia'
+    );
   });
 
   it('highlights the active navigation item based on the current pathname', () => {

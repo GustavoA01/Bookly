@@ -1,11 +1,22 @@
 'use client';
-import { collection, getDocs, orderBy, query, QueryConstraint, where } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  orderBy,
+  query,
+  QueryConstraint,
+  where,
+} from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { BookType, FilterOptionsType, Status } from '@/src/data/types/books';
 import { keys } from '../../keys';
 import { User } from 'firebase/auth';
 
-export const getBooks = async (user: User | null, orderQuery: FilterOptionsType | '', status: Status | '' | 'all') => {
+export const getBooks = async (
+  user: User | null,
+  orderQuery: FilterOptionsType | '',
+  status: Status | '' | 'all'
+) => {
   try {
     if (!user) {
       console.warn('Usuário não autenticado');
@@ -14,7 +25,8 @@ export const getBooks = async (user: User | null, orderQuery: FilterOptionsType 
 
     const constraints: QueryConstraint[] = [where('userId', '==', user.uid)];
 
-    if (status && status !== 'all') constraints.push(where('status', '==', status));
+    if (status && status !== 'all')
+      constraints.push(where('status', '==', status));
 
     if (orderQuery && orderQuery !== 'all') {
       switch (orderQuery) {

@@ -13,7 +13,11 @@ describe('ConfirmDeleteModal', () => {
   const renderComponent = () => {
     render(
       <Dialog open>
-        <ConfirmDeleteModal chat={mockChat} deleteChatFn={mockDeleteChatFn} isDeletingChat={false} />
+        <ConfirmDeleteModal
+          chat={mockChat}
+          deleteChatFn={mockDeleteChatFn}
+          isDeletingChat={false}
+        />
       </Dialog>
     );
   };
@@ -22,8 +26,12 @@ describe('ConfirmDeleteModal', () => {
     renderComponent();
 
     expect(screen.getByText('Excluir Conversa')).toBeInTheDocument();
-    expect(screen.getByText('Tem certeza que deseja deletar a conversa?')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Cancelar' })).toBeInTheDocument();
+    expect(
+      screen.getByText('Tem certeza que deseja deletar a conversa?')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Cancelar' })
+    ).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Excluir' })).toBeInTheDocument();
   });
 

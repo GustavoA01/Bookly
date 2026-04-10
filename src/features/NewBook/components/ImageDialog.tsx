@@ -21,14 +21,21 @@ type ImageDialogProps = {
   chooseImageError: string | undefined | null;
 };
 
-export const ImageDialog = ({ choosedFile, setChoosedFile, handleFileChange, chooseImageError }: ImageDialogProps) => {
+export const ImageDialog = ({
+  choosedFile,
+  setChoosedFile,
+  handleFileChange,
+  chooseImageError,
+}: ImageDialogProps) => {
   const { register, setValue } = useFormContext<BookFormType>();
 
   return (
     <DialogContent>
       <DialogHeader>
         <DialogTitle>Adicionar Imagem do Livro</DialogTitle>
-        <DialogDescription>Faça upload de uma imagem ou cole uma URL da web</DialogDescription>
+        <DialogDescription>
+          Faça upload de uma imagem ou cole uma URL da web
+        </DialogDescription>
       </DialogHeader>
 
       <div className="flex flex-col gap-4">
@@ -48,13 +55,24 @@ export const ImageDialog = ({ choosedFile, setChoosedFile, handleFileChange, cho
           htmlFor="select-image"
           className="flex items-center justify-center border rounded-xl bg-card p-4 h-auto cursor-pointer"
         >
-          <Input id="select-image" type="file" className="hidden" onChange={handleFileChange} />
+          <Input
+            id="select-image"
+            type="file"
+            className="hidden"
+            onChange={handleFileChange}
+          />
 
           <div className="flex flex-col items-center justify-center gap-2">
-            <ImageUp size={18} className="cursor-pointer text-muted-foreground" />
+            <ImageUp
+              size={18}
+              className="cursor-pointer text-muted-foreground"
+            />
           </div>
         </label>
-        <FormErrorMessage showMessage={!!chooseImageError} message={chooseImageError} />
+        <FormErrorMessage
+          showMessage={!!chooseImageError}
+          message={chooseImageError}
+        />
       </div>
 
       <DialogFooter>
