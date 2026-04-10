@@ -18,7 +18,7 @@ jest.mock('next/link', () => {
 });
 
 describe('ListsHeader', () => {
-  it('renders all three buttons', () => {
+  const renderCompnent = () => {
     const onClickEdit = jest.fn();
     const onClickDelete = jest.fn();
 
@@ -28,6 +28,11 @@ describe('ListsHeader', () => {
         setOpenDeleteDialog={onClickDelete}
       />
     );
+    return { getByTestId, onClickEdit, onClickDelete };
+  };
+
+  it('renders all three buttons', () => {
+    const { getByTestId } = renderCompnent();
 
     expect(getByTestId('back-button')).toBeInTheDocument();
     expect(getByTestId('edit-button')).toBeInTheDocument();
@@ -35,16 +40,7 @@ describe('ListsHeader', () => {
   });
 
   it('calls setOpenEditModal when edit button is clicked', () => {
-    const onClickEdit = jest.fn();
-    const onClickDelete = jest.fn();
-
-    const { getByTestId } = render(
-      <ListsHeader
-        setOpenEditModal={onClickEdit}
-        setOpenDeleteDialog={onClickDelete}
-      />
-    );
-
+    const { getByTestId, onClickEdit } = renderCompnent();
     const editButton = getByTestId('edit-button');
     fireEvent.click(editButton);
 
@@ -53,15 +49,7 @@ describe('ListsHeader', () => {
   });
 
   it('calls setOpenDeleteDialog when delete button is clicked', () => {
-    const onClickEdit = jest.fn();
-    const onClickDelete = jest.fn();
-
-    const { getByTestId } = render(
-      <ListsHeader
-        setOpenEditModal={onClickEdit}
-        setOpenDeleteDialog={onClickDelete}
-      />
-    );
+    const { getByTestId, onClickDelete } = renderCompnent();
 
     const deleteButton = getByTestId('delete-button');
     fireEvent.click(deleteButton);
@@ -71,15 +59,7 @@ describe('ListsHeader', () => {
   });
 
   it('renders back button with correct link', () => {
-    const onClickEdit = jest.fn();
-    const onClickDelete = jest.fn();
-
-    const { getByTestId } = render(
-      <ListsHeader
-        setOpenEditModal={onClickEdit}
-        setOpenDeleteDialog={onClickDelete}
-      />
-    );
+    const { getByTestId } = renderCompnent();
 
     const backLink = getByTestId('link-/?tab=lists');
     expect(backLink).toBeInTheDocument();

@@ -57,7 +57,6 @@ export const BookDetails = ({
             height={350}
           />
         )}
-
         <BookHeader
           title={title}
           author={author}

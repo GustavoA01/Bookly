@@ -11,8 +11,8 @@ type AddBuyButtonProps = {
 };
 
 export const AddBuyButton = ({ id, buyLink }: AddBuyButtonProps) => {
-  const pathname = usePathname();
   const { user } = useAuth();
+  const pathname = usePathname();
   const isGoogleDetailsPage = pathname.includes('/detalhes/');
   const redirectHref = user ? `/novo-livro?id=${id}&role=google` : '/login';
 

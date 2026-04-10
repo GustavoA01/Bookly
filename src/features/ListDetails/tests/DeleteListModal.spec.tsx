@@ -31,6 +31,7 @@ describe('DeleteListModal', () => {
 
     const deleteButton = screen.getByRole('button', { name: 'Excluir' });
     deleteButton.click();
+
     expect(deleteFn).toHaveBeenCalled();
   });
 });
