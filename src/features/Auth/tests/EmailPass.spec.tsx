@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { EmailPass } from '../components/EmailPass';
 
 describe('EmailPass', () => {
@@ -27,20 +27,19 @@ describe('EmailPass', () => {
   });
 
   it('renders password recovery link when pathPasswordRecovery is provided', () => {
+    const mockResetPassword = jest.fn();
     const recoveryProps = {
       ...defaultProps,
-      pathPasswordRecovery: '/password-recovery',
+      pathPasswordRecovery: mockResetPassword,
       labelPasswordRecovery: 'Esqueceu a senha?',
       labelAction: 'Recuperar',
     };
 
     render(<EmailPass {...recoveryProps} />);
+    fireEvent.click(screen.getByText('Recuperar'));
+    expect(mockResetPassword).toHaveBeenCalled();
 
     expect(screen.getByText('Esqueceu a senha?')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Recuperar' })).toHaveAttribute(
-      'href',
-      '/password-recovery'
-    );
   });
 
   it('does not render recovery section when pathPasswordRecovery is missing', () => {

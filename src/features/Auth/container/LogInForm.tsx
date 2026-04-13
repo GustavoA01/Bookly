@@ -9,6 +9,7 @@ export const LogInForm = () => {
     handleSignIn,
     isPending,
     errorMessage,
+    handleResetPassword,
   } = useSignIn();
 
   return (
@@ -17,7 +18,7 @@ export const LogInForm = () => {
         register={register}
         labelPasswordRecovery="Esqueceu a senha?"
         labelAction="Recuperar"
-        pathPasswordRecovery="/password-recovery"
+        pathPasswordRecovery={handleResetPassword}
         actionLabel="Entrar"
         isPending={isPending}
       />

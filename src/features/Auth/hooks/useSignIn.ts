@@ -2,10 +2,14 @@ import { SignInFormType, signInSchema } from '@/src/data/schemas';
 import { auth } from '@/src/services/firebase/firebaseConfig';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FirebaseError } from 'firebase/app';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 export const useSignIn = () => {
   const router = useRouter();
@@ -14,6 +18,28 @@ export const useSignIn = () => {
   const methods = useForm<SignInFormType>({
     resolver: zodResolver(signInSchema),
   });
+
+  const handleResetPassword = async () => {
+    const email = methods.getValues('email');
+    if (!email) {
+      toast.error('Por favor, insira seu e-mail para recuperação de senha.');
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      toast.success(
+        'E-mail de recuperação enviado! Verifique sua caixa de entrada.'
+      );
+    } catch (err) {
+      const error = err as FirebaseError;
+
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      toast.error('Erro ao enviar e-mail de recuperação');
+      console.error('Erro ao enviar e-mail:', errorCode, errorMessage);
+    }
+  };
 
   const handleSignIn = async (data: SignInFormType) => {
     startTransition(async () => {
@@ -35,5 +61,11 @@ export const useSignIn = () => {
     });
   };
 
-  return { methods, handleSignIn, isPending, errorMessage };
+  return {
+    methods,
+    handleSignIn,
+    isPending,
+    errorMessage,
+    handleResetPassword,
+  };
 };
