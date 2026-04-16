@@ -4,15 +4,15 @@ import { ArrowLeft, Save } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export const NewBookHeader = () => {
-  const router = useRouter();
+  const { back } = useRouter();
 
   return (
     <header className="flex justify-between">
       <div className="flex space-x-6 items-center">
         <Button
-          data-testid="back-button"
-          onClick={() => router.back()}
           variant="ghost"
+          onClick={() => back()}
+          data-testid="back-button"
         >
           <ArrowLeft />
         </Button>
@@ -22,7 +22,7 @@ export const NewBookHeader = () => {
         </h1>
       </div>
 
-      <Button form="book-form" type="submit">
+      <Button form="book-form">
         <Save />
         <p>Salvar</p>
       </Button>

@@ -1,5 +1,6 @@
 import { Timestamp } from 'firebase/firestore';
-import { JSX } from 'react';
+import { LucideProps } from 'lucide-react';
+import { ForwardRefExoticComponent, RefAttributes } from 'react';
 
 export interface BookType {
   id: string;
@@ -35,7 +36,9 @@ export type StatusPropsType = {
   bgColor: string;
   textColor: string;
   label: string;
-  icon: JSX.Element;
+  icon: ForwardRefExoticComponent<
+    Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>
+  >;
 };
 
 export type FilterOptionsType =

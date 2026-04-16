@@ -6,11 +6,6 @@ import { BookType } from '@/src/data/types/books';
 import { StatusChip } from '@/src/components/StatusChip';
 import { format } from 'date-fns';
 
-type BookRowProps = Pick<
-  BookType,
-  'id' | 'title' | 'author' | 'createdAt' | 'genre' | 'status' | 'rating'
->;
-
 export const BookRow = ({
   id,
   title,
@@ -19,13 +14,13 @@ export const BookRow = ({
   genre,
   status,
   rating,
-}: BookRowProps) => {
-  const router = useRouter();
+}: BookType) => {
+  const { push } = useRouter();
 
   return (
     <TableRow
       data-testid="book-row"
-      onClick={() => router.push(`/livro/${id}`)}
+      onClick={() => push(`/livro/${id}`)}
       className="cursor-pointer group"
     >
       <TableCell className="flex flex-col max-w-md">

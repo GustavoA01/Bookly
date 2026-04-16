@@ -13,11 +13,9 @@ export const BottomNavigation = () => {
           <div
             className={`flex flex-col items-center text-muted-foreground space-y-1 ${pathname === item.href ? 'text-primary' : ''}`}
           >
-            <div
+            <item.icon
               className={`text-muted-foreground ${pathname === item.href ? 'text-primary' : ''}`}
-            >
-              {item.icon}
-            </div>
+            />
             <span className="text-sm">{item.name}</span>
           </div>
         </Link>

@@ -31,19 +31,19 @@ export const navigationButtons = [
     name: 'Início',
     title: 'Ir para início',
     href: '/',
-    icon: <Home className="max-sm:h-5 max-sm:w-5" />,
+    icon: Home,
   },
   {
     name: 'Explorar',
     title: 'Explorar livros',
     href: '/explorar',
-    icon: <Compass className="max-sm:h-5 max-sm:w-5" />,
+    icon: Compass,
   },
   {
     name: 'Bookly IA',
     title: 'Descobrir com IA',
     href: '/bookly-ia',
-    icon: <Sparkles className="max-sm:h-5 max-sm:w-5" />,
+    icon: Sparkles,
   },
 ];
 
@@ -52,24 +52,24 @@ export const statusColors: Record<Status, StatusPropsType> = {
     bgColor: 'primary/15',
     textColor: 'primary',
     label: 'Lendo',
-    icon: <BookOpen size={14} />,
+    icon: BookOpen,
   },
   read: {
     bgColor: 'green-500/15',
     textColor: 'green-500',
     label: 'Lido',
-    icon: <BadgeCheck size={14} />,
+    icon: BadgeCheck,
   },
   toRead: {
     bgColor: 'yellow-500/15',
     textColor: 'yellow-500',
     label: 'Quero ler',
-    icon: <Clock size={14} />,
+    icon: Clock,
   },
   abandoned: {
     bgColor: 'red-400/15',
     textColor: 'red-400',
     label: 'Abandonado',
-    icon: <BadgeX size={14} />,
+    icon: BadgeX,
   },
 };

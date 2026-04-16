@@ -4,10 +4,10 @@ import { usePathname } from 'next/navigation';
 import { Button } from './ui/button';
 import { navigationButtons } from '../data/constants';
 import { useState } from 'react';
-import { useAuth } from '../data/contexts/AuthProvider';
 import Image from 'next/image';
 import { UserIcon } from '../features/MenuOptions/components/UserIcon';
 import { Menu } from '../features/MenuOptions/container/Menu';
+import { useAuth } from '../data/contexts/AuthProvider';
 
 export const Header = () => {
   const { user, isLoading } = useAuth();
@@ -40,7 +40,7 @@ export const Header = () => {
                 variant="ghost"
                 className={`${pathname === item.href ? 'bg-accent' : ''}`}
               >
-                <div className="text-primary">{item.icon}</div>
+                <item.icon className="text-primary max-sm:h-5 max-sm:w-5" />
                 {item.name}
               </Button>
             </Link>
