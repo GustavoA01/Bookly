@@ -3,34 +3,41 @@ import { Button } from '@/src/components/ui/button';
 import { Input } from '@/src/components/ui/input';
 import { Label } from '@/src/components/ui/label';
 import { Spinner } from '@/src/components/ui/spinner';
-import { SignInFormType, SignUpFormType } from '@/src/data/schemas';
-import { UseFormRegister } from 'react-hook-form';
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
-type EmailPassProps = {
+type EmailPassProps<T extends FieldValues> = {
   actionLabel: string;
   labelAction?: string;
   pathPasswordRecovery?: () => void;
   labelPasswordRecovery?: string;
-  register: UseFormRegister<SignUpFormType | SignInFormType>;
+  register: UseFormRegister<T>;
   isPending: boolean;
+  nameEmail: Path<T>;
+  namePassword: Path<T>;
 };
 
-export const EmailPass = ({
+export const EmailPass = <T extends FieldValues>({
   actionLabel,
   pathPasswordRecovery,
   labelPasswordRecovery,
   labelAction,
   register,
   isPending,
-}: EmailPassProps) => (
+  nameEmail,
+  namePassword,
+}: EmailPassProps<T>) => (
   <div className="flex flex-col gap-4">
     <div className="space-y-2">
       <Label>EMAIL</Label>
-      <Input placeholder="exemplo@bookly.com" {...register('email')} />
+      <Input placeholder="exemplo@bookly.com" {...register(nameEmail)} />
     </div>
     <div className="space-y-2">
       <Label>SENHA</Label>
-      <Input type="password" placeholder="********" {...register('password')} />
+      <Input
+        type="password"
+        placeholder="********"
+        {...register(namePassword)}
+      />
     </div>
 
     <Button className="w-full" disabled={isPending}>

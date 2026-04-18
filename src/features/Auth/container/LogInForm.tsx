@@ -21,6 +21,8 @@ export const LogInForm = () => {
         pathPasswordRecovery={handleResetPassword}
         actionLabel="Entrar"
         isPending={isPending}
+        nameEmail="email"
+        namePassword="password"
       />
       <FormErrorMessage showMessage={!!errorMessage} message={errorMessage} />
     </form>

@@ -23,6 +23,8 @@ export const SignUpForm = () => {
         register={register}
         actionLabel="Criar Conta"
         isPending={isPending}
+        nameEmail="email"
+        namePassword="password"
       />
       <FormErrorMessage showMessage={!!errorMessage} message={errorMessage} />
     </form>
