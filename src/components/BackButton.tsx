@@ -8,9 +8,9 @@ export const BackButton = () => {
 
   return (
     <Button
-      data-testid="back-button"
       variant="outline"
       onClick={() => back()}
+      data-testid="back-button"
       className="rounded-full w-12 h-12"
     >
       <ArrowLeft className="w-auto h-auto" />

@@ -20,7 +20,6 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   // metadataBase: new URL("http://localhost:3000"),
-
   title: 'Bookly',
   description: 'Encontre e salve livros na sua biblioteca usando IA.',
   abstract:
@@ -62,16 +61,14 @@ const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) => {
-  return (
-    <html lang="pt-br" data-lt-installed="true" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} dark antialiased`}
-      >
-        <Providers>{children}</Providers>
-      </body>
-    </html>
-  );
-};
+}>) => (
+  <html lang="pt-br" data-lt-installed="true" suppressHydrationWarning>
+    <body
+      className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} dark antialiased`}
+    >
+      <Providers>{children}</Providers>
+    </body>
+  </html>
+);
 
 export default RootLayout;

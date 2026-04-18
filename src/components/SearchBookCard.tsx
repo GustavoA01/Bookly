@@ -59,7 +59,6 @@ export const SearchBookCard = ({
             <p>{rating}</p>
           </div>
         )}
-
         {genre && (
           <div className="bg-primary/10 text-xs py-1 px-2 rounded">{genre}</div>
         )}
