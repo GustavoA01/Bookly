@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  // metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL('https://bookly-gustavo.vercel.app/'),
   title: 'Bookly',
   description: 'Encontre e salve livros na sua biblioteca usando IA.',
   abstract:
