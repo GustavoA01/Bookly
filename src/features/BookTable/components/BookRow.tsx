@@ -6,6 +6,11 @@ import { BookType } from '@/src/data/types/books';
 import { StatusChip } from '@/src/components/StatusChip';
 import { format } from 'date-fns';
 
+type BookRowProps = Pick<
+  BookType,
+  'id' | 'title' | 'author' | 'createdAt' | 'genre' | 'status' | 'rating'
+>;
+
 export const BookRow = ({
   id,
   title,
@@ -14,7 +19,7 @@ export const BookRow = ({
   genre,
   status,
   rating,
-}: BookType) => {
+}: BookRowProps) => {
   const { push } = useRouter();
 
   return (
