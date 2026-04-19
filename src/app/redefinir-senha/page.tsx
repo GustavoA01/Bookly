@@ -10,8 +10,9 @@ import { Label } from '@/src/components/ui/label';
 import { Button } from '@/src/components/ui/button';
 import { AuthHeader } from '@/src/features/Auth/components/AuthHeader';
 import { useResetPassword } from '@/src/hooks/useResetPassword';
+import { Suspense } from 'react';
 
-const ResetPasswordPage = () => {
+const ResetForm = () => {
   const {
     email,
     handleSubmit,
@@ -63,5 +64,11 @@ const ResetPasswordPage = () => {
     </Card>
   );
 };
+
+const ResetPasswordPage = () => (
+  <Suspense fallback={<p className="text-center">Carregando formulário...</p>}>
+    <ResetForm />
+  </Suspense>
+);
 
 export default ResetPasswordPage;
