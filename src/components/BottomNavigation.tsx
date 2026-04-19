@@ -9,7 +9,7 @@ export const BottomNavigation = () => {
   return (
     <div className="sm:hidden flex fixed bottom-0 w-full justify-between items-center px-10 py-3 bg-card/80 backdrop-blur-md border-t border-primary/60">
       {navigationButtons.map((item) => (
-        <Link href={item.href} key={item.name}>
+        <Link key={item.name} href={item.href}>
           <div
             className={`flex flex-col items-center text-muted-foreground space-y-1 ${pathname === item.href ? 'text-primary' : ''}`}
           >

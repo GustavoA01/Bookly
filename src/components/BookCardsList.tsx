@@ -14,7 +14,7 @@ export const BookCardsList = async ({
   const searchedBooks = await getGoogleBooks(query, currentPage);
 
   return (
-    <div>
+    <div className="max-sm:mb-15">
       <div className="gap-2 sm:gap-4 space-y-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {searchedBooks?.items?.map((book) => (
           <SearchBookCard
