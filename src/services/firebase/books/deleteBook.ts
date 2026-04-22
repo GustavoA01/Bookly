@@ -12,13 +12,7 @@ import {
 import { keys } from '../../keys';
 import { User } from 'firebase/auth';
 import { db } from '../firebaseConfig';
-import { v2 as cloudinary } from 'cloudinary';
-
-cloudinary.config({
-  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+import { deleteImageCloudinary } from '@/src/actions/deleteImageCloudinary';
 
 export const deleteBook = async (id: string, user: User | null) => {
   try {
@@ -26,7 +20,7 @@ export const deleteBook = async (id: string, user: User | null) => {
     const bookSnap = await getDoc(bookRef);
 
     if (bookSnap.exists()) {
-      const { publicId } = bookSnap.data();
+      const { imagePublicId } = bookSnap.data();
       if (!user) throw new Error('Usuário não autenticado');
 
       const batch = writeBatch(db);
@@ -47,8 +41,7 @@ export const deleteBook = async (id: string, user: User | null) => {
       });
 
       await batch.commit();
-      if (publicId) await cloudinary.uploader.destroy(publicId);
-
+      await deleteImageCloudinary(imagePublicId);
       await deleteDoc(doc(db, keys.firebase.books, id));
     }
   } catch (error) {
