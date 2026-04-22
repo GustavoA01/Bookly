@@ -50,10 +50,13 @@ export const useNewList = (list?: ListType) => {
     if (!user) return;
 
     let finalImageUrl = data.imageUrl || null;
+    let imagePublicId: string | null = null;
 
     if (data.imageFile) {
       try {
-        finalImageUrl = await uploadImageToCloudinary(data.imageFile);
+        const { url, publicId } = await uploadImageToCloudinary(data.imageFile);
+        finalImageUrl = url;
+        imagePublicId = publicId;
       } catch (error) {
         console.error('Erro no upload da imagem:', error);
         return;
@@ -71,6 +74,7 @@ export const useNewList = (list?: ListType) => {
       imageUrl: finalImageUrl,
       createdAt: Timestamp.now(),
       books: [],
+      imagePublicId,
       userId: user.uid,
     };
 

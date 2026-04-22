@@ -92,6 +92,7 @@ describe('useNewList', () => {
         createdAt: { seconds: 1234567890, nanoseconds: 0 },
         books: [],
         userId: 'user-123',
+        imagePublicId: null,
       });
     });
 
@@ -150,6 +151,7 @@ describe('useNewList', () => {
       createdAt: { seconds: 1234567890, nanoseconds: 0 } as Timestamp,
       books: [],
       userId: 'user-123',
+      imagePublicId: null,
     };
 
     beforeEach(() => {

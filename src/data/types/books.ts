@@ -27,6 +27,7 @@ export interface ListType {
   description: string | null;
   books: string[];
   imageUrl: string | null;
+  imagePublicId: string | null;
   createdAt: Timestamp;
   userId: string;
 }
