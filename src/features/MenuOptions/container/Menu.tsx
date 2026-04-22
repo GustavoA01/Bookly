@@ -5,8 +5,8 @@ import { DrawerMenu } from '../components/DrawerMenu';
 import { DialogMenu } from '../components/DialogMenu';
 import { NameForm } from './NameForm';
 import { User } from 'firebase/auth';
-import { useState } from 'react';
 import { PasswordForm } from './PasswordForm';
+import { useMenuActions } from '../hooks/useMenuActions';
 
 type MenuProps = {
   user: User | null;
@@ -23,23 +23,17 @@ export const Menu = ({
   setOpenSheet,
   setOpenModal,
 }: MenuProps) => {
-  const [openConfirmModal, setOpenConfirmModal] = useState(false);
-  const [openUserNameDialog, setOpenUserNameDialog] = useState(false);
-  const [openPasswordDialog, setOpenPasswordDialog] = useState(false);
-
-  const handleLogout = () => setOpenConfirmModal(true);
-
-  const handleOpenUserNameDialog = () => {
-    setOpenSheet(false);
-    setOpenModal(false);
-    setOpenUserNameDialog(true);
-  };
-
-  const handleOpenPasswordDialog = () => {
-    setOpenSheet(false);
-    setOpenModal(false);
-    setOpenPasswordDialog(true);
-  };
+  const {
+    handleLogout,
+    handleOpenPasswordDialog,
+    handleOpenUserNameDialog,
+    openConfirmModal,
+    openPasswordDialog,
+    openUserNameDialog,
+    setOpenConfirmModal,
+    setOpenPasswordDialog,
+    setOpenUserNameDialog,
+  } = useMenuActions(setOpenSheet, setOpenModal);
 
   return (
     <>
