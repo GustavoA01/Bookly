@@ -3,6 +3,8 @@ import { Button } from '../../../components/ui/button';
 import {
   DialogClose,
   DialogContent,
+  DialogDescription,
+  DialogHeader,
   DialogTitle,
 } from '../../../components/ui/dialog';
 import { User } from 'firebase/auth';
@@ -22,7 +24,10 @@ export const DialogMenu = ({
   handleOpenUserDialog,
 }: DialogMenuProps) => (
   <DialogContent>
-    <DialogTitle>{user?.displayName}</DialogTitle>
+    <DialogHeader>
+      <DialogTitle>{user?.displayName}</DialogTitle>
+      <DialogDescription>{user?.email}</DialogDescription>
+    </DialogHeader>
     <div className="flex flex-col gap-2 mt-4">
       <Options
         handleOpenUserDialog={handleOpenUserDialog}

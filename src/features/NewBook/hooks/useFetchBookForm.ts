@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect } from 'react';
 import { UseFormReset } from 'react-hook-form';
 
-type UseFetchBookFormReturnType = {
+type UseFetchBookFormType = {
   params: FormSearchParamsType;
   reset: UseFormReset<BookFormType>;
   setChoosedFile: (url: string | undefined) => void;
@@ -23,7 +23,7 @@ export const useFetchBookForm = ({
   setStatus,
   setStartDate,
   setEndDate,
-}: UseFetchBookFormReturnType) => {
+}: UseFetchBookFormType) => {
   const { id, role } = params;
   const isLibrary = !!id && role === 'library';
   const isGoogle = !!id && role === 'google';
@@ -65,6 +65,7 @@ export const useFetchBookForm = ({
         title: libraryBook.title,
         author: libraryBook.author || '',
         genre: libraryBook.genre || '',
+        imageUrl: libraryBook.imageUrl || '',
         synopsis: libraryBook.synopsis || '',
         numberOfPages: libraryBook.totalPages || undefined,
         currentPage: libraryBook.currentPage || undefined,
@@ -82,10 +83,7 @@ export const useFetchBookForm = ({
   }, [setStatus, setStartDate, setEndDate, setChoosedFile, reset, libraryBook]);
 
   useEffect(() => {
-    if (isGoogle) {
-      fetchBook();
-    } else if (isLibrary) {
-      insertUserBookData();
-    }
+    if (isGoogle) fetchBook();
+    else if (isLibrary) insertUserBookData();
   }, [fetchBook, isGoogle, isLibrary, insertUserBookData]);
 };

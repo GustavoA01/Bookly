@@ -1,6 +1,7 @@
 import { GeminiResponseType } from '@/src/data/types/api';
 import { BookType } from '@/src/data/types/books';
 import { ai } from '@/src/services/google/geminiConfig';
+import { HarmBlockThreshold, HarmCategory } from '@google/genai';
 
 export const POST = async (req: Request) => {
   try {
@@ -17,8 +18,27 @@ export const POST = async (req: Request) => {
         Você vai receber a lista de livros adicionados do usuário, e irá sugerir livros similares a esses com a API Google Books.
         Livros do usuário: ${userBooks.map((book: BookType) => `${book.title} de ${book.author}`).join(', ')} 
         Responda apenas com o nome do livro e o autor, e com um texto de resposta que permitirá o usuário interagir com você.
+        Não responda perguntas não relacionadas a livros ou sugestões de livros, caso o usuário pergunte algo fora desse contexto, responda que nã o pode responder.
         Responda no formato: {"response": string, "suggestions": [{"title": string, "author": string}]}
         `,
+        safetySettings: [
+          {
+            category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+            threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+          },
+          {
+            category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+            threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+          },
+          {
+            category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+            threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+          },
+          {
+            category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+            threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+          },
+        ],
       },
       contents: [
         {

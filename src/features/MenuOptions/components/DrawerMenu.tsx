@@ -3,6 +3,8 @@ import { Button } from '../../../components/ui/button';
 import {
   DrawerClose,
   DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
   DrawerTitle,
 } from '../../../components/ui/drawer';
 import { User } from 'firebase/auth';
@@ -22,7 +24,10 @@ export const DrawerMenu = ({
   handleOpenPasswordDialog,
 }: DrawerMenuProps) => (
   <DrawerContent className="p-4">
-    <DrawerTitle>{user?.displayName}</DrawerTitle>
+    <DrawerHeader>
+      <DrawerTitle>{user?.displayName}</DrawerTitle>
+      <DrawerDescription>{user?.email}</DrawerDescription>
+    </DrawerHeader>
     <div className="flex flex-col gap-2 mt-4">
       <Options
         handleOpenUserDialog={handleOpenUserDialog}

@@ -20,7 +20,7 @@ export const NameForm = () => {
         className="flex flex-col gap-4"
       >
         <Label>Escreva seu novo nome</Label>
-        <Input placeholder="Ex: Jão Silva" {...register('name')} />
+        <Input placeholder="Ex: Jão da Silva" {...register('name')} />
       </form>
       <DialogFooter>
         <DialogClose asChild>
