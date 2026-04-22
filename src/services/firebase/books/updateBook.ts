@@ -5,7 +5,7 @@ import { BookType } from '@/src/data/types/books';
 import { User } from 'firebase/auth';
 
 export const updateBook = async (
-  book: Omit<BookType, 'userId' | 'id' | 'createdAt'>,
+  book: Omit<BookType, 'userId' | 'id' | 'createdAt' | 'imagePublicId'>,
   id: string,
   user: User | null
 ) => {

@@ -66,11 +66,15 @@ const mockBookFormated: Omit<BookType, 'id'> = {
   endDate: null,
   status: 'toRead',
   imageUrl: null,
+  imagePublicId: null,
   createdAt: Timestamp.now(),
   userId: 'test-user-id',
 };
 
-const mockBookToUpdate: Omit<BookType, 'userId' | 'id' | 'createdAt'> = {
+const mockBookToUpdate: Omit<
+  BookType,
+  'userId' | 'id' | 'createdAt' | 'imagePublicId'
+> = {
   title: mockFormData.title,
   author: mockFormData.author || null,
   totalPages: mockFormData.numberOfPages || null,

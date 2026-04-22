@@ -16,6 +16,7 @@ export interface BookType {
   totalPages: number | null;
   startDate: Timestamp | null;
   endDate: Timestamp | null;
+  imagePublicId: string | null;
   createdAt: Timestamp;
   userId: string;
 }

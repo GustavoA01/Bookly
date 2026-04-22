@@ -60,7 +60,10 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
     book: Omit<BookFormType, 'userId'>,
     finalImageUrl: string | null
   ) => {
-    const bookToUpdate: Omit<BookType, 'userId' | 'id' | 'createdAt'> = {
+    const bookToUpdate: Omit<
+      BookType,
+      'userId' | 'id' | 'createdAt' | 'imagePublicId'
+    > = {
       title: book.title,
       author: book.author || null,
       genre: book.genre || null,
@@ -86,10 +89,13 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
     if (dateErrorMessage) return;
 
     let finalImageUrl = data.imageUrl || null;
+    let imagePublicId: string | null = null;
 
     if (data.imageFile) {
       try {
-        finalImageUrl = await uploadImageToCloudinary(data.imageFile);
+        const { url, publicId } = await uploadImageToCloudinary(data.imageFile);
+        finalImageUrl = url;
+        imagePublicId = publicId;
       } catch (error) {
         console.error('Erro no upload da imagem:', error);
         return;
@@ -114,6 +120,7 @@ export const useNewBook = ({ id, role }: FormSearchParamsType) => {
       imageUrl: finalImageUrl,
       startDate: startDate === undefined ? null : Timestamp.fromDate(startDate),
       endDate: endDate === undefined ? null : Timestamp.fromDate(endDate),
+      imagePublicId,
       createdAt: Timestamp.now(),
       userId: user.uid,
     };

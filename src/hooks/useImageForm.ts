@@ -59,7 +59,7 @@ export const useImageForm = (setValue: UseImageFormProps) => {
 
       const data = await response.json();
 
-      return data.secure_url;
+      return { url: data.secure_url, publicId: data.public_id };
     } catch (error) {
       console.error('Erro ao enviar para o Cloudinary:', error);
       throw new Error('Falha no upload da imagem');

@@ -24,8 +24,9 @@ export const useBookMutation = (id: string) => {
   });
 
   const { mutateAsync: updateBookFn } = useMutation({
-    mutationFn: (book: Omit<BookType, 'userId' | 'id' | 'createdAt'>) =>
-      updateBook(book, id, user),
+    mutationFn: (
+      book: Omit<BookType, 'userId' | 'id' | 'createdAt' | 'imagePublicId'>
+    ) => updateBook(book, id, user),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [keys.queryKeys.books] });
       toast.success('Livro atualizado!');
