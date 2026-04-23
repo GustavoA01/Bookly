@@ -1,11 +1,5 @@
 import Image from 'next/image';
-
-type ListInfoProps = {
-  imageUrl: string | null;
-  name: string;
-  description: string | null;
-  date: string;
-};
+import { ListInfoProps } from '../types';
 
 export const ListInfo = ({
   imageUrl,

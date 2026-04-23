@@ -1,8 +1,4 @@
-type FormErrorMessageProps = {
-  showMessage: boolean;
-  message: string | undefined | null;
-  className?: string;
-};
+import { FormErrorMessageProps } from '../data/types/components';
 
 export const FormErrorMessage = ({
   showMessage,

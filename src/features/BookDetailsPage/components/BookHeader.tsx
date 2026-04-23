@@ -1,11 +1,6 @@
 import { StatusChip } from '@/src/components/StatusChip';
-import { BookType, Status } from '@/src/data/types/books';
 import { Star } from 'lucide-react';
-
-type BookHeaderProps = Pick<BookType, 'title' | 'author' | 'rating'> & {
-  isImageNull: boolean;
-  status?: Status;
-};
+import { BookHeaderProps } from '../types';
 
 export const BookHeader = ({
   title,

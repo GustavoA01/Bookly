@@ -9,21 +9,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@/src/components/ui/card';
-import { ListType } from '@/src/data/types/books';
 import { Plus } from 'lucide-react';
 import { ListOptions } from './ListOptions';
 import { Drawer, DrawerTrigger } from '@/src/components/ui/drawer';
 import { DrawerListOptions } from './DrawerListOptions';
-
-type ListInfoProps = {
-  lists: ListType[] | undefined;
-  setOpenDrawer: (open: boolean) => void;
-  setOpenModal: (open: boolean) => void;
-  setOpenRemoveBookModal: (open: boolean) => void;
-  setListIdToRemove: (id: string) => void;
-  openOptionsDrawer: boolean;
-  setOpenOptionsDrawer: (open: boolean) => void;
-};
+import { ListInfoProps } from '../../types';
 
 export const ListInfo = ({
   lists,

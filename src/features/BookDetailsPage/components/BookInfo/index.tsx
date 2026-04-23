@@ -5,28 +5,15 @@ import { TimeInfo } from './TimeInfo';
 import { DetailsInfo } from './DetailsInfo';
 import { ListInfo } from './ListInfo';
 import { AddBuyButton } from '../../container/AddBuyButton';
-import { BookType } from '@/src/data/types/books';
 import { PublisherInfo } from './PublisherInfo';
 import { Drawer, DrawerContent, DrawerTitle } from '@/src/components/ui/drawer';
 import { AddListContent } from '../../container/AddListContent';
 import { useBookInfo } from '../../hooks/useBookInfo';
 import { RemoveListModal } from '../RemoveModal';
-
-type BookInfoProps = Pick<
-  BookType,
-  'currentPage' | 'totalPages' | 'startDate' | 'endDate' | 'genre'
-> & {
-  id?: string;
-  isSynopsisAndCommentNull: boolean;
-  buyLink?: string;
-  publisher?: string;
-  country?: string;
-  language?: string;
-};
+import { BookInfoProps } from '../../types';
 
 export const BookInfo = ({
   id,
-  isSynopsisAndCommentNull,
   genre,
   currentPage,
   totalPages,
@@ -36,6 +23,7 @@ export const BookInfo = ({
   publisher,
   country,
   language,
+  isSynopsisAndCommentNull,
 }: BookInfoProps) => {
   const {
     isBooksDetailsPage,

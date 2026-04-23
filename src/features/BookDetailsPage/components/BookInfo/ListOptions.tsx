@@ -4,12 +4,7 @@ import {
   DropdownMenuItem,
 } from '@/src/components/ui/dropdown-menu';
 import Link from 'next/link';
-
-type ListOptionsProps = {
-  listId: string;
-  setOpenRemoveBookModal: (open: boolean) => void;
-  setListIdToRemove: (id: string) => void;
-};
+import { ListOptionsProps } from '../../types';
 
 export const ListOptions = ({
   listId,

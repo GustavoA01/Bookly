@@ -3,12 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { Plus, Star } from 'lucide-react';
-import { BookType } from '../data/types/books';
-
-type SearchBookCardProps = Pick<
-  BookType,
-  'id' | 'title' | 'author' | 'genre' | 'imageUrl' | 'rating'
->;
+import { SearchBookCardProps } from '../data/types/components';
 
 export const SearchBookCard = ({
   id,

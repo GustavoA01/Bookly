@@ -1,10 +1,5 @@
 import Link from 'next/link';
-
-type HaveAccountProps = {
-  labelHref: string;
-  labelAction: string;
-  label: string;
-};
+import { HaveAccountProps } from '../types';
 
 export const HaveAccount = ({
   labelHref,

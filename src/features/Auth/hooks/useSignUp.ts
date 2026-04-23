@@ -8,7 +8,7 @@ import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 
 export const useSignUp = () => {
-  const router = useRouter();
+  const { push } = useRouter();
   const [isPending, startTransition] = useTransition();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const methods = useForm<SignUpFormType>({
@@ -27,7 +27,7 @@ export const useSignUp = () => {
         const user = userCredential.user;
         if (user) await updateProfile(user, { displayName: data.name });
 
-        router.push('/');
+        push('/');
       } catch (error) {
         const authError = error as FirebaseError;
         const errorCode = authError.code;

@@ -23,7 +23,9 @@ export const NewListForm = ({ list }: { list?: ListType }) => {
     setChoosedFile,
     handleFileChange,
     submitForm,
-    methods: { register, handleSubmit, setValue },
+    register,
+    handleSubmit,
+    setValue,
   } = useNewList(list);
 
   return (

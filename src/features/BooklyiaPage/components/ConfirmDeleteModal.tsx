@@ -7,13 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/src/components/ui/dialog';
-import { ChatMessageType } from '@/src/data/types/api';
-
-type ConfirmDeleteModalProps = {
-  chat: ChatMessageType;
-  deleteChatFn: (chatId: string) => Promise<void>;
-  isDeletingChat: boolean;
-};
+import { ConfirmDeleteModalProps } from '../types';
 
 export const ConfirmDeleteModal = ({
   chat,

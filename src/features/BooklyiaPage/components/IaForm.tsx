@@ -2,15 +2,7 @@ import { Button } from '@/src/components/ui/button';
 import { Spinner } from '@/src/components/ui/spinner';
 import { Textarea } from '@/src/components/ui/textarea';
 import { Send } from 'lucide-react';
-import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
-
-type IaFormType = {
-  handleSubmit: UseFormHandleSubmit<{ prompt: string }>;
-  handleSearch: (data: { prompt: string }) => Promise<void>;
-  register: UseFormRegister<{ prompt: string }>;
-  isRequestPending: boolean;
-  notLoggedIn: boolean;
-};
+import { IaFormType } from '../types';
 
 export const IaForm = ({
   handleSubmit,

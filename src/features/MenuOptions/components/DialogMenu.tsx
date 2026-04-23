@@ -7,15 +7,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../../../components/ui/dialog';
-import { User } from 'firebase/auth';
 import { Options } from './Options';
-
-type DialogMenuProps = {
-  user: User | null;
-  handleLogout: () => void;
-  handleOpenUserDialog: () => void;
-  handleOpenPasswordDialog: () => void;
-};
+import { DialogMenuProps } from '../types';
 
 export const DialogMenu = ({
   user,

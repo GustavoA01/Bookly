@@ -1,10 +1,5 @@
 import { statusColors } from '../data/constants';
-import { Status } from '../data/types/books';
-
-type StatusChipProps = {
-  status: Status;
-  className?: string;
-};
+import { StatusChipProps } from '../data/types/components';
 
 export const StatusChip = ({ status, className }: StatusChipProps) => {
   const Icon = statusColors[status].icon;

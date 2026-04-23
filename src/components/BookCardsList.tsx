@@ -1,11 +1,7 @@
 import { SearchBookCard } from './SearchBookCard';
 import { getGoogleBooks } from '../services/google/getGoogleBooks';
 import { SharedPagination } from './SharedPagination';
-
-type BookCardsListProps = {
-  query: string;
-  currentPage: number;
-};
+import { BookCardsListProps } from '../data/types/components';
 
 export const BookCardsList = async ({
   query,

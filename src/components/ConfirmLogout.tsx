@@ -8,15 +8,12 @@ import {
   DialogFooter,
   DialogTitle,
 } from './ui/dialog';
+import { ConfirmLogoutProps } from '../data/types/components';
 
-export const ConfirmLogout = ({
-  setCloseModal,
-}: {
-  setCloseModal: (open: boolean) => void;
-}) => {
+export const ConfirmLogout = ({ setCloseModal }: ConfirmLogoutProps) => {
   const queryClient = useQueryClient();
 
-  const hendleLogout = async () => {
+  const handleLogout = async () => {
     await auth.signOut();
     queryClient.clear();
     setCloseModal(false);
@@ -32,7 +29,7 @@ export const ConfirmLogout = ({
         <DialogClose asChild>
           <Button variant="outline">Cancelar</Button>
         </DialogClose>
-        <Button variant="destructive" onClick={hendleLogout}>
+        <Button variant="destructive" onClick={handleLogout}>
           <p>Sair</p>
         </Button>
       </DialogFooter>

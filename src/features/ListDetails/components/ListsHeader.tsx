@@ -1,13 +1,7 @@
 import { Button } from '@/src/components/ui/button';
 import { ArrowLeft, BookPlus, Pencil, Trash } from 'lucide-react';
 import Link from 'next/link';
-
-type ListsHeaderProps = {
-  setOpenEditModal: (open: boolean) => void;
-  setOpenDeleteDialog: (open: boolean) => void;
-  setOpenDrawer: (open: boolean) => void;
-  setOpenBooksModal: (open: boolean) => void;
-};
+import { ListsHeaderProps } from '../types';
 
 export const ListsHeader = ({
   setOpenEditModal,

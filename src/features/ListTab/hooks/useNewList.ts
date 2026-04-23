@@ -17,7 +17,6 @@ export const useNewList = (list?: ListType) => {
       imageUrl: list?.imageUrl || undefined,
     },
   });
-  const { setValue } = methods;
 
   const {
     choosedFile,
@@ -28,7 +27,7 @@ export const useNewList = (list?: ListType) => {
     handleImageError,
     handleFileChange,
     uploadImageToCloudinary,
-  } = useImageForm(setValue);
+  } = useImageForm(methods.setValue);
 
   const { createListFn, updateListFn } = useListMutation();
 
@@ -92,6 +91,8 @@ export const useNewList = (list?: ListType) => {
     handleImageError,
     chooseImageError,
     cleanCurrentImage,
-    methods,
+    register: methods.register,
+    handleSubmit: methods.handleSubmit,
+    setValue: methods.setValue,
   };
 };

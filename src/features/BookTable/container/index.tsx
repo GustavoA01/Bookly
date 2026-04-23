@@ -2,13 +2,7 @@ import { Table, TableBody, TableHeader } from '../../../components/ui/table';
 import { BookRow } from '../components/BookRow';
 import { BookTHeader } from '../components/BookTHeader';
 import { BookTableSkeleton } from '@/src/components/Skeletons';
-import { BookType } from '@/src/data/types/books';
-
-type BookTableProps = {
-  books: BookType[] | undefined;
-  isBooksLoading: boolean;
-  isUserLoading?: boolean;
-};
+import { BookTableProps } from '../types';
 
 export const BookTable = ({
   books,

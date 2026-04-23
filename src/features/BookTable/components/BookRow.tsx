@@ -2,14 +2,9 @@
 import { Badge } from '../../../components/ui/badge';
 import { TableCell, TableRow } from '../../../components/ui/table';
 import { useRouter } from 'next/navigation';
-import { BookType } from '@/src/data/types/books';
 import { StatusChip } from '@/src/components/StatusChip';
 import { format } from 'date-fns';
-
-type BookRowProps = Pick<
-  BookType,
-  'id' | 'title' | 'author' | 'createdAt' | 'genre' | 'status' | 'rating'
->;
+import { BookRowProps } from '../types';
 
 export const BookRow = ({
   id,

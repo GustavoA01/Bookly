@@ -4,11 +4,7 @@ import { useAuth } from '@/src/data/contexts/AuthProvider';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-type AddBuyButtonProps = {
-  id?: string;
-  buyLink?: string;
-};
+import { AddBuyButtonProps } from '../types';
 
 export const AddBuyButton = ({ id, buyLink }: AddBuyButtonProps) => {
   const { user } = useAuth();

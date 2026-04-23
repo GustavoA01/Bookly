@@ -1,6 +1,6 @@
+import { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { Timestamp } from 'firebase/firestore';
 import { LucideProps } from 'lucide-react';
-import { ForwardRefExoticComponent, RefAttributes } from 'react';
 
 export interface BookType {
   id: string;

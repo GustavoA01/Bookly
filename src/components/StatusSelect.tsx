@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import {
   Select,
   SelectContent,
@@ -8,13 +7,7 @@ import {
 } from './ui/select';
 import { Status } from '../data/types/books';
 import { defaultStatus } from '../data/constants';
-
-type StatusSelectProps = {
-  isHome?: boolean;
-  className?: string;
-  value: Status | '';
-  onValueChange: Dispatch<SetStateAction<Status>>;
-};
+import { StatusSelectProps } from '../data/types/components';
 
 export const StatusSelect = ({
   isHome,

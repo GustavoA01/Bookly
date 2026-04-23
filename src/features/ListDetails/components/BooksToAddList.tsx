@@ -1,15 +1,4 @@
-import { BookType } from '@/src/data/types/books';
-
-type BooksToAddListProps = {
-  booksToAdd: BookType[] | undefined;
-  isBooksToAddLoading: boolean;
-  addToListFn: (params: {
-    listId: string;
-    bookId: string;
-    action: 'add' | 'remove';
-  }) => Promise<void>;
-  listId: string;
-};
+import { BooksToAddListProps } from '../types';
 
 export const BooksToAddList = ({
   booksToAdd,

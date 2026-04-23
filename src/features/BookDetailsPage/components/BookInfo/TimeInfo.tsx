@@ -7,15 +7,11 @@ import {
   CardTitle,
 } from '@/src/components/ui/card';
 import { Progress } from '@/src/components/ui/progress';
-import { BookType } from '@/src/data/types/books';
 import { Calendar, CheckCircle } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { InfoSection } from './InfoSection';
 import { format } from 'date-fns';
-
-type TimeInfoProps = Pick<BookType, 'startDate' | 'endDate'> & {
-  progress: number | null;
-};
+import { TimeInfoProps } from '../../types';
 
 export const TimeInfo = ({ startDate, endDate, progress }: TimeInfoProps) => {
   const pathname = usePathname();

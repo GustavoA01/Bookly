@@ -1,10 +1,5 @@
 import { useAddToList } from '../hooks/useAddToList';
-
-type AddListContentProps = {
-  id?: string;
-  open: boolean;
-  setOpen: (open: boolean) => void;
-};
+import { AddListContentProps } from '../types';
 
 export const AddListContent = ({ id, open, setOpen }: AddListContentProps) => {
   const { lists, isLoading, addToListFn } = useAddToList({ id, open, setOpen });

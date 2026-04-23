@@ -1,11 +1,6 @@
 import { Input } from '@/src/components/ui/input';
 import { Label } from '@/src/components/ui/label';
-import { BookFormType } from '@/src/data/schemas';
-import { UseFormRegister } from 'react-hook-form';
-
-type PagesFormProps = {
-  register: UseFormRegister<BookFormType>;
-};
+import { PagesFormProps } from '../types';
 
 export const PagesForm = ({ register }: PagesFormProps) => (
   <div className="flex flex-col gap-4 sm:grid grid-cols-2 sm:space-x-2">

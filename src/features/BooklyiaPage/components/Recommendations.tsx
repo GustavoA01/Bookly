@@ -1,11 +1,6 @@
 import { SearchBookCard } from '@/src/components/SearchBookCard';
 import { SearchCardSkeleton } from '@/src/components/Skeletons';
-import { GoogleBookItem } from '@/src/data/types/api';
-
-type RecommendationsProps = {
-  isChatPending: boolean;
-  books: GoogleBookItem[];
-};
+import { RecommendationsProps } from '../types';
 
 export const Recommendations = ({
   books,

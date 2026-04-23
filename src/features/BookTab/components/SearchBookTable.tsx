@@ -1,20 +1,12 @@
-import { Input } from '@/src/components/ui/input';
-import { FilterSelect } from './FilterSelect';
-import { StatusSelect } from '@/src/components/StatusSelect';
-import { Dispatch, SetStateAction } from 'react';
 import { FilterOptionsType, Status } from '@/src/data/types/books';
-import Link from 'next/link';
+import { StatusSelect } from '@/src/components/StatusSelect';
 import { Button } from '@/src/components/ui/button';
+import { Input } from '@/src/components/ui/input';
+import { Dispatch, SetStateAction } from 'react';
+import { SearchBookTableProps } from '../types';
+import { FilterSelect } from './FilterSelect';
 import { Plus } from 'lucide-react';
-
-type SearchBookTableProps = {
-  setSearchBookText: Dispatch<SetStateAction<string>>;
-  status: Status | '';
-  filter: FilterOptionsType | '';
-  setStatus: Dispatch<SetStateAction<Status | ''>>;
-  setFilter: Dispatch<SetStateAction<FilterOptionsType | ''>>;
-  redirectHref: string;
-};
+import Link from 'next/link';
 
 export const SearchBookTable = ({
   setSearchBookText,

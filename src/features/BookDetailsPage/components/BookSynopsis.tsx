@@ -1,10 +1,6 @@
 import { Card, CardContent } from '@/src/components/ui/card';
 import { BookOpen, PencilLine } from 'lucide-react';
-
-type BookSynopsisProps = {
-  synopsis: string | null;
-  comment: string | null;
-};
+import { BookSynopsisProps } from '../types';
 
 export const BookSynopsis = ({ synopsis, comment }: BookSynopsisProps) => (
   <div className="col-span-2 space-y-4">

@@ -4,9 +4,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/src/components/ui/card';
-import { BookType } from '@/src/data/types/books';
-
-type DetailsInfoProps = Pick<BookType, 'currentPage' | 'totalPages' | 'genre'>;
+import { DetailsInfoProps } from '../../types';
 
 export const DetailsInfo = ({
   currentPage,

@@ -8,12 +8,7 @@ import {
 import { filterOptions } from '@/src/data/constants';
 import { FilterOptionsType } from '@/src/data/types/books';
 import { SlidersHorizontal } from 'lucide-react';
-import { Dispatch, SetStateAction } from 'react';
-
-type FilterSelectProps = {
-  value: FilterOptionsType | '';
-  onSelect: Dispatch<SetStateAction<FilterOptionsType>>;
-};
+import { FilterSelectProps } from '../types';
 
 export const FilterSelect = ({ value, onSelect }: FilterSelectProps) => (
   <Select

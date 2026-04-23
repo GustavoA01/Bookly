@@ -4,14 +4,7 @@ import {
   DrawerTitle,
 } from '@/src/components/ui/drawer';
 import Link from 'next/link';
-
-type DrawerListOptionsProps = {
-  listId: string;
-  listName: string;
-  setOpenOptionsDrawer: (open: boolean) => void;
-  setOpenRemoveBookModal: (open: boolean) => void;
-  setListIdToRemove: (id: string) => void;
-};
+import { DrawerListOptionsProps } from '../../types';
 
 export const DrawerListOptions = ({
   listId,

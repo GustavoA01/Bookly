@@ -6,12 +6,7 @@ import {
 } from '@/src/components/ui/card';
 import { BookText, Earth, Languages } from 'lucide-react';
 import { InfoSection } from './InfoSection';
-
-type PublisherInfoProps = {
-  publisher?: string;
-  country?: string;
-  language?: string;
-};
+import { PublisherInfoProps } from '../../types';
 
 export const PublisherInfo = ({
   publisher,

@@ -1,9 +1,5 @@
 import { Button } from '@/src/components/ui/button';
-
-type OptionsProps = {
-  handleOpenUserDialog: () => void;
-  handleOpenPasswordDialog: () => void;
-};
+import { OptionsProps } from '../types';
 
 export const Options = ({
   handleOpenUserDialog,

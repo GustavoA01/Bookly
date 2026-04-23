@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { LibraryBig, List } from 'lucide-react';
+import { TabsNavProps } from '../data/types/components';
 
-export const TabsNav = ({ tab = 'books' }: { tab: string | undefined }) => {
+export const TabsNav = ({ tab = 'books' }: TabsNavProps) => {
   const tabs = [
     {
       label: 'Livros',

@@ -1,15 +1,7 @@
 import { FormErrorMessage } from '@/src/components/FormErrorMessage';
 import { Button } from '@/src/components/ui/button';
 import { DatePicker } from '@/src/components/ui/DatePicker';
-
-type DatesFormProps = {
-  startDate: Date | undefined;
-  setStartDate: (date: Date | undefined) => void;
-  endDate: Date | undefined;
-  setEndDate: (date: Date | undefined) => void;
-  dateErrorMessage: string | null;
-  handleCleanDates: () => void;
-};
+import { DatesFormProps } from '../types';
 
 export const DatesForm = ({
   startDate,

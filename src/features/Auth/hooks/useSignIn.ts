@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 export const useSignIn = () => {
-  const router = useRouter();
+  const { push } = useRouter();
   const [isPending, startTransition] = useTransition();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const methods = useForm<SignInFormType>({
@@ -45,7 +45,7 @@ export const useSignIn = () => {
     startTransition(async () => {
       try {
         await signInWithEmailAndPassword(auth, data.email, data.password);
-        router.push('/');
+        push('/');
       } catch (error) {
         const signInError = error as FirebaseError;
         const errorCode = signInError.code;

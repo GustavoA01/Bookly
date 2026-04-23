@@ -1,10 +1,4 @@
-import { JSX } from 'react';
-
-type InfoSectionProps = {
-  label: string;
-  value: string;
-  icon: JSX.Element;
-};
+import { InfoSectionProps } from '../../types';
 
 export const InfoSection = ({ label, value, icon }: InfoSectionProps) => (
   <section className="flex justify-between items-center mt-4 gap-2">

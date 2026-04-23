@@ -4,17 +4,9 @@ import { Drawer } from '../../../components/ui/drawer';
 import { DrawerMenu } from '../components/DrawerMenu';
 import { DialogMenu } from '../components/DialogMenu';
 import { NameForm } from './NameForm';
-import { User } from 'firebase/auth';
 import { PasswordForm } from './PasswordForm';
 import { useMenuActions } from '../hooks/useMenuActions';
-
-type MenuProps = {
-  user: User | null;
-  openSheet: boolean;
-  openModal: boolean;
-  setOpenSheet: (open: boolean) => void;
-  setOpenModal: (open: boolean) => void;
-};
+import { MenuProps } from '../types';
 
 export const Menu = ({
   user,

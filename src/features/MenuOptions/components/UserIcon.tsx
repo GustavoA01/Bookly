@@ -1,23 +1,16 @@
 import { Avatar, AvatarFallback } from '@/src/components/ui/avatar';
 import { Button } from '@/src/components/ui/button';
 import { Skeleton } from '@/src/components/ui/skeleton';
-import { User } from 'firebase/auth';
 import { LogIn } from 'lucide-react';
 import Link from 'next/link';
-
-type MenuProps = {
-  user: User | null;
-  isLoading: boolean;
-  setOpenSheet: (open: boolean) => void;
-  setOpenModal: (open: boolean) => void;
-};
+import { UserIconProps } from '../types';
 
 export const UserIcon = ({
   user,
   isLoading,
   setOpenSheet,
   setOpenModal,
-}: MenuProps) => (
+}: UserIconProps) => (
   <>
     {isLoading ? (
       <Skeleton className="w-10 h-10 rounded-full" />

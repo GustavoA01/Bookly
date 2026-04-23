@@ -4,12 +4,7 @@ import { keys } from '@/src/services/keys';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { toast } from 'sonner';
-
-type UseAddListContentType = {
-  id?: string;
-  open: boolean;
-  setOpen: (open: boolean) => void;
-};
+import { UseAddListContentType } from '../types';
 
 export const useAddToList = ({ id, open, setOpen }: UseAddListContentType) => {
   const queryClient = useQueryClient();

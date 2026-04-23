@@ -1,19 +1,8 @@
 import Image from 'next/image';
 import { BookHeader } from '../components/BookHeader';
 import { BookInfo } from '../components/BookInfo';
-import { BookType, Status } from '@/src/data/types/books';
 import { BookSynopsis } from '../components/BookSynopsis';
-
-type BookDetailsProps = Omit<
-  BookType,
-  'status' | 'createdAt' | 'userId' | 'imagePublicId'
-> & {
-  status?: Status;
-  buyLink?: string;
-  publisher?: string;
-  country?: string;
-  language?: string;
-};
+import { BookDetailsProps } from '../types';
 
 export const BookDetails = ({
   id,

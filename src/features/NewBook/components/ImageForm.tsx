@@ -5,25 +5,11 @@ import { Input } from '@/src/components/ui/input';
 import { Label } from '@/src/components/ui/label';
 import { ImageOff, ImageUp } from 'lucide-react';
 import { ImageDialog } from './ImageDialog';
-import { UseFormRegister } from 'react-hook-form';
-import { BookFormType } from '@/src/data/schemas';
 import { Dispatch, SetStateAction } from 'react';
 import { Status } from '@/src/data/types/books';
 import Image from 'next/image';
 import { Button } from '@/src/components/ui/button';
-
-type ImageFormProps = {
-  register: UseFormRegister<BookFormType>;
-  status: Status;
-  setStatus: Dispatch<SetStateAction<Status>>;
-  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  choosedFile: string | undefined;
-  setChoosedFile: (file: string | undefined) => void;
-  showImage: boolean;
-  chooseImageError?: string | null;
-  handleImageError: () => void;
-  cleanCurrentImage: () => void;
-};
+import { ImageFormProps } from '../types';
 
 export const ImageForm = ({
   register,

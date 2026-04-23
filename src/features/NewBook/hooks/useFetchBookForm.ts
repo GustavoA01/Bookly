@@ -1,20 +1,9 @@
-import { BookFormType } from '@/src/data/schemas';
-import { FormSearchParamsType, GoogleBookItem } from '@/src/data/types/api';
-import { Status } from '@/src/data/types/books';
+import { GoogleBookItem } from '@/src/data/types/api';
 import { getBookById } from '@/src/services/firebase/books/getBookById';
 import { keys } from '@/src/services/keys';
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect } from 'react';
-import { UseFormReset } from 'react-hook-form';
-
-type UseFetchBookFormType = {
-  params: FormSearchParamsType;
-  reset: UseFormReset<BookFormType>;
-  setChoosedFile: (url: string | undefined) => void;
-  setStatus: (status: Status) => void;
-  setStartDate: (date: Date | undefined) => void;
-  setEndDate: (date: Date | undefined) => void;
-};
+import { UseFetchBookFormType } from '../types';
 
 export const useFetchBookForm = ({
   params,

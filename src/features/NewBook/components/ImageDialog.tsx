@@ -12,14 +12,7 @@ import { Input } from '@/src/components/ui/input';
 import { BookFormType } from '@/src/data/schemas';
 import { ImageUp } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
-
-type ImageDialogProps = {
-  choosedFile: string | undefined;
-  setChoosedFile: (file: string | undefined) => void;
-  showImage: boolean;
-  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  chooseImageError: string | undefined | null;
-};
+import { ImageDialogProps } from '../types';
 
 export const ImageDialog = ({
   choosedFile,

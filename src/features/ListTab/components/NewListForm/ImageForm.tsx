@@ -1,19 +1,8 @@
 import { Input } from '@/src/components/ui/input';
 import { Label } from '@/src/components/ui/label';
-import { ListFormType } from '@/src/data/schemas';
 import { ImageUp } from 'lucide-react';
 import Image from 'next/image';
-import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
-
-type ImageFormProps = {
-  register: UseFormRegister<ListFormType>;
-  setValue: UseFormSetValue<ListFormType>;
-  choosedFile: string | undefined;
-  setChoosedFile: (file: string | undefined) => void;
-  showImage: boolean;
-  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleImageError: () => void;
-};
+import { ImageFormProps } from '../../types';
 
 export const ImageForm = ({
   register,

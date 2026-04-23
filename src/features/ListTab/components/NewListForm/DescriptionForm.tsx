@@ -1,12 +1,7 @@
 import { Input } from '@/src/components/ui/input';
 import { Label } from '@/src/components/ui/label';
 import { Textarea } from '@/src/components/ui/textarea';
-import { ListFormType } from '@/src/data/schemas';
-import { UseFormRegister } from 'react-hook-form';
-
-type DescriptionFormProps = {
-  register: UseFormRegister<ListFormType>;
-};
+import { DescriptionFormProps } from '../../types';
 
 export const DescriptionForm = ({ register }: DescriptionFormProps) => (
   <>

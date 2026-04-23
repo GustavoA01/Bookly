@@ -3,18 +3,8 @@ import { Button } from '@/src/components/ui/button';
 import { Input } from '@/src/components/ui/input';
 import { Label } from '@/src/components/ui/label';
 import { Spinner } from '@/src/components/ui/spinner';
-import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
-
-type EmailPassProps<T extends FieldValues> = {
-  actionLabel: string;
-  labelAction?: string;
-  pathPasswordRecovery?: () => void;
-  labelPasswordRecovery?: string;
-  register: UseFormRegister<T>;
-  isPending: boolean;
-  nameEmail: Path<T>;
-  namePassword: Path<T>;
-};
+import { FieldValues } from 'react-hook-form';
+import { EmailPassProps } from '../types';
 
 export const EmailPass = <T extends FieldValues>({
   actionLabel,

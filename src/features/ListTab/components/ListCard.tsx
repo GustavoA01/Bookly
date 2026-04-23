@@ -6,12 +6,7 @@ import {
   CardTitle,
 } from '@/src/components/ui/card';
 import { useRouter } from 'next/navigation';
-
-type ListCardProps = {
-  id: string;
-  name: string;
-  itemCount: number;
-};
+import { ListCardProps } from '../types';
 
 export const ListCard = ({ id, name, itemCount }: ListCardProps) => {
   const router = useRouter();

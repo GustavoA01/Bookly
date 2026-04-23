@@ -7,15 +7,8 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from '../../../components/ui/drawer';
-import { User } from 'firebase/auth';
 import { Options } from './Options';
-
-type DrawerMenuProps = {
-  user: User | null;
-  handleLogout: () => void;
-  handleOpenUserDialog: () => void;
-  handleOpenPasswordDialog: () => void;
-};
+import { DrawerMenuProps } from '../types';
 
 export const DrawerMenu = ({
   user,

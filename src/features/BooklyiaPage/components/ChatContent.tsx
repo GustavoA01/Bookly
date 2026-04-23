@@ -7,23 +7,16 @@ import {
   CardTitle,
 } from '@/src/components/ui/card';
 import { Skeleton } from '@/src/components/ui/skeleton';
-import { ChatMessageType } from '@/src/data/types/api';
 import { Trash } from 'lucide-react';
 import { useEffect, useRef } from 'react';
-
-type ChatContentType = {
-  messages: ChatMessageType['messages'];
-  temporaryMessage: string;
-  setIsDeleteModalOpen: (open: boolean) => void;
-  isRequestPending: boolean;
-};
+import { ChatContentProps } from '../types';
 
 export const ChatContent = ({
   messages,
   temporaryMessage,
   setIsDeleteModalOpen,
   isRequestPending,
-}: ChatContentType) => {
+}: ChatContentProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
