@@ -31,10 +31,10 @@ export const getBooks = async (
     if (orderQuery && orderQuery !== 'all') {
       switch (orderQuery) {
         case 'title':
-          constraints.push(orderBy('title', 'desc'));
+          constraints.push(orderBy('title', 'asc'));
           break;
         case 'author':
-          constraints.push(orderBy('author', 'desc'));
+          constraints.push(orderBy('author', 'asc'));
           break;
         case 'createdAt':
           constraints.push(orderBy('createdAt', 'desc'));
@@ -56,9 +56,7 @@ export const getBooks = async (
     const q = query(collection(db, keys.firebase.books), ...constraints);
     const querySnapshot = (await getDocs(q)).docs;
 
-    const books = querySnapshot.map((doc) => {
-      return { id: doc.id, ...doc.data() };
-    });
+    const books = querySnapshot.map((doc) => ({ id: doc.id, ...doc.data() }));
 
     return books as BookType[];
   } catch (error) {

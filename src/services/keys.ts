@@ -7,6 +7,8 @@ export const keys = {
   queryKeys: {
     books: 'books',
     bookId: 'book',
+    booksToAdd: 'booksToAdd',
+    booksInList: 'booksInList',
     lists: 'lists',
     listId: 'list',
     chat: 'chat',

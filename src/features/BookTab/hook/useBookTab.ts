@@ -24,12 +24,13 @@ export const useBookTab = () => {
       : data?.filter((book) => {
           const searhTextLower = searchBookText.toLowerCase();
           const bookTitle = book.title.toLowerCase();
-          if (book.author)
-            return (
-              bookTitle.includes(searhTextLower) ||
-              book.author.toLowerCase().includes(searhTextLower)
-            );
-          return bookTitle.includes(searhTextLower);
+          const bookGenres = book.genre?.toLocaleLowerCase();
+          const bookAuthor = book.author?.toLocaleLowerCase();
+          return (
+            bookTitle.includes(searhTextLower) ||
+            bookAuthor?.includes(searhTextLower) ||
+            bookGenres?.includes(searhTextLower)
+          );
         });
 
   return {

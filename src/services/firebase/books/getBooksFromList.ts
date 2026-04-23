@@ -17,9 +17,7 @@ export const getBooksFromList = async (books: string[]) => {
 
     for (let i = 0; i < books.length; i += 30) {
       const chunk = books.slice(i, i + 30);
-
       const booksQuery = query(booksRef, where(documentId(), 'in', chunk));
-
       batches.push(getDocs(booksQuery));
     }
 
