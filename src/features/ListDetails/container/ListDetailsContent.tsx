@@ -98,7 +98,9 @@ export const ListDetailsContent = ({ id }: { id: string }) => {
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>Adicionar livros à lista</DrawerTitle>
-            <DrawerDescription>Escolha um livro</DrawerDescription>
+            {booksToAdd && booksToAdd.length > 0 && (
+              <DrawerDescription>Escolha um livro</DrawerDescription>
+            )}
           </DrawerHeader>
           <BooksToAddList
             booksToAdd={booksToAdd}
