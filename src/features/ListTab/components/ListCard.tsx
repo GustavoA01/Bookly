@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 import { ListCardProps } from '../types';
 
 export const ListCard = ({ id, name, itemCount }: ListCardProps) => {
-  const router = useRouter();
+  const { push } = useRouter();
   const descriptionText =
     itemCount === 0
       ? 'Nenhum livro'
@@ -19,7 +19,7 @@ export const ListCard = ({ id, name, itemCount }: ListCardProps) => {
 
   return (
     <Card
-      onClick={() => router.push(`/lista/${id}`)}
+      onClick={() => push(`/lista/${id}`)}
       className="cursor-pointer hover:bg-accent/50 hover:border-primary transition-all duration-250"
     >
       <CardHeader>

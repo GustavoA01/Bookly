@@ -8,8 +8,8 @@ import {
 } from '@/src/components/ui/card';
 import { Skeleton } from '@/src/components/ui/skeleton';
 import { Trash } from 'lucide-react';
-import { useEffect, useRef } from 'react';
 import { ChatContentProps } from '../types';
+import { useChatScroll } from '../hooks/useChatScroll';
 
 export const ChatContent = ({
   messages,
@@ -17,16 +17,11 @@ export const ChatContent = ({
   setIsDeleteModalOpen,
   isRequestPending,
 }: ChatContentProps) => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTo({
-        top: scrollRef.current.scrollHeight,
-        behavior: 'smooth',
-      });
-    }
-  }, [messages, isRequestPending, temporaryMessage]);
+  const scrollRef = useChatScroll({
+    messages,
+    isRequestPending,
+    temporaryMessage,
+  });
 
   return (
     <Card className="bg-primary-foreground w-full sm:max-w-2xl m-auto animate-fade-in-title ">
@@ -58,11 +53,13 @@ export const ChatContent = ({
             {message.text}
           </span>
         ))}
+
         {temporaryMessage && (
           <span className="ml-auto text-sm py-2 px-4 bg-primary/60 rounded-lg rounded-tr-none">
             {temporaryMessage}
           </span>
         )}
+
         {isRequestPending && (
           <Skeleton className="mr-auto text-sm py-2 px-4 rounded-lg rounded-tl-none">
             Buscando livros...

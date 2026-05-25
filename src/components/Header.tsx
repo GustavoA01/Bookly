@@ -20,11 +20,11 @@ export const Header = () => {
       <div>
         <div className="flex items-center gap-2">
           <Image
+            width={50}
+            height={50}
             src="/icon.png"
             alt="Logo do Bookly"
             className="rounded-lg"
-            width={50}
-            height={50}
           />
           <h1 className="font-bold text-xl">Bookly</h1>
         </div>

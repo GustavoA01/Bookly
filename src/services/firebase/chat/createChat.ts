@@ -16,6 +16,7 @@ export const createChat = async (
       { sender: 'user', text: userMessage, timestamp: new Date() },
       { sender: 'bot', text: chatResponse, timestamp: new Date() },
     ];
+
     await setDoc(
       chatRef,
       {

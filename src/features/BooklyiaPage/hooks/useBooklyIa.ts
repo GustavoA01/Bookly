@@ -6,11 +6,11 @@ import { useAuth } from '@/src/data/contexts/AuthProvider';
 
 export const useBooklyIa = () => {
   const { user, isLoading } = useAuth();
+  const notLoggedIn = !user && !isLoading;
+  const isLoggedIn = user && !isLoading;
   const { register, handleSubmit, reset } = useForm<{ prompt: string }>({
     resolver: zodResolver(chatSchema),
   });
-  const notLoggedIn = !user && !isLoading;
-  const isLoggedIn = user && !isLoading;
 
   const {
     chat,

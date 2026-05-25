@@ -1,14 +1,12 @@
 'use client';
 import { Skeleton } from '@/src/components/ui/skeleton';
-import { ChatContent } from '../components/ChatContent';
+import { ChatContent } from './ChatContent';
 import { IaForm } from '../components/IaForm';
 import { Recommendations } from '../components/Recommendations';
 import { useBooklyIa } from '../hooks/useBooklyIa';
 import { Dialog } from '@/src/components/ui/dialog';
 import { ConfirmDeleteModal } from '../components/ConfirmDeleteModal';
-import Link from 'next/link';
-import { Button } from '@/src/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { DoLoginCard } from '../components/DoLoginCard';
 
 export const IaPageContent = () => {
   const {
@@ -42,19 +40,8 @@ export const IaPageContent = () => {
           isRequestPending={isRequestPending}
         />
       )}
-      {notLoggedIn && (
-        <div className="text-center mt-10 space-y-4 animate-fade-in-title">
-          <p className="text-lg text-muted-foreground">
-            Faça login para acessar os recursos da IA.
-          </p>
-          <Link href="/login">
-            <Button>
-              <p>Ir para login</p>
-              <ArrowRight />
-            </Button>
-          </Link>
-        </div>
-      )}
+
+      {notLoggedIn && <DoLoginCard />}
 
       <IaForm
         handleSearch={handleSearch}
@@ -63,6 +50,7 @@ export const IaPageContent = () => {
         isRequestPending={isRequestPending}
         notLoggedIn={notLoggedIn}
       />
+
       {chat && (
         <>
           <Recommendations

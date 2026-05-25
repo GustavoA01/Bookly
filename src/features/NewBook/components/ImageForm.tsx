@@ -1,15 +1,14 @@
 import { StatusSelect } from '@/src/components/StatusSelect';
-import { Card } from '@/src/components/ui/card';
 import { Dialog, DialogTrigger } from '@/src/components/ui/dialog';
 import { Input } from '@/src/components/ui/input';
 import { Label } from '@/src/components/ui/label';
-import { ImageOff, ImageUp } from 'lucide-react';
+import { ImageOff } from 'lucide-react';
 import { ImageDialog } from './ImageDialog';
 import { Dispatch, SetStateAction } from 'react';
 import { Status } from '@/src/data/types/books';
-import Image from 'next/image';
 import { Button } from '@/src/components/ui/button';
 import { ImageFormProps } from '../types';
+import { ImageTrigger } from './ImageTrigger';
 
 export const ImageForm = ({
   register,
@@ -48,25 +47,11 @@ export const ImageForm = ({
 
     <Dialog>
       <DialogTrigger>
-        <Card className="h-auto w-full border border-dashed bg-transparent cursor-pointer hover:border-primary transition-all duration-250">
-          <div className="flex flex-col m-auto items-center justify-center gap-2 text-muted-foreground">
-            {showImage ? (
-              <Image
-                src={choosedFile!}
-                alt="Preview"
-                width={200}
-                height={300}
-                onError={handleImageError}
-                className="rounded-md"
-              />
-            ) : (
-              <div className="flex flex-col items-center justify-center gap-2">
-                <ImageUp />
-                <p>Escolher imagem do livro</p>
-              </div>
-            )}
-          </div>
-        </Card>
+        <ImageTrigger
+          showImage={showImage}
+          choosedFile={choosedFile}
+          handleImageError={handleImageError}
+        />
       </DialogTrigger>
 
       {choosedFile && (

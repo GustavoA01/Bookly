@@ -2,33 +2,15 @@
 import { ListCard } from '@/src/features/ListTab/components/ListCard';
 import { Dialog } from '@/src/components/ui/dialog';
 import { NewListForm } from './NewListForm';
-import { useQuery } from '@tanstack/react-query';
-import { keys } from '@/src/services/keys';
-import { getLists } from '@/src/services/firebase/lists/getLists';
 import { Skeleton } from '@/src/components/ui/skeleton';
-import { useAuth } from '@/src/data/contexts/AuthProvider';
 import { Input } from '@/src/components/ui/input';
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { DialogListTrigger } from '../components/DialogListTrigger';
+import { useListTabContent } from '../hooks/useListTabContent';
 
 export const ListTabContent = () => {
-  const { user } = useAuth();
-  const [searchText, setSearchText] = useState('');
-  const router = useRouter();
-
-  const { data, isLoading: isListsLoading } = useQuery({
-    queryKey: [keys.queryKeys.lists],
-    queryFn: getLists,
-    enabled: !!user,
-  });
-
-  const lists =
-    searchText === ''
-      ? data
-      : data?.filter((list) =>
-          list.name.toLowerCase().includes(searchText.toLowerCase())
-        );
+  const { push } = useRouter();
+  const { isListsLoading, lists, setSearchText, user } = useListTabContent();
 
   return (
     <div className="space-y-2">
@@ -40,7 +22,7 @@ export const ListTabContent = () => {
 
       <main className="sm:grid sm:grid-cols-2 md:grid-cols-3 max-sm:space-y-2 lg:grid-cols-4 gap-2 mt-2">
         <Dialog>
-          <DialogListTrigger onClick={() => !user && router.push('/login')} />
+          <DialogListTrigger onClick={() => !user && push('/login')} />
           <NewListForm />
         </Dialog>
 

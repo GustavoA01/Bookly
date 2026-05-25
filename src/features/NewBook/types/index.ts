@@ -47,6 +47,12 @@ export type ImageFormProps = {
   cleanCurrentImage: () => void;
 };
 
+export type ImageTriggerProps = {
+  showImage: boolean;
+  choosedFile: string | undefined;
+  handleImageError: () => void;
+};
+
 export type PagesFormProps = {
   register: UseFormRegister<BookFormType>;
 };

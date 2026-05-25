@@ -1,5 +1,5 @@
 import { ChatMessageType } from '@/src/data/types/api';
-import { ChatContent } from '../components/ChatContent';
+import { ChatContent } from '../container/ChatContent';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 HTMLElement.prototype.scrollTo = jest.fn();

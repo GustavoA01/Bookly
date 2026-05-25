@@ -1,6 +1,12 @@
 import { ChatMessageType, GoogleBookItem } from '@/src/data/types/api';
 import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 
+export type ChatScrollType = {
+  messages: ChatMessageType['messages'];
+  isRequestPending: boolean;
+  temporaryMessage: string | null;
+};
+
 export type RecommendationsProps = {
   isChatPending: boolean;
   books: GoogleBookItem[];
