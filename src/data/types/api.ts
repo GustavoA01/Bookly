@@ -70,6 +70,7 @@ export type OpenLibraryAuthorType = {
 };
 
 export type OpenLibraryEditionType = {
+  title?: string;
   publishers?: string[];
   publish_date?: string;
   number_of_pages?: number;
