@@ -4,6 +4,7 @@ export type BookTableProps = {
   books: BookType[] | undefined;
   isBooksLoading: boolean;
   isUserLoading?: boolean;
+  fillAvailable?: boolean;
 };
 
 export type BookRowProps = Pick<

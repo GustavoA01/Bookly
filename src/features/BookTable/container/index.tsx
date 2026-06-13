@@ -2,14 +2,23 @@ import { Table, TableBody, TableHeader } from '../../../components/ui/table';
 import { BookRow } from '../components/BookRow';
 import { BookTHeader } from '../components/BookTHeader';
 import { BookTableSkeleton } from '@/src/components/Skeletons';
+import { cn } from '@/src/lib/utils';
 import { BookTableProps } from '../types';
 
 export const BookTable = ({
   books,
   isBooksLoading,
   isUserLoading,
+  fillAvailable = false,
 }: BookTableProps) => (
-  <div className="mt-2 max-h-130 sm:max-h-160 overflow-y-auto hide-scrollbar rounded-md border">
+  <div
+    className={cn(
+      'mt-2 overflow-y-auto hide-scrollbar rounded-md border',
+      fillAvailable
+        ? 'min-h-0 flex-1 mb-6 max-sm:mb-20'
+        : 'max-h-130 sm:max-h-160'
+    )}
+  >
     <Table className="bg-card rounded-lg">
       <TableHeader className="bg-background">
         <BookTHeader />

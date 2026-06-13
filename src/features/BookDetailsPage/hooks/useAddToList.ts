@@ -21,8 +21,19 @@ export const useAddToList = ({ id, open, setOpen }: UseAddListContentType) => {
       bookId: string;
       action: 'add' | 'remove';
     }) => updateListBooks(params.listId, params.bookId!, params.action),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [keys.queryKeys.lists] });
+    onSuccess: async (_, params) => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: [keys.queryKeys.lists] }),
+        queryClient.invalidateQueries({
+          queryKey: [keys.queryKeys.listId, params.listId],
+        }),
+        queryClient.invalidateQueries({
+          predicate: (query) =>
+            query.queryKey[0] === keys.queryKeys.booksInList &&
+            query.queryKey[1] === params.listId,
+        }),
+      ]);
+
       setOpen(false);
       toast.success('Livro adicionado à lista com sucesso');
     },

@@ -8,11 +8,18 @@ const HomePage = async ({
   searchParams: Promise<{ tab?: string }>;
 }) => {
   const { tab } = await searchParams;
+  const isBooksTab = !tab || tab === 'books';
 
   return (
-    <main>
+    <main
+      className={
+        isBooksTab
+          ? 'flex h-[calc(100dvh-10rem)] min-h-0 flex-col overflow-hidden max-sm:h-[calc(100dvh-12rem)]'
+          : undefined
+      }
+    >
       <TabsNav tab={tab} />
-      {!tab || tab === 'books' ? <BookTabContent /> : <ListTabContent />}
+      {isBooksTab ? <BookTabContent /> : <ListTabContent />}
     </main>
   );
 };

@@ -20,7 +20,7 @@ export const BookTabContent = () => {
   } = useBookTab();
 
   return (
-    <>
+    <section className="flex min-h-0 flex-1 flex-col">
       <SearchBookTable
         setSearchBookText={setSearchBookText}
         status={status}
@@ -33,6 +33,7 @@ export const BookTabContent = () => {
         books={books}
         isBooksLoading={isBooksLoading}
         isUserLoading={isUserLoading}
+        fillAvailable
       />
       <Link href={redirecHref}>
         <Button
@@ -42,6 +43,6 @@ export const BookTabContent = () => {
           <Plus data-testid="plus-icon" />
         </Button>
       </Link>
-    </>
+    </section>
   );
 };

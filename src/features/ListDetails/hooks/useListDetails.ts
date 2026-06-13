@@ -1,4 +1,5 @@
 import { useAuth } from '@/src/data/contexts/AuthProvider';
+import { BookType, ListType } from '@/src/data/types/books';
 import { getBooksFromList } from '@/src/services/firebase/books/getBooksFromList';
 import { getBooksNotInList } from '@/src/services/firebase/books/getBooksNotInList';
 import { deleteList } from '@/src/services/firebase/lists/deleteList';
@@ -19,16 +20,26 @@ export const useListDetails = (id: string) => {
   const [openBooksModal, setOpenBooksModal] = useState(false);
   const [openBooksDrawer, setOpenBooksDrawer] = useState(false);
 
+  const listQueryKey = [keys.queryKeys.listId, id];
+  const booksToAddQueryKey = [keys.queryKeys.booksToAdd, id, user?.uid];
+
   const { data: list, isLoading: isListLoading } = useQuery({
-    queryKey: [keys.queryKeys.listId, id],
+    queryKey: listQueryKey,
     queryFn: () => getListById(id),
     enabled: !!id,
   });
 
+  const listBookIds = list?.books || [];
+  const booksInListQueryKey = [
+    keys.queryKeys.booksInList,
+    id,
+    listBookIds.join('|'),
+  ];
+
   const enableBooksQuery =
     !!list && !!user?.uid && (openBooksDrawer || openBooksModal);
   const { data: booksToAdd, isLoading: isBooksToAddLoading } = useQuery({
-    queryKey: [keys.queryKeys.booksToAdd],
+    queryKey: booksToAddQueryKey,
     queryFn: () => getBooksNotInList(list?.id as string, user?.uid as string),
     enabled: enableBooksQuery,
   });
@@ -48,12 +59,66 @@ export const useListDetails = (id: string) => {
       bookId: string;
       action: 'add' | 'remove';
     }) => updateListBooks(params.listId, params.bookId, params.action),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [keys.queryKeys.lists, id] });
-      queryClient.invalidateQueries({
-        queryKey: [keys.queryKeys.booksInList, id],
-      });
-      queryClient.invalidateQueries({ queryKey: [keys.queryKeys.booksToAdd] });
+    onSuccess: async (_, params) => {
+      const selectedBook = booksToAdd?.find(
+        (book) => book.id === params.bookId
+      );
+      const currentList = queryClient.getQueryData<ListType | null>(
+        listQueryKey
+      );
+      const nextBookIds = currentList?.books.includes(params.bookId)
+        ? currentList.books
+        : [...(currentList?.books || []), params.bookId];
+      const nextBooksInListQueryKey = [
+        keys.queryKeys.booksInList,
+        id,
+        nextBookIds.join('|'),
+      ];
+
+      if (params.action === 'add') {
+        queryClient.setQueryData<ListType | null>(
+          listQueryKey,
+          (currentList) =>
+            currentList
+              ? {
+                  ...currentList,
+                  books: currentList.books.includes(params.bookId)
+                    ? currentList.books
+                    : [...currentList.books, params.bookId],
+                }
+              : currentList
+        );
+
+        if (selectedBook) {
+          const addSelectedBook = (currentBooks: BookType[] | undefined) => {
+            const previousBooks = currentBooks || [];
+            return previousBooks.some((book) => book.id === selectedBook.id)
+              ? previousBooks
+              : [...previousBooks, selectedBook];
+          };
+
+          queryClient.setQueryData<BookType[]>(
+            booksInListQueryKey,
+            addSelectedBook
+          );
+          queryClient.setQueryData<BookType[]>(
+            nextBooksInListQueryKey,
+            addSelectedBook
+          );
+          queryClient.setQueryData<BookType[]>(
+            booksToAddQueryKey,
+            (currentBooks) =>
+              (currentBooks || []).filter((book) => book.id !== selectedBook.id)
+          );
+        }
+      }
+
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: listQueryKey }),
+        queryClient.invalidateQueries({ queryKey: booksToAddQueryKey }),
+        queryClient.invalidateQueries({ queryKey: [keys.queryKeys.lists] }),
+      ]);
+
       setOpenBooksModal(false);
       setOpenBooksDrawer(false);
 
@@ -67,12 +132,11 @@ export const useListDetails = (id: string) => {
     },
   });
 
-  const booksExists = !!list && list.books.length > 0;
-
   const { data: books, isLoading: isBooksLoading } = useQuery({
-    queryKey: [keys.queryKeys.booksInList, id],
-    queryFn: () => getBooksFromList(list!.books),
-    enabled: booksExists,
+    queryKey: booksInListQueryKey,
+    queryFn: () => getBooksFromList(listBookIds),
+    enabled: !!list,
+    placeholderData: (previousBooks) => previousBooks,
   });
 
   return {
