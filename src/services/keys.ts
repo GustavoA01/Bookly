@@ -12,5 +12,6 @@ export const keys = {
     lists: 'lists',
     listId: 'list',
     chat: 'chat',
+    exploreBooks: 'exploreBooks',
   },
 };

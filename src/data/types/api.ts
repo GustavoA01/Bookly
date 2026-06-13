@@ -51,3 +51,50 @@ export type ChatMessageType = {
   messages: { sender: 'user' | 'bot'; text: string; timestamp: Date }[];
   suggestions: GoogleBookItem[];
 };
+
+export type OpenLibraryWorkType = {
+  key?: string;
+  title?: string;
+  description?: string | { value?: string };
+  subjects?: string[];
+  covers?: number[];
+  first_publish_date?: string;
+  location?: string;
+  authors?: { author?: { key?: string } }[];
+};
+
+export type OpenLibraryAuthorType = {
+  name?: string;
+  personal_name?: string;
+  fuller_name?: string;
+};
+
+export type OpenLibraryEditionType = {
+  publishers?: string[];
+  publish_date?: string;
+  number_of_pages?: number;
+  languages?: { key?: string }[];
+  covers?: number[];
+};
+
+export type OpenLibraryEditionsResponseType = {
+  entries?: OpenLibraryEditionType[];
+};
+
+export type OpenLibraryDocType = {
+  key?: string;
+  title?: string;
+  author_name?: string[];
+  subject?: string[];
+  ratings_average?: number;
+  cover_i?: number;
+  language?: string[];
+  first_publish_year?: number;
+  first_sentence?: string | string[];
+  number_of_pages_median?: number;
+};
+
+export type OpenLibraryResponseType = {
+  numFound: number;
+  docs?: OpenLibraryDocType[];
+};

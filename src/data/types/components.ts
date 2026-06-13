@@ -37,8 +37,3 @@ export type FormErrorMessageProps = {
 export type ConfirmLogoutProps = {
   setCloseModal: (open: boolean) => void;
 };
-
-export type BookCardsListProps = {
-  query: string;
-  currentPage: number;
-};

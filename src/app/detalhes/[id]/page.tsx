@@ -1,6 +1,67 @@
 import { BackButton } from '@/src/components/BackButton';
+import { Button } from '@/src/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/src/components/ui/card';
 import { GoogleBookItem } from '@/src/data/types/api';
 import { BookDetails } from '@/src/features/BookDetailsPage/container/BookDetails';
+import { getOpenLibraryBookById } from '@/src/services/openLibrary/getOpenLibraryBookById';
+import { BookX, Home } from 'lucide-react';
+import Link from 'next/link';
+
+const getGoogleBookById = async (id: string) => {
+  try {
+    const res = await fetch(
+      `https://www.googleapis.com/books/v1/volumes/${id}`,
+      {
+        cache: 'no-store',
+      }
+    );
+
+    if (!res.ok) return null;
+
+    const book = (await res.json()) as GoogleBookItem;
+    return book?.volumeInfo ? book : null;
+  } catch {
+    return null;
+  }
+};
+
+const BookNotFound = () => (
+  <div className="space-y-8">
+    <BackButton />
+    <div className="flex items-center justify-center min-h-[60vh] px-4">
+      <Card className="max-w-md w-full text-center">
+        <CardHeader>
+          <div className="flex justify-center mb-4">
+            <BookX className="w-16 h-16 text-destructive" />
+          </div>
+          <CardTitle className="text-2xl">Livro não encontrado</CardTitle>
+          <CardDescription>
+            Não foi possível carregar os detalhes deste livro agora.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="text-sm text-muted-foreground">
+          A fonte externa pode estar indisponível ou o link pode não existir
+          mais.
+        </CardContent>
+        <CardFooter>
+          <Button asChild className="w-full gap-2">
+            <Link href="/explorar">
+              <Home className="w-4 h-4" />
+              Voltar para explorar
+            </Link>
+          </Button>
+        </CardFooter>
+      </Card>
+    </div>
+  </div>
+);
 
 const GoogleDetailsPage = async ({
   params,
@@ -8,10 +69,10 @@ const GoogleDetailsPage = async ({
   params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
+  const book =
+    (await getOpenLibraryBookById(id)) || (await getGoogleBookById(id));
 
-  const book = (await fetch(
-    `https://www.googleapis.com/books/v1/volumes/${id}`
-  ).then((res) => res.json())) as GoogleBookItem;
+  if (!book) return <BookNotFound />;
 
   return (
     <div className="space-y-8">

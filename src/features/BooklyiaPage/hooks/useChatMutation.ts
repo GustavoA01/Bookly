@@ -9,6 +9,13 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
+type SuggestionsApiError = {
+  error?: string;
+};
+
+const getMutationErrorMessage = (error: unknown) =>
+  error instanceof Error ? error.message : 'Erro ao buscar sugestões';
+
 export const useChatMutation = () => {
   const queryClient = useQueryClient();
   const { user, isLoading } = useAuth();
@@ -35,15 +42,26 @@ export const useChatMutation = () => {
   } = useMutation({
     mutationKey: ['suggestions'],
     mutationFn: async (prompt: string) => {
-      const response = (await fetch(`/api/suggestions`, {
+      const response = await fetch('/api/suggestions', {
         headers: {
           'Content-Type': 'application/json',
         },
         method: 'POST',
         body: JSON.stringify({ prompt, userBooks }),
-      }).then((res) => res.json())) as Promise<SuggestionsResponseType>;
+      });
+      const data = (await response.json()) as
+        | SuggestionsResponseType
+        | SuggestionsApiError;
 
-      return response;
+      if (!response.ok) {
+        throw new Error(
+          'error' in data && data.error
+            ? data.error
+            : 'Erro ao buscar sugestões'
+        );
+      }
+
+      return data as SuggestionsResponseType;
     },
     onSuccess: async (data) =>
       await createChat(
@@ -57,6 +75,11 @@ export const useChatMutation = () => {
           queryKey: [keys.queryKeys.chat, user?.uid],
         });
       }),
+    onError: (error) => {
+      setUserTemporaryMessage('');
+      console.error('Error fetching books:', error);
+      toast.error(getMutationErrorMessage(error));
+    },
   });
 
   const { mutateAsync: deleteChatFn, isPending: isDeletingChat } = useMutation({

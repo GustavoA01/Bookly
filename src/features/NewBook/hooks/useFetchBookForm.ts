@@ -1,5 +1,6 @@
 import { GoogleBookItem } from '@/src/data/types/api';
 import { getBookById } from '@/src/services/firebase/books/getBookById';
+import { getOpenLibraryBookById } from '@/src/services/openLibrary/getOpenLibraryBookById';
 import { keys } from '@/src/services/keys';
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect } from 'react';
@@ -28,12 +29,8 @@ export const useFetchBookForm = ({
     enabled: isLibrary,
   });
 
-  const fetchBook = useCallback(async () => {
-    const book = (await fetch(
-      `https://www.googleapis.com/books/v1/volumes/${id}`
-    ).then((res) => res.json())) as GoogleBookItem;
-
-    if (book) {
+  const fillGoogleBookData = useCallback(
+    (book: GoogleBookItem) => {
       reset({
         title: book.volumeInfo.title || '',
         author: book.volumeInfo.authors
@@ -45,8 +42,32 @@ export const useFetchBookForm = ({
         genre: book.volumeInfo.categories ? book.volumeInfo.categories[0] : '',
       });
       setChoosedFile(book.volumeInfo.imageLinks?.thumbnail || undefined);
+    },
+    [reset, setChoosedFile]
+  );
+
+  const fetchBook = useCallback(async () => {
+    const openLibraryBook = await getOpenLibraryBookById(id || '');
+
+    if (openLibraryBook) {
+      fillGoogleBookData(openLibraryBook);
+      return;
     }
-  }, [id, reset, setChoosedFile]);
+
+    try {
+      const res = await fetch(
+        `https://www.googleapis.com/books/v1/volumes/${id}`
+      );
+
+      if (!res.ok) return;
+
+      const book = (await res.json()) as GoogleBookItem;
+
+      if (book?.volumeInfo) fillGoogleBookData(book);
+    } catch {
+      return;
+    }
+  }, [id, fillGoogleBookData]);
 
   const insertUserBookData = useCallback(() => {
     if (libraryBook) {
