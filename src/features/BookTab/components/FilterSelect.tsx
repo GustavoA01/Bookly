@@ -7,7 +7,6 @@ import {
 } from '@/src/components/ui/select';
 import { filterOptions } from '@/src/data/constants';
 import { FilterOptionsType } from '@/src/data/types/books';
-import { SlidersHorizontal } from 'lucide-react';
 import { FilterSelectProps } from '../types';
 
 export const FilterSelect = ({ value, onSelect }: FilterSelectProps) => (
@@ -16,7 +15,6 @@ export const FilterSelect = ({ value, onSelect }: FilterSelectProps) => (
     onValueChange={(val) => onSelect(val as FilterOptionsType)}
   >
     <SelectTrigger>
-      <SlidersHorizontal />
       <SelectValue placeholder="Filtrar" />
     </SelectTrigger>
     <SelectContent>
