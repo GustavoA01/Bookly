@@ -1,8 +1,7 @@
-import { GeminiResponseType } from '@/src/data/types/api';
+import { GeminiResponseType, GoogleBookItem } from '@/src/data/types/api';
 import { BookType } from '@/src/data/types/books';
 import { ai } from '@/src/services/google/geminiConfig';
 import { buildGoogleBooksUrl } from '@/src/services/google/googleBooksConfig';
-import { getOpenLibraryBooks } from '@/src/services/openLibrary/getOpenLibraryBooks';
 import { HarmBlockThreshold, HarmCategory } from '@google/genai';
 
 const GOOGLE_BOOKS_MAX_RESULTS = 5;
@@ -15,21 +14,10 @@ const normalizeSuggestions = (suggestions: GeminiResponseType['suggestions']) =>
     .filter((suggestion) => suggestion.title?.trim())
     .slice(0, GOOGLE_BOOKS_MAX_RESULTS);
 
-const getSuggestionQuery = (suggestion: { title: string; author: string }) =>
-  [suggestion.title, suggestion.author].filter(Boolean).join(' ');
-
-const fetchOpenLibraryBook = async (suggestion: {
-  title: string;
-  author: string;
-}) => {
-  const response = await getOpenLibraryBooks(getSuggestionQuery(suggestion), 0);
-  return response.items?.[0] || null;
-};
-
 const fetchGoogleBook = async (suggestion: {
   title: string;
   author: string;
-}) => {
+}): Promise<GoogleBookItem | null> => {
   try {
     const response = await fetch(
       buildGoogleBooksUrl('', {
@@ -39,12 +27,12 @@ const fetchGoogleBook = async (suggestion: {
       { cache: 'no-store' }
     );
 
-    if (!response.ok) return fetchOpenLibraryBook(suggestion);
+    if (!response.ok) return null;
 
-    const data = await response.json();
-    return data.items?.[0] || fetchOpenLibraryBook(suggestion);
+    const data = (await response.json()) as { items?: GoogleBookItem[] };
+    return data.items?.[0] ?? null;
   } catch {
-    return fetchOpenLibraryBook(suggestion);
+    return null;
   }
 };
 
@@ -108,7 +96,7 @@ export const POST = async (req: Request) => {
     const geminiData = JSON.parse(response.text) as GeminiResponseType;
     const suggestions = normalizeSuggestions(geminiData.suggestions || []);
     const books = (await Promise.all(suggestions.map(fetchGoogleBook))).filter(
-      Boolean
+      (book): book is GoogleBookItem => Boolean(book)
     );
 
     return Response.json({

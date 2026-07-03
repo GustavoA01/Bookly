@@ -1,5 +1,4 @@
 import { GoogleBooksResponse } from '@/src/data/types/api';
-import { getOpenLibraryBooks } from '@/src/services/openLibrary/getOpenLibraryBooks';
 import { keys } from '@/src/services/keys';
 import { useQuery } from '@tanstack/react-query';
 import { UseFetchBooksParamsType } from '../types';
@@ -19,15 +18,12 @@ const fetchBooksFromApi = async (query: string, page: number) => {
 export const useFetchBooks = ({
   currentPage,
   query,
-  PAGE_SIZE,
 }: UseFetchBooksParamsType) => {
   const { data, isFetching } = useQuery({
     queryKey: [keys.queryKeys.exploreBooks, query, currentPage],
     queryFn: async () => {
-      const startIndex = (currentPage - 1) * PAGE_SIZE;
-      const response = query
-        ? await fetchBooksFromApi(query, currentPage)
-        : await getOpenLibraryBooks(DEFAULT_EXPLORE_QUERY, startIndex);
+      const searchQuery = query || DEFAULT_EXPLORE_QUERY;
+      const response = await fetchBooksFromApi(searchQuery, currentPage);
       const books = response?.items || [];
 
       return {

@@ -3,13 +3,13 @@ import { SearchBookCard } from '@/src/components/SearchBookCard';
 import { BookPagination } from '@/src/features/ExplorePage/container/BookPagination';
 import { SearchCardSkeleton } from '@/src/components/Skeletons';
 import { Input } from '@/src/components/ui/input';
+import { GOOGLE_BOOKS_PAGE_SIZE } from '@/src/services/google/googleBooksConfig';
 import { useExploreContent } from '../hooks/useExploreContent';
 
 const MAX_PAGES = 6;
 
 export const ExploreContent = () => {
   const {
-    PAGE_SIZE,
     books,
     currentPage,
     isFetching,
@@ -33,7 +33,7 @@ export const ExploreContent = () => {
 
       {isFetching ? (
         <div className="gap-2 sm:gap-4 space-y-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {Array.from({ length: PAGE_SIZE }).map((_, index) => (
+          {Array.from({ length: GOOGLE_BOOKS_PAGE_SIZE }).map((_, index) => (
             <SearchCardSkeleton key={`${query}-${currentPage}-${index}`} />
           ))}
         </div>
@@ -69,7 +69,7 @@ export const ExploreContent = () => {
               currentPage={currentPage}
               numberOfPages={Math.min(
                 MAX_PAGES,
-                Math.max(1, Math.ceil(totalItems / PAGE_SIZE))
+                Math.max(1, Math.ceil(totalItems / GOOGLE_BOOKS_PAGE_SIZE))
               )}
               onPageChange={handlePageChange}
             />

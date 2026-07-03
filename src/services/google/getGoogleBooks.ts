@@ -1,16 +1,16 @@
 import { GoogleBooksResponse } from '../../data/types/api';
-import { getOpenLibraryBooks } from '../openLibrary/getOpenLibraryBooks';
 import {
   buildGoogleBooksUrl,
+  EMPTY_GOOGLE_BOOKS_RESPONSE,
   GOOGLE_BOOKS_PAGE_SIZE,
 } from './googleBooksConfig';
 
 export const getGoogleBooks = async (
   query: string,
   currentPage: number
-): Promise<GoogleBooksResponse | null> => {
+): Promise<GoogleBooksResponse> => {
   const normalizedQuery = query?.trim();
-  if (!normalizedQuery) return null;
+  if (!normalizedQuery) return EMPTY_GOOGLE_BOOKS_RESPONSE;
 
   const startIndex = (currentPage - 1) * GOOGLE_BOOKS_PAGE_SIZE;
   const url = buildGoogleBooksUrl('', {
@@ -24,13 +24,11 @@ export const getGoogleBooks = async (
       cache: 'no-store',
     });
 
-    if (!res.ok) return getOpenLibraryBooks(normalizedQuery, startIndex);
+    if (!res.ok) return EMPTY_GOOGLE_BOOKS_RESPONSE;
 
     const data = (await res.json()) as GoogleBooksResponse;
-    return data.totalItems > 0
-      ? data
-      : getOpenLibraryBooks(normalizedQuery, startIndex);
+    return data.totalItems > 0 ? data : EMPTY_GOOGLE_BOOKS_RESPONSE;
   } catch {
-    return getOpenLibraryBooks(normalizedQuery, startIndex);
+    return EMPTY_GOOGLE_BOOKS_RESPONSE;
   }
 };

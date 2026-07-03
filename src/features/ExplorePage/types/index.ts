@@ -1,7 +1,6 @@
 export type UseFetchBooksParamsType = {
   query: string;
   currentPage: number;
-  PAGE_SIZE: number;
 };
 
 export type BookPaginationProps = {

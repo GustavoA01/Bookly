@@ -1,5 +1,4 @@
 import { getGoogleBookById } from '@/src/services/google/getGoogleBookById';
-import { getOpenLibraryBookById } from '@/src/services/openLibrary/getOpenLibraryBookById';
 
 export const GET = async (
   _req: Request,
@@ -7,8 +6,7 @@ export const GET = async (
 ) => {
   const { id } = await params;
 
-  const book =
-    (await getOpenLibraryBookById(id)) || (await getGoogleBookById(id));
+  const book = await getGoogleBookById(id);
 
   if (!book) {
     return Response.json({ error: 'Livro não encontrado' }, { status: 404 });

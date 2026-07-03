@@ -10,7 +10,6 @@ import {
 } from '@/src/components/ui/card';
 import { BookDetails } from '@/src/features/BookDetailsPage/container/BookDetails';
 import { getGoogleBookById } from '@/src/services/google/getGoogleBookById';
-import { getOpenLibraryBookById } from '@/src/services/openLibrary/getOpenLibraryBookById';
 import { BookX, Home } from 'lucide-react';
 import Link from 'next/link';
 
@@ -51,8 +50,7 @@ const GoogleDetailsPage = async ({
   params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
-  const book =
-    (await getOpenLibraryBookById(id)) || (await getGoogleBookById(id));
+  const book = await getGoogleBookById(id);
 
   if (!book) return <BookNotFound />;
 

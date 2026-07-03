@@ -2,8 +2,6 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { useFetchBooks } from './useFetchBooks';
 
-const PAGE_SIZE = 12;
-
 export const useExploreContent = () => {
   const { replace } = useRouter();
   const pathname = usePathname();
@@ -15,7 +13,7 @@ export const useExploreContent = () => {
   const [searchText, setSearchText] = useState(urlQuery);
   const [query, setQuery] = useState(urlQuery);
   const [currentPage, setCurrentPage] = useState(urlPage);
-  const { data, isFetching } = useFetchBooks({ query, currentPage, PAGE_SIZE });
+  const { data, isFetching } = useFetchBooks({ query, currentPage });
 
   const updateUrl = useCallback(
     (nextQuery: string, nextPage: number) => {
@@ -63,6 +61,5 @@ export const useExploreContent = () => {
     isFetching,
     handlePageChange,
     query,
-    PAGE_SIZE,
   };
 };

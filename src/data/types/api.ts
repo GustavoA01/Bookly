@@ -1,11 +1,14 @@
 export interface GoogleBooksResponse {
-  kind: string;
+  kind: 'books#volumes';
   totalItems: number;
   items?: GoogleBookItem[];
 }
 
 export interface GoogleBookItem {
+  kind?: 'books#volume';
   id: string;
+  etag?: string;
+  selfLink?: string;
   volumeInfo: {
     title: string;
     authors?: string[];
@@ -16,11 +19,17 @@ export interface GoogleBookItem {
     categories?: string[];
     averageRating?: number;
     imageLinks?: {
-      smallThumbnail: string;
-      thumbnail: string;
+      smallThumbnail?: string;
+      thumbnail?: string;
+      small?: string;
+      medium?: string;
+      large?: string;
+      extraLarge?: string;
     };
-    language: string;
-    previewLink: string;
+    language?: string;
+    previewLink?: string;
+    infoLink?: string;
+    canonicalVolumeLink?: string;
   };
   saleInfo?: {
     country: string;
@@ -50,52 +59,4 @@ export type ChatMessageType = {
   id: string;
   messages: { sender: 'user' | 'bot'; text: string; timestamp: Date }[];
   suggestions: GoogleBookItem[];
-};
-
-export type OpenLibraryWorkType = {
-  key?: string;
-  title?: string;
-  description?: string | { value?: string };
-  subjects?: string[];
-  covers?: number[];
-  first_publish_date?: string;
-  location?: string;
-  authors?: { author?: { key?: string } }[];
-};
-
-export type OpenLibraryAuthorType = {
-  name?: string;
-  personal_name?: string;
-  fuller_name?: string;
-};
-
-export type OpenLibraryEditionType = {
-  title?: string;
-  publishers?: string[];
-  publish_date?: string;
-  number_of_pages?: number;
-  languages?: { key?: string }[];
-  covers?: number[];
-};
-
-export type OpenLibraryEditionsResponseType = {
-  entries?: OpenLibraryEditionType[];
-};
-
-export type OpenLibraryDocType = {
-  key?: string;
-  title?: string;
-  author_name?: string[];
-  subject?: string[];
-  ratings_average?: number;
-  cover_i?: number;
-  language?: string[];
-  first_publish_year?: number;
-  first_sentence?: string | string[];
-  number_of_pages_median?: number;
-};
-
-export type OpenLibraryResponseType = {
-  numFound: number;
-  docs?: OpenLibraryDocType[];
 };
