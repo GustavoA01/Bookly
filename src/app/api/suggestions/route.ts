@@ -1,11 +1,11 @@
 import { GeminiResponseType } from '@/src/data/types/api';
 import { BookType } from '@/src/data/types/books';
 import { ai } from '@/src/services/google/geminiConfig';
+import { buildGoogleBooksUrl } from '@/src/services/google/googleBooksConfig';
 import { getOpenLibraryBooks } from '@/src/services/openLibrary/getOpenLibraryBooks';
 import { HarmBlockThreshold, HarmCategory } from '@google/genai';
 
 const GOOGLE_BOOKS_MAX_RESULTS = 5;
-const GOOGLE_BOOKS_ENDPOINT = 'https://www.googleapis.com/books/v1/volumes';
 
 const getErrorMessage = (error: unknown) =>
   error instanceof Error ? error.message : 'Erro inesperado na API de livros';
@@ -30,13 +30,12 @@ const fetchGoogleBook = async (suggestion: {
   title: string;
   author: string;
 }) => {
-  const query = encodeURIComponent(
-    `intitle:${suggestion.title} inauthor:${suggestion.author}`
-  );
-
   try {
     const response = await fetch(
-      `${GOOGLE_BOOKS_ENDPOINT}?q=${query}&maxResults=1`,
+      buildGoogleBooksUrl('', {
+        q: `intitle:${suggestion.title} inauthor:${suggestion.author}`,
+        maxResults: '1',
+      }),
       { cache: 'no-store' }
     );
 

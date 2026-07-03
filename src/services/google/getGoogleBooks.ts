@@ -1,8 +1,9 @@
 import { GoogleBooksResponse } from '../../data/types/api';
 import { getOpenLibraryBooks } from '../openLibrary/getOpenLibraryBooks';
-
-const GOOGLE_BOOKS_ENDPOINT = 'https://www.googleapis.com/books/v1/volumes';
-const PAGE_SIZE = 12;
+import {
+  buildGoogleBooksUrl,
+  GOOGLE_BOOKS_PAGE_SIZE,
+} from './googleBooksConfig';
 
 export const getGoogleBooks = async (
   query: string,
@@ -11,15 +12,15 @@ export const getGoogleBooks = async (
   const normalizedQuery = query?.trim();
   if (!normalizedQuery) return null;
 
-  const startIndex = (currentPage - 1) * PAGE_SIZE;
-  const params = new URLSearchParams({
+  const startIndex = (currentPage - 1) * GOOGLE_BOOKS_PAGE_SIZE;
+  const url = buildGoogleBooksUrl('', {
     q: normalizedQuery,
     startIndex: String(startIndex),
-    maxResults: String(PAGE_SIZE),
+    maxResults: String(GOOGLE_BOOKS_PAGE_SIZE),
   });
 
   try {
-    const res = await fetch(`${GOOGLE_BOOKS_ENDPOINT}?${params.toString()}`, {
+    const res = await fetch(url, {
       cache: 'no-store',
     });
 

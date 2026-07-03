@@ -1,6 +1,5 @@
 import { GoogleBookItem } from '@/src/data/types/api';
 import { getBookById } from '@/src/services/firebase/books/getBookById';
-import { getOpenLibraryBookById } from '@/src/services/openLibrary/getOpenLibraryBookById';
 import { keys } from '@/src/services/keys';
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect } from 'react';
@@ -47,17 +46,8 @@ export const useFetchBookForm = ({
   );
 
   const fetchBook = useCallback(async () => {
-    const openLibraryBook = await getOpenLibraryBookById(id || '');
-
-    if (openLibraryBook) {
-      fillGoogleBookData(openLibraryBook);
-      return;
-    }
-
     try {
-      const res = await fetch(
-        `https://www.googleapis.com/books/v1/volumes/${id}`
-      );
+      const res = await fetch(`/api/books/${id}`);
 
       if (!res.ok) return;
 

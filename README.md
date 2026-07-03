@@ -98,6 +98,7 @@ Acesse [http://localhost:3000](http://localhost:3000) no navegador.
 | `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID` | Messaging Sender ID do Firebase |
 | `NEXT_PUBLIC_FIREBASE_APP_ID` | App ID do Firebase |
 | `GEMINI_API_KEY` | Chave da API do Google Gemini |
+| `GOOGLE_BOOKS_API_KEY` | Chave da API do Google Books (obrigatória para busca de livros) |
 | `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | Nome do cloud no Cloudinary |
 | `CLOUDINARY_API_KEY` | API Key do Cloudinary |
 | `CLOUDINARY_API_SECRET` | API Secret do Cloudinary |

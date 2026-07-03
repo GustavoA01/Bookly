@@ -8,29 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@/src/components/ui/card';
-import { GoogleBookItem } from '@/src/data/types/api';
 import { BookDetails } from '@/src/features/BookDetailsPage/container/BookDetails';
+import { getGoogleBookById } from '@/src/services/google/getGoogleBookById';
 import { getOpenLibraryBookById } from '@/src/services/openLibrary/getOpenLibraryBookById';
 import { BookX, Home } from 'lucide-react';
 import Link from 'next/link';
-
-const getGoogleBookById = async (id: string) => {
-  try {
-    const res = await fetch(
-      `https://www.googleapis.com/books/v1/volumes/${id}`,
-      {
-        cache: 'no-store',
-      }
-    );
-
-    if (!res.ok) return null;
-
-    const book = (await res.json()) as GoogleBookItem;
-    return book?.volumeInfo ? book : null;
-  } catch {
-    return null;
-  }
-};
 
 const BookNotFound = () => (
   <div className="space-y-8">
