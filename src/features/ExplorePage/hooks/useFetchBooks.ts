@@ -32,7 +32,8 @@ export const useFetchBooks = ({
       };
     },
     placeholderData: keepPreviousData,
-    retry: 1,
+    retry: 2,
+    retryDelay: (attempt) => 400 * (attempt + 1),
   });
 
   return { data, isFetching };

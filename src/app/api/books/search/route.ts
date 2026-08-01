@@ -18,10 +18,17 @@ export const GET = async (req: Request) => {
   } catch (error) {
     const status =
       error instanceof GoogleBooksRequestError ? error.status : 500;
+    const message =
+      error instanceof Error ? error.message : 'Failed to fetch books';
+
+    console.error('[books/search]', message, { status, query, page });
+
+    // Normaliza erros transitórios da Google para 502 — o client mantém a lista anterior
+    const responseStatus = status === 503 || status === 429 ? 502 : status;
 
     return Response.json(
       { error: 'Failed to fetch books' },
-      { status: status >= 400 ? status : 500 }
+      { status: responseStatus >= 400 ? responseStatus : 500 }
     );
   }
 };
