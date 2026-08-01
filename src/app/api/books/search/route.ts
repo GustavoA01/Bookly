@@ -1,4 +1,7 @@
-import { getGoogleBooks } from '@/src/services/google/getGoogleBooks';
+import {
+  getGoogleBooks,
+  GoogleBooksRequestError,
+} from '@/src/services/google/getGoogleBooks';
 
 export const GET = async (req: Request) => {
   const { searchParams } = new URL(req.url);
@@ -9,7 +12,16 @@ export const GET = async (req: Request) => {
     return Response.json({ error: 'Query is required' }, { status: 400 });
   }
 
-  const data = await getGoogleBooks(query, page);
+  try {
+    const data = await getGoogleBooks(query, page);
+    return Response.json(data);
+  } catch (error) {
+    const status =
+      error instanceof GoogleBooksRequestError ? error.status : 500;
 
-  return Response.json(data);
+    return Response.json(
+      { error: 'Failed to fetch books' },
+      { status: status >= 400 ? status : 500 }
+    );
+  }
 };

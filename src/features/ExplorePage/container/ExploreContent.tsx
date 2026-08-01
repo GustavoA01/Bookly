@@ -22,14 +22,14 @@ export const ExploreContent = () => {
 
   return (
     <div className="space-y-4">
-      <form className="flex items-center gap-2">
+      <div className="flex items-center gap-2">
         <Input
           value={searchText}
           placeholder="Buscar"
           className="w-full sm:max-w-80"
           onChange={(event) => setSearchText(event.target.value)}
         />
-      </form>
+      </div>
 
       {isFetching ? (
         <div className="gap-2 sm:gap-4 space-y-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">

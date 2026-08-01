@@ -1,6 +1,6 @@
 import { GoogleBooksResponse } from '@/src/data/types/api';
 import { keys } from '@/src/services/keys';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { UseFetchBooksParamsType } from '../types';
 
 const DEFAULT_EXPLORE_QUERY = 'fiction';
@@ -10,7 +10,7 @@ const fetchBooksFromApi = async (query: string, page: number) => {
     `/api/books/search?q=${encodeURIComponent(query)}&page=${page}`
   );
 
-  if (!res.ok) return null;
+  if (!res.ok) throw new Error('Falha ao buscar livros');
 
   return (await res.json()) as GoogleBooksResponse;
 };
@@ -24,14 +24,15 @@ export const useFetchBooks = ({
     queryFn: async () => {
       const searchQuery = query || DEFAULT_EXPLORE_QUERY;
       const response = await fetchBooksFromApi(searchQuery, currentPage);
-      const books = response?.items || [];
+      const books = response.items || [];
 
       return {
         books,
-        totalItems: response?.totalItems || books.length,
+        totalItems: response.totalItems || books.length,
       };
     },
-    placeholderData: (previousData) => previousData,
+    placeholderData: keepPreviousData,
+    retry: 1,
   });
 
   return { data, isFetching };
